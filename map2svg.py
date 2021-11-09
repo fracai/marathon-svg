@@ -4,6 +4,8 @@ import argparse
 import xml.etree.ElementTree as ET
 from collections import defaultdict
 import json
+import os
+import errno
 
 CHUNK_TYPES = [
     'NAME', # map name
@@ -33,6 +35,14 @@ CHUNK_TYPES_IGNORED = [
     'PXpx',
     'WPpx',
 ]
+
+def mkdir_p(path):
+    try:
+        os.makedirs(path)
+    except OSError as exc: # Python >2.5
+        if exc.errno == errno.EEXIST and os.path.isdir(path):
+            pass
+        else: raise
 
 def process_map_file(map_xml_path):
     print (map_xml_path)
@@ -75,15 +85,43 @@ def process_level(level_root):
     print (level_name)
 #     with open('{}.json'.format(level_name), 'w') as f:
 #         json.dump(level_dict, f)
+    generate_svg(level_name, level_dict)
 
 def process_chunk(chunk_root):
     chunk_dict = defaultdict(list)
     for entry in chunk_root:
         chunk_dict[entry.tag].append(entry.attrib)
+        if int(chunk_dict[entry.tag][-1]['index']) != len(chunk_dict[entry.tag])-1:
+            print (chunk_dict[entry.tag])
     return chunk_dict
+
+def generate_svg(level_name, level_dict):
+    out_path = os.path.join(args.output_directory, '{}.svg'.format(level_name))
+    level_svg = ''
+    min_x = 0
+    min_y = 0
+    max_x = 0
+    max_y = 0
+    for point in level_dict['EPNT']['endpoint']:
+        level_svg += '<circle cx="{}" cy="{}" id="endpoint-{}" class="endpoint"/>\n'.format(point['x'], point['y'], point['index'])
+        min_x = min(min_x, float(point['x']))
+        min_y = min(min_y, float(point['y']))
+        max_x = max(max_x, float(point['x']))
+        max_y = max(max_y, float(point['y']))
+    level_svg = '<svg height="{}" width="{}">\n'.format(max_x, max_y) + level_svg
+    level_svg += '</svg>'
+    write_data(os.path.join(args.output_directory, '{}.json'.format(level_name)), json.dumps(level_dict, indent=2))
+    write_data(out_path, level_svg)
+    pass
+
+def write_data(path, data):
+    mkdir_p(os.path.dirname(path))
+    with open(path, 'w') as f:
+        f.write(data)
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='Convert maps to SVG')
+    parser.add_argument('-d', '--dir',  dest='output_directory', help='specify the output directory')
     parser.add_argument('map_xml', metavar='map.xml', type=str, nargs='+', help='a map XML file')
     args = parser.parse_args()
 
