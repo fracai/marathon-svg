@@ -92,8 +92,8 @@ def process_map_file(map_xml_path, ignore_file):
     for child in root:
         # <wadinfo type="0" size="3863054" count="37">Map</wadinfo>
         if 'wadinfo' == child.tag:
-            map_type = child.attrib['type']
-            level_count = child.attrib['count']
+            map_type = int(child.attrib['type'])
+            level_count = int(child.attrib['count'])
             continue
         if 'entry' != child.tag:
             continue
@@ -192,7 +192,7 @@ def generate_grid():
     grid_svg += '<!-- end group: "background-grid" -->\n</g>\n'
     return grid_svg
 
-def generate_polygons(level_dict, platform_map, ignore_polys):
+def generate_polygons(level_dict, platform_map, ignore_polys, map_type):
     poly_svg = '<g id="polygons">\n'
     (min_x, min_y, max_x, max_y) = level_dict['__dimensions']
     for poly in level_dict['POLY']['polygon']:
@@ -200,7 +200,7 @@ def generate_polygons(level_dict, platform_map, ignore_polys):
         list_key='LINS'
         type='endpoint'
         list_key='EPNT'
-        css_class = calculate_poly_class(poly, platform_map, ignore_polys, level_dict['medi']['media'])
+        css_class = calculate_poly_class(poly, platform_map, ignore_polys, level_dict['medi']['media'], map_type)
         for index in range(0,poly['vertex_count']):
             reference = poly['{}_index_{}'.format(type, index)]
             entry = level_dict[list_key][type][reference]
@@ -292,7 +292,7 @@ def generate_svg(map_type, level_name, level_dict, ignore_polys):
     level_svg = ''
 
     level_svg += generate_grid()
-    level_svg += generate_polygons(level_dict, platform_map, ignore_polys)
+    level_svg += generate_polygons(level_dict, platform_map, ignore_polys, map_type)
     level_svg += generate_lines(level_dict, platform_map, ignore_polys)
     level_svg += generate_annotations(level_dict['NOTE']['annotation'])
 
@@ -340,18 +340,26 @@ media_map = {
     4: 'jjaro',
 }
 
-def calculate_poly_class(poly, platform_map, ignore_polys, liquids):
+def calculate_poly_class(poly, platform_map, ignore_polys, liquids, map_type):
     if poly['index'] in ignore_polys:
         return 'ignore'
-    if poly['type'] == 3:
-        return 'minor_ouch'
-    if poly['type'] == 4:
-        return 'major_ouch'
-    if 0 < len(liquids) and poly['media_index'] >= 0:
-        media = liquids[poly['media_index']]
-        if poly['floor_height'] < media['low']:
-            if media['type'] in media_map:
-                return media_map[media['type']]
+    if map_type < 2:
+        if poly['type'] == 3:
+            return 'minor_ouch'
+        if poly['type'] == 4:
+            return 'major_ouch'
+    else:
+        if poly['type'] == 3:
+            return 'hill'
+        if poly['type'] == 19:
+            return 'minor_ouch'
+        if poly['type'] == 20:
+            return 'major_ouch'
+        if 0 < len(liquids) and poly['media_index'] >= 0:
+            media = liquids[poly['media_index']]
+            if poly['floor_height'] < media['low']:
+                if media['type'] in media_map:
+                    return media_map[media['type']]
     if is_landscape_poly(poly):
         return 'landscape_'
     if poly['index'] in platform_map:
@@ -359,6 +367,8 @@ def calculate_poly_class(poly, platform_map, ignore_polys, liquids):
             return 'secret_platform'
         else:
             return 'platform'
+    if poly['type'] == 5:
+        return 'platform'
     return 'plain'
 
 def calculate_line_class(line, sides, polygons, platform_map, ignore_polys):
