@@ -102,8 +102,8 @@ def process_map_file(map_xml_path, ignore_file):
             continue
         if level_index not in ignore_map:
             ignore_map[level_index] = []
-        svg_name = process_level(map_type, child, ignore_map[level_index])
-        preview += '<h3>{}</h3><p><object type="image/svg+xml" data="{}"></object></p>\n'.format(svg_name,svg_name)
+        level_name, svg_name = process_level(map_type, child, ignore_map[level_index])
+        preview += '<h3>{}</h3><p><object type="image/svg+xml" data="{}"></object></p>\n'.format(level_name,svg_name)
     preview = preview_header + preview + '</body></html>'
     out_path = os.path.join(args.output_directory, '_preview.html')
     write_data(out_path, preview)
@@ -132,7 +132,7 @@ def process_level(map_type, level_root, ignore_polys):
             level_dict[chunk_type] = defaultdict(list)
     level_name = '{:0>2} {}'.format(level_number, name)
     print (level_name)
-    return generate_svg(map_type, level_name, level_dict, ignore_polys)
+    return level_name, generate_svg(map_type, level_name, level_dict, ignore_polys)
 
 def process_chunk(chunk_root):
     chunk_dict = defaultdict(list)
@@ -275,9 +275,10 @@ def generate_annotations(notes):
     notes_svg += '<!-- end group: "annotations" -->\n</g>\n'
     return notes_svg
 
-
 def generate_svg(map_type, level_name, level_dict, ignore_polys):
     level_name = level_name.replace(' ','_')
+    level_name = re.sub('[^a-zA-Z0-9]', '_', level_name)
+    level_name = re.sub('_+', '_', level_name)
     out_path = os.path.join(args.output_directory, '{}.svg'.format(level_name))
     json_path = os.path.join(args.output_directory, '{}.json'.format(level_name))
 
@@ -326,7 +327,7 @@ def generate_svg(map_type, level_name, level_dict, ignore_polys):
     )
     svg_end = '</svg>'
     level_svg = svg_prefix + svg_size + svg_style + level_svg + svg_js + svg_end
-    write_data(json_path, json.dumps(level_dict, indent=2))
+#     write_data(json_path, json.dumps(level_dict, indent=2))
     write_data(out_path, level_svg)
     return os.path.basename(out_path)
 
@@ -350,7 +351,7 @@ def calculate_poly_class(poly, platform_map, ignore_polys, liquids):
         if poly['floor_height'] < media['low']:
             if media['type'] in media_map:
                 return media_map[media['type']]
-    if landscape_poly(poly):
+    if is_landscape_poly(poly):
         return 'landscape_'
     if poly['index'] in platform_map:
         if platform_map[poly['index']]['static_flags'] & 0x2000000:
@@ -370,7 +371,7 @@ def calculate_line_class(line, sides, polygons, platform_map, ignore_polys):
     ccw_poly = polygons[ccw_poly_ref] if ccw_poly_ref >= 0 else None
     if (not cw_poly or cw_poly['index'] in ignore_polys) and (not ccw_poly or ccw_poly['index'] in ignore_polys):
         return 'ignore'
-    if landscape_line(line, sides):
+    if is_landscape_line(line, sides):
         return 'landscape_'
     if line['flags'] & 0x4000 or not cw_poly or not ccw_poly or 5 == cw_poly['type'] or 5 == ccw_poly['type']:
         return 'solid'
@@ -380,15 +381,15 @@ def calculate_line_class(line, sides, polygons, platform_map, ignore_polys):
         return 'solid'
     return 'elevation'
 
-def landscape_line(line, sides):
-    return landscape_side(line,'cw_side', sides) or landscape_side(line,'ccw_side', sides)
+def is_landscape_line(line, sides):
+    return is_landscape_side(line,'cw_side', sides) or is_landscape_side(line,'ccw_side', sides)
 
-def landscape_side(line, side_type, sides):
+def is_landscape_side(line, side_type, sides):
     if line[side_type] < 0:
         return False
     return 9 == sides[line[side_type]]['primary_transfer']
 
-def landscape_poly(poly):
+def is_landscape_poly(poly):
     return 9 == poly['floor_transfer_mode'] and 9 == poly['ceiling_transfer_mode']
 
 def write_data(path, data):
