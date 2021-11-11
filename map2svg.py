@@ -296,6 +296,7 @@ def generate_svg(map_type, level_name, level_dict, ignore_polys):
     level_svg += generate_lines(level_dict, platform_map, ignore_polys)
     level_svg += generate_annotations(level_dict['NOTE']['annotation'])
 
+    # round min/max coordinates to the nearest WU, +1
     (min_x, min_y, max_x, max_y) = level_dict['__dimensions']
     min_x = max(-1, math.floor(min_x * 32 - 1)/32)
     min_y = max(-1, math.floor(min_y * 32 - 1)/32)
