@@ -275,6 +275,60 @@ def generate_annotations(notes):
     notes_svg += '<!-- end group: "annotations" -->\n</g>\n'
     return notes_svg
 
+PANELS_m1 = [
+    'oxygen_refuel', 'shield_refuel', 'double_shield_refuel',
+    'triple_shield_refuel', 'light_switch', 'platform_switch',
+    'pattern_buffer', 'tag_switch', 'computer_terminal', 'tag_switch',
+    'double_shield_refuel', 'triple_shield_refuel', 'platform_switch',
+    'pattern_buffer',
+]
+PANELS = [
+    'oxygen_refuel', 'shield_refuel', 'double_shield_refuel', 'tag_switch',
+    'light_switch', 'platform_switch', 'tag_switch', 'pattern_buffer',
+    'computer_terminal', 'tag_switch',
+
+    'shield_refuel', 'double_shield_refuel', 'triple_shield_refuel',
+    'light_switch', 'platform_switch', 'tag_switch', 'pattern_buffer',
+    'computer_terminal', 'oxygen_refuel', 'tag_switch', 'tag_switch',
+
+    'shield_refuel', 'double_shield_refuel', 'triple_shield_refuel',
+    'light_switch', 'platform_switch', 'tag_switch', 'pattern_buffer',
+    'computer_terminal', 'oxygen_refuel', 'tag_switch', 'tag_switch',
+
+    'shield_refuel', 'double_shield_refuel', 'triple_shield_refuel',
+    'light_switch', 'platform_switch', 'tag_switch', 'pattern_buffer',
+    'computer_terminal', 'oxygen_refuel', 'tag_switch', 'tag_switch',
+
+    'shield_refuel', 'double_shield_refuel', 'triple_shield_refuel',
+    'light_switch', 'platform_switch', 'tag_switch', 'pattern_buffer',
+    'computer_terminal', 'oxygen_refuel', 'tag_switch', 'tag_switch',
+]
+
+def generate_panels(level_dict, ignore_polys, map_type):
+    panel_types = PANELS
+    if map_type < 2:
+        panel_types = PANELS_m1
+    panel_svg = '<g id="panels">\n'
+    for side in level_dict['SIDS']['side']:
+        if not side['flags'] & 0x2:
+            continue
+#         if side['poly'] < len(level_dict['POLY']['polygon']) and is_hidden_poly(level_dict['POLY']['polygon'][side['poly']], ignore_polys):
+#             continue
+        line = level_dict['LINS']['line'][side['line']]
+        x1 = level_dict['EPNT']['endpoint'][line['endpoint1']]['x']
+        y1 = level_dict['EPNT']['endpoint'][line['endpoint1']]['y']
+        x2 = level_dict['EPNT']['endpoint'][line['endpoint2']]['x']
+        y2 = level_dict['EPNT']['endpoint'][line['endpoint2']]['y']
+        css_class = 'panel-{}'.format(panel_types[side['panel_type']])
+        panel_svg += '<use xlink:href="_panel_ring.svg#panel" x="{cx}" y="{cy}" class="{css_class}" />\n'.format(
+            cx = (x1 + x2) / 2 / MAX_POS,
+            cy = (y1 + y2) / 2 / MAX_POS,
+            css_id='side_{}'.format(side['index']),
+            css_class = css_class,
+        )
+    panel_svg += '<!-- end group: "panels" -->\n</g>\n'
+    return panel_svg
+
 def generate_svg(map_type, level_name, level_dict, ignore_polys):
     level_name = level_name.replace(' ','_')
     level_name = re.sub('[^a-zA-Z0-9]', '_', level_name)
@@ -294,6 +348,7 @@ def generate_svg(map_type, level_name, level_dict, ignore_polys):
     level_svg += generate_grid()
     level_svg += generate_polygons(level_dict, platform_map, ignore_polys, map_type)
     level_svg += generate_lines(level_dict, platform_map, ignore_polys)
+    level_svg += generate_panels(level_dict, ignore_polys, map_type)
     level_svg += generate_annotations(level_dict['NOTE']['annotation'])
 
     # round min/max coordinates to the nearest WU, +1
@@ -341,7 +396,7 @@ media_map = {
 }
 
 def calculate_poly_class(poly, platform_map, ignore_polys, liquids, map_type):
-    if poly['index'] in ignore_polys:
+    if is_ignored_poly(poly, ignore_polys):
         return 'ignore'
     if map_type < 2:
         if poly['type'] == 3:
@@ -380,7 +435,7 @@ def calculate_line_class(line, sides, polygons, platform_map, ignore_polys):
     ccw_poly_ref = line['ccw_poly']
     cw_poly = polygons[cw_poly_ref] if cw_poly_ref >= 0 else None
     ccw_poly = polygons[ccw_poly_ref] if ccw_poly_ref >= 0 else None
-    if (not cw_poly or cw_poly['index'] in ignore_polys) and (not ccw_poly or ccw_poly['index'] in ignore_polys):
+    if (not cw_poly or is_ignored_poly(cw_poly, ignore_polys)) and (not ccw_poly or is_ignored_poly(ccw_poly, ignore_polys)):
         return 'ignore'
     if is_landscape_line(line, sides):
         return 'landscape_'
@@ -402,6 +457,15 @@ def is_landscape_side(line, side_type, sides):
 
 def is_landscape_poly(poly):
     return 9 == poly['floor_transfer_mode'] and 9 == poly['ceiling_transfer_mode']
+
+def is_unseen_poly(poly):
+    return poly['type'] != 5 and poly['floor_height'] == poly['ceiling_height']
+
+def is_ignored_poly(poly, ignore_polys):
+    return poly['index'] in ignore_polys;
+
+def is_hidden_poly(poly, ignore_polys):
+    return islandscape_poly(poly) or is_unseen_poly(poly) or is_ignored_poly(poly, ignore_polys)
 
 def write_data(path, data):
     mkdir_p(os.path.dirname(path))
