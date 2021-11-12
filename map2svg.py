@@ -213,7 +213,7 @@ def generate_polygons(level_dict, platform_map, ignore_polys, map_type):
         points = map(lambda p: level_dict[list_key][type][p], points)
         points = map(lambda p: (p['x']/MAX_POS, p['y']/MAX_POS), points)
         points = map(lambda p: (str(p[0]),str(p[1])),points)
-        points = map(' '.join, points)
+        points = map(','.join, points)
         extra = 'onmousemove="showTooltip(evt, \'{tooltip}\', {x}, {y});" onmouseout="hideTooltip();"'.format(
             x=poly['center_x']/MAX_POS,
             y=poly['center_y']/MAX_POS,
@@ -222,8 +222,8 @@ def generate_polygons(level_dict, platform_map, ignore_polys, map_type):
             )
         )
         extra = ''
-        poly_svg += '<path d="{path}" id="{css_id}" class="{css_class}" floor="{floor}" ceiling="{ceiling}" {extra}/>\n'.format(
-            path='M ' + ' L '.join(points) + ' Z',
+        poly_svg += '<polygon points="{path}" id="{css_id}" class="{css_class}" floor="{floor}" ceiling="{ceiling}" {extra}/>\n'.format(
+            path=' '.join(points),
             css_id='poly_{}'.format(poly['index']),
             css_class=css_class,
             floor=poly['floor_height']/MAX_POS,
