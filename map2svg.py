@@ -365,7 +365,7 @@ def generate_objects(objects, polygons, ignore_polys):
                 cx=obj['location_x'] / MAX_POS,
                 cy=obj['location_y'] / MAX_POS,
             )
-        entry = '<use xlink:href="_common.svg#{symbol}" x="{cx}" y="{cy}" class="{css_class}" {transform}/>'.format(
+        entry = '<use xlink:href="_common.svg#{symbol}" x="{cx}" y="{cy}" id="{css_id}" class="{css_class}" {transform}/>'.format(
             symbol=symbol,
             cx=obj['location_x'] / MAX_POS,
             cy=obj['location_y'] / MAX_POS,
