@@ -16,6 +16,10 @@
 <polygon points="-.01,.005 .01,0 -.01,-.005" fill="currentColor" stroke="black" stroke-width=".001" />
 </symbol>
 
+<symbol id='arrow' style='overflow: visible;'>
+<polygon points="-.02,.005 0,0 -.02,-.005" fill="currentColor" stroke="black" stroke-width=".001" />
+</symbol>
+
 <symbol id='object' style='overflow: visible;'>
 <rect width=".005" height=".005" fill="currentColor" stroke="black" stroke-width=".001" />
 </symbol>
