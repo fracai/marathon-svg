@@ -320,7 +320,7 @@ def generate_panels(level_dict, ignore_polys, map_type):
         x2 = level_dict['EPNT']['endpoint'][line['endpoint2']]['x']
         y2 = level_dict['EPNT']['endpoint'][line['endpoint2']]['y']
         css_class = 'panel-{}'.format(panel_types[side['panel_type']])
-        panel_svg += '<use xlink:href="_common.svg#panel" x="{cx}" y="{cy}" class="{css_class}" />\n'.format(
+        panel_svg += '<use xlink:href="_common.svg#panel" x="{cx}" y="{cy}" id="{css_id}" class="{css_class}" />\n'.format(
             cx = (x1 + x2) / 2 / MAX_POS,
             cy = (y1 + y2) / 2 / MAX_POS,
             css_id='side_{}'.format(side['index']),
@@ -333,8 +333,6 @@ def generate_objects(objects, polygons, ignore_polys):
     object_svg = '<g id="objects">\n'
     entries = defaultdict(list)
     for obj in objects:
-        if is_hidden_poly(polygons[obj['polygon_index']], ignore_polys):
-            continue
         symbol = None
         css_class = None
         order = None
@@ -358,6 +356,8 @@ def generate_objects(objects, polygons, ignore_polys):
             symbol = 'goal'
             css_class = 'goal'
             order = symbol
+#         if is_hidden_poly(polygons[obj['polygon_index']], ignore_polys):
+#             css_class += ' hidden'
         transform = ''
         if 0 != obj['facing']:
             transform = 'transform="rotate({rotation} {cx} {cy})" '.format(
@@ -479,6 +479,8 @@ def calculate_poly_class(poly, platform_map, ignore_polys, liquids, map_type):
             return 'platform'
     if poly['type'] == 5:
         return 'platform'
+    if poly['type'] == 10:
+        return 'teleporter'
     return 'plain'
 
 def calculate_line_class(line, sides, polygons, platform_map, ignore_polys):
