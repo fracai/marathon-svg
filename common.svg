@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg
+    xmlns="http://www.w3.org/2000/svg"
+    xmlns:xlink="http://www.w3.org/1999/xlink"
+    version="1.1"
+    style='display: none!important;'>
+
+<symbol id='panel' style='overflow: visible;'>
+<circle r=".012" stroke-width=".004" stroke="black" fill="none" />
+<circle r=".012" stroke-width=".002" stroke="currentColor" fill="none" />
+</symbol>
+
+<symbol id='monster' style='overflow: visible;'>
+<polygon points="-.01,.005 .01,0 -.01,-.005" fill="currentColor" stroke="black" stroke-width=".001" />
+</symbol>
+
+<symbol id='object' style='overflow: visible;'>
+<rect width=".005" height=".005" fill="currentColor" stroke="black" stroke-width=".001" />
+</symbol>
+
+<symbol id='item' style='overflow: visible;'>
+<circle r=".003" fill="black" />
+<circle r=".002" fill="currentColor" />
+</symbol>
+
+<symbol id='goal' style='overflow: visible;'>
+<polygon points=".000,-.0085 -.006,.0085 .009,-.0035 -.009,-.0035 .006,.0085" fill="none" stroke="black" stroke-width=".003" />
+<polygon points=".000,-.0085 -.006,.0085 .009,-.0035 -.009,-.0035 .006,.0085" fill="none" stroke="currentColor" stroke-width=".001" />
+</symbol>
+
+</svg>
