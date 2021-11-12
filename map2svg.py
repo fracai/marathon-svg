@@ -320,7 +320,7 @@ def generate_panels(level_dict, ignore_polys, map_type):
         x2 = level_dict['EPNT']['endpoint'][line['endpoint2']]['x']
         y2 = level_dict['EPNT']['endpoint'][line['endpoint2']]['y']
         css_class = 'panel-{}'.format(panel_types[side['panel_type']])
-        panel_svg += '<use xlink:href="_panel_ring.svg#panel" x="{cx}" y="{cy}" class="{css_class}" />\n'.format(
+        panel_svg += '<use xlink:href="_common.svg#panel" x="{cx}" y="{cy}" class="{css_class}" />\n'.format(
             cx = (x1 + x2) / 2 / MAX_POS,
             cy = (y1 + y2) / 2 / MAX_POS,
             css_id='side_{}'.format(side['index']),
@@ -328,6 +328,60 @@ def generate_panels(level_dict, ignore_polys, map_type):
         )
     panel_svg += '<!-- end group: "panels" -->\n</g>\n'
     return panel_svg
+
+def generate_objects(objects, polygons, ignore_polys):
+    object_svg = '<g id="objects">\n'
+    entries = defaultdict(list)
+    for obj in objects:
+        if is_hidden_poly(polygons[obj['polygon_index']], ignore_polys):
+            continue
+        symbol = None
+        css_class = None
+        order = None
+        if 0 == obj['type']:
+            symbol = 'monster'
+            css_class = 'monster monster-{}'.format(obj['object_index'])
+            order = symbol
+        if 1 == obj['type']:
+            symbol = 'object'
+            css_class = 'object object-{}'.format(obj['object_index'])
+            order = symbol
+        if 2 == obj['type']:
+            symbol = 'item'
+            css_class = 'item item-{}'.format(obj['object_index'])
+            order = symbol
+        if 3 == obj['type']:
+            symbol = 'monster'
+            css_class = 'player'
+            order = 'player'
+        if 4 == obj['type']:
+            symbol = 'goal'
+            css_class = 'goal'
+            order = symbol
+        transform = ''
+        if 0 != obj['facing']:
+            transform = 'transform="rotate({rotation} {cx} {cy})" '.format(
+                rotation=obj['facing'] / 512 * 360,
+                cx=obj['location_x'] / MAX_POS,
+                cy=obj['location_y'] / MAX_POS,
+            )
+        entry = '<use xlink:href="_common.svg#{symbol}" x="{cx}" y="{cy}" class="{css_class}" {transform}/>'.format(
+            symbol=symbol,
+            cx=obj['location_x'] / MAX_POS,
+            cy=obj['location_y'] / MAX_POS,
+            transform=transform,
+            css_id='object_{}'.format(obj['index']),
+            css_class=css_class,
+        )
+        entries[order].append(entry)
+    for symbol in ['object', 'item', 'monster', 'goal', 'player']:
+        for entry in entries[symbol]:
+            object_svg += entry + '\n'
+        del entries[symbol]
+    if entries.keys():
+        print (set(entries.keys()))
+    object_svg += '<!-- end group: "objects" -->\n</g>\n'
+    return object_svg
 
 def generate_svg(map_type, level_name, level_dict, ignore_polys):
     level_name = level_name.replace(' ','_')
@@ -348,6 +402,7 @@ def generate_svg(map_type, level_name, level_dict, ignore_polys):
     level_svg += generate_grid()
     level_svg += generate_polygons(level_dict, platform_map, ignore_polys, map_type)
     level_svg += generate_lines(level_dict, platform_map, ignore_polys)
+    level_svg += generate_objects(level_dict['OBJS']['object'], level_dict['POLY']['polygon'], ignore_polys)
     level_svg += generate_panels(level_dict, ignore_polys, map_type)
     level_svg += generate_annotations(level_dict['NOTE']['annotation'])
 
@@ -372,7 +427,7 @@ def generate_svg(map_type, level_name, level_dict, ignore_polys):
     xmlns:xlink="http://www.w3.org/1999/xlink"
     version="1.1"
     '''
-    svg_style = '<link xmlns="http://www.w3.org/1999/xhtml" rel="stylesheet" href="_styles.css" type="text/css"/>\n'
+    svg_style = '<link xmlns="http://www.w3.org/1999/xhtml" rel="stylesheet" href="_styles.css" type="text/css" />\n'
     svg_size = 'width="{width}" height="{height}" viewBox="{vbminx} {vbminy} {vbheight} {vbwidth}">\n'.format(
         width=(max_x-min_x)/2 * 1000,
         height=(max_y-min_y)/2 * 1000,
@@ -465,7 +520,7 @@ def is_ignored_poly(poly, ignore_polys):
     return poly['index'] in ignore_polys;
 
 def is_hidden_poly(poly, ignore_polys):
-    return islandscape_poly(poly) or is_unseen_poly(poly) or is_ignored_poly(poly, ignore_polys)
+    return is_landscape_poly(poly) or is_unseen_poly(poly) or is_ignored_poly(poly, ignore_polys)
 
 def write_data(path, data):
     mkdir_p(os.path.dirname(path))
