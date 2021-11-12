@@ -6,7 +6,9 @@
     style='display: none!important;'>
 
 <symbol id='panel' style='overflow: visible;'>
+<!-- outline -->
 <circle r=".012" stroke-width=".004" stroke="black" fill="none" />
+<!-- inner color -->
 <circle r=".012" stroke-width=".002" stroke="currentColor" fill="none" />
 </symbol>
 
@@ -19,12 +21,16 @@
 </symbol>
 
 <symbol id='item' style='overflow: visible;'>
+<!-- outline -->
 <circle r=".003" fill="black" />
+<!-- inner color -->
 <circle r=".002" fill="currentColor" />
 </symbol>
 
 <symbol id='goal' style='overflow: visible;'>
+<!-- outline -->
 <polygon points=".000,-.0085 -.006,.0085 .009,-.0035 -.009,-.0035 .006,.0085" fill="none" stroke="black" stroke-width=".003" />
+<!-- inner color -->
 <polygon points=".000,-.0085 -.006,.0085 .009,-.0035 -.009,-.0035 .006,.0085" fill="none" stroke="currentColor" stroke-width=".001" />
 </symbol>
 
