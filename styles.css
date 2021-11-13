@@ -1,20 +1,20 @@
-.landscape_, .ignore, .pointless { display: none!important; }
+.hidden, .landscape_, .ignore, .pointless { display: none!important; }
 
-path.ignore          { color: rgb(   0,  47,   0 ); }
-path.plain           { color: rgb(   0,  47,   0 ); }
-path.platform        { color: rgb( 117,   0,   0 ); }
-path.secret_platform { color: rgb(  47,  47,   0 ); }
-path.water           { color: rgb(  14,  37,  63 ); }
-path.lava            { color: rgb(  76,  27,   0 ); }
-path.sewage          { color: rgb(  70,  90,   0 ); }
-path.jjaro           { color: rgb(  70,  90,   0 ); }
-path.pfhor           { color: rgb( 137,   0, 137 ); }
-path.minor_ouch      { color: rgb(  76,  27,   0 ); }
-path.major_ouch      { color: rgb( 137,   0, 137 ); }
-path.teleporter      { color: rgb(   0,  47,   0 ); }
-path.hill            { color: rgb(   0,  47,   0 ); }
-path.landscape_      { color: rgb(  37,   0,  37 ); }
-path {
+polygon.ignore          { color: rgb(   0,  47,   0 ); }
+polygon.plain           { color: rgb(   0,  47,   0 ); }
+polygon.platform        { color: rgb( 117,   0,   0 ); }
+polygon.secret_platform { color: rgb(  47,  47,   0 ); }
+polygon.water           { color: rgb(  14,  37,  63 ); }
+polygon.lava            { color: rgb(  76,  27,   0 ); }
+polygon.sewage          { color: rgb(  70,  90,   0 ); }
+polygon.jjaro           { color: rgb(  70,  90,   0 ); }
+polygon.pfhor           { color: rgb( 137,   0, 137 ); }
+polygon.minor_ouch      { color: rgb(  76,  27,   0 ); }
+polygon.major_ouch      { color: rgb( 137,   0, 137 ); }
+polygon.teleporter      { color: rgb( 128,   0, 128 ); }
+polygon.hill            { color: rgb(   0,  47,   0 ); }
+polygon.landscape_      { color: rgb(  37,   0,  37 ); }
+polygon {
     fill: currentColor;
     stroke: currentColor;
     stroke-width: 1;
@@ -45,6 +45,23 @@ line.solid     { stroke: rgb( 0, 255, 0 ); stroke-width: 1.0; }
 line.elevation { stroke: rgb( 0, 157, 0 ); stroke-width:  .5; }
 line.plain     { stroke: rgb( 0,  47, 0 ); stroke-width:  .1; display: none!important; }
 
+line.teleporter_border, 
+line.platform_on_border, 
+line.platform_off_border, 
+line.light_on_border, 
+line.light_off_border { stroke: black; stroke-width:  1; }
+
+line.teleporter_line   { stroke: rgb( 128,  64, 128 ); stroke-width:  .5; }
+ use.teleporter_line   {  color: rgb( 128,  64, 128 ); }
+line.platform_on_line  { stroke: rgb( 255, 128, 128 ); stroke-width:  .5; }
+ use.platform_on_line  {  color: rgb( 255, 128, 128 ); }
+line.platform_off_line { stroke: rgb( 128,   0,   0 ); stroke-width:  .5; }
+ use.platform_off_line {  color: rgb( 128,   0,   0 ); }
+line.light_on_line     { stroke: rgb( 255, 255, 128 ); stroke-width:  .5; }
+ use.light_on_line     {  color: rgb( 255, 255, 128 ); }
+line.light_off_line    { stroke: rgb( 128, 128,   0 ); stroke-width:  .5; }
+ use.light_off_line    {  color: rgb( 128, 128,   0 ); }
+
 line.grid_origin { stroke: rgb( 128, 128, 128 ); stroke-width: .7; }
 line.grid_major  { stroke: rgb( 128, 128, 128 ); stroke-width: .3; }
 line.grid_minor  { stroke: rgb( 128, 128, 128 ); stroke-width: .1; }
@@ -60,12 +77,15 @@ line.grid_minor  { stroke: rgb( 128, 128, 128 ); stroke-width: .1; }
 .panel-light_switch         { color: rgb( 255, 192, 128 ); }
 .panel-tag_switch           { color: rgb( 192, 192, 192 ); }
 
-.player_start { stroke: rgb( 0, 128, 1 ); }
+.item   { color: rgb(  86, 244,  23 ); }
+.object { color: rgb( 255, 165,   0 ); }
+.goal   { color: rgb( 255, 215,   0 ); }
+
+.player   { color: rgb(   0, 128, 255 ); }
+.monster  { color: rgb( 255,  64,   0 ); }
+.friendly { color: rgb(   0, 255,   0 ); }
+
 .block { stroke: rgb( 0, 0, 0 ); }
 .grid { stroke: rgb( 37, 37, 37 ); }
 .background { stroke: rgb( 0, 0, 0 ); }
 
-.red { color: red; }
-.teal { color: teal; }
-.green { color: green; }
-.orange { color: orange; }
