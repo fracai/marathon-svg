@@ -234,43 +234,52 @@ def generate_polygons(level_dict, platform_map, ignore_polys, map_type):
     level_dict['__dimensions'] = (min_x, min_y, max_x, max_y)
     return poly_svg
 
-def generate_teleporter_lines(level_dict):
-    line_svg = '<g id="teleporter_lines">\n'
+def generate_trigger_lines(level_dict, poly_type, css_class_base):
+    line_svg = '<g id="{}_lines">\n'.format(css_class_base)
     for poly in level_dict['POLY']['polygon']:
-        if poly['type'] != 10:
+        if poly['type'] != poly_type:
             continue
-        dest_poly = level_dict['POLY']['polygon'][poly['permutation']]
-        gid = 'teleporter_line_group_{}:{}'.format(poly['index'], poly['permutation'])
-        line_svg += '<g id="{g_id}">'.format(
-            g_id=gid
-        )
-        x1=poly['center_x'] / MAX_POS
-        y1=poly['center_y'] / MAX_POS
-        x2=dest_poly['center_x'] / MAX_POS
-        y2=dest_poly['center_y'] / MAX_POS
-        rotation = math.atan2(y2-y1, x2-x1) * 180 / math.pi
-        transform = 'transform="rotate({rotation} {cx} {cy})" '.format(
-            rotation=rotation,
-            cx=x2,
-            cy=y2,
-        )
-        line_svg += '<use xlink:href="_common.svg#{symbol}" x="{cx}" y="{cy}" id="{css_id}" class="{css_class}" {transform}/>\n'.format(
-            symbol='arrow',
-            cx=x2,
-            cy=y2,
-            transform=transform,
-            css_id='teleporter_head_{}:{}'.format(poly['index'], poly['permutation']),
-            css_class='teleporter_line',
-        )
-        line_svg += '<line x1="{x1}" y1="{y1}" x2="{x2}" y2="{y2}" id="{css_id}" class="{css_class}" />\n'.format(
-            x1=x1, y1=y1, x2=x2, y2=y2,
-            css_id='teleporter_line_{}:{}'.format(poly['index'], poly['permutation']),
-            css_class='teleporter_line'
-        )
-        line_svg += '<!-- end group: "{g_id}" -->\n</g>\n'.format(
-            g_id=gid
-        )
-    line_svg += '<!-- end group: "teleporter_lines" -->\n</g>\n'
+        dest_polys = [level_dict['POLY']['polygon'][poly['permutation']]]
+        if poly_type in [6,8]:
+            # light triggers reference lights which might be used by multiple polygons
+            dest_polys =  [p for p in level_dict['POLY']['polygon'] if p['floor_lightsource_index'] == poly['permutation'] or p['ceiling_lightsource_index'] == poly['permutation']]
+        for dest_poly in dest_polys:
+            gid = '{}_line_group_{}:{}'.format(css_class_base, poly['index'], poly['permutation'])
+            line_svg += '<g id="{g_id}">\n'.format(
+                g_id=gid
+            )
+            x1=poly['center_x'] / MAX_POS
+            y1=poly['center_y'] / MAX_POS
+            x2=dest_poly['center_x'] / MAX_POS
+            y2=dest_poly['center_y'] / MAX_POS
+            rotation = math.atan2(y2-y1, x2-x1) * 180 / math.pi
+            transform = 'transform="rotate({rotation} {cx} {cy})" '.format(
+                rotation=rotation,
+                cx=x2,
+                cy=y2,
+            )
+            line_svg += '<line x1="{x1}" y1="{y1}" x2="{x2}" y2="{y2}" id="{css_id}" class="{css_class}" />\n'.format(
+                x1=x1, y1=y1, x2=x2, y2=y2,
+                css_id='{}_border_{}:{}'.format(css_class_base, poly['index'], poly['permutation']),
+                css_class='{}_border'.format(css_class_base)
+            )
+            line_svg += '<use xlink:href="_common.svg#{symbol}" x="{cx}" y="{cy}" id="{css_id}" class="{css_class}" {transform}/>\n'.format(
+                symbol='arrow',
+                cx=x2,
+                cy=y2,
+                transform=transform,
+                css_id='teleporter_head_{}:{}'.format(poly['index'], poly['permutation']),
+                css_class='{}_line'.format(css_class_base),
+            )
+            line_svg += '<line x1="{x1}" y1="{y1}" x2="{x2}" y2="{y2}" id="{css_id}" class="{css_class}" />\n'.format(
+                x1=x1, y1=y1, x2=x2, y2=y2,
+                css_id='{}_line_{}:{}'.format(css_class_base, poly['index'], poly['permutation']),
+                css_class='{}_line'.format(css_class_base)
+            )
+            line_svg += '<!-- end group: "{g_id}" -->\n</g>\n'.format(
+                g_id=gid
+            )
+    line_svg += '<!-- end group: "{}_lines" -->\n</g>\n'.format(css_class_base)
     return line_svg
 
 def generate_lines(level_dict, platform_map, ignore_polys):
@@ -441,7 +450,11 @@ def generate_svg(map_type, level_name, level_dict, ignore_polys):
     level_svg += generate_grid()
     level_svg += generate_polygons(level_dict, platform_map, ignore_polys, map_type)
     level_svg += generate_lines(level_dict, platform_map, ignore_polys)
-    level_svg += generate_teleporter_lines(level_dict)
+    level_svg += generate_trigger_lines(level_dict,  6, 'light_on')
+    level_svg += generate_trigger_lines(level_dict,  8, 'light_off')
+    level_svg += generate_trigger_lines(level_dict,  7, 'platform_on')
+    level_svg += generate_trigger_lines(level_dict,  9, 'platform_off')
+    level_svg += generate_trigger_lines(level_dict, 10, 'teleporter')
     level_svg += generate_objects(level_dict['OBJS']['object'], level_dict['POLY']['polygon'], ignore_polys)
     level_svg += generate_panels(level_dict, ignore_polys, map_type)
     level_svg += generate_annotations(level_dict['NOTE']['annotation'])
