@@ -9,6 +9,8 @@ import errno
 import sys
 import re
 import math
+import xmltodict
+import operator
 
 IGNORE_RE = re.compile('(?P<level>\d+): (?P<poly>[\d ]+)')
 
@@ -71,7 +73,7 @@ body {
 '''
 
 def process_map_file(map_xml_path, ignore_file):
-    print (map_xml_path)
+    print ('map: {}'.format(map_xml_path))
     ignore_map = dict()
     if ignore_file:
         with open(ignore_file, 'r') as f:
@@ -161,41 +163,35 @@ def build_platform_map(platforms):
     return plat_map
 
 def generate_grid():
-    grid_svg = '<g id="background-grid">\n'
-    major_step_count = int(MAX_POS/1024) # 1WU = 1024, 32 WU in each direction
-    minor_step_interval = 10 # .1 WU
-    tics = major_step_count * minor_step_interval
-    for grid in range(0, tics + 1):
-        css_class = 'grid_minor'
-        x = grid/tics
-        if 0 == grid % minor_step_interval:
-            css_class = 'grid_major'
-        if 0 == grid:
-            css_class = 'grid_origin'
-        grid_svg += '<line x1="{x1}" y1="{y1}" x2="{x2}" y2="{y2}" class="{css_class}" />\n'.format(
-            x1=x, y1=1, x2=x, y2=-1,
-            css_class=css_class
-        )
-        grid_svg += '<line x1="{x1}" y1="{y1}" x2="{x2}" y2="{y2}" class="{css_class}" />\n'.format(
-            x1=1, y1=x, x2=-1, y2=x,
-            css_class=css_class
-        )
-        if grid != 0:
-            grid_svg += '<line x1="{x1}" y1="{y1}" x2="{x2}" y2="{y2}" class="{css_class}" />\n'.format(
-                x1=-x, y1=1, x2=-x, y2=-1,
-                css_class=css_class
-            )
-            grid_svg += '<line x1="{x1}" y1="{y1}" x2="{x2}" y2="{y2}" class="{css_class}" />\n'.format(
-                x1=1, y1=-x, x2=-1, y2=-x,
-                css_class=css_class
-            )
-    grid_svg += '<!-- end group: "background-grid" -->\n</g>\n'
-    return grid_svg
+    major_step = 1 / 32 # 32 WU in each direction
+    minor_step = major_step / 10 # .1 WU
+    return '''<g id="background-grid">
+<defs>
+<pattern id="grid_minor" width="{minor_step}" height="{minor_step}" patternUnits="userSpaceOnUse">
+<path d="M {minor_step} 0 L 0 0 0 {minor_step}" fill="none" class="grid_minor" />
+</pattern>
+
+<pattern id="grid_major" width="{major_step}" height="{major_step}" patternUnits="userSpaceOnUse">
+<rect width="{major_step}" height="{major_step}" fill="url(#grid_minor)"/>
+<path d="M {major_step} 0 L 0 0 0 {major_step}" fill="none" class="grid_major" />
+</pattern>
+</defs>
+<rect x="-1" y="-1" width="2" height="2" fill="url(#grid_major)" />
+<line x1="0" y1="1" x2="0" y2="-1" class="grid_origin" />
+<line x1="1" y1="0" x2="-1" y2="0" class="grid_origin" />
+<!-- end group: "background-grid" -->
+</g>
+'''.format(
+        major_step = major_step,
+        minor_step = minor_step,
+    )
 
 def generate_polygons(level_dict, platform_map, ignore_polys, map_type):
     poly_svg = '<g id="polygons">\n'
     (min_x, min_y, max_x, max_y) = level_dict['__dimensions']
-    for poly in level_dict['POLY']['polygon']:
+    polys = level_dict['POLY']['polygon']
+    polys = sorted(polys, key=operator.itemgetter('floor_height', 'ceiling_height'))
+    for poly in polys:
         type='line'
         list_key='LINS'
         type='endpoint'
@@ -292,6 +288,8 @@ def generate_panel_lines(level_dict, css_class_base, platform_map, map_type):
     if map_type < 2:
         panel_types = PANELS_m1
     for side in level_dict['SIDS']['side']:
+        if not side['flags'] & 0x2:
+            continue
         panel_type = panel_to_switch(map_type, side['panel_type'])
         if not panel_type or panel_type != css_class_base:
             continue
@@ -354,6 +352,8 @@ def generate_panel_lines(level_dict, css_class_base, platform_map, map_type):
                 g_id=gid
             )
         for dest_side in dest_sides:
+            if dest_side['index'] == side['index']:
+                continue
             # lines to the sides
             gid = 'panel_{}_line_group_side_s{}:s{}'.format(css_class_base, side['index'], dest_side['index'])
             line_svg += '<g id="{g_id}">\n'.format(
@@ -423,8 +423,8 @@ def generate_lines(level_dict, platform_map, ignore_polys):
         for line in lines[line_type]:
             lines_svg += line + '\n'
         del lines[line_type]
-    if lines.keys():
-        print (set(lines.keys()))
+    if 0 < len(lines):
+        print ('leftover lines: {}'.format(set(lines.keys())))
     lines_svg += '<!-- end group: "lines" -->\n</g>\n'
     return lines_svg
 
@@ -515,7 +515,7 @@ def generate_objects(objects, polygons, ignore_polys):
     for obj in objects:
         symbol = None
         css_class = None
-        order = None
+        order = obj['type']
         if 0 == obj['type']:
             symbol = 'monster'
             css_class = 'monster monster-{}'.format(obj['object_index'])
@@ -536,6 +536,10 @@ def generate_objects(objects, polygons, ignore_polys):
             symbol = 'goal'
             css_class = 'goal'
             order = symbol
+        if 5 == obj['type']:
+            symbol = 'sound'
+            css_class = 'sound'
+            order = symbol
 #         if is_hidden_poly(polygons[obj['polygon_index']], ignore_polys):
 #             css_class += ' hidden'
         transform = ''
@@ -554,12 +558,12 @@ def generate_objects(objects, polygons, ignore_polys):
             css_class=css_class,
         )
         entries[order].append(entry)
-    for symbol in ['object', 'item', 'monster', 'goal', 'player']:
+    for symbol in ['sound', 'object', 'item', 'monster', 'goal', 'player']:
         for entry in entries[symbol]:
             object_svg += entry + '\n'
         del entries[symbol]
-    if entries.keys():
-        print (set(entries.keys()))
+    if 0 < len(entries):
+        print ('leftover objects: {}'.format(set(entries.keys())))
     object_svg += '<!-- end group: "objects" -->\n</g>\n'
     return object_svg
 
@@ -715,6 +719,22 @@ def is_ignored_poly(poly, ignore_polys):
 def is_hidden_poly(poly, ignore_polys):
     return is_landscape_poly(poly) or is_unseen_poly(poly) or is_ignored_poly(poly, ignore_polys)
 
+MML_TAGS = [
+    'motion_sensor',
+    'items',
+    'scenery'
+]
+
+def process_mml_file(mml_path):
+    print ('mml: {}'.format(mml_path))
+    mml_data = None
+    with open(mml_path, 'r', encoding='utf-8') as file:
+        mml_data = xmltodict.parse(file.read())['marathon']
+    if not mml_data:
+        return None
+    mml_data = {k:v for k,v in mml_data.items() if k in MML_TAGS}
+    return mml_data
+
 def write_data(path, data):
     mkdir_p(os.path.dirname(path))
     with open(path, 'w') as f:
@@ -724,10 +744,15 @@ if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='Convert maps to SVG')
     parser.add_argument('-d', '--dir', dest='output_directory', help='specify the output directory')
     parser.add_argument('-m', '--map', dest='map', type=str, help='a map XML file')
+    parser.add_argument('-M', '--mml', dest='mml', type=str, help='an MML file')
     parser.add_argument('-i', '--ignore', dest='ignores', type=str, help='a file of polygons to ignore')
     parser.add_argument('-l', '--level', dest='levels', type=int, nargs='+', help='which levels to generate')
     args = parser.parse_args()
 
+    if args.mml:
+        mml_data = process_mml_file(args.mml)
+        print ('mml: \n{}'.format(json.dumps(mml_data, indent=2)))
+        sys.exit(0)
     process_map_file(args.map, args.ignores)
     print ('done')
 
