@@ -20,6 +20,7 @@ CHUNK_TYPES = [
     'EPNT', # points
     'PNTS', # points
     'LINS', # lines
+    'LITE', # lights
     'POLY', # polygons
     'SIDS', # polygon sides
     'OBJS', # objects
@@ -29,7 +30,6 @@ CHUNK_TYPES = [
     'medi', # media
 ]
 CHUNK_TYPES_IGNORED = [
-    'LITE', # lights
     'term', # terminals
     'ambi', # ambient sounds
     'bonk', # random sounds
@@ -126,7 +126,7 @@ def process_level(map_type, level_root, ignore_polys):
             level_dict[chunk_type] = process_chunk(chunk)
             pass
         else:
-            print (chunk.attrib)
+            print ('unhandled chunk: {}'.format(chunk.attrib))
     for chunk_type in CHUNK_TYPES:
         if chunk_type not in level_dict:
             level_dict[chunk_type] = defaultdict(list)
@@ -151,7 +151,7 @@ def process_chunk(chunk_root):
                 pass
         chunk_dict[entry.tag][-1]['text'] = entry.text
         if chunk_dict[entry.tag][-1]['index'] != len(chunk_dict[entry.tag])-1:
-            print (chunk_dict[entry.tag])
+            print ('out of order entry: {}'.format(chunk_dict[entry.tag]))
     return chunk_dict
 
 def build_platform_map(platforms):
@@ -235,7 +235,7 @@ def generate_polygons(level_dict, platform_map, ignore_polys, map_type):
     return poly_svg
 
 def generate_trigger_lines(level_dict, poly_type, css_class_base):
-    line_svg = '<g id="{}_lines">\n'.format(css_class_base)
+    line_svg = ''
     for poly in level_dict['POLY']['polygon']:
         if poly['type'] != poly_type:
             continue
@@ -244,7 +244,7 @@ def generate_trigger_lines(level_dict, poly_type, css_class_base):
             # light triggers reference lights which might be used by multiple polygons
             dest_polys =  [p for p in level_dict['POLY']['polygon'] if p['floor_lightsource_index'] == poly['permutation'] or p['ceiling_lightsource_index'] == poly['permutation']]
         for dest_poly in dest_polys:
-            gid = '{}_line_group_{}:{}'.format(css_class_base, poly['index'], poly['permutation'])
+            gid = 'poly_{}_line_group_{}:{}'.format(css_class_base, poly['index'], poly['permutation'])
             line_svg += '<g id="{g_id}">\n'.format(
                 g_id=gid
             )
@@ -260,7 +260,7 @@ def generate_trigger_lines(level_dict, poly_type, css_class_base):
             )
             line_svg += '<line x1="{x1}" y1="{y1}" x2="{x2}" y2="{y2}" id="{css_id}" class="{css_class}" />\n'.format(
                 x1=x1, y1=y1, x2=x2, y2=y2,
-                css_id='{}_border_{}:{}'.format(css_class_base, poly['index'], poly['permutation']),
+                css_id='poly_{}_border_{}:{}'.format(css_class_base, poly['index'], poly['permutation']),
                 css_class='{}_border'.format(css_class_base)
             )
             line_svg += '<use xlink:href="_common.svg#{symbol}" x="{cx}" y="{cy}" id="{css_id}" class="{css_class}" {transform}/>\n'.format(
@@ -268,19 +268,137 @@ def generate_trigger_lines(level_dict, poly_type, css_class_base):
                 cx=x2,
                 cy=y2,
                 transform=transform,
-                css_id='teleporter_head_{}:{}'.format(poly['index'], poly['permutation']),
+                css_id='poly_{}_head_{}:{}'.format(css_class_base, poly['index'], poly['permutation']),
                 css_class='{}_line'.format(css_class_base),
             )
             line_svg += '<line x1="{x1}" y1="{y1}" x2="{x2}" y2="{y2}" id="{css_id}" class="{css_class}" />\n'.format(
                 x1=x1, y1=y1, x2=x2, y2=y2,
-                css_id='{}_line_{}:{}'.format(css_class_base, poly['index'], poly['permutation']),
+                css_id='poly_{}_line_{}:{}'.format(css_class_base, poly['index'], poly['permutation']),
                 css_class='{}_line'.format(css_class_base)
             )
             line_svg += '<!-- end group: "{g_id}" -->\n</g>\n'.format(
                 g_id=gid
             )
-    line_svg += '<!-- end group: "{}_lines" -->\n</g>\n'.format(css_class_base)
-    return line_svg
+    if not line_svg:
+        return ''
+    return '<g id="poly_{css_class_base}_lines">\n{content}<!-- end group: "{css_class_base}_lines" -->\n</g>\n'.format(
+        css_class_base=css_class_base,
+        content=line_svg
+    )
+
+def generate_panel_lines(level_dict, css_class_base, platform_map, map_type):
+    line_svg = ''
+    panel_types = PANELS
+    if map_type < 2:
+        panel_types = PANELS_m1
+    for side in level_dict['SIDS']['side']:
+        panel_type = panel_to_switch(map_type, side['panel_type'])
+        if not panel_type or panel_type != css_class_base:
+            continue
+        lights = None
+        line = level_dict['LINS']['line'][side['line']]
+        px1 = level_dict['EPNT']['endpoint'][line['endpoint1']]['x']
+        py1 = level_dict['EPNT']['endpoint'][line['endpoint1']]['y']
+        px2 = level_dict['EPNT']['endpoint'][line['endpoint2']]['x']
+        py2 = level_dict['EPNT']['endpoint'][line['endpoint2']]['y']
+        pcx = (px1 + px2) / 2 / MAX_POS
+        pcy = (py1 + py2) / 2 / MAX_POS
+        dest_polys = []
+        dest_sides = []
+        if 'platform_switch' == panel_type:
+            dest_polys = [level_dict['POLY']['polygon'][side['panel_permutation']]]
+        if 'light_switch' == panel_type:
+            # light triggers reference lights which might be used by multiple polygons
+            # single light
+            lights = [side['panel_permutation']]
+            dest_polys = [p for p in level_dict['POLY']['polygon'] if any(map(lambda l: p[l] in lights, ['floor_lightsource_index', 'ceiling_lightsource_index']))]
+        if 'tag_switch' == panel_type:
+            # tag triggers reference tags which might be used by multiple polygons and lights
+            dest_polys = [level_dict['POLY']['polygon'][p['polygon_index']] for p in platform_map.values() if p['tag'] == side['panel_permutation']]
+            lights = [l for l in level_dict['LITE']['light'] if 'tag' in l and l['tag'] == side['panel_permutation']]
+        if lights:
+            dest_sides = [s for s in level_dict['SIDS']['side'] if any(map(lambda l: s[l] in lights, ['primary_light', 'secondary_light', 'transparent_light']))]
+        for dest_poly in dest_polys:
+            # lines to the polys
+            gid = 'panel_{}_line_group_poly_s{}:p{}'.format(css_class_base, side['index'], dest_poly['index'])
+            line_svg += '<g id="{g_id}">\n'.format(
+                g_id=gid
+            )
+            dcx=dest_poly['center_x'] / MAX_POS
+            dcy=dest_poly['center_y'] / MAX_POS
+            rotation = math.atan2(dcy-pcy, dcx-pcx) * 180 / math.pi
+            transform = 'transform="rotate({rotation} {cx} {cy})" '.format(
+                rotation=rotation,
+                cx=dcx,
+                cy=dcy,
+            )
+            line_svg += '<line x1="{x1}" y1="{y1}" x2="{x2}" y2="{y2}" id="{css_id}" class="{css_class}" />\n'.format(
+                x1=pcx, y1=pcy, x2=dcx, y2=dcy,
+                css_id='panel_{}_border_s{}:p{}'.format(css_class_base, side['index'], dest_poly['index']),
+                css_class='{}_border'.format(css_class_base)
+            )
+            line_svg += '<use xlink:href="_common.svg#{symbol}" x="{cx}" y="{cy}" id="{css_id}" class="{css_class}" {transform}/>\n'.format(
+                symbol='arrow',
+                cx=dcx,
+                cy=dcy,
+                transform=transform,
+                css_id='panel_{}_head_s{}:p{}'.format(css_class_base, side['index'], dest_poly['index']),
+                css_class='{}_line'.format(css_class_base),
+            )
+            line_svg += '<line x1="{x1}" y1="{y1}" x2="{x2}" y2="{y2}" id="{css_id}" class="{css_class}" />\n'.format(
+                x1=pcx, y1=pcy, x2=dcx, y2=dcy,
+                css_id='panel_{}_line_{}:{}'.format(css_class_base, side['index'], dest_poly['index']),
+                css_class='{}_line'.format(css_class_base)
+            )
+            line_svg += '<!-- end group: "{g_id}" -->\n</g>\n'.format(
+                g_id=gid
+            )
+        for dest_side in dest_sides:
+            # lines to the sides
+            gid = 'panel_{}_line_group_side_s{}:s{}'.format(css_class_base, side['index'], dest_side['index'])
+            line_svg += '<g id="{g_id}">\n'.format(
+                g_id=gid
+            )
+            dest_line = level_dict['LINS']['line'][dest_side['line']]
+            x1 = level_dict['EPNT']['endpoint'][dest_line['endpoint1']]['x']
+            y1 = level_dict['EPNT']['endpoint'][dest_line['endpoint1']]['y']
+            x2 = level_dict['EPNT']['endpoint'][dest_line['endpoint2']]['x']
+            y2 = level_dict['EPNT']['endpoint'][dest_line['endpoint2']]['y']
+            dcx = (x1 + x2) / 2 / MAX_POS
+            dcy = (y1 + y2) / 2 / MAX_POS
+            rotation = math.atan2(dcy-pcy, dcx-pcx) * 180 / math.pi
+            transform = 'transform="rotate({rotation} {cx} {cy})" '.format(
+                rotation=rotation,
+                cx=dcx,
+                cy=dcy,
+            )
+            line_svg += '<line x1="{x1}" y1="{y1}" x2="{x2}" y2="{y2}" id="{css_id}" class="{css_class}" />\n'.format(
+                x1=pcx, y1=pcy, x2=dcx, y2=dcy,
+                css_id='panel_{}_border_s{}:s{}'.format(css_class_base, side['index'], dest_side['index']),
+                css_class='{}_border'.format(css_class_base)
+            )
+            line_svg += '<use xlink:href="_common.svg#{symbol}" x="{cx}" y="{cy}" id="{css_id}" class="{css_class}" {transform}/>\n'.format(
+                symbol='arrow',
+                cx=dcx,
+                cy=dcy,
+                transform=transform,
+                css_id='panel_{}_head_s{}:s{}'.format(css_class_base, side['index'], dest_side['index']),
+                css_class='{}_line'.format(css_class_base),
+            )
+            line_svg += '<line x1="{x1}" y1="{y1}" x2="{x2}" y2="{y2}" id="{css_id}" class="{css_class}" />\n'.format(
+                x1=pcx, y1=pcy, x2=dcx, y2=dcy,
+                css_id='panel_{}_line_s{}:s{}'.format(css_class_base, side['index'], dest_side['index']),
+                css_class='{}_line'.format(css_class_base)
+            )
+            line_svg += '<!-- end group: "{g_id}" -->\n</g>\n'.format(
+                g_id=gid
+            )
+    if not line_svg:
+        return ''
+    return '<g id="panel_{css_class_base}_lines">\n{content}<!-- end group: "panel_{css_class_base}_lines" -->\n</g>\n'.format(
+        css_class_base=css_class_base,
+        content=line_svg
+    )
 
 def generate_lines(level_dict, platform_map, ignore_polys):
     lines_svg = '<g id="lines">\n'
@@ -326,7 +444,12 @@ def generate_annotations(notes):
 PANELS_m1 = [
     'oxygen_refuel', 'shield_refuel', 'double_shield_refuel',
     'triple_shield_refuel', 'light_switch', 'platform_switch',
-    'pattern_buffer', 'tag_switch', 'computer_terminal', 'tag_switch',
+    'pattern_buffer', 'tag_switch', 'computer_terminal',
+    # Originally 'tag_switch', but in M1 this appears to only be used for
+    # switches that are goals and don't actually control anything.
+    # Possibly altered by side flags? In every case (levels: 3, 4, 8):
+    # type=0, flags=6, permutation=0
+    'goal_switch',
     'double_shield_refuel', 'triple_shield_refuel', 'platform_switch',
     'pattern_buffer',
 ]
@@ -351,6 +474,15 @@ PANELS = [
     'light_switch', 'platform_switch', 'tag_switch', 'pattern_buffer',
     'computer_terminal', 'oxygen_refuel', 'tag_switch', 'tag_switch',
 ]
+
+def panel_to_switch(map_type, panel_type):
+    panel_types = PANELS
+    if map_type < 2:
+        panel_types = PANELS_m1
+    panel_type = panel_types[panel_type]
+    if not panel_type.endswith('_switch'):
+        return None
+    return panel_type
 
 def generate_panels(level_dict, ignore_polys, map_type):
     panel_types = PANELS
@@ -450,11 +582,17 @@ def generate_svg(map_type, level_name, level_dict, ignore_polys):
     level_svg += generate_grid()
     level_svg += generate_polygons(level_dict, platform_map, ignore_polys, map_type)
     level_svg += generate_lines(level_dict, platform_map, ignore_polys)
+
     level_svg += generate_trigger_lines(level_dict,  6, 'light_on')
     level_svg += generate_trigger_lines(level_dict,  8, 'light_off')
     level_svg += generate_trigger_lines(level_dict,  7, 'platform_on')
     level_svg += generate_trigger_lines(level_dict,  9, 'platform_off')
     level_svg += generate_trigger_lines(level_dict, 10, 'teleporter')
+
+    level_svg += generate_panel_lines(level_dict, 'light_switch', platform_map, map_type)
+    level_svg += generate_panel_lines(level_dict, 'platform_switch', platform_map, map_type)
+    level_svg += generate_panel_lines(level_dict, 'tag_switch', platform_map, map_type)
+
     level_svg += generate_objects(level_dict['OBJS']['object'], level_dict['POLY']['polygon'], ignore_polys)
     level_svg += generate_panels(level_dict, ignore_polys, map_type)
     level_svg += generate_annotations(level_dict['NOTE']['annotation'])
