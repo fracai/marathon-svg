@@ -8,7 +8,7 @@
 <!-- hollow, outlined circle -->
 <symbol id='panel' style='overflow: visible;'>
 <!-- outline -->
-<circle r=".012" stroke-width=".004" stroke="black" fill="none" />
+<circle r=".012" stroke-width=".004" stroke="black" fill="none" pointer-events="visible" />
 <!-- ring color -->
 <circle r=".012" stroke-width=".002" stroke="currentColor" fill="none" />
 </symbol>
@@ -39,7 +39,7 @@
 <!-- hollow, outlined star -->
 <symbol id='goal' style='overflow: visible;'>
 <!-- outline -->
-<polygon points=".000,-.0085 -.006,.0085 .009,-.0035 -.009,-.0035 .006,.0085" fill="none" stroke="black" stroke-width=".003" />
+<polygon points=".000,-.0085 -.006,.0085 .009,-.0035 -.009,-.0035 .006,.0085" fill="none" stroke="black" stroke-width=".003" pointer-events="visible" />
 <!-- inner color -->
 <polygon points=".000,-.0085 -.006,.0085 .009,-.0035 -.009,-.0035 .006,.0085" fill="none" stroke="currentColor" stroke-width=".001" />
 </symbol>
