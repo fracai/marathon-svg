@@ -49,7 +49,11 @@ line.teleporter_border,
 line.platform_on_border, 
 line.platform_off_border, 
 line.light_on_border, 
-line.light_off_border { stroke: black; stroke-width:  1; }
+line.light_off_border, 
+line.platform_switch_border,  
+line.light_switch_border,  
+line.tag_switch_border 
+{ stroke: black; stroke-width:  1; }
 
 line.teleporter_line   { stroke: rgb( 128,  64, 128 ); stroke-width:  .5; }
  use.teleporter_line   {  color: rgb( 128,  64, 128 ); }
@@ -61,6 +65,13 @@ line.light_on_line     { stroke: rgb( 255, 255, 128 ); stroke-width:  .5; }
  use.light_on_line     {  color: rgb( 255, 255, 128 ); }
 line.light_off_line    { stroke: rgb( 128, 128,   0 ); stroke-width:  .5; }
  use.light_off_line    {  color: rgb( 128, 128,   0 ); }
+ 
+line.platform_switch_line { stroke: rgb( 255,  64,  64 ); stroke-width:  .5; }
+ use.platform_switch_line {  color: rgb( 255,  64,  64 ); }
+line.light_switch_line    { stroke: rgb( 255, 192, 128 ); stroke-width:  .5; }
+ use.light_switch_line    {  color: rgb( 255, 192, 128 ); }
+line.tag_switch_line      { stroke: rgb( 192, 192, 192 ); stroke-width:  .5; }
+ use.tag_switch_line      {  color: rgb( 192, 192, 192 ); }
 
 line.grid_origin { stroke: rgb( 128, 128, 128 ); stroke-width: .7; }
 line.grid_major  { stroke: rgb( 128, 128, 128 ); stroke-width: .3; }
@@ -76,6 +87,7 @@ line.grid_minor  { stroke: rgb( 128, 128, 128 ); stroke-width: .1; }
 .panel-platform_switch      { color: rgb( 255,  64,  64 ); }
 .panel-light_switch         { color: rgb( 255, 192, 128 ); }
 .panel-tag_switch           { color: rgb( 192, 192, 192 ); }
+.panel-goal_switch          { color: rgb( 255, 215,   0 ); }
 
 .item   { color: rgb(  86, 244,  23 ); }
 .object { color: rgb( 255, 165,   0 ); }
