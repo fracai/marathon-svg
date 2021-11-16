@@ -34,12 +34,20 @@ text.annotation {
     stroke-linejoin: miter;
 }
 
+path {
+    stroke-linecap: round;
+    stroke-linejoin: miter;
+    vector-effect: non-scaling-stroke;
+}
 line {
     stroke-width: 1;
     stroke-linecap: round;
     stroke-linejoin: miter;
     vector-effect: non-scaling-stroke;
 }
+.grid_origin { stroke: grey; stroke-width: .7; }
+.grid_major  { stroke: grey; stroke-width: .3; }
+.grid_minor  { stroke: grey; stroke-width: .1; }
 
 line.solid     { stroke: rgb( 0, 255, 0 ); stroke-width: 1.0; }
 line.elevation { stroke: rgb( 0, 157, 0 ); stroke-width:  .5; }
@@ -73,10 +81,6 @@ line.light_switch_line    { stroke: rgb( 255, 192, 128 ); stroke-width:  .5; }
 line.tag_switch_line      { stroke: rgb( 192, 192, 192 ); stroke-width:  .5; }
  use.tag_switch_line      {  color: rgb( 192, 192, 192 ); }
 
-line.grid_origin { stroke: rgb( 128, 128, 128 ); stroke-width: .7; }
-line.grid_major  { stroke: rgb( 128, 128, 128 ); stroke-width: .3; }
-line.grid_minor  { stroke: rgb( 128, 128, 128 ); stroke-width: .1; }
-
 .panel-shield_refuel        { color: rgb( 255,   0,   0 ); }
 .panel-double_shield_refuel { color: rgb( 255, 255,   0 ); }
 .panel-triple_shield_refuel { color: rgb( 255,   0, 255 ); }
@@ -96,8 +100,3 @@ line.grid_minor  { stroke: rgb( 128, 128, 128 ); stroke-width: .1; }
 .player   { color: rgb(   0, 128, 255 ); }
 .monster  { color: rgb( 255,  64,   0 ); }
 .friendly { color: rgb(   0, 255,   0 ); }
-
-.block { stroke: rgb( 0, 0, 0 ); }
-.grid { stroke: rgb( 37, 37, 37 ); }
-.background { stroke: rgb( 0, 0, 0 ); }
-
