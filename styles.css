@@ -75,12 +75,12 @@ line.light_on_line     { stroke: rgb( 255, 255, 128 ); stroke-width:  .5; }
 line.light_off_line    { stroke: rgb( 128, 128,   0 ); stroke-width:  .5; }
  use.light_off_line    {  color: rgb( 128, 128,   0 ); }
  
-line.platform_switch_line { stroke: rgb( 255,  64,  64 ); stroke-width:  .5; }
- use.platform_switch_line {  color: rgb( 255,  64,  64 ); }
-line.light_switch_line    { stroke: rgb( 255, 192, 128 ); stroke-width:  .5; }
- use.light_switch_line    {  color: rgb( 255, 192, 128 ); }
-line.tag_switch_line      { stroke: rgb( 192, 192, 192 ); stroke-width:  .5; }
- use.tag_switch_line      {  color: rgb( 192, 192, 192 ); }
+line.platform_switch_line   { stroke: rgb( 255,  64,  64 ); stroke-width:  .5; }
+ use.platform_switch_line   {  color: rgb( 255,  64,  64 ); }
+line.light_switch_line      { stroke: rgb( 255, 192, 128 ); stroke-width:  .5; }
+ use.light_switch_line      {  color: rgb( 255, 192, 128 ); }
+line.tag_switch_line        { stroke: rgb( 192, 192, 192 ); stroke-width:  .5; }
+ use.tag_switch_line        {  color: rgb( 192, 192, 192 ); }
 line.computer_terminal_line { stroke: rgb(  64, 192,  64 ); stroke-width:  .5; }
  use.computer_terminal_line {  color: rgb(  64, 192,  64 ); }
 
