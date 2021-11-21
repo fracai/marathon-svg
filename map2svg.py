@@ -54,6 +54,11 @@ def mkdir_p(path):
             pass
         else: raise
 
+def set_default(obj):
+    if isinstance(obj, set):
+        return sorted(list(obj))
+    raise TypeError
+
 preview_header = '''\
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
                       "http://www.w3.org/TR/html4/loose.dtd">
@@ -190,9 +195,53 @@ def generate_grid():
         minor_step = minor_step,
     )
 
-def generate_polygons(level_dict, platform_map, ignore_polys, map_type):
+def merge_dimensions(level_info, dim_type_1, dim_type_2):
+    dim_1 = level_info['dimensions'][dim_type_1]
+    dim_2 = level_info['dimensions'][dim_type_2]
+    level_info['dimensions'][dim_type_2] = (
+        min(dim_1[0], dim_2[0]),
+        min(dim_1[1], dim_2[1]),
+        max(dim_1[2], dim_2[2]),
+        max(dim_1[3], dim_2[3])
+    )
+
+def finalize_dimensions(level_info):
+    # update the 'items' dimensions with those from 'map'
+    merge_dimensions(level_info, 'map', 'items')
+    # update the 'lines' dimensions with those from 'items'
+    merge_dimensions(level_info, 'items', 'lines')
+    # round min/max coordinates to the nearest WU, +1
+    for k,v in level_info['dimensions'].items():
+        (min_x, min_y, max_x, max_y) = v
+        min_x = max(-1, math.floor(min_x * 32 - 1)/32)
+        min_y = max(-1, math.floor(min_y * 32 - 1)/32)
+        max_x = min( 1, math.ceil( max_x * 32 + 1)/32)
+        max_y = min( 1, math.ceil( max_y * 32 + 1)/32)
+        level_info['dimensions'][k] = (min_x, min_y, max_x, max_y)
+
+def update_dimensions(level_info, dim_type, x, y):
+    current = level_info['dimensions'][dim_type]
+    level_info['dimensions'][dim_type] = (
+        min(current[0], x),
+        min(current[1], y),
+        max(current[2], x),
+        max(current[3], y)
+    )
+
+def update_poly_info(level_info, poly_index=None, poly=None, ids=None):
+    if poly_index is None and poly is not None:
+        poly_index = poly['index']
+    if poly_index is None:
+        raise Exception('cannot update poly info without poly index or polygon')
+    poly_info = level_info['polygons'][poly_index]
+    if poly is not None:
+        poly_info['floor_height'] = poly['floor_height']/MAX_POS
+        poly_info['ceiling_height'] = poly['ceiling_height']/MAX_POS
+    if ids:
+        poly_info['connections'].update(ids)
+
+def generate_polygons(level_dict, platform_map, ignore_polys, map_type, level_info):
     poly_svg = '<g id="polygons">\n'
-    (min_x, min_y, max_x, max_y) = level_dict['__dimensions']
     polys = level_dict['POLY']['polygon']
     polys = sorted(polys, key=operator.itemgetter('floor_height', 'ceiling_height'))
     for poly in polys:
@@ -207,7 +256,8 @@ def generate_polygons(level_dict, platform_map, ignore_polys, map_type):
             x = entry['x']/MAX_POS
             y = entry['y']/MAX_POS
             if css_class not in ['ignore', 'landscape_']:
-                (min_x, min_y, max_x, max_y) = (min(min_x, x), min(min_y, y), max(max_x, x), max(max_y, y))
+                update_dimensions(level_info, 'map', x,y)
+            update_dimensions(level_info, 'lines', x,y)
         points = range(0,poly['vertex_count'])
         points = map(lambda p: poly['{}_index_{}'.format(type, p)], points)
         points = map(lambda p: level_dict[list_key][type][p], points)
@@ -222,19 +272,20 @@ def generate_polygons(level_dict, platform_map, ignore_polys, map_type):
             )
         )
         extra = ''
+        css_id = 'poly_{}'.format(poly['index'])
         poly_svg += '<polygon points="{path}" id="{css_id}" class="{css_class}" floor="{floor}" ceiling="{ceiling}" {extra}/>\n'.format(
             path=' '.join(points),
-            css_id='poly_{}'.format(poly['index']),
+            css_id=css_id,
             css_class=css_class,
             floor=poly['floor_height']/MAX_POS,
             ceiling=poly['ceiling_height']/MAX_POS,
             extra=extra,
         )
+        update_poly_info(level_info, poly=poly, ids=[css_id])
     poly_svg += '<!-- end group: "polygons" -->\n</g>\n'
-    level_dict['__dimensions'] = (min_x, min_y, max_x, max_y)
     return poly_svg
 
-def generate_trigger_lines(level_dict, poly_type, css_class_base):
+def generate_trigger_lines(level_dict, poly_type, css_class_base, level_info):
     line_svg = ''
     for poly in level_dict['POLY']['polygon']:
         if poly['type'] != poly_type:
@@ -245,6 +296,9 @@ def generate_trigger_lines(level_dict, poly_type, css_class_base):
             dest_polys =  [p for p in level_dict['POLY']['polygon'] if p['floor_lightsource_index'] == poly['permutation'] or p['ceiling_lightsource_index'] == poly['permutation']]
         for dest_poly in dest_polys:
             gid = 'poly_{}_line_group_{}:{}'.format(css_class_base, poly['index'], poly['permutation'])
+            # link the source and destination polygons to the trigger line
+            update_poly_info(level_info, poly=poly, ids=[gid])
+            update_poly_info(level_info, poly=dest_poly, ids=[gid])
             line_svg += '<g id="{g_id}">\n'.format(
                 g_id=gid
             )
@@ -286,7 +340,7 @@ def generate_trigger_lines(level_dict, poly_type, css_class_base):
         content=line_svg
     )
 
-def generate_panel_lines(level_dict, css_class_base, platform_map, map_type):
+def generate_panel_lines(level_dict, css_class_base, platform_map, map_type, level_info):
     line_svg = ''
     for side in level_dict['SIDS']['side']:
         if not side['flags'] & 0x2:
@@ -309,7 +363,7 @@ def generate_panel_lines(level_dict, css_class_base, platform_map, map_type):
             dest_polys = [level_dict['POLY']['polygon'][p['polygon_index']] for p in platform_map.values() if p['tag'] == side['panel_permutation']]
             lights = [l for l in level_dict['LITE']['light'] if 'tag' in l and l['tag'] == side['panel_permutation']]
         # common lines
-        line_svg += common_generate_lines(css_class_base, side, dest_sides, dest_polys, lights, level_dict)
+        line_svg += common_generate_lines(css_class_base, side, dest_sides, dest_polys, lights, level_dict, level_info)
     if not line_svg:
         return ''
     return '<g id="panel_{css_class_base}_lines">\n{content}<!-- end group: "panel_{css_class_base}_lines" -->\n</g>\n'.format(
@@ -317,7 +371,7 @@ def generate_panel_lines(level_dict, css_class_base, platform_map, map_type):
         content=line_svg
     )
 
-def generate_terminal_lines(level_dict, css_class_base, page_type, map_type):
+def generate_terminal_lines(level_dict, page_type, css_class_base, map_type, level_info):
     terminal_destination_map = dict()
     for terminal in level_dict['term']['terminal']:
         for grouping in terminal['children']['grouping']:
@@ -348,7 +402,7 @@ def generate_terminal_lines(level_dict, css_class_base, page_type, map_type):
             lights = [l for l in level_dict['LITE']['light'] if 'tag' in l and l['tag'] == target_tag]
 
         # common lines
-        line_svg += common_generate_lines(css_class_base, side, dest_sides, dest_polys, lights, level_dict)
+        line_svg += common_generate_lines(css_class_base, side, dest_sides, dest_polys, lights, level_dict, level_info)
 
     if not line_svg:
         return ''
@@ -357,7 +411,7 @@ def generate_terminal_lines(level_dict, css_class_base, page_type, map_type):
         content=line_svg
     )
 
-def common_generate_lines(css_class_base, side, dest_sides, dest_polys, lights, level_dict):
+def common_generate_lines(css_class_base, side, dest_sides, dest_polys, lights, level_dict, level_info):
     line_svg = ''
     line = level_dict['LINS']['line'][side['line']]
     px1 = level_dict['EPNT']['endpoint'][line['endpoint1']]['x']
@@ -366,11 +420,21 @@ def common_generate_lines(css_class_base, side, dest_sides, dest_polys, lights, 
     py2 = level_dict['EPNT']['endpoint'][line['endpoint2']]['y']
     pcx = (px1 + px2) / 2 / MAX_POS
     pcy = (py1 + py2) / 2 / MAX_POS
+
+    source_polys = filter(
+        lambda i: i > 0,
+        map(
+            lambda s: line[s],
+            ['cw_poly', 'ccw_poly']))
+
     if lights:
         dest_sides = [s for s in level_dict['SIDS']['side'] if any(map(lambda l: s[l] in lights, ['primary_light', 'secondary_light', 'transparent_light']))]
     for dest_poly in dest_polys:
         # lines to the polys
         gid = 'panel_{}_line_group_poly_s{}:p{}'.format(css_class_base, side['index'], dest_poly['index'])
+        for source in source_polys:
+            update_poly_info(level_info, poly_index=source, ids=[gid])
+        update_poly_info(level_info, poly_index=dest_poly['index'], ids=[gid])
         line_svg += '<g id="{g_id}">\n'.format(
             g_id=gid
         )
@@ -408,6 +472,16 @@ def common_generate_lines(css_class_base, side, dest_sides, dest_polys, lights, 
         if dest_side['index'] == side['index']:
             continue
         gid = 'panel_{}_line_group_side_s{}:s{}'.format(css_class_base, side['index'], dest_side['index'])
+        side_line = level_dict['LINS']['line'][dest_side['line']]
+        for source in source_polys:
+            update_poly_info(level_info, poly_index=source, ids=[gid])
+        dest_polys = filter(
+            lambda i: i > 0,
+            map(
+                lambda s: level_dict['LINS']['line'][dest_side['line']][s],
+                ['cw_poly', 'ccw_poly']))
+        for dest_poly in dest_polys:
+            update_poly_info(level_info, poly_index=dest_poly, ids=[gid])
         line_svg += '<g id="{g_id}">\n'.format(
             g_id=gid
         )
@@ -447,7 +521,7 @@ def common_generate_lines(css_class_base, side, dest_sides, dest_polys, lights, 
         )
     return line_svg
 
-def generate_lines(level_dict, platform_map, ignore_polys):
+def generate_lines(level_dict, platform_map, ignore_polys, level_info):
     lines_svg = '<g id="borders">\n'
     lines = defaultdict(list)
     for line in level_dict['LINS']['line']:
@@ -460,12 +534,22 @@ def generate_lines(level_dict, platform_map, ignore_polys):
         css_class = calculate_line_class(line, level_dict['SIDS']['side'], level_dict['POLY']['polygon'], platform_map, ignore_polys)
         if x1 == x2 and y1 == y2:
             css_class = 'pointless'
+        css_id = 'line_{}'.format(line['index'])
         line_svg = '<line x1="{x1}" y1="{y1}" x2="{x2}" y2="{y2}" id="{css_id}" class="{css_class}" />'.format(
             x1=x1, y1=y1, x2=x2, y2=y2,
-            css_id='line_{}'.format(line['index']),
+            css_id=css_id,
             css_class=css_class
         )
         lines[css_class].append(line_svg)
+        polys = filter(
+            lambda i: i > 0,
+            map(
+                lambda s: line[s],
+                ['cw_poly', 'ccw_poly']))
+        for poly in polys:
+            update_poly_info(level_info, poly_index=poly, ids=[css_id])
+        update_dimensions(level_info, 'lines', x1, y1)
+        update_dimensions(level_info, 'lines', x2, y2)
     for line_type in ['pointless', 'ignore', 'landscape_', 'plain', 'elevation', 'solid']:
         for line in lines[line_type]:
             lines_svg += line + '\n'
@@ -475,16 +559,18 @@ def generate_lines(level_dict, platform_map, ignore_polys):
     lines_svg += '<!-- end group: "borders" -->\n</g>\n'
     return lines_svg
 
-def generate_annotations(notes):
+def generate_annotations(notes, level_info):
     notes_svg = ''
     for note in notes:
+        css_id = 'annotation_{}'.format(note['index'])
         notes_svg += '<text x="{x}" y="{y}" id="{css_id}" class="{css_class}">{note}</text>\n'.format(
             x=note['location_x']/MAX_POS,
             y=note['location_y']/MAX_POS,
             css_class='annotation',
-            css_id='annotation_{}'.format(note['index']),
+            css_id=css_id,
             note=note['text'],
         )
+        update_poly_info(level_info, poly_index=note['polygon_index'], ids=[css_id])
     if not notes_svg:
         return ''
     return '<g id="annotations">\n' + notes_svg + '<!-- end group: "annotations" -->\n</g>\n'
@@ -535,7 +621,7 @@ def panel_to_type(map_type, panel_type):
         panel_types = PANELS_m1
     return panel_types[panel_type]
 
-def generate_panels(level_dict, ignore_polys, map_type):
+def generate_panels(level_dict, ignore_polys, map_type, level_info):
     panel_types = PANELS
     if map_type < 2:
         panel_types = PANELS_m1
@@ -550,17 +636,25 @@ def generate_panels(level_dict, ignore_polys, map_type):
         y1 = level_dict['EPNT']['endpoint'][line['endpoint1']]['y']
         x2 = level_dict['EPNT']['endpoint'][line['endpoint2']]['x']
         y2 = level_dict['EPNT']['endpoint'][line['endpoint2']]['y']
+        css_id = 'side_{}'.format(side['index'])
         css_class = 'panel-{}'.format(panel_types[side['panel_type']])
         panel_svg += '<use xlink:href="_common.svg#panel" x="{cx}" y="{cy}" id="{css_id}" class="{css_class}" />\n'.format(
             cx = (x1 + x2) / 2 / MAX_POS,
             cy = (y1 + y2) / 2 / MAX_POS,
-            css_id='side_{}'.format(side['index']),
+            css_id=css_id,
             css_class = css_class,
         )
+        source_polys = filter(
+            lambda i: i > 0,
+            map(
+                lambda s: line[s],
+                ['cw_poly', 'ccw_poly']))
+        for source in source_polys:
+            update_poly_info(level_info, poly_index=source, ids=[css_id])
     panel_svg += '<!-- end group: "panels" -->\n</g>\n'
     return panel_svg
 
-def generate_objects(objects, polygons, ignore_polys):
+def generate_objects(objects, polygons, ignore_polys, level_info):
     object_svg = '<g id="objects">\n'
     entries = defaultdict(list)
     for obj in objects:
@@ -593,21 +687,26 @@ def generate_objects(objects, polygons, ignore_polys):
             order = symbol
 #         if is_hidden_poly(polygons[obj['polygon_index']], ignore_polys):
 #             css_class += ' hidden'
+        cx=obj['location_x'] / MAX_POS
+        cy=obj['location_y'] / MAX_POS
         transform = ''
         if 0 != obj['facing']:
             transform = 'transform="rotate({rotation} {cx} {cy})" '.format(
                 rotation=obj['facing'] / 512 * 360,
-                cx=obj['location_x'] / MAX_POS,
-                cy=obj['location_y'] / MAX_POS,
+                cx=cx,
+                cy=cy,
             )
+        css_id = 'object_{}'.format(obj['index'])
         entry = '<use xlink:href="_common.svg#{symbol}" x="{cx}" y="{cy}" id="{css_id}" class="{css_class}" {transform}/>'.format(
             symbol=symbol,
-            cx=obj['location_x'] / MAX_POS,
-            cy=obj['location_y'] / MAX_POS,
+            cx=cx,
+            cy=cy,
             transform=transform,
-            css_id='object_{}'.format(obj['index']),
+            css_id=css_id,
             css_class=css_class,
         )
+        update_poly_info(level_info, poly_index=obj['polygon_index'], ids=[css_id])
+        update_dimensions(level_info, 'items', cx, cy)
         entries[order].append(entry)
     for symbol in ['sound', 'object', 'item', 'monster', 'goal', 'player']:
         for entry in entries[symbol]:
@@ -631,38 +730,47 @@ def generate_svg(map_type, level_name, level_dict, ignore_polys):
     if 0 < len(level_dict['PLAT']):
         platform_map = build_platform_map(level_dict['PLAT'])
 
-    level_dict['__dimensions'] = (1,1,-1,-1)
+    level_info = {
+        'dimensions': {
+            # initial values start at the opposite extreme
+            'map':   [1, 1, -1, -1],
+            'items': [1, 1, -1, -1],
+            'lines': [1, 1, -1, -1],
+        },
+        'polygons': defaultdict(lambda: {
+            'floor_height': None,
+            'ceiling_height': None,
+            'connections': set()
+        })
+    }
+
     level_svg = ''
 
     level_svg += generate_grid()
-    level_svg += generate_polygons(level_dict, platform_map, ignore_polys, map_type)
-    level_svg += generate_lines(level_dict, platform_map, ignore_polys)
+    level_svg += generate_polygons(level_dict, platform_map, ignore_polys, map_type, level_info)
+    level_svg += generate_lines(level_dict, platform_map, ignore_polys, level_info)
 
-    level_svg += generate_trigger_lines(level_dict,  6, 'light_on')
-    level_svg += generate_trigger_lines(level_dict,  8, 'light_off')
-    level_svg += generate_trigger_lines(level_dict,  7, 'platform_on')
-    level_svg += generate_trigger_lines(level_dict,  9, 'platform_off')
-    level_svg += generate_trigger_lines(level_dict, 10, 'teleporter')
+    level_svg += generate_trigger_lines(level_dict,  6, 'light_on', level_info)
+    level_svg += generate_trigger_lines(level_dict,  8, 'light_off', level_info)
+    level_svg += generate_trigger_lines(level_dict,  7, 'platform_on', level_info)
+    level_svg += generate_trigger_lines(level_dict,  9, 'platform_off', level_info)
+    level_svg += generate_trigger_lines(level_dict, 10, 'teleporter', level_info)
 
-    level_svg += generate_panel_lines(level_dict, 'light_switch', platform_map, map_type)
-    level_svg += generate_panel_lines(level_dict, 'platform_switch', platform_map, map_type)
-    level_svg += generate_panel_lines(level_dict, 'tag_switch', platform_map, map_type)
+    level_svg += generate_panel_lines(level_dict, 'light_switch', platform_map, map_type, level_info)
+    level_svg += generate_panel_lines(level_dict, 'platform_switch', platform_map, map_type, level_info)
+    level_svg += generate_panel_lines(level_dict, 'tag_switch', platform_map, map_type, level_info)
 
     if 'term' in level_dict:
-        level_svg += generate_terminal_lines(level_dict, 'terminal_teleport', 7, map_type)
+        level_svg += generate_terminal_lines(level_dict, 7, 'terminal_teleport', map_type, level_info)
         # no actual panel tags found
-        #level_svg += generate_terminal_lines(level_dict, 'terminal_tag_switch', 16, map_type)
+        #level_svg += generate_terminal_lines(level_dict, 16, 'terminal_tag_switch', map_type)
 
-    level_svg += generate_objects(level_dict['OBJS']['object'], level_dict['POLY']['polygon'], ignore_polys)
-    level_svg += generate_panels(level_dict, ignore_polys, map_type)
-    level_svg += generate_annotations(level_dict['NOTE']['annotation'])
+    level_svg += generate_objects(level_dict['OBJS']['object'], level_dict['POLY']['polygon'], ignore_polys, level_info)
+    level_svg += generate_panels(level_dict, ignore_polys, map_type, level_info)
+    level_svg += generate_annotations(level_dict['NOTE']['annotation'], level_info)
 
-    # round min/max coordinates to the nearest WU, +1
-    (min_x, min_y, max_x, max_y) = level_dict['__dimensions']
-    min_x = max(-1, math.floor(min_x * 32 - 1)/32)
-    min_y = max(-1, math.floor(min_y * 32 - 1)/32)
-    max_x = min( 1, math.ceil( max_x * 32 + 1)/32)
-    max_y = min( 1, math.ceil( max_y * 32 + 1)/32)
+    # update the level_info dimensions to merge the
+    finalize_dimensions(level_info)
 
     svg_js = ''
 #     svg_js = '''\
@@ -670,10 +778,12 @@ def generate_svg(map_type, level_name, level_dict, ignore_polys):
 # <text id="tooltip" display="none" fill="red" font-size=".03" style="position: absolute; display: none;"></text>
 # '''
 
+    (min_x, min_y, max_x, max_y) = level_info['dimensions']['map']
+
     svg_prefix = '<?xml version="1.0" encoding="UTF-8"?>\n'
     svg_prefix += '<!-- generated by map2svg: github.com/fracai/marathon-utils -->\n'
     svg_prefix += '<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1"'
-    svg_size = 'width="{width}" height="{height}" viewBox="{vbminx} {vbminy} {vbheight} {vbwidth}">\n'.format(
+    svg_size = '\n    width="{width}" height="{height}" viewBox="{vbminx} {vbminy} {vbheight} {vbwidth}">\n'.format(
         width=(max_x-min_x)/2 * 1000,
         height=(max_y-min_y)/2 * 1000,
         vbminx=min_x,
@@ -684,7 +794,7 @@ def generate_svg(map_type, level_name, level_dict, ignore_polys):
     svg_style = '<link xmlns="http://www.w3.org/1999/xhtml" rel="stylesheet" href="_styles.css" type="text/css" />\n'
     svg_end = '</svg>'
     level_svg = svg_prefix + svg_size + svg_style + level_svg + svg_js + svg_end
-#     write_data(json_path, json.dumps(level_dict, indent=2))
+    write_data(json_path, json.dumps(level_info, default=set_default, indent=2))
     write_data(out_path, level_svg)
     return os.path.basename(out_path)
 
