@@ -61,7 +61,7 @@ line.light_off_border,
 line.platform_switch_border,  
 line.light_switch_border,  
 line.tag_switch_border,
-line.computer_terminal_border
+line.terminal_teleport_border
 { stroke: black; stroke-width:  1; }
 
 line.teleporter_line   { stroke: rgb( 128,  64, 128 ); stroke-width:  .5; }
@@ -81,8 +81,8 @@ line.light_switch_line      { stroke: rgb( 255, 192, 128 ); stroke-width:  .5; }
  use.light_switch_line      {  color: rgb( 255, 192, 128 ); }
 line.tag_switch_line        { stroke: rgb( 192, 192, 192 ); stroke-width:  .5; }
  use.tag_switch_line        {  color: rgb( 192, 192, 192 ); }
-line.computer_terminal_line { stroke: rgb(  64, 192,  64 ); stroke-width:  .5; }
- use.computer_terminal_line {  color: rgb(  64, 192,  64 ); }
+line.terminal_teleport_line { stroke: rgb(  64, 192,  64 ); stroke-width:  .5; }
+ use.terminal_teleport_line {  color: rgb(  64, 192,  64 ); }
 
 .panel-shield_refuel        { color: rgb( 255,   0,   0 ); }
 .panel-double_shield_refuel { color: rgb( 255, 255,   0 ); }
