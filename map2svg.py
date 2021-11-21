@@ -11,6 +11,7 @@ import re
 import math
 import xmltodict
 import operator
+import html
 
 IGNORE_RE = re.compile('(?P<level>\d+): (?P<poly>[\d ]+)')
 
@@ -77,6 +78,25 @@ body {
 <body>
 '''
 
+def xml_unescape(text):
+    return html.unescape(
+        re.sub(
+            b'&#x([a-fA-F0-9]{2});',
+            lambda s: bytes.fromhex(s.group(1).decode()),
+            text.encode()
+        ).decode()
+    )
+
+def fix_encoding(text):
+    return re.sub(
+        b'\xc3\xa2',
+        b'\xe2',
+        text.encode()
+    ).replace(
+        b'\xc2',
+        b''
+    ).decode()
+
 def process_map_file(map_xml_path, ignore_file):
     print ('map: {}'.format(map_xml_path))
     ignore_map = dict()
@@ -137,6 +157,7 @@ def process_level(map_type, level_root, ignore_polys):
     for chunk_type in CHUNK_TYPES:
         if chunk_type not in level_dict:
             level_dict[chunk_type] = defaultdict(list)
+    name = fix_encoding(name)
     level_name = '{:0>2} {}'.format(level_number, name)
     print (level_name)
     return level_name, generate_svg(map_type, level_name, level_dict, ignore_polys)
