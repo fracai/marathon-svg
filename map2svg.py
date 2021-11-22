@@ -134,13 +134,14 @@ def process_map_file(map_xml_path, ignore_file):
             continue
         if level_index not in ignore_map:
             ignore_map[level_index] = []
-        level_name, base_name = process_level(map_type, child, ignore_map[level_index])
+        level_name, svg_name = process_level(map_type, child, ignore_map[level_index])
         map_info['levels'].append({
             'index': level_index,
             'name': level_name,
+            'base_name': os.path.splitext(svg_name)[0],
         })
         preview += '<h3>{:0>2} {}</h3><p><object type="image/svg+xml" data="{}"></object></p>\n'.format(
-            level_index, level_name, base_name)
+            level_index, level_name, svg_name)
     preview = preview_header + preview + '</body></html>'
     out_path = os.path.join(args.output_directory, '_preview.html')
     write_data(out_path, preview)
