@@ -78,6 +78,8 @@ body {
 <body>
 '''
 
+# https://www.utf8-chartable.de/unicode-utf8-table.pl?start=8192&number=128
+
 def xml_unescape(text):
     return html.unescape(
         re.sub(
@@ -706,12 +708,16 @@ def generate_objects(objects, polygons, ignore_polys, level_info):
             symbol = 'sound'
             css_class = 'sound'
             order = symbol
+        if symbol is None:
+            symbol = 'unknown'
+            css_class = 'unknown'
+            order = symbol
 #         if is_hidden_poly(polygons[obj['polygon_index']], ignore_polys):
 #             css_class += ' hidden'
         cx=obj['location_x'] / MAX_POS
         cy=obj['location_y'] / MAX_POS
         transform = ''
-        if 0 != obj['facing']:
+        if 'sound' != symbol and 0 != obj['facing']:
             transform = 'transform="rotate({rotation} {cx} {cy})" '.format(
                 rotation=obj['facing'] / 512 * 360,
                 cx=cx,
@@ -724,12 +730,12 @@ def generate_objects(objects, polygons, ignore_polys, level_info):
             cy=cy,
             transform=transform,
             css_id=css_id,
-            css_class=css_class,
+            css_class='{} object_type:{}'.format(css_class, obj['type']),
         )
         update_poly_info(level_info, poly_index=obj['polygon_index'], ids=[css_id])
         update_dimensions(level_info, 'items', cx, cy)
         entries[order].append(entry)
-    for symbol in ['sound', 'object', 'item', 'monster', 'goal', 'player']:
+    for symbol in ['unknown', 'sound', 'object', 'item', 'monster', 'goal', 'player']:
         for entry in entries[symbol]:
             object_svg += entry + '\n'
         del entries[symbol]

@@ -96,6 +96,10 @@ line.terminal_teleport_line { stroke: rgb(  64, 192,  64 ); stroke-width:  .5; }
 .panel-tag_switch           { color: rgb( 192, 192, 192 ); }
 .panel-goal_switch          { color: rgb( 255, 215,   0 ); }
 
+.unknown { color: rgb( 192, 192, 192 ); }
+
+.sound { color: rgb( 255, 255, 128 ); }
+
 .item   { color: rgb(  86, 244,  23 ); }
 .object { color: rgb( 255, 165,   0 ); }
 .goal   { color: rgb( 255, 215,   0 ); }

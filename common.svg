@@ -36,6 +36,29 @@
 <circle r=".002" fill="currentColor" />
 </symbol>
 
+<!-- center oriented, downward pointing, equilateral triangle -->
+<symbol id='unknown' style='overflow: visible;'>
+<polygon points="-.005,-.00288675134594813 .005,-.00288675134594813 0,.00866025403784439" fill="currentColor" stroke="black" stroke-width=".001" />
+</symbol>
+
+<!-- inward facing equilateral triangles, with a center background circle -->
+<symbol id='sound' style='overflow: visible;'>
+<circle r=".006" fill="black" />
+<circle r=".005" fill="currentColor" />
+<polygon points=".011547005383793,-.005 .011547005383793,.005 0,0" fill="currentColor" stroke="black" stroke-width=".001" />
+<polygon points="-.011547005383793,-.005 -.011547005383793,.005 0,0" fill="currentColor" stroke="black" stroke-width=".001" />
+</symbol>
+
+<!-- center oriented, right pointing, equilateral triangle -->
+<symbol id='center_right_triangle' style='overflow: visible;'>
+<polygon points="-.00288675134594813,.005 -.00288675134594813,-.005 .00866025403784439,0" fill="currentColor" stroke="black" stroke-width=".001" />
+</symbol>
+
+<!-- center oriented, downward pointing, equilateral triangle -->
+<symbol id='center_down_triangle' style='overflow: visible;'>
+<polygon points=".005,.00288675134594813 -.005,.00288675134594813 0,.00866025403784439" fill="currentColor" stroke="black" stroke-width=".001" />
+</symbol>
+
 <!-- hollow, outlined star -->
 <symbol id='goal' style='overflow: visible;'>
 <!-- outline -->
