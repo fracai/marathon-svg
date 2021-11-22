@@ -118,6 +118,9 @@ def process_map_file(map_xml_path, ignore_file):
     map_type = None
     level_count = None
     preview = ''
+    map_info = {
+        'levels': []
+    }
     for child in root:
         # <wadinfo type="0" size="3863054" count="37">Map</wadinfo>
         if 'wadinfo' == child.tag:
@@ -131,11 +134,17 @@ def process_map_file(map_xml_path, ignore_file):
             continue
         if level_index not in ignore_map:
             ignore_map[level_index] = []
-        level_name, svg_name = process_level(map_type, child, ignore_map[level_index])
-        preview += '<h3>{}</h3><p><object type="image/svg+xml" data="{}"></object></p>\n'.format(level_name,svg_name)
+        level_name, base_name = process_level(map_type, child, ignore_map[level_index])
+        map_info['levels'].append({
+            'index': level_index,
+            'name': level_name,
+        })
+        preview += '<h3>{:0>2} {}</h3><p><object type="image/svg+xml" data="{}"></object></p>\n'.format(
+            level_index, level_name, base_name)
     preview = preview_header + preview + '</body></html>'
     out_path = os.path.join(args.output_directory, '_preview.html')
     write_data(out_path, preview)
+    write_data(os.path.join(args.output_directory, 'map.json'), json.dumps(map_info, indent=2))
 
 def process_level(map_type, level_root, ignore_polys):
     level_number = level_root.attrib['index']
@@ -160,9 +169,11 @@ def process_level(map_type, level_root, ignore_polys):
         if chunk_type not in level_dict:
             level_dict[chunk_type] = defaultdict(list)
     name = fix_encoding(name)
-    level_name = '{:0>2} {}'.format(level_number, name)
-    print (level_name)
-    return level_name, generate_svg(map_type, level_name, level_dict, ignore_polys)
+    print ('{:0>2} {}'.format(level_number, name))
+    base_name = re.sub('[^a-zA-Z0-9]', '', name)
+    base_name = '{:0>2}_{}.svg'.format(level_number, base_name)
+    generate_svg(map_type, base_name, level_dict, ignore_polys)
+    return (name, base_name)
 
 def process_chunk(chunk_root):
     chunk_dict = defaultdict(list)
@@ -744,12 +755,9 @@ def generate_objects(objects, polygons, ignore_polys, level_info):
     object_svg += '<!-- end group: "objects" -->\n</g>\n'
     return object_svg
 
-def generate_svg(map_type, level_name, level_dict, ignore_polys):
-    level_name = level_name.replace(' ','_')
-    level_name = re.sub('[^a-zA-Z0-9]', '_', level_name)
-    level_name = re.sub('_+', '_', level_name)
-    out_path = os.path.join(args.output_directory, '{}.svg'.format(level_name))
-    json_path = os.path.join(args.output_directory, '{}.json'.format(level_name))
+def generate_svg(map_type, base_name, level_dict, ignore_polys):
+    out_path = os.path.join(args.output_directory, base_name)
+    json_path = os.path.join(args.output_directory, base_name)
 
     platform_map = dict()
     if 0 < len(level_dict['plat']):
@@ -823,7 +831,7 @@ def generate_svg(map_type, level_name, level_dict, ignore_polys):
     level_svg = svg_prefix + svg_size + svg_style + level_svg + svg_js + svg_end
     write_data(json_path, json.dumps(level_info, default=set_default, indent=2))
     write_data(out_path, level_svg)
-    return os.path.basename(out_path)
+    return out_path
 
 media_map = {
     0: 'water',
