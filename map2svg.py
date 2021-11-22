@@ -145,7 +145,12 @@ def process_map_file(map_xml_path, ignore_file):
     preview = preview_header + preview + '</body></html>'
     out_path = os.path.join(args.output_directory, '_preview.html')
     write_data(out_path, preview)
-    write_data(os.path.join(args.output_directory, 'map.json'), json.dumps(map_info, indent=2))
+    map_info_path = os.path.join(args.output_directory, 'map.json')
+    write_data(map_info_path, json.dumps(map_info, indent=2))
+    print (json.dumps({
+        "map_name": None,
+        "map_info": map_info_path,
+    }, indent=2))
 
 def process_level(map_type, level_root, ignore_polys):
     level_number = level_root.attrib['index']
@@ -352,7 +357,7 @@ def generate_trigger_lines(level_dict, poly_type, css_class_base, level_info):
                 css_id='poly_{}_border_{}:{}'.format(css_class_base, poly['index'], poly['permutation']),
                 css_class='{}_border'.format(css_class_base)
             )
-            line_svg += '<use xlink:href="_common.svg#{symbol}" x="{cx}" y="{cy}" id="{css_id}" class="{css_class}" {transform}/>\n'.format(
+            line_svg += '<use xlink:href="../common.svg#{symbol}" x="{cx}" y="{cy}" id="{css_id}" class="{css_class}" {transform}/>\n'.format(
                 symbol='arrow',
                 cx=x2,
                 cy=y2,
@@ -486,7 +491,7 @@ def common_generate_lines(css_class_base, side, dest_sides, dest_polys, lights, 
             css_id='panel_{}_border_s{}:p{}'.format(css_class_base, side['index'], dest_poly['index']),
             css_class='{}_border'.format(css_class_base)
         )
-        line_svg += '<use xlink:href="_common.svg#{symbol}" x="{cx}" y="{cy}" id="{css_id}" class="{css_class}" {transform}/>\n'.format(
+        line_svg += '<use xlink:href="../common.svg#{symbol}" x="{cx}" y="{cy}" id="{css_id}" class="{css_class}" {transform}/>\n'.format(
             symbol='arrow',
             cx=dcx,
             cy=dcy,
@@ -538,7 +543,7 @@ def common_generate_lines(css_class_base, side, dest_sides, dest_polys, lights, 
             css_id='panel_{}_border_s{}:s{}'.format(css_class_base, side['index'], dest_side['index']),
             css_class='{}_border'.format(css_class_base)
         )
-        line_svg += '<use xlink:href="_common.svg#{symbol}" x="{cx}" y="{cy}" id="{css_id}" class="{css_class}" {transform}/>\n'.format(
+        line_svg += '<use xlink:href="../common.svg#{symbol}" x="{cx}" y="{cy}" id="{css_id}" class="{css_class}" {transform}/>\n'.format(
             symbol='arrow',
             cx=dcx,
             cy=dcy,
@@ -673,7 +678,7 @@ def generate_panels(level_dict, ignore_polys, map_type, level_info):
         y2 = level_dict['EPNT']['endpoint'][line['endpoint2']]['y']
         css_id = 'side_{}'.format(side['index'])
         css_class = 'panel-{}'.format(panel_types[side['panel_type']])
-        panel_svg += '<use xlink:href="_common.svg#panel" x="{cx}" y="{cy}" id="{css_id}" class="{css_class}" />\n'.format(
+        panel_svg += '<use xlink:href="../common.svg#panel" x="{cx}" y="{cy}" id="{css_id}" class="{css_class}" />\n'.format(
             cx = (x1 + x2) / 2 / MAX_POS,
             cy = (y1 + y2) / 2 / MAX_POS,
             css_id=css_id,
@@ -736,7 +741,7 @@ def generate_objects(objects, polygons, ignore_polys, level_info):
                 cy=cy,
             )
         css_id = 'object_{}'.format(obj['index'])
-        entry = '<use xlink:href="_common.svg#{symbol}" x="{cx}" y="{cy}" id="{css_id}" class="{css_class}" {transform}/>'.format(
+        entry = '<use xlink:href="../common.svg#{symbol}" x="{cx}" y="{cy}" id="{css_id}" class="{css_class}" {transform}/>'.format(
             symbol=symbol,
             cx=cx,
             cy=cy,
@@ -827,7 +832,7 @@ def generate_svg(map_type, base_name, level_dict, ignore_polys):
         vbheight=max_x-min_x,
         vbwidth=max_y-min_y,
     )
-    svg_style = '<link xmlns="http://www.w3.org/1999/xhtml" rel="stylesheet" href="_styles.css" type="text/css" />\n'
+    svg_style = '<link xmlns="http://www.w3.org/1999/xhtml" rel="stylesheet" href="../styles.css" type="text/css" />\n'
     svg_end = '</svg>'
     level_svg = svg_prefix + svg_size + svg_style + level_svg + svg_js + svg_end
     write_data(json_path, json.dumps(level_info, default=set_default, indent=2))
