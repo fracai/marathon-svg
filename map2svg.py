@@ -134,14 +134,14 @@ def process_map_file(map_xml_path, ignore_file):
             continue
         if level_index not in ignore_map:
             ignore_map[level_index] = []
-        level_name, svg_name = process_level(map_type, child, ignore_map[level_index])
+        level_name, base_name = process_level(map_type, child, ignore_map[level_index])
         map_info['levels'].append({
             'index': level_index,
             'name': level_name,
-            'base_name': os.path.splitext(svg_name)[0],
+            'base_name': base_name,
         })
-        preview += '<h3>{:0>2} {}</h3><p><object type="image/svg+xml" data="{}"></object></p>\n'.format(
-            level_index, level_name, svg_name)
+        preview += '<h3>{:0>2} {}</h3><p><object type="image/svg+xml" data="{}.svg"></object></p>\n'.format(
+            level_index, level_name, base_name)
     preview = preview_header + preview + '</body></html>'
     out_path = os.path.join(args.output_directory, '_preview.html')
     write_data(out_path, preview)
@@ -177,7 +177,7 @@ def process_level(map_type, level_root, ignore_polys):
     name = fix_encoding(name)
     print ('{:0>2} {}'.format(level_number, name))
     base_name = re.sub('[^a-zA-Z0-9]', '', name)
-    base_name = '{:0>2}_{}.svg'.format(level_number, base_name)
+    base_name = '{:0>2}_{}'.format(level_number, base_name)
     generate_svg(map_type, base_name, level_dict, ignore_polys)
     return (name, base_name)
 
@@ -762,8 +762,8 @@ def generate_objects(objects, polygons, ignore_polys, level_info):
     return object_svg
 
 def generate_svg(map_type, base_name, level_dict, ignore_polys):
-    out_path = os.path.join(args.output_directory, base_name)
-    json_path = os.path.join(args.output_directory, base_name)
+    out_path = os.path.join(args.output_directory, base_name+'.svg')
+    json_path = os.path.join(args.output_directory, base_name+'.json')
 
     platform_map = dict()
     if 0 < len(level_dict['plat']):
