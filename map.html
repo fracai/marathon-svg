@@ -9,6 +9,11 @@ body {
     color: #0f0;
     text-align: center;
     font-family: Monaco, ProFont;
+    font-size: 10pt;
+}
+input[type="range"] {
+	-webkit-appearance: slider-vertical;
+	writing-mode: bt-lr;
 }
 </style>
 <link rel="stylesheet" href="styles.css" />
@@ -16,13 +21,11 @@ body {
 <script src="map.js"></script>
 </head>
 <body onload="loaded()">
-<div style="float:left;text-align:left;width:20%">
-Map:<br />
-<select name="select_map" id="select_map" onchange='map_selection(this);'>
+<div style="float:left;text-align:left;width:25%">
+Map: <select name="select_map" id="select_map" onchange='map_selection(this);'>
 </select>
 <br />
-Level:<br />
-<select name="select_level" id="select_level" onchange='level_selection(this);'>
+Level: <select name="select_level" id="select_level" onchange='level_selection(this);'>
 </select>
 <br />
 Zoom:<br />
@@ -31,6 +34,8 @@ Zoom:<br />
 <button onclick="zoom('lines')">All Lines</button><br />
 <button onclick="zoom()">World</button><br />
 <ul>
+    <li><label><input type="checkbox" id="annotation" onclick="toggle_checkbox(this)"/> Annotations</label></li>
+    <li><label><input type="checkbox" id="xxxx" onclick="toggle_checkbox(this)"/> Hidden Platforms</label></li>
     <li>
         <label><input type="checkbox" id="monster" onclick="toggle_checkbox(this)"/> Monsters</label>
         <ul>
@@ -53,7 +58,43 @@ Zoom:<br />
             <li><label><input type="checkbox" id="object-2" onclick="toggle_checkbox(this)"/> Paper</label></li>
         </ul>
     </li>
+    <li>
+        <label><input type="checkbox" id="panels" onclick="toggle_checkbox(this)"/> Panels</label>
+        <ul>
+            <li><label><input type="checkbox" id="panel-1" onclick="toggle_checkbox(this)"/> Terminal</label></li>
+            <li><label><input type="checkbox" id="panel-2" onclick="toggle_checkbox(this)"/> Switch</label></li>
+            <li><label><input type="checkbox" id="panel-3" onclick="toggle_checkbox(this)"/> 1x Shields</label></li>
+            <li><label><input type="checkbox" id="panel-4" onclick="toggle_checkbox(this)"/> 2x Shields</label></li>
+            <li><label><input type="checkbox" id="panel-5" onclick="toggle_checkbox(this)"/> 3x Shields</label></li>
+            <li><label><input type="checkbox" id="panel-6" onclick="toggle_checkbox(this)"/> Oxygen</label></li>
+        </ul>
+    </li>
+    <li>
+        <label><input type="checkbox" id="panel_line" onclick="toggle_checkbox(this)"/> Panel Lines</label>
+        <ul>
+            <li><label><input type="checkbox" id="xxxx-1" onclick="toggle_checkbox(this)"/> Terminal Teleporter</label></li>
+            <li><label><input type="checkbox" id="xxxx-2" onclick="toggle_checkbox(this)"/> Terminal Switch</label></li>
+            <li><label><input type="checkbox" id="xxxx-3" onclick="toggle_checkbox(this)"/> Platform Switch </label></li>
+            <li><label><input type="checkbox" id="xxxx-4" onclick="toggle_checkbox(this)"/> Light Switch </label></li>
+            <li><label><input type="checkbox" id="xxxx-5" onclick="toggle_checkbox(this)"/> Tag Switch </label></li>
+        </ul>
+    </li>
+    <li>
+        <label><input type="checkbox" id="trigger_line" onclick="toggle_checkbox(this)"/> Trigger Lines</label>
+        <ul>
+            <li><label><input type="checkbox" id="object-1" onclick="toggle_checkbox(this)"/> Teleporter</label></li>
+            <li><label><input type="checkbox" id="object-1" onclick="toggle_checkbox(this)"/> Platform Trigger</label></li>
+            <li><label><input type="checkbox" id="object-2" onclick="toggle_checkbox(this)"/> Light Trigger </label></li>
+            <li><label><input type="checkbox" id="object-2" onclick="toggle_checkbox(this)"/> Tag Trigger </label></li>
+        </ul>
+    </li>
 </ul>
+<div class="slidecontainer">
+  <input type="range" min="-32768" max="32768" value="0" class="slider" id="floor">
+</div>
+<div class="slidecontainer">
+  <input type="range" min="-32768" max="32768" value="0" class="slider" id="ceiling">
+</div>
 </div>
 <div><object id="map_object" type="image/svg+xml" data="logo.svg"/></div>
 </body>
