@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <title>Map</title>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <style type="text/css">
 body {
     background: black;
@@ -11,119 +11,50 @@ body {
     font-family: Monaco, ProFont;
 }
 </style>
-<link rel="stylesheet" href="styles.css">
-<script language=javascript>
-<!--
-var map_json = null;
-function fill_map_menu(maps_info) {
-    var select = document.getElementById("select_map");
-    select.options.length = 0
-    var first = -1
-    for (let i in maps_info) {
-        let map = maps_info[i]
-        if (-1 == first) {
-            first = select.options.length
-        }
-        select.options[select.options.length] = new Option(map.map_name, map.map_info, false, false)
-    }
-    select.options.selectedIndex = first
-    load_levels(select.options[first].value)
-}
-function fill_level_menu(level_info) {
-    var select = document.getElementById("select_level");
-    select.options.length = 0
-    var first = -1
-    for (let i in level_info.levels) {
-        let level = level_info.levels[i]
-        if ('separator' in level) {
-            option = new Option(level.separator, null, false, false)
-            option.disabled = true
-            select.options[select.options.length] = option
-            continue
-        }
-        if (-1 == first) {
-            first = select.options.length
-        }
-        select.options[select.options.length] = new Option(level.name, level.base_name, false, false)
-    }
-    select.options.selectedIndex = first
-    load_level(select.options[first].value)
-}
-function load_json(path, callback) {
-    return fetch(path)
-    .then(response => {
-        if (!response.ok) {
-            throw new Error("HTTP error " + response.status);
-        }
-        return response.json();
-    })
-    .then(json => {
-        callback(json)
-    })
-    .catch(function () {
-        this.dataError = true;
-    })
-}
-function load_path(path, callback) {
-    return fetch(path)
-    .then(response => {
-        if (!response.ok) {
-            throw new Error("HTTP error " + response.status);
-        }
-        return response.body();
-    })
-    .then(json => {
-        callback(json)
-    })
-    .catch(function () {
-        this.dataError = true;
-    })
-}
-function load_maps() {
-    load_json('maps.json', fill_map_menu)
-}
-function load_levels(path) {
-    load_json(path, fill_level_menu)
-}
-function load_level(base_path) {
-    var svg_path = base_path+'.svg'
-    var json_path = base_path+'.json'
-    load_json(json_path, function (value) {map_json = value})
-    display_svg(svg_path)
-}
-function display_svg(svg) {
-    map_object = document.getElementById("map_object")
-    map_object.data = svg
-}
-function map_selection(dropdown) {
-    var selected_index  = dropdown.selectedIndex
-    var value = dropdown.options[selected_index].value
-    load_levels(value)
-}
-function level_selection(dropdown) {
-    var selected_index  = dropdown.selectedIndex
-    var value = dropdown.options[selected_index].value
-    load_level(value)
-}
-function toggle_checkbox(checkbox) {
-    if (checkbox.readOnly) checkbox.checked=checkbox.readOnly=false;
-    else if (!checkbox.checked) checkbox.readOnly=checkbox.indeterminate=true;
-}
-//-->
-</script>
+<link rel="stylesheet" href="styles.css" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.8.0/gsap.min.js"></script>
+<script src="map.js"></script>
 </head>
-<body onload="load_maps()">
+<body onload="loaded()">
 <div style="float:left;text-align:left;width:20%">
+Map:<br />
 <select name="select_map" id="select_map" onchange='map_selection(this);'>
 </select>
 <br />
+Level:<br />
 <select name="select_level" id="select_level" onchange='level_selection(this);'>
 </select>
 <br />
-<label><input type="checkbox" id="cb1" onclick="toggle_checkbox(this)">checkbox</input></label>
+Zoom:<br />
+<button onclick="zoom('map')">Map</button><br />
+<button onclick="zoom('items')">Map &amp; Items</button><br />
+<button onclick="zoom('lines')">All Lines</button><br />
+<button onclick="zoom()">World</button><br />
+<ul>
+    <li>
+        <label><input type="checkbox" id="monster" onclick="toggle_checkbox(this)"/> Monsters</label>
+        <ul>
+            <li><label><input type="checkbox" id="monster-1" onclick="toggle_checkbox(this)"/> Fighter</label></li>
+            <li><label><input type="checkbox" id="monster-2" onclick="toggle_checkbox(this)"/> Trooper</label></li>
+            <li><label><input type="checkbox" id="monster-3" onclick="toggle_checkbox(this)"/> S'pht</label></li>
+        </ul>
+    </li>
+    <li>
+        <label><input type="checkbox" id="item" onclick="toggle_checkbox(this)"/> Items</label>
+        <ul>
+            <li><label><input type="checkbox" id="item-1" onclick="toggle_checkbox(this)"/> Magnum Ammo</label></li>
+            <li><label><input type="checkbox" id="item-2" onclick="toggle_checkbox(this)"/> Rockets</label></li>
+        </ul>
+    </li>
+    <li>
+        <label><input type="checkbox" id="object" onclick="toggle_checkbox(this)"/> Objects</label>
+        <ul>
+            <li><label><input type="checkbox" id="object-1" onclick="toggle_checkbox(this)"/> Barrel</label></li>
+            <li><label><input type="checkbox" id="object-2" onclick="toggle_checkbox(this)"/> Paper</label></li>
+        </ul>
+    </li>
+</ul>
 </div>
-<div>
-<object id="map_object" type="image/svg+xml" data="logo.svg"></object>
-</div>
+<div><object id="map_object" type="image/svg+xml" data="logo.svg"/></div>
 </body>
 </html>
