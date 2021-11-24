@@ -258,6 +258,7 @@ def finalize_dimensions(level_info):
         max_x = min( 1, math.ceil( max_x * 32 + 1)/32)
         max_y = min( 1, math.ceil( max_y * 32 + 1)/32)
         level_info['dimensions'][k] = (min_x, min_y, max_x, max_y)
+        level_info['viewBox'][k] = ' '.join(map(str, [min_x, min_y, max_x - min_x, max_y - min_y]))
 
 def update_dimensions(level_info, dim_type, x, y):
     current = level_info['dimensions'][dim_type]
@@ -778,6 +779,7 @@ def generate_svg(map_type, base_name, level_dict, ignore_polys):
             'items': [1, 1, -1, -1],
             'lines': [1, 1, -1, -1],
         },
+        'viewBox': {},
         'polygons': defaultdict(lambda: {
             'floor_height': None,
             'ceiling_height': None,
@@ -833,6 +835,7 @@ def generate_svg(map_type, base_name, level_dict, ignore_polys):
         vbwidth=max_y-min_y,
     )
     svg_style = '<link xmlns="http://www.w3.org/1999/xhtml" rel="stylesheet" href="../styles.css" type="text/css" />\n'
+    svg_style += '<style id="dynamic-style" />\n'
     svg_end = '</svg>'
     level_svg = svg_prefix + svg_size + svg_style + level_svg + svg_js + svg_end
     write_data(json_path, json.dumps(level_info, default=set_default, indent=2))
