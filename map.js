@@ -76,8 +76,9 @@ function fill_level_menu(level_info) {
 
 function loaded() {
     console.clear()
+    let map_object = document.getElementById('map_object')
+    map_object.addEventListener('load', function() {update_svg_style()})
     load_maps()
-    update_svg_style()
 }
 
 function load_maps() {
@@ -93,7 +94,7 @@ function load_level(base_path) {
     display_svg(svg_path)
 }
 function display_svg(svg) {
-    map_object = document.getElementById('map_object')
+    let map_object = document.getElementById('map_object')
     map_object.data = svg
 }
 function map_selection(dropdown) {
@@ -136,21 +137,7 @@ function toggle_checkbox(checkbox) {
     // checked = false,true
     // indeter = true,false
     // uncheck = false,false
-    const dStyle = document.querySelector('style');
-    console.log(dStyle)
     update_svg_style()
-    if (checkbox.checked) {
-        console.log('checked')
-        // display: inline
-        return
-    }
-    // display: none
-    if (checkbox.readOnly) {
-        // onhover
-        console.log('indeterm')
-        return
-    }
-    console.log('un-checked')
 }
 function zoom(level) {
     var viewBox = map_json.viewBox[level]
