@@ -90,7 +90,7 @@ function fill_level_menu(level_info, level_token) {
 }
 
 function loaded() {
-    console.clear();
+//     console.clear();
     let map_object = document.getElementById('map_object');
     map_object.addEventListener('load', () => {svg_loaded()});
     url = window.location.href + ''
@@ -115,7 +115,18 @@ function load_level(base_path) {
     load_json(json_path, value => {
         level_json = value;
         display_svg(svg_path);
+        set_initial_elevation();
     });
+}
+function set_initial_elevation() {
+    const slider = document.getElementById('elevation-slider');
+    slider.noUiSlider.setHandle(0, level_json.elevation.floor * 32768);
+    slider.noUiSlider.setHandle(1, level_json.elevation.ceiling * 32768);
+}
+function set_player_elevation() {
+    const slider = document.getElementById('elevation-slider');
+    slider.noUiSlider.setHandle(0, level_json.elevation.floor * 32768);
+    slider.noUiSlider.setHandle(1, level_json.elevation.ceiling * 32768);
 }
 function display_svg(svg) {
     let map_object = document.getElementById('map_object');

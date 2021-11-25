@@ -3,30 +3,22 @@
 <head>
 <title>Map Viewer</title>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<style type="text/css">
-body {
-    background: black;
-    color: #0f0;
-    text-align: center;
-    font-family: Monaco, ProFont;
-    font-size: 10pt;
-}
-input[type="range"] {
-	-webkit-appearance: slider-vertical;
-	writing-mode: bt-lr;
-}
-</style>
+<link rel="stylesheet" href="map.css" />
 <link rel="stylesheet" href="styles.css" />
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.8.0/gsap.min.js"></script>
-<script src="map.js"></script>
+<script src="map.js" defer></script>
+
+<link rel="stylesheet" href="nouislider.css" />
+<script src="nouislider.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.8.0/gsap.min.js" defer></script>
+
 </head>
 <body onload="loaded()">
 <div style="float:left;text-align:left;width:25%">
-Map: <select name="select_map" id="select_map" onchange='map_selection(this);'>
-</select>
-<br />
-Level: <select name="select_level" id="select_level" onchange='level_selection(this);'>
-</select>
+<table class="menu-table">
+<tr><td>Map:</td><td><select name="select_map" id="select_map" onchange='map_selection(this);'></select></td></tr>
+<tr><td>Level:</td><td><select name="select_level" id="select_level" onchange='level_selection(this);'></select></td></tr>
+</table>
 <br />
 Zoom:<br />
 <button onclick="zoom('map')">Map</button><br />
@@ -89,12 +81,30 @@ Zoom:<br />
         </ul>
     </li>
 </ul>
-<div class="slidecontainer">
-  <input type="range" min="-32768" max="32768" value="0" class="slider" id="floor">
-</div>
-<div class="slidecontainer">
-  <input type="range" min="-32768" max="32768" value="0" class="slider" id="ceiling">
-</div>
+<div id="elevation-slider"></div>
+<script>
+var slider = document.getElementById('elevation-slider');
+noUiSlider.create(slider, {
+    start: [-1024, 1024],
+    tooltips: [
+        true,
+        true
+    ],
+    direction: 'rtl',
+    orientation: 'vertical',
+    behaviour: 'tap-drag',
+    connect: true,
+    range: {
+        'min': -32768,
+        'max':  32768
+    },
+    pips: {
+        mode: 'steps',
+        stepped: true,
+        density: 4
+    }
+});
+</script>
 </div>
 <div><object id="map_object" type="image/svg+xml" data="logo.svg"/></div>
 </body>
