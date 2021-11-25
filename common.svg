@@ -6,11 +6,21 @@
     style='display: none!important;'>
 
 <!-- marathon logo -->
+<!--
 <symbol id='logo' style='overflow: visible;'>
-<circle cx="0" cy="0" r=".9" stroke-width=".05" stroke="black" fill="currentColor" />
-<circle cx="0" cy="-.25" r=".55" stroke-width=".05" stroke="black" fill="currentColor" />
-<line x1="0" y1=".9" x2="0" y2=".3" stroke-width=".05" stroke="black" />
+<circle cx="100" cy="100" cy="170" r="55" fill="currentColor" />
+<path
+    fill="currentColor" 
+    d="
+        M 103,300
+        A 97,97 0 1,0 97,300
+        L 97,230
+        A 60,60 0 1,1 103,230
+        Z
+    "
+    />
 </symbol>
+-->
 
 <!-- hollow, outlined circle -->
 <symbol id='panel' style='overflow: visible;'>
