@@ -75,7 +75,7 @@ function fill_level_menu(level_info, level_token) {
             continue;
         }
         if (-1 == first) {
-            if (0 > level_token || level_token == level.index) {
+            if (typeof level_token === 'undefined' || 0 > level_token || level_token == level.index) {
                 first = select.options.length;
             }
         }
@@ -120,13 +120,28 @@ function load_level(base_path) {
 }
 function set_initial_elevation() {
     const slider = document.getElementById('elevation-slider');
-    slider.noUiSlider.setHandle(0, level_json.elevation.floor * 32768);
-    slider.noUiSlider.setHandle(1, level_json.elevation.ceiling * 32768);
+    let floor = level_json.elevation.floor;
+    let ceiling = level_json.elevation.ceiling;
+    // set the slider range to the floor/ceiling range of the level
+    slider.noUiSlider.setHandle(0, floor * 32);
+    slider.noUiSlider.setHandle(1, ceiling * 32);
+    // set the slider range to 1 rounded WU greater/less than the range of the level
+    floor = Math.max(-1, Math.floor(floor * 32 - 1)/32);
+    ceiling = Math.min(1, Math.ceil(ceiling * 32 + 1)/32);
+    slider.noUiSlider.updateOptions({
+        range: {
+            'min': floor * 32,
+            'max': ceiling * 32
+        }
+    });
+    mergeTooltips(slider, 5, '<br /> — <br />');
 }
 function set_player_elevation() {
     const slider = document.getElementById('elevation-slider');
-    slider.noUiSlider.setHandle(0, level_json.elevation.floor * 32768);
-    slider.noUiSlider.setHandle(1, level_json.elevation.ceiling * 32768);
+    let floor = level_json.player[0].elevation * 32;
+    let ceiling = floor + 819/1024;
+    slider.noUiSlider.setHandle(0, floor);
+    slider.noUiSlider.setHandle(1, ceiling);
 }
 function display_svg(svg) {
     let map_object = document.getElementById('map_object');

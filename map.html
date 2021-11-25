@@ -3,14 +3,17 @@
 <head>
 <title>Map Viewer</title>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<link rel="stylesheet" href="map.css" />
-<link rel="stylesheet" href="styles.css" />
-<script src="map.js" defer></script>
 
 <link rel="stylesheet" href="nouislider.css" />
 <script src="nouislider.js"></script>
+<script src="nouislider-additions.js"></script>
+<script src="wNumb.js"></script>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.8.0/gsap.min.js" defer></script>
+
+<link rel="stylesheet" href="map.css" />
+<link rel="stylesheet" href="styles.css" />
+<script src="map.js" defer></script>
 
 </head>
 <body onload="loaded()">
@@ -81,29 +84,48 @@ Zoom:<br />
         </ul>
     </li>
 </ul>
+Elevation:<br />
+<button onclick="set_player_elevation()">Player</button><br />
+<button onclick="set_initial_elevation()">Map</button><br />
+<table class="elevation-table">
+<tr><td>Ceiling:</td><td><span class="example-val" id="ceiling-value"></span></td></tr>
+<tr><td>Floor:</td><td><span class="example-val" id="floor-value"></span></td></tr>
+</table>
 <div id="elevation-slider"></div>
 <script>
 var slider = document.getElementById('elevation-slider');
 noUiSlider.create(slider, {
-    start: [-1024, 1024],
-    tooltips: [
-        true,
-        true
-    ],
+    start: [0, 819/1024],
+//     tooltips: [
+//         wNumb({decimals: 3}),
+//         wNumb({decimals: 3}),
+//     ],
     direction: 'rtl',
     orientation: 'vertical',
     behaviour: 'tap-drag',
     connect: true,
     range: {
-        'min': -32768,
-        'max':  32768
+        'min': -32,
+        'max':  32
     },
     pips: {
-        mode: 'steps',
+        mode: 'range',
         stepped: true,
-        density: 4
+        density: 5,
+        filter: (value, type) => {
+            return value % 1 ? 0 : 1;
+        },
+        format: wNumb({decimals: 2})
     }
 });
+var nodes = [
+    document.getElementById('floor-value'), // 0
+    document.getElementById('ceiling-value')  // 1
+];
+slider.noUiSlider.on('update', function (values, handle, unencoded, isTap, positions) {
+    nodes[handle].innerHTML = values[handle];
+});
+// mergeTooltips(slider, 5, '<br /> — <br />');
 </script>
 </div>
 <div><object id="map_object" type="image/svg+xml" data="logo.svg"/></div>

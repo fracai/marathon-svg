@@ -269,6 +269,15 @@ def update_dimensions(level_info, dim_type, x, y):
         max(current[3], y)
     )
 
+def update_player_position(level_info, player):
+    if 'player' not in level_info:
+        level_info['player'] = list()
+    level_info['player'].append({
+        'index': player['index'],
+        'elevation': player['location_z'] / MAX_POS,
+    })
+    level_info['player'] = sorted(level_info['player'], key=operator.itemgetter('index'))
+
 def update_elevations(level_info, floor, ceiling):
     current = level_info['elevation']
     level_info['elevation']['floor'] = min(current['floor'], floor)
@@ -726,7 +735,7 @@ def generate_objects(objects, polygons, ignore_polys, level_info):
             symbol = 'monster'
             css_class = 'player'
             order = 'player'
-            # TODO: set player start elevation in level_info
+            update_player_position(level_info, obj)
         if 4 == obj['type']:
             symbol = 'goal'
             css_class = 'goal'
