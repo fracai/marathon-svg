@@ -353,10 +353,9 @@ def generate_trigger_lines(level_dict, poly_type, css_class_base, level_info):
             # light triggers reference lights which might be used by multiple polygons
             dest_polys =  [p for p in level_dict['POLY']['polygon'] if p['floor_lightsource_index'] == poly['permutation'] or p['ceiling_lightsource_index'] == poly['permutation']]
         for dest_poly in dest_polys:
-            gid = 'poly_{}_line_group_{}:{}'.format(css_class_base, poly['index'], poly['permutation'])
+            gid = 'poly_{}_line_group_p{}:p{}'.format(css_class_base, poly['index'], poly['permutation'])
             # link the source and destination polygons to the trigger line
-            update_poly_info(level_info, poly=poly, ids=[gid])
-            update_poly_info(level_info, poly=dest_poly, ids=[gid])
+            gids = [gid]
             line_svg += '<g id="{g_id}">\n'.format(
                 g_id=gid
             )
@@ -370,27 +369,35 @@ def generate_trigger_lines(level_dict, poly_type, css_class_base, level_info):
                 cx=x2,
                 cy=y2,
             )
+            css_id = 'poly_{}_border_p{}:p{}'.format(css_class_base, poly['index'], poly['permutation'])
+            gids.append(css_id)
             line_svg += '<line x1="{x1}" y1="{y1}" x2="{x2}" y2="{y2}" id="{css_id}" class="{css_class}" />\n'.format(
                 x1=x1, y1=y1, x2=x2, y2=y2,
-                css_id='poly_{}_border_{}:{}'.format(css_class_base, poly['index'], poly['permutation']),
+                css_id=css_id,
                 css_class='{}_border'.format(css_class_base)
             )
+            css_id = 'poly_{}_head_p{}:p{}'.format(css_class_base, poly['index'], poly['permutation'])
+            gids.append(css_id)
             line_svg += '<use xlink:href="../common.svg#{symbol}" x="{cx}" y="{cy}" id="{css_id}" class="{css_class}" {transform}/>\n'.format(
                 symbol='arrow',
                 cx=x2,
                 cy=y2,
                 transform=transform,
-                css_id='poly_{}_head_{}:{}'.format(css_class_base, poly['index'], poly['permutation']),
+                css_id=css_id,
                 css_class='{}_line'.format(css_class_base),
             )
+            css_id = 'poly_{}_line_p{}:p{}'.format(css_class_base, poly['index'], poly['permutation'])
+            gids.append(css_id)
             line_svg += '<line x1="{x1}" y1="{y1}" x2="{x2}" y2="{y2}" id="{css_id}" class="{css_class}" />\n'.format(
                 x1=x1, y1=y1, x2=x2, y2=y2,
-                css_id='poly_{}_line_{}:{}'.format(css_class_base, poly['index'], poly['permutation']),
+                css_id=css_id,
                 css_class='{}_line'.format(css_class_base)
             )
             line_svg += '<!-- end group: "{g_id}" -->\n</g>\n'.format(
                 g_id=gid
             )
+            update_poly_info(level_info, poly=poly, ids=gids)
+            update_poly_info(level_info, poly=dest_poly, ids=gids)
     if not line_svg:
         return ''
     return '<g id="poly_{css_class_base}_lines">\n{content}<!-- end group: "{css_class_base}_lines" -->\n</g>\n'.format(
@@ -480,7 +487,7 @@ def common_generate_lines(css_class_base, side, dest_sides, dest_polys, lights, 
     pcy = (py1 + py2) / 2 / MAX_POS
 
     source_polys = filter(
-        lambda i: i > 0,
+        lambda i: i >= 0,
         map(
             lambda s: line[s],
             ['cw_poly', 'ccw_poly']))
@@ -534,7 +541,7 @@ def common_generate_lines(css_class_base, side, dest_sides, dest_polys, lights, 
         for source in source_polys:
             update_poly_info(level_info, poly_index=source, ids=[gid])
         dest_polys = filter(
-            lambda i: i > 0,
+            lambda i: i >= 0,
             map(
                 lambda s: level_dict['LINS']['line'][dest_side['line']][s],
                 ['cw_poly', 'ccw_poly']))
@@ -600,7 +607,7 @@ def generate_lines(level_dict, platform_map, ignore_polys, level_info):
         )
         lines[css_class].append(line_svg)
         polys = filter(
-            lambda i: i > 0,
+            lambda i: i >= 0,
             map(
                 lambda s: line[s],
                 ['cw_poly', 'ccw_poly']))
@@ -703,7 +710,7 @@ def generate_panels(level_dict, ignore_polys, map_type, level_info):
             css_class = css_class,
         )
         source_polys = filter(
-            lambda i: i > 0,
+            lambda i: i >= 0,
             map(
                 lambda s: line[s],
                 ['cw_poly', 'ccw_poly']))

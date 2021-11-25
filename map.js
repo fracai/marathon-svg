@@ -134,7 +134,6 @@ function set_initial_elevation() {
             'max': ceiling * 32
         }
     });
-    mergeTooltips(slider, 5, '<br /> — <br />');
 }
 function set_player_elevation() {
     const slider = document.getElementById('elevation-slider');
@@ -172,10 +171,47 @@ function generate_dynamic_style() {
             style_content += '.'+checkboxes[i].id+' {display:none;}\n';
         }
     }
+    style_content += process_polygons()+'\n';
     return style_content;
+}
+function process_polygons() {
+    const slider = document.getElementById('elevation-slider');
+    const values = slider.noUiSlider.get(true);
+    const floor = values[0];
+    const ceiling = values[1];
+    const elevation_type = document.querySelector('input[name="elevation"]:checked').value;
+    let enabled = new Set();
+    let disabled = new Set();
+    for (let i in level_json.polygons) {
+        poly = level_json.polygons[i];
+        let visible = true;
+        if ('intersection' == elevation_type && (floor > poly.ceiling_height || ceiling < poly.floor_height)) {
+            visible = false;
+        }
+        if ('contained' == elevation_type && (floor > poly.floor_height || ceiling < poly.ceiling_height)) {
+            visible = false;
+        }
+        if (visible) {
+            for (let c in poly.connections) {
+                enabled.add(poly.connections[c]);
+            }
+        } else {
+            for (let c in poly.connections) {
+                disabled.add(poly.connections[c]);
+            }
+        }
+    }
+    const to_disable = new Set([...disabled].filter(x => !enabled.has(x)));
+    if (to_disable.size == 0) {
+        return '';
+    }
+    return [...to_disable].map(item => '#' + item + ' {display: none;}').reduce((result, item) => item + '\n' + result, '');
 }
 function update_svg_style() {
     let svg_obj = document.getElementById('map_object');
+    if (null == svg_obj) {
+        return;
+    }
     let svg_doc = svg_obj.contentDocument;
     let old_style = svg_doc.getElementById('dynamic-style');
     let new_style = generate_dynamic_style();

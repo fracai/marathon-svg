@@ -4,16 +4,16 @@
 <title>Map Viewer</title>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 
+<script src="map.js"></script>
+
 <link rel="stylesheet" href="nouislider.css" />
 <script src="nouislider.js"></script>
-<script src="nouislider-additions.js"></script>
 <script src="wNumb.js"></script>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.8.0/gsap.min.js" defer></script>
 
 <link rel="stylesheet" href="map.css" />
 <link rel="stylesheet" href="styles.css" />
-<script src="map.js" defer></script>
 
 </head>
 <body onload="loaded()">
@@ -28,7 +28,7 @@ Zoom:<br />
 <button onclick="zoom('items')">Map &amp; Items</button><br />
 <button onclick="zoom('lines')">All Lines</button><br />
 <button onclick="zoom()">World</button><br />
-<ul>
+<ul style="display:none;">
     <li><label><input type="checkbox" id="annotation" onclick="toggle_checkbox(this)"/> Annotations</label></li>
     <li><label><input type="checkbox" id="xxxx" onclick="toggle_checkbox(this)"/> Hidden Platforms</label></li>
     <li>
@@ -124,11 +124,12 @@ noUiSlider.create(slider, {
 //     ],
 });
 var nodes = [
-    document.getElementById('floor-value'), // 0
-    document.getElementById('ceiling-value')  // 1
+    document.getElementById('floor-value'),
+    document.getElementById('ceiling-value')
 ];
 slider.noUiSlider.on('update', function (values, handle, unencoded, isTap, positions) {
     nodes[handle].innerHTML = values[handle];
+    update_svg_style();
 });
 // mergeTooltips(slider, 5, '<br /> — <br />');
 </script>
