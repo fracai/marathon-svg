@@ -269,6 +269,11 @@ def update_dimensions(level_info, dim_type, x, y):
         max(current[3], y)
     )
 
+def update_elevations(level_info, floor, ceiling):
+    current = level_info['elevation']
+    level_info['elevation']['floor'] = min(current['floor'], floor)
+    level_info['elevation']['ceiling'] = max(current['ceiling'], ceiling)
+
 def update_poly_info(level_info, poly_index=None, poly=None, ids=None):
     if poly_index is None and poly is not None:
         poly_index = poly['index']
@@ -276,8 +281,11 @@ def update_poly_info(level_info, poly_index=None, poly=None, ids=None):
         raise Exception('cannot update poly info without poly index or polygon')
     poly_info = level_info['polygons'][poly_index]
     if poly is not None:
-        poly_info['floor_height'] = poly['floor_height']/MAX_POS
-        poly_info['ceiling_height'] = poly['ceiling_height']/MAX_POS
+        floor = poly['floor_height']/MAX_POS
+        ceiling = poly['ceiling_height']/MAX_POS
+        poly_info['floor_height'] = floor
+        poly_info['ceiling_height'] = ceiling
+        update_elevations(level_info, floor, ceiling)
     if ids:
         poly_info['connections'].update(ids)
 
@@ -718,6 +726,7 @@ def generate_objects(objects, polygons, ignore_polys, level_info):
             symbol = 'monster'
             css_class = 'player'
             order = 'player'
+            # TODO: set player start elevation in level_info
         if 4 == obj['type']:
             symbol = 'goal'
             css_class = 'goal'
@@ -779,11 +788,15 @@ def generate_svg(map_type, base_name, level_dict, ignore_polys):
             'items': [1, 1, -1, -1],
             'lines': [1, 1, -1, -1],
         },
+        'elevation': {
+            'floor': 1,
+            'ceiling': -1,
+        },
         'viewBox': {},
         'polygons': defaultdict(lambda: {
             'floor_height': None,
             'ceiling_height': None,
-            'connections': set()
+            'connections': set(),
         })
     }
 
