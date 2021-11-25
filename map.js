@@ -237,6 +237,7 @@ function update_url() {
 }
 function svg_loaded() {
     update_url();
+    set_initial_elevation();
     update_svg_style();
 }
 function toggle_checkbox(checkbox) {

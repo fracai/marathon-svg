@@ -87,9 +87,9 @@ Zoom:<br />
 Elevation:<br />
 <button onclick="set_player_elevation()">Player</button><br />
 <button onclick="set_initial_elevation()">Map</button><br />
-<input type="radio" id="elevation-contained" name="elevation" value="contained" />
+<input type="radio" id="elevation-contained" name="elevation" value="contained" onchange='update_svg_style()' />
 <label for="elevation-contained">Contained</label><br>
-<input type="radio" id="elevation-intersection" name="elevation" value="intersection" checked="checked" />
+<input type="radio" id="elevation-intersection" name="elevation" value="intersection" checked="checked" onchange='update_svg_style()' />
 <label for="elevation-intersection">Intersection</label><br>
 <table class="elevation-table">
 <tr><td>Ceiling:</td><td><span class="" id="ceiling-value"></span></td></tr>
