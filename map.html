@@ -87,36 +87,41 @@ Zoom:<br />
 Elevation:<br />
 <button onclick="set_player_elevation()">Player</button><br />
 <button onclick="set_initial_elevation()">Map</button><br />
+<input type="radio" id="elevation-contained" name="elevation" value="contained" />
+<label for="elevation-contained">Contained</label><br>
+<input type="radio" id="elevation-intersection" name="elevation" value="intersection" checked="checked" />
+<label for="elevation-intersection">Intersection</label><br>
 <table class="elevation-table">
-<tr><td>Ceiling:</td><td><span class="example-val" id="ceiling-value"></span></td></tr>
-<tr><td>Floor:</td><td><span class="example-val" id="floor-value"></span></td></tr>
+<tr><td>Ceiling:</td><td><span class="" id="ceiling-value"></span></td></tr>
+<tr><td>Floor:</td><td><span class="" id="floor-value"></span></td></tr>
 </table>
 <div id="elevation-slider"></div>
 <script>
 var slider = document.getElementById('elevation-slider');
 noUiSlider.create(slider, {
     start: [0, 819/1024],
-//     tooltips: [
-//         wNumb({decimals: 3}),
-//         wNumb({decimals: 3}),
-//     ],
-    direction: 'rtl',
-    orientation: 'vertical',
-    behaviour: 'tap-drag',
-    connect: true,
     range: {
         'min': -32,
         'max':  32
     },
+//     step: .1,
+    direction: 'rtl',
+    orientation: 'vertical',
+    behaviour: 'tap-drag',
+    connect: true,
     pips: {
         mode: 'range',
         stepped: true,
-        density: 5,
+        density: 2,
         filter: (value, type) => {
             return value % 1 ? 0 : 1;
         },
         format: wNumb({decimals: 2})
-    }
+    },
+//     tooltips: [
+//         wNumb({decimals: 3}),
+//         wNumb({decimals: 3}),
+//     ],
 });
 var nodes = [
     document.getElementById('floor-value'), // 0
