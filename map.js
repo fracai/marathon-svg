@@ -169,7 +169,7 @@ function update_url() {
         base_url = base_url.substring(0,index);
     }
 	let new_url = base_url + '#' + map_info.short_name + ':' + level_info.index;
-	let new_title = map_info.map_name + ' — ' + level_info.index + ' ' + level_info.name;
+	let new_title = map_info.map_name + ': ' + level_info.index + ' ' + level_info.name;
     window.history.replaceState({}, new_title, new_url);
     document.title = new_title;
 }
