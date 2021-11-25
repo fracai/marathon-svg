@@ -205,8 +205,8 @@ function svg_loaded() {
 }
 function toggle_checkbox(checkbox) {
     console.log(checkbox.id);
-    if (checkbox.readOnly) checkbox.checked=checkbox.readOnly=false;
-    else if (!checkbox.checked) checkbox.readOnly=checkbox.indeterminate=true;
+//     if (checkbox.readOnly) checkbox.checked=checkbox.readOnly=false;
+//     else if (!checkbox.checked) checkbox.readOnly=checkbox.indeterminate=true;
     // checked = false,true
     // indeter = true,false
     // uncheck = false,false
