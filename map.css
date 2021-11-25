@@ -1,0 +1,32 @@
+body {
+    background: black;
+    color: #0f0;
+    text-align: center;
+    font-family: Menlo, ProFont, Monaco, monospace;
+    font-size: 10pt;
+}
+select {
+    max-width: 150pt;
+}
+input[type="range"] {
+    -webkit-appearance: slider-vertical;
+    writing-mode: bt-lr;
+}
+ul,li {
+    list-style-type: none;
+}
+table.menu-table td:nth-child(1),
+table.elevation-table td:nth-child(1) {
+    text-align: end;
+}
+table.elevation-table td:nth-child(2) {
+    text-align: end;
+}
+div#elevation-slider {
+    height: 500pt;
+    /* margin-left: 50pt; */
+}
+.noUi-vertical .noUi-handle {
+    height: 10pt;
+    bottom: -7pt;
+}
