@@ -77,7 +77,7 @@ function fill_level_menu(level_info) {
 function loaded() {
     console.clear();
     let map_object = document.getElementById('map_object');
-    map_object.addEventListener('load', function() {update_svg_style()});
+    map_object.addEventListener('load', () => {update_svg_style()});
     load_maps();
 }
 
@@ -90,7 +90,7 @@ function load_levels(path) {
 function load_level(base_path) {
     var svg_path = base_path+'.svg';
     var json_path = base_path+'.json';
-    load_json(json_path, function (value) {map_json = value});
+    load_json(json_path, value => map_json = value);
     display_svg(svg_path);
 }
 function display_svg(svg) {
