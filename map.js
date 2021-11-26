@@ -1,7 +1,6 @@
 var maps_json = null;
 var levels_json = null;
 var level_json = null;
-var range_lock = null;
 
 function load_json(path, callback) {
     return fetch(path)
@@ -121,65 +120,90 @@ function load_level(base_path) {
 }
 function set_initial_elevation() {
     const slider = document.getElementById('elevation-slider');
+    const elevations = get_level_elevations();
+    // set the slider range to the floor/ceiling range of the level
+    slider.noUiSlider.setHandle(0, elevations[0] * 32);
+    slider.noUiSlider.setHandle(1, elevations[1] * 32);
+    slider.noUiSlider.updateOptions({
+        range: get_level_slider_range()
+    });
+}
+function get_level_elevations() {
     let floor = level_json.elevation.floor;
     let ceiling = level_json.elevation.ceiling;
-    // clear the range lock before setting handles
-    range_lock = null;
-    // set the slider range to the floor/ceiling range of the level
-    slider.noUiSlider.setHandle(0, floor * 32);
-    slider.noUiSlider.setHandle(1, ceiling * 32);
+    return [floor, ceiling];
+}
+function get_level_slider_range() {
+    const elevations = get_level_elevations();
     // set the slider range to 1 rounded WU greater/less than the range of the level
-    floor = Math.max(-1, Math.floor(floor * 32 - 1)/32);
-    ceiling = Math.min(1, Math.ceil(ceiling * 32 + 1)/32);
-    slider.noUiSlider.updateOptions({
-        range: {
-            'min': floor * 32,
-            'max': ceiling * 32
-        }
+    const floor = Math.max(-1, Math.floor(elevations[0] * 32 - 1)/32);
+    const ceiling = Math.min(1, Math.ceil(elevations[1] * 32 + 1)/32);
+    return {
+        'min': floor * 32,
+        'max': ceiling * 32
+    };
+}
+function create_slider(behavior, range, start) {
+    let slider = document.getElementById('elevation-slider');
+    try {
+        slider.noUiSlider.destroy();
+    } catch (error) {
+        // ignore
+    }
+    noUiSlider.create(slider, {
+        start: start,
+        range: range,
+        behaviour: behavior,
+    //     step: .1,
+        direction: 'rtl',
+        orientation: 'vertical',
+        connect: true,
+        pips: {
+            mode: 'range',
+            stepped: true,
+            density: 2,
+            filter: (value, type) => {
+                return value % 1 ? 0 : 1;
+            },
+            format: wNumb({decimals: 2})
+        },
     });
-    // restore the range lock if it's set
-    update_handle_locks();
+    var nodes = [
+        document.getElementById('floor-value'),
+        document.getElementById('ceiling-value')
+    ];
+    slider.noUiSlider.on('update', function (values, handle, unencoded, isTap, positions) {
+        nodes[handle].innerHTML = values[handle];
+        update_svg_style();
+    });
 }
 function set_player_elevation() {
     const slider = document.getElementById('elevation-slider');
     let floor = level_json.player[0].elevation * 32;
     // set ceiling to players height above the floor
     let ceiling = floor + 819 / 1024;
-    // clear the range lock before setting handles
-    range_lock = null;
-    slider.noUiSlider.setHandle(0, floor);
-    slider.noUiSlider.setHandle(1, ceiling);
-    // restore the range lock if it's set
-    update_handle_locks();
+    create_slider(
+        get_behavior(),
+        get_level_slider_range(),
+        [floor, ceiling]
+    );
+}
+function get_behavior() {
+    const checkbox = document.getElementById('lock-handles');
+    let behavior = 'drag';
+    if (checkbox.checked) {
+        // store fixed range
+        behavior += '-fixed';
+    }
+    return behavior;
 }
 function update_handle_locks() {
     const slider = document.getElementById('elevation-slider');
-    const checkbox = document.getElementById('lock-handles');
-    if (checkbox.checked) {
-        // store fixed range
-        const values = slider.noUiSlider.get(true);
-        range_lock = +(values[1]) - +(values[0]);
-    } else {
-        // clear fixed range
-        range_lock = null;
-    }
-}
-function update_locked_handles(values, handle) {
-    if (null == range_lock) {
-        return;
-    }
-    if (Math.abs(values[1] - values[0] - range_lock) < .01) {
-        return;
-    }
-    const slider = document.getElementById('elevation-slider');
-    const changed = +(values[handle]);
-    if (0 == handle) {
-        const other_value = changed + range_lock;
-        slider.noUiSlider.set([null, other_value], false, false);
-    } else if (1 == handle) {
-        const other_value = changed - range_lock;
-        slider.noUiSlider.set([other_value, null], false, false);
-    }
+    const values = slider.noUiSlider.get(true);
+    create_slider(
+        get_behavior(),
+        get_level_slider_range(),
+        values);
 }
 function display_svg(svg) {
     let map_object = document.getElementById('map_object');

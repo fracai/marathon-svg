@@ -102,42 +102,14 @@ Elevation:<br />
 <label><input type="checkbox" id="lock-handles" onclick="update_handle_locks()"/> Lock Range</label>
 <div id="elevation-slider"></div>
 <script>
-var slider = document.getElementById('elevation-slider');
-noUiSlider.create(slider, {
-    start: [0, 819/1024/32],
-    range: {
+create_slider(
+    'drag',
+    {
         'min': -32,
         'max':  32
     },
-//     step: .1,
-    direction: 'rtl',
-    orientation: 'vertical',
-    behaviour: 'tap-drag',
-    connect: true,
-    pips: {
-        mode: 'range',
-        stepped: true,
-        density: 2,
-        filter: (value, type) => {
-            return value % 1 ? 0 : 1;
-        },
-        format: wNumb({decimals: 2})
-    },
-//     tooltips: [
-//         wNumb({decimals: 3}),
-//         wNumb({decimals: 3}),
-//     ],
-});
-var nodes = [
-    document.getElementById('floor-value'),
-    document.getElementById('ceiling-value')
-];
-slider.noUiSlider.on('update', function (values, handle, unencoded, isTap, positions) {
-    nodes[handle].innerHTML = values[handle];
-    update_locked_handles(values, handle);
-    update_svg_style();
-});
-// mergeTooltips(slider, 5, '<br /> — <br />');
+    [0, 819/1024]
+);
 </script>
 </div>
 <div><object id="map_object" type="image/svg+xml" data="logo.svg"/></div>
