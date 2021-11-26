@@ -2,35 +2,31 @@ var maps_json = null;
 var levels_json = null;
 var level_json = null;
 
-function load_json(path, callback) {
+function load_common(path, callback, data_extractor) {
+    // fetch the path
     return fetch(path)
+        // handle any errors
         .then(response => {
             if (!response.ok) {
                 throw new Error('HTTP error ' + response.status);
             }
-            return response.json();
+            return response;
         })
-        .then(json => {
-            callback(json);
-        })
+        // extract the data
+        .then(data_extractor)
+        // send the json data to the callback
+        .then(callback)
+        // handle exceptions
         .catch(function () {
             this.dataError = true;
         })
 }
+
+function load_json(path, callback) {
+    return load_common(path, callback, r => r.json());
+}
 function load_path(path, callback) {
-    return fetch(path)
-        .then(response => {
-            if (!response.ok) {
-                throw new Error('HTTP error ' + response.status);
-            }
-            return response.body();
-        })
-        .then(json => {
-            callback(json);
-        })
-        .catch(function () {
-            this.dataError = true;
-        })
+    return load_common(path, callback, r => r.body());
 }
 
 function fill_map_menu(selection) {
