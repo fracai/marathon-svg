@@ -1,6 +1,7 @@
 var maps_json = null;
 var levels_json = null;
 var level_json = null;
+var range_lock = null;
 
 function load_json(path, callback) {
     return fetch(path)
@@ -122,6 +123,8 @@ function set_initial_elevation() {
     const slider = document.getElementById('elevation-slider');
     let floor = level_json.elevation.floor;
     let ceiling = level_json.elevation.ceiling;
+    // clear the range lock before setting handles
+    range_lock = null;
     // set the slider range to the floor/ceiling range of the level
     slider.noUiSlider.setHandle(0, floor * 32);
     slider.noUiSlider.setHandle(1, ceiling * 32);
@@ -134,22 +137,48 @@ function set_initial_elevation() {
             'max': ceiling * 32
         }
     });
+    // restore the range lock if it's set
+    update_handle_locks();
 }
 function set_player_elevation() {
     const slider = document.getElementById('elevation-slider');
     let floor = level_json.player[0].elevation * 32;
     // set ceiling to players height above the floor
     let ceiling = floor + 819 / 1024;
+    // clear the range lock before setting handles
+    range_lock = null;
     slider.noUiSlider.setHandle(0, floor);
     slider.noUiSlider.setHandle(1, ceiling);
+    // restore the range lock if it's set
+    update_handle_locks();
 }
 function update_handle_locks() {
     const slider = document.getElementById('elevation-slider');
     const checkbox = document.getElementById('lock-handles');
     if (checkbox.checked) {
         // store fixed range
+        const values = slider.noUiSlider.get(true);
+        range_lock = +(values[1]) - +(values[0]);
     } else {
         // clear fixed range
+        range_lock = null;
+    }
+}
+function update_locked_handles(values, handle) {
+    if (null == range_lock) {
+        return;
+    }
+    if (Math.abs(values[1] - values[0] - range_lock) < .01) {
+        return;
+    }
+    const slider = document.getElementById('elevation-slider');
+    const changed = +(values[handle]);
+    if (0 == handle) {
+        const other_value = changed + range_lock;
+        slider.noUiSlider.set([null, other_value], false, false);
+    } else if (1 == handle) {
+        const other_value = changed - range_lock;
+        slider.noUiSlider.set([other_value, null], false, false);
     }
 }
 function display_svg(svg) {

@@ -134,6 +134,7 @@ var nodes = [
 ];
 slider.noUiSlider.on('update', function (values, handle, unencoded, isTap, positions) {
     nodes[handle].innerHTML = values[handle];
+    update_locked_handles(values, handle);
     update_svg_style();
 });
 // mergeTooltips(slider, 5, '<br /> — <br />');
