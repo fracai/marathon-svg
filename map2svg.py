@@ -353,7 +353,7 @@ def generate_trigger_lines(level_dict, poly_type, css_class_base, level_info):
             # light triggers reference lights which might be used by multiple polygons
             dest_polys =  [p for p in level_dict['POLY']['polygon'] if p['floor_lightsource_index'] == poly['permutation'] or p['ceiling_lightsource_index'] == poly['permutation']]
         for dest_poly in dest_polys:
-            gid = 'poly_{}_line_group_p{}:p{}'.format(css_class_base, poly['index'], poly['permutation'])
+            gid = 'poly_{}_line_group_p{}_p{}'.format(css_class_base, poly['index'], poly['permutation'])
             # link the source and destination polygons to the trigger line
             gids = [gid]
             line_svg += '<g id="{g_id}">\n'.format(
@@ -369,14 +369,14 @@ def generate_trigger_lines(level_dict, poly_type, css_class_base, level_info):
                 cx=x2,
                 cy=y2,
             )
-            css_id = 'poly_{}_border_p{}:p{}'.format(css_class_base, poly['index'], poly['permutation'])
+            css_id = 'poly_{}_border_p{}_p{}'.format(css_class_base, poly['index'], poly['permutation'])
             gids.append(css_id)
             line_svg += '<line x1="{x1}" y1="{y1}" x2="{x2}" y2="{y2}" id="{css_id}" class="{css_class}" />\n'.format(
                 x1=x1, y1=y1, x2=x2, y2=y2,
                 css_id=css_id,
                 css_class='{}_border'.format(css_class_base)
             )
-            css_id = 'poly_{}_head_p{}:p{}'.format(css_class_base, poly['index'], poly['permutation'])
+            css_id = 'poly_{}_head_p{}_p{}'.format(css_class_base, poly['index'], poly['permutation'])
             gids.append(css_id)
             line_svg += '<use xlink:href="../common.svg#{symbol}" x="{cx}" y="{cy}" id="{css_id}" class="{css_class}" {transform}/>\n'.format(
                 symbol='arrow',
@@ -386,7 +386,7 @@ def generate_trigger_lines(level_dict, poly_type, css_class_base, level_info):
                 css_id=css_id,
                 css_class='{}_line'.format(css_class_base),
             )
-            css_id = 'poly_{}_line_p{}:p{}'.format(css_class_base, poly['index'], poly['permutation'])
+            css_id = 'poly_{}_line_p{}_p{}'.format(css_class_base, poly['index'], poly['permutation'])
             gids.append(css_id)
             line_svg += '<line x1="{x1}" y1="{y1}" x2="{x2}" y2="{y2}" id="{css_id}" class="{css_class}" />\n'.format(
                 x1=x1, y1=y1, x2=x2, y2=y2,
@@ -496,7 +496,7 @@ def common_generate_lines(css_class_base, side, dest_sides, dest_polys, lights, 
         dest_sides = [s for s in level_dict['SIDS']['side'] if any(map(lambda l: s[l] in lights, ['primary_light', 'secondary_light', 'transparent_light']))]
     for dest_poly in dest_polys:
         # lines to the polys
-        gid = 'panel_{}_line_group_poly_s{}:p{}'.format(css_class_base, side['index'], dest_poly['index'])
+        gid = 'panel_{}_line_group_poly_s{}_p{}'.format(css_class_base, side['index'], dest_poly['index'])
         for source in source_polys:
             update_poly_info(level_info, poly_index=source, ids=[gid])
         update_poly_info(level_info, poly_index=dest_poly['index'], ids=[gid])
@@ -513,7 +513,7 @@ def common_generate_lines(css_class_base, side, dest_sides, dest_polys, lights, 
         )
         line_svg += '<line x1="{x1}" y1="{y1}" x2="{x2}" y2="{y2}" id="{css_id}" class="{css_class}" />\n'.format(
             x1=pcx, y1=pcy, x2=dcx, y2=dcy,
-            css_id='panel_{}_border_s{}:p{}'.format(css_class_base, side['index'], dest_poly['index']),
+            css_id='panel_{}_border_s{}_p{}'.format(css_class_base, side['index'], dest_poly['index']),
             css_class='{}_border'.format(css_class_base)
         )
         line_svg += '<use xlink:href="../common.svg#{symbol}" x="{cx}" y="{cy}" id="{css_id}" class="{css_class}" {transform}/>\n'.format(
@@ -521,12 +521,12 @@ def common_generate_lines(css_class_base, side, dest_sides, dest_polys, lights, 
             cx=dcx,
             cy=dcy,
             transform=transform,
-            css_id='panel_{}_head_s{}:p{}'.format(css_class_base, side['index'], dest_poly['index']),
+            css_id='panel_{}_head_s{}_p{}'.format(css_class_base, side['index'], dest_poly['index']),
             css_class='{}_line'.format(css_class_base),
         )
         line_svg += '<line x1="{x1}" y1="{y1}" x2="{x2}" y2="{y2}" id="{css_id}" class="{css_class}" />\n'.format(
             x1=pcx, y1=pcy, x2=dcx, y2=dcy,
-            css_id='panel_{}_line_{}:{}'.format(css_class_base, side['index'], dest_poly['index']),
+            css_id='panel_{}_line_{}_{}'.format(css_class_base, side['index'], dest_poly['index']),
             css_class='{}_line'.format(css_class_base)
         )
         line_svg += '<!-- end group: "{g_id}" -->\n</g>\n'.format(
@@ -536,7 +536,7 @@ def common_generate_lines(css_class_base, side, dest_sides, dest_polys, lights, 
         # lines to the sides
         if dest_side['index'] == side['index']:
             continue
-        gid = 'panel_{}_line_group_side_s{}:s{}'.format(css_class_base, side['index'], dest_side['index'])
+        gid = 'panel_{}_line_group_side_s{}_s{}'.format(css_class_base, side['index'], dest_side['index'])
         side_line = level_dict['LINS']['line'][dest_side['line']]
         for source in source_polys:
             update_poly_info(level_info, poly_index=source, ids=[gid])
@@ -565,7 +565,7 @@ def common_generate_lines(css_class_base, side, dest_sides, dest_polys, lights, 
         )
         line_svg += '<line x1="{x1}" y1="{y1}" x2="{x2}" y2="{y2}" id="{css_id}" class="{css_class}" />\n'.format(
             x1=pcx, y1=pcy, x2=dcx, y2=dcy,
-            css_id='panel_{}_border_s{}:s{}'.format(css_class_base, side['index'], dest_side['index']),
+            css_id='panel_{}_border_s{}_s{}'.format(css_class_base, side['index'], dest_side['index']),
             css_class='{}_border'.format(css_class_base)
         )
         line_svg += '<use xlink:href="../common.svg#{symbol}" x="{cx}" y="{cy}" id="{css_id}" class="{css_class}" {transform}/>\n'.format(
@@ -573,12 +573,12 @@ def common_generate_lines(css_class_base, side, dest_sides, dest_polys, lights, 
             cx=dcx,
             cy=dcy,
             transform=transform,
-            css_id='panel_{}_head_s{}:s{}'.format(css_class_base, side['index'], dest_side['index']),
+            css_id='panel_{}_head_s{}_s{}'.format(css_class_base, side['index'], dest_side['index']),
             css_class='{}_line'.format(css_class_base),
         )
         line_svg += '<line x1="{x1}" y1="{y1}" x2="{x2}" y2="{y2}" id="{css_id}" class="{css_class}" />\n'.format(
             x1=pcx, y1=pcy, x2=dcx, y2=dcy,
-            css_id='panel_{}_line_s{}:s{}'.format(css_class_base, side['index'], dest_side['index']),
+            css_id='panel_{}_line_s{}_s{}'.format(css_class_base, side['index'], dest_side['index']),
             css_class='{}_line'.format(css_class_base)
         )
         line_svg += '<!-- end group: "{g_id}" -->\n</g>\n'.format(
