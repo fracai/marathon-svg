@@ -139,7 +139,7 @@ function set_player_elevation() {
     const slider = document.getElementById('elevation-slider');
     let floor = level_json.player[0].elevation * 32;
     // set ceiling to players height above the floor
-    let ceiling = floor + 819 / (1024 * 32);
+    let ceiling = floor + 819 / 1024;
     slider.noUiSlider.setHandle(0, floor);
     slider.noUiSlider.setHandle(1, ceiling);
 }
