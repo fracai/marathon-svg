@@ -138,9 +138,19 @@ function set_initial_elevation() {
 function set_player_elevation() {
     const slider = document.getElementById('elevation-slider');
     let floor = level_json.player[0].elevation * 32;
-    let ceiling = floor + 819/1024;
+    // set ceiling to players height above the floor
+    let ceiling = floor + 819 / (1024 * 32);
     slider.noUiSlider.setHandle(0, floor);
     slider.noUiSlider.setHandle(1, ceiling);
+}
+function update_handle_locks() {
+    const slider = document.getElementById('elevation-slider');
+    const checkbox = document.getElementById('lock-handles');
+    if (checkbox.checked) {
+        // store fixed range
+    } else {
+        // clear fixed range
+    }
 }
 function display_svg(svg) {
     let map_object = document.getElementById('map_object');
@@ -177,8 +187,8 @@ function generate_dynamic_style() {
 function process_polygons() {
     const slider = document.getElementById('elevation-slider');
     const values = slider.noUiSlider.get(true);
-    const floor = values[0];
-    const ceiling = values[1];
+    const floor = values[0] /32;
+    const ceiling = values[1] / 32;
     const elevation_type = document.querySelector('input[name="elevation"]:checked').value;
     let enabled = new Set();
     let disabled = new Set();
