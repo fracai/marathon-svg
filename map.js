@@ -201,6 +201,12 @@ function process_polygons() {
         if ('contained' == elevation_type && (floor > poly.floor_height || ceiling < poly.ceiling_height)) {
             visible = false;
         }
+        if ('ceiling' == elevation_type && (floor > poly.ceiling_height || ceiling < poly.ceiling_height)) {
+            visible = false;
+        }
+        if ('floor' == elevation_type && (floor > poly.floor_height || ceiling < poly.floor_height)) {
+            visible = false;
+        }
         if (visible) {
             for (let c in poly.connections) {
                 enabled.add(poly.connections[c]);
