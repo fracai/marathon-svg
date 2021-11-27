@@ -270,8 +270,6 @@ def update_dimensions(level_info, dim_type, x, y):
     )
 
 def update_player_position(level_info, player):
-    if 'player' not in level_info:
-        level_info['player'] = list()
     level_info['player'].append({
         'index': player['index'],
         'elevation': player['location_z'] / MAX_POS,
@@ -331,12 +329,10 @@ def generate_polygons(level_dict, platform_map, ignore_polys, map_type, level_in
         )
         extra = ''
         css_id = 'poly_{}'.format(poly['index'])
-        poly_svg += '<polygon points="{path}" id="{css_id}" class="{css_class}" floor="{floor}" ceiling="{ceiling}" {extra}/>\n'.format(
+        poly_svg += '<polygon points="{path}" id="{css_id}" class="{css_class}" {extra}/>\n'.format(
             path=' '.join(points),
             css_id=css_id,
             css_class=css_class,
-            floor=poly['floor_height']/MAX_POS,
-            ceiling=poly['ceiling_height']/MAX_POS,
             extra=extra,
         )
         update_poly_info(level_info, poly=poly, ids=[css_id])
@@ -799,7 +795,7 @@ def generate_svg(map_type, base_name, level_dict, ignore_polys):
 
     level_info = {
         'dimensions': {
-            # initial values start at the opposite extreme
+            # initial values start at the opposite extremes
             'map':   [1, 1, -1, -1],
             'items': [1, 1, -1, -1],
             'lines': [1, 1, -1, -1],
@@ -809,6 +805,7 @@ def generate_svg(map_type, base_name, level_dict, ignore_polys):
             'ceiling': -1,
         },
         'viewBox': {},
+        'player': [],
         'polygons': defaultdict(lambda: {
             'floor_height': None,
             'ceiling_height': None,
