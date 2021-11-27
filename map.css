@@ -1,3 +1,6 @@
+/* http://www.hicksdesign.co.uk/journal/forcing-scrollbars-now-even-better */
+html { height: 100%; padding-bottom: 1px; }
+
 body {
     background: black;
     color: #0f0;
@@ -29,4 +32,39 @@ div#elevation-slider {
 .noUi-vertical .noUi-handle {
     height: 10pt;
     bottom: -7pt;
+}
+
+.collapsible {
+  background-color: #333;
+  color: white;
+  cursor: pointer;
+  padding: 3pt;
+  width: 100%;
+  border: none;
+  text-align: left;
+  outline: none;
+  font-size: 10pt;
+}
+.collapsible:hover {
+  background-color: #555;
+}
+.active {
+  background-color: #444;
+}
+.collapsible:after {
+  content: '\002B';
+  color: white;
+  font-weight: bold;
+  float: right;
+  margin-left: 5px;
+}
+.active:after {
+  content: "\2212";
+}
+.content {
+  padding: 0 1pt;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.2s ease-out;
+  background-color: #222;
 }

@@ -17,18 +17,25 @@
 
 </head>
 <body onload="loaded()">
-<div style="float:left;text-align:left;width:25%">
+<div id="controls" style="float:left;text-align:left;width:25%">
 <table class="menu-table">
 <tr><td>Map:</td><td><select name="select_map" id="select_map" onchange='map_selection(this);'></select></td></tr>
 <tr><td>Level:</td><td><select name="select_level" id="select_level" onchange='level_selection(this);'></select></td></tr>
 </table>
 <br />
-Zoom:<br />
+
+<button class="collapsible">Zoom:</button>
+<div class="content">
 <button onclick="zoom('map')">Map</button><br />
 <button onclick="zoom('items')">Map &amp; Items</button><br />
 <button onclick="zoom('lines')">All Lines</button><br />
 <button onclick="zoom()">World</button><br />
-<ul style="display:none;">
+<!-- end collapsible section: zoom -->
+</div>
+
+<button class="collapsible">Map Overlays:</button>
+<div class="content">
+<ul>
     <li><label><input type="checkbox" id="annotation" onclick="toggle_checkbox(this)"/> Annotations</label></li>
     <li><label><input type="checkbox" id="xxxx" onclick="toggle_checkbox(this)"/> Hidden Platforms</label></li>
     <li>
@@ -84,7 +91,11 @@ Zoom:<br />
         </ul>
     </li>
 </ul>
-Elevation:<br />
+<!-- end collapsible section: map overlays -->
+</div>
+
+<button class="collapsible">Elevation:</button>
+<div class="content">
 <button onclick="set_player_elevation()">Player</button><br />
 <button onclick="set_initial_elevation()">Map</button><br />
 <input type="radio" id="elevation-contained" name="elevation" value="contained" onchange='update_svg_style()' />
@@ -111,7 +122,29 @@ create_slider(
     [0, 819/1024]
 );
 </script>
+<!-- end collapsible section: elevation -->
 </div>
+
+<!-- end div: controls -->
+</div>
+
 <div><object id="map_object" type="image/svg+xml" data="logo.svg"/></div>
+
+<script>
+// https://www.w3schools.com/howto/howto_js_collapsible.asp
+var coll = document.getElementsByClassName("collapsible");
+for (let i in coll) {
+    coll[i].addEventListener("click", function() {
+        this.classList.toggle("active");
+        var content = this.nextElementSibling;
+        if (content.style.maxHeight) {
+            content.style.maxHeight = null;
+        } else {
+            content.style.maxHeight = content.scrollHeight + "px";
+        }
+    });
+}
+</script>
+
 </body>
 </html>
