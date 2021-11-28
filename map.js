@@ -1,6 +1,7 @@
 var maps_json = null;
 var levels_json = null;
 var level_json = null;
+var overlay_json = null;
 
 function load_common(path, callback, data_extractor) {
     // fetch the path
@@ -17,7 +18,9 @@ function load_common(path, callback, data_extractor) {
         // send the json data to the callback
         .then(callback)
         // handle exceptions
-        .catch(function () {
+        .catch(err => {
+            console.log(err);
+            debugger;
             this.dataError = true;
         })
 }
@@ -103,13 +106,22 @@ function loaded() {
 }
 
 function load_levels(path, level) {
+    load_json(path+"/overlays.json", json => {
+        overlay_json = json;
+        populate_overlays();
+    });
     load_json(path+"/map.json", json => fill_level_menu(json, level));
-    load_json(path+"/overlays.json", populate_overlays)
 }
-function populate_overlays(overlays) {
-    overlay_string = process_overlay_types(overlays.types);
+function populate_overlays() {
+    if (null == overlay_json || null == level_json) {
+        return;
+    }
+    overlay_string = process_overlay_types(overlay_json.types);
     const overlays_div = document.getElementById('overlays');
     overlays_div.innerHTML = '';
+    if ('' == overlay_string) {
+        return;
+    }
     overlays_div.insertAdjacentHTML('afterbegin', overlay_string);
     apply_collapsible();
 }
@@ -117,7 +129,14 @@ function process_overlay_types(types) {
     type_string = '<ul>';
     for (let i in types) {
         const type = types[i];
-        type_string += `<li><label><input type="checkbox" id="${type.class}" onclick="toggle_checkbox(this)"/> ${type.display}</label></li>\n`;
+        if (!level_json.overlays.includes(type.class)) {
+            continue;
+        }
+        display = type.display;
+        if (undefined == display) {
+            display = type.class;
+        }
+        type_string += `<li><label><input type="checkbox" id="${type.class}" onclick="toggle_checkbox(this)"/> ${display}</label></li>\n`;
         if (typeof type.types != 'undefined') {
             type_string += process_overlay_types(type.types);
         }
@@ -128,7 +147,7 @@ function process_overlay_types(types) {
 function apply_collapsible() {
     // https://www.w3schools.com/howto/howto_js_collapsible.asp
     var coll = document.getElementsByClassName("collapsible");
-    for (let i in coll) {
+    for (let i in [...coll]) {
         coll[i].addEventListener("click", function() {
             this.classList.toggle("active");
             var content = this.nextElementSibling;
@@ -147,6 +166,7 @@ function load_level(base_path) {
         level_json = value;
         display_svg(svg_path);
         set_initial_elevation();
+        populate_overlays();
     });
 }
 function set_initial_elevation() {
@@ -315,6 +335,9 @@ function update_svg_style() {
     let svg_doc = svg_obj.contentDocument;
     let old_style = svg_doc.getElementById('dynamic-style');
     let new_style = generate_dynamic_style();
+    if (null == old_style || null == new_style) {
+        return;
+    }
     old_style.textContent = new_style;
 }
 function update_url() {
