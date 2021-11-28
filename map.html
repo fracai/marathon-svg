@@ -34,63 +34,7 @@
 </div>
 
 <button class="collapsible">Map Overlays:</button>
-<div class="content">
-<ul>
-    <li><label><input type="checkbox" id="annotation" onclick="toggle_checkbox(this)"/> Annotations</label></li>
-    <li><label><input type="checkbox" id="xxxx" onclick="toggle_checkbox(this)"/> Hidden Platforms</label></li>
-    <li>
-        <label><input type="checkbox" id="monster" onclick="toggle_checkbox(this)"/> Monsters</label>
-        <ul>
-            <li><label><input type="checkbox" id="monster-1" onclick="toggle_checkbox(this)"/> Fighter</label></li>
-            <li><label><input type="checkbox" id="monster-2" onclick="toggle_checkbox(this)"/> Trooper</label></li>
-            <li><label><input type="checkbox" id="monster-3" onclick="toggle_checkbox(this)"/> S'pht</label></li>
-        </ul>
-    </li>
-    <li>
-        <label><input type="checkbox" id="item" onclick="toggle_checkbox(this)"/> Items</label>
-        <ul>
-            <li><label><input type="checkbox" id="item-1" onclick="toggle_checkbox(this)"/> Magnum Ammo</label></li>
-            <li><label><input type="checkbox" id="item-2" onclick="toggle_checkbox(this)"/> Rockets</label></li>
-        </ul>
-    </li>
-    <li>
-        <label><input type="checkbox" id="object" onclick="toggle_checkbox(this)"/> Objects</label>
-        <ul>
-            <li><label><input type="checkbox" id="object-1" onclick="toggle_checkbox(this)"/> Barrel</label></li>
-            <li><label><input type="checkbox" id="object-2" onclick="toggle_checkbox(this)"/> Paper</label></li>
-        </ul>
-    </li>
-    <li>
-        <label><input type="checkbox" id="panels" onclick="toggle_checkbox(this)"/> Panels</label>
-        <ul>
-            <li><label><input type="checkbox" id="panel-1" onclick="toggle_checkbox(this)"/> Terminal</label></li>
-            <li><label><input type="checkbox" id="panel-2" onclick="toggle_checkbox(this)"/> Switch</label></li>
-            <li><label><input type="checkbox" id="panel-3" onclick="toggle_checkbox(this)"/> 1x Shields</label></li>
-            <li><label><input type="checkbox" id="panel-4" onclick="toggle_checkbox(this)"/> 2x Shields</label></li>
-            <li><label><input type="checkbox" id="panel-5" onclick="toggle_checkbox(this)"/> 3x Shields</label></li>
-            <li><label><input type="checkbox" id="panel-6" onclick="toggle_checkbox(this)"/> Oxygen</label></li>
-        </ul>
-    </li>
-    <li>
-        <label><input type="checkbox" id="panel_line" onclick="toggle_checkbox(this)"/> Panel Lines</label>
-        <ul>
-            <li><label><input type="checkbox" id="xxxx-1" onclick="toggle_checkbox(this)"/> Terminal Teleporter</label></li>
-            <li><label><input type="checkbox" id="xxxx-2" onclick="toggle_checkbox(this)"/> Terminal Switch</label></li>
-            <li><label><input type="checkbox" id="xxxx-3" onclick="toggle_checkbox(this)"/> Platform Switch </label></li>
-            <li><label><input type="checkbox" id="xxxx-4" onclick="toggle_checkbox(this)"/> Light Switch </label></li>
-            <li><label><input type="checkbox" id="xxxx-5" onclick="toggle_checkbox(this)"/> Tag Switch </label></li>
-        </ul>
-    </li>
-    <li>
-        <label><input type="checkbox" id="trigger_line" onclick="toggle_checkbox(this)"/> Trigger Lines</label>
-        <ul>
-            <li><label><input type="checkbox" id="object-1" onclick="toggle_checkbox(this)"/> Teleporter</label></li>
-            <li><label><input type="checkbox" id="object-1" onclick="toggle_checkbox(this)"/> Platform Trigger</label></li>
-            <li><label><input type="checkbox" id="object-2" onclick="toggle_checkbox(this)"/> Light Trigger </label></li>
-            <li><label><input type="checkbox" id="object-2" onclick="toggle_checkbox(this)"/> Tag Trigger </label></li>
-        </ul>
-    </li>
-</ul>
+<div class="content" id="overlays">
 <!-- end collapsible section: map overlays -->
 </div>
 
@@ -129,22 +73,6 @@ create_slider(
 </div>
 
 <div><object id="map_object" type="image/svg+xml" data="logo.svg"/></div>
-
-<script>
-// https://www.w3schools.com/howto/howto_js_collapsible.asp
-var coll = document.getElementsByClassName("collapsible");
-for (let i in coll) {
-    coll[i].addEventListener("click", function() {
-        this.classList.toggle("active");
-        var content = this.nextElementSibling;
-        if (content.style.maxHeight) {
-            content.style.maxHeight = null;
-        } else {
-            content.style.maxHeight = content.scrollHeight + "px";
-        }
-    });
-}
-</script>
 
 </body>
 </html>

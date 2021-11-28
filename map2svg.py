@@ -276,6 +276,13 @@ def update_player_position(level_info, player):
     })
     level_info['player'] = sorted(level_info['player'], key=operator.itemgetter('index'))
 
+def update_overlays(level_info, classes=[]):
+    if not classes:
+        return
+    if not isinstance(classes, set) and not isinstance(classes, list):
+        classes = [classes]
+    level_info['overlays'].update(classes)
+
 def update_elevations(level_info, floor, ceiling):
     current = level_info['elevation']
     level_info['elevation']['floor'] = min(current['floor'], floor)
@@ -493,6 +500,10 @@ def common_generate_lines(css_class_base, side, dest_sides, dest_polys, lights, 
     for dest_poly in dest_polys:
         # lines to the polys
         gid = 'panel_{}_line_group_poly_s{}_p{}'.format(css_class_base, side['index'], dest_poly['index'])
+        group_class = 'panel_line panel_line-{css_class_base} panel_line_poly-{css_class_base}'.format(
+            css_class_base=css_class_base
+        )
+        update_overlays(level_info, group_class.split(' '))
         for source in source_polys:
             update_poly_info(level_info, poly_index=source, ids=[gid])
         update_poly_info(level_info, poly_index=dest_poly['index'], ids=[gid])
@@ -533,6 +544,10 @@ def common_generate_lines(css_class_base, side, dest_sides, dest_polys, lights, 
         if dest_side['index'] == side['index']:
             continue
         gid = 'panel_{}_line_group_side_s{}_s{}'.format(css_class_base, side['index'], dest_side['index'])
+        group_class = 'panel_line panel_line-{css_class_base} panel_line_side-{css_class_base}'.format(
+            css_class_base=css_class_base
+        )
+        update_overlays(level_info, group_class.split(' '))
         side_line = level_dict['LINS']['line'][dest_side['line']]
         for source in source_polys:
             update_poly_info(level_info, poly_index=source, ids=[gid])
@@ -543,8 +558,9 @@ def common_generate_lines(css_class_base, side, dest_sides, dest_polys, lights, 
                 ['cw_poly', 'ccw_poly']))
         for dest_poly in dest_polys:
             update_poly_info(level_info, poly_index=dest_poly, ids=[gid])
-        line_svg += '<g id="{g_id}">\n'.format(
-            g_id=gid
+        line_svg += '<g id="{g_id}" class="{g_class}">\n'.format(
+            g_id=gid,
+            g_class=group_class
         )
         dest_line = level_dict['LINS']['line'][dest_side['line']]
         x1 = level_dict['EPNT']['endpoint'][dest_line['endpoint1']]['x']
@@ -624,14 +640,16 @@ def generate_annotations(notes, level_info):
     notes_svg = ''
     for note in notes:
         css_id = 'annotation_{}'.format(note['index'])
+        css_class = 'annotation'
         notes_svg += '<text x="{x}" y="{y}" id="{css_id}" class="{css_class}">{note}</text>\n'.format(
             x=note['location_x']/MAX_POS,
             y=note['location_y']/MAX_POS,
-            css_class='annotation',
+            css_class=css_class,
             css_id=css_id,
             note=note['text'],
         )
         update_poly_info(level_info, poly_index=note['polygon_index'], ids=[css_id])
+        update_overlays(level_info, css_class)
     if not notes_svg:
         return ''
     return '<g id="annotations">\n' + notes_svg + '<!-- end group: "annotations" -->\n</g>\n'
@@ -712,6 +730,7 @@ def generate_panels(level_dict, ignore_polys, map_type, level_info):
                 ['cw_poly', 'ccw_poly']))
         for source in source_polys:
             update_poly_info(level_info, poly_index=source, ids=[css_id])
+        update_overlays(level_info, ['panel', css_class])
     panel_svg += '<!-- end group: "panels" -->\n</g>\n'
     return panel_svg
 
@@ -773,6 +792,7 @@ def generate_objects(objects, polygons, ignore_polys, level_info):
         )
         update_poly_info(level_info, poly_index=obj['polygon_index'], ids=[css_id])
         update_dimensions(level_info, 'items', cx, cy)
+        update_overlays(level_info, css_class.split(' '))
         entries[order].append(entry)
     for symbol in ['unknown', 'sound', 'object', 'item', 'monster', 'goal', 'player']:
         for entry in entries[symbol]:
@@ -806,6 +826,7 @@ def generate_svg(map_type, base_name, level_dict, ignore_polys):
         },
         'viewBox': {},
         'player': [],
+        'overlays': set(),
         'polygons': defaultdict(lambda: {
             'floor_height': None,
             'ceiling_height': None,

@@ -103,7 +103,42 @@ function loaded() {
 }
 
 function load_levels(path, level) {
-    load_json(path, (json) => fill_level_menu(json, level));
+    load_json(path+"/map.json", json => fill_level_menu(json, level));
+    load_json(path+"/overlays.json", populate_overlays)
+}
+function populate_overlays(overlays) {
+    overlay_string = process_overlay_types(overlays.types);
+    const overlays_div = document.getElementById('overlays');
+    overlays_div.innerHTML = '';
+    overlays_div.insertAdjacentHTML('afterbegin', overlay_string);
+    apply_collapsible();
+}
+function process_overlay_types(types) {
+    type_string = '<ul>';
+    for (let i in types) {
+        const type = types[i];
+        type_string += `<li><label><input type="checkbox" id="${type.class}" onclick="toggle_checkbox(this)"/> ${type.display}</label></li>\n`;
+        if (typeof type.types != 'undefined') {
+            type_string += process_overlay_types(type.types);
+        }
+    }
+    type_string += '</ul>';
+    return type_string;
+}
+function apply_collapsible() {
+    // https://www.w3schools.com/howto/howto_js_collapsible.asp
+    var coll = document.getElementsByClassName("collapsible");
+    for (let i in coll) {
+        coll[i].addEventListener("click", function() {
+            this.classList.toggle("active");
+            var content = this.nextElementSibling;
+            if (content.style.maxHeight) {
+                content.style.maxHeight = null;
+            } else {
+                content.style.maxHeight = content.scrollHeight + "px";
+            }
+        });
+    }
 }
 function load_level(base_path) {
     var svg_path = base_path+'.svg';
@@ -306,12 +341,25 @@ function svg_loaded() {
     update_svg_style();
 }
 function toggle_checkbox(checkbox) {
-    console.log(checkbox.id);
+//     console.log(checkbox.id);
 //     if (checkbox.readOnly) checkbox.checked=checkbox.readOnly=false;
 //     else if (!checkbox.checked) checkbox.readOnly=checkbox.indeterminate=true;
     // checked = false,true
     // indeter = true,false
     // uncheck = false,false
+    const label = checkbox.parentElement;
+    const li = label.parentElement;
+    const ul = li.nextElementSibling;
+    if (null != ul && null != ul.children) {
+        for (let i in ul.children) {
+            const child = ul.children[i];
+            if (child.nodeName == 'LI') {
+                const child_checkbox = child.getElementsByTagName('INPUT')[0];
+                child_checkbox.checked = ! child_checkbox.checked;
+                toggle_checkbox(child_checkbox);
+            }
+        }
+    }
     update_svg_style();
 }
 function zoom(level) {
