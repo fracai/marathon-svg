@@ -126,23 +126,26 @@ function populate_overlays() {
     apply_collapsible();
 }
 function process_overlay_types(types) {
-    type_string = '<ul>';
+    type_string = '';
     for (let i in types) {
         const type = types[i];
-        if (!level_json.overlays.includes(type.class)) {
-            continue;
-        }
         display = type.display;
         if (undefined == display) {
             display = type.class;
         }
-        type_string += `<li><label><input type="checkbox" id="${type.class}" onclick="toggle_checkbox(this)"/> ${display}</label></li>\n`;
+        if (level_json.overlays.includes(type.class)) {
+            type_string += `<li><label><input type="checkbox" id="${type.class}" onclick="toggle_checkbox(this)"/> ${display}</label></li>\n`;
+        } else if (null == type.class) {
+            type_string += `<li><label><input type="checkbox" onclick="toggle_checkbox(this)"/> ${display}</label></li>\n`;
+        }
         if (typeof type.types != 'undefined') {
             type_string += process_overlay_types(type.types);
         }
     }
-    type_string += '</ul>';
-    return type_string;
+    if ('' == type_string) {
+        return '';
+    }
+    return '<ul>' + type_string + '</ul>';
 }
 function apply_collapsible() {
     // https://www.w3schools.com/howto/howto_js_collapsible.asp
@@ -378,7 +381,7 @@ function toggle_checkbox(checkbox) {
             const child = ul.children[i];
             if (child.nodeName == 'LI') {
                 const child_checkbox = child.getElementsByTagName('INPUT')[0];
-                child_checkbox.checked = ! child_checkbox.checked;
+                child_checkbox.checked = checkbox.checked;
                 toggle_checkbox(child_checkbox);
             }
         }
