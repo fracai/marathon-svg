@@ -1,3 +1,5 @@
+'use strict';
+
 var maps_json = null;
 var levels_json = null;
 var level_json = null;
@@ -68,7 +70,7 @@ function fill_level_menu(level_info, level_token) {
     for (let i in levels_json.levels) {
         let level = levels_json.levels[i];
         if ('separator' in level) {
-            option = new Option(level.separator, null, false, false);
+            const option = new Option(level.separator, null, false, false);
             option.disabled = true;
             select.options[select.options.length] = option;
             continue;
@@ -92,8 +94,9 @@ function loaded() {
 //     console.clear();
     let map_object = document.getElementById('map_object');
     map_object.addEventListener('load', () => {svg_loaded()});
-    url = window.location.href + ''
-    index = url.indexOf('#')
+    const url = window.location.href + ''
+    const index = url.indexOf('#')
+    let selection = null;
     if (index < 0) {
         selection = null
     } else {
@@ -116,7 +119,7 @@ function populate_overlays() {
     if (null == overlay_json || null == level_json) {
         return;
     }
-    overlay_string = process_overlay_types(overlay_json.types);
+    const overlay_string = process_overlay_types(overlay_json.types);
     const overlays_div = document.getElementById('overlays');
     overlays_div.innerHTML = '';
     if ('' == overlay_string) {
@@ -126,21 +129,29 @@ function populate_overlays() {
     apply_collapsible();
 }
 function process_overlay_types(types) {
-    type_string = '';
+    let type_string = '';
     for (let i in types) {
         const type = types[i];
-        display = type.display;
+        let display = type.display;
         if (undefined == display || '' == display) {
             display = type.class;
         }
+        let checkbox_string = null;
         if (level_json.overlays.includes(type.class)) {
-            type_string += `<li><label><input type="checkbox" id="${type.class}" onclick="toggle_checkbox(this)"/> ${display}</label></li>\n`;
+            checkbox_string = `<li><label><input type="checkbox" id="${type.class}" onclick="toggle_checkbox(this)"/> ${display}</label></li>\n`;
         } else if (null == type.class) {
-            type_string += `<li><label><input type="checkbox" onclick="toggle_checkbox(this)"/> ${display}</label></li>\n`;
+            checkbox_string = `<li><label><input type="checkbox" onclick="toggle_checkbox(this)"/> ${display}</label></li>\n`;
         }
-        if (typeof type.types != 'undefined') {
-            type_string += process_overlay_types(type.types);
+        const type_types = type.types;
+        if (undefined == type_types) {
+            if (null != checkbox_string) {
+                type_string += checkbox_string;
+            }
+            continue;
         }
+        type_string += checkbox_string;
+        const s = process_overlay_types(type_types);
+        type_string += s;
     }
     if ('' == type_string) {
         return '';
@@ -279,7 +290,7 @@ function level_selection(dropdown) {
 }
 function generate_dynamic_style() {
     let checkboxes = document.querySelectorAll('input[type=checkbox]');
-    style_content = '';
+    let style_content = '';
     for (let i in checkboxes) {
         if (!checkboxes[i].id) {
             continue;
@@ -302,7 +313,7 @@ function process_polygons() {
     let enabled = new Set();
     let disabled = new Set();
     for (let i in level_json.polygons) {
-        poly = level_json.polygons[i];
+        const poly = level_json.polygons[i];
         let visible = true;
         if ('intersection' == elevation_type && (floor > poly.ceiling_height || ceiling < poly.floor_height)) {
             visible = false;
@@ -348,18 +359,18 @@ function update_svg_style() {
 function update_url() {
     let map_selector = document.getElementById('select_map');
     let level_selector = document.getElementById('select_level');
-	let map_index = map_selector.options[map_selector.selectedIndex].value;
-    map_info = maps_json[map_index];
-	let level_index = level_selector.options[level_selector.selectedIndex].value;
-	level_info = levels_json.levels[level_index];
-	let location = window.location.href + '';
-	let base_url = location;
+    let map_index = map_selector.options[map_selector.selectedIndex].value;
+    const map_info = maps_json[map_index];
+    let level_index = level_selector.options[level_selector.selectedIndex].value;
+    const level_info = levels_json.levels[level_index];
+    let location = window.location.href + '';
+    let base_url = location;
     let index = location.indexOf('#');
     if (index >= 0) {
         base_url = base_url.substring(0,index);
     }
-	let new_url = base_url + '#' + map_info.short_name + ':' + level_info.index;
-	let new_title = map_info.map_name + ': ' + level_info.index + ' ' + level_info.name;
+    let new_url = base_url + '#' + map_info.short_name + ':' + level_info.index;
+    let new_title = map_info.map_name + ': ' + level_info.index + ' ' + level_info.name;
     window.history.replaceState({}, new_title, new_url);
     document.title = new_title;
 }
