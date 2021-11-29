@@ -130,7 +130,7 @@ function process_overlay_types(types) {
     for (let i in types) {
         const type = types[i];
         display = type.display;
-        if (undefined == display) {
+        if (undefined == display || '' == display) {
             display = type.class;
         }
         if (level_json.overlays.includes(type.class)) {
@@ -147,19 +147,21 @@ function process_overlay_types(types) {
     }
     return '<ul>' + type_string + '</ul>';
 }
+function handle_toggle_click() {
+    this.classList.toggle("active");
+    const content = this.nextElementSibling;
+    if (content.style.maxHeight) {
+        content.style.maxHeight = null;
+    } else {
+        content.style.maxHeight = content.scrollHeight + "px";
+    }
+}
 function apply_collapsible() {
     // https://www.w3schools.com/howto/howto_js_collapsible.asp
     var coll = document.getElementsByClassName("collapsible");
     for (let i in [...coll]) {
-        coll[i].addEventListener("click", function() {
-            this.classList.toggle("active");
-            var content = this.nextElementSibling;
-            if (content.style.maxHeight) {
-                content.style.maxHeight = null;
-            } else {
-                content.style.maxHeight = content.scrollHeight + "px";
-            }
-        });
+        coll[i].removeEventListener("click", handle_toggle_click);
+        coll[i].addEventListener("click", handle_toggle_click);
     }
 }
 function load_level(base_path) {
