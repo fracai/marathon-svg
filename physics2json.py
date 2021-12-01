@@ -1049,14 +1049,14 @@ SIZE_MAP = {
 def read_physics_(f, eof):
     data = {}
     while (True):
-        print ('of:{}'.format(f.tell()))
+#         print ('of:{}'.format(f.tell()))
         tag = ReadRaw(4, f).decode('Macroman')
 
         if tag not in TAG_MAP:
             print ('error: offset: {}, tag: {}'.format(f.tell(), tag.encode()))
             sys.exit()
         label = TAG_MAP[tag]['label']
-        print ('{}:{}'.format(tag, label))
+#         print ('{}:{}'.format(tag, label))
 
         next_offset = ReadUint32(f)
         length = ReadUint32(f)
@@ -1068,18 +1068,24 @@ def read_physics_(f, eof):
             label: [],
         }
 
+        section_end = f.tell() + length
+
         for i in range(COUNT_MAP[tag]):
             record = TAG_MAP[tag]['parser'](0,f)
             data[tag][label].append(record)
             data[tag][label][-1]['index'] = i
-#             print ('{}/{}'.format(f.tell(), eof))
+            if f.tell() == section_end:
+#                 print ('section end')
+#                 print ('remaining: {}'.format(eof-f.tell()))
+                break
+#             print ('{}/{}: {}'.format(f.tell(), eof, section_end))
             if f.tell() + SIZE_MAP[tag] > eof:
-                print ('file limit')
-                print ('remaining: {}'.format(eof-f.tell()))
+#                 print ('file limit')
+#                 print ('remaining: {}'.format(eof-f.tell()))
                 break
             if next_offset != 0 and f.tell() + SIZE_MAP[tag] > next_offset:
-                print ('section limit')
-                print ('remaining: {}'.format(next_offset-f.tell()))
+#                 print ('section limit')
+#                 print ('remaining: {}'.format(next_offset-f.tell()))
                 break
         data[tag]['actual_count'] = len(data[tag][label])
 
