@@ -11,7 +11,7 @@ function load_common(path, callback, data_extractor) {
         // handle any errors
         .then(response => {
             if (!response.ok) {
-                throw new Error('HTTP error ' + response.status);
+                throw new Error('HTTP error ' + response.status + ': ' + path);
             }
             return response;
         })
@@ -21,9 +21,11 @@ function load_common(path, callback, data_extractor) {
         .then(callback)
         // handle exceptions
         .catch(err => {
-            console.log(err);
+            console.log(err.message);
+            if (err.message.startsWith('HTTP error')) {
+                return;
+            }
             debugger;
-            this.dataError = true;
         })
 }
 
@@ -129,6 +131,9 @@ function populate_overlays() {
     apply_collapsible();
 }
 function process_overlay_types(types) {
+    if (undefined == types) {
+        return '';
+    }
     let type_string = '';
     for (let i in types) {
         const type = types[i];
@@ -136,22 +141,29 @@ function process_overlay_types(types) {
         if (undefined == display || '' == display) {
             display = type.class;
         }
-        let checkbox_string = null;
-        if (level_json.overlays.includes(type.class)) {
-            checkbox_string = `<li><label><input type="checkbox" id="${type.class}" onclick="toggle_checkbox(this)"/> ${display}</label></li>\n`;
-        } else if (null == type.class) {
-            checkbox_string = `<li><label><input type="checkbox" onclick="toggle_checkbox(this)"/> ${display}</label></li>\n`;
+        if (undefined == display || '' == display) {
+            display = type.id;
         }
-        const type_types = type.types;
-        if (undefined == type_types) {
-            if (null != checkbox_string) {
-                type_string += checkbox_string;
-            }
+        let checkbox_string = null;
+        let group_string = `<li><label><input type="checkbox" onclick="toggle_checkbox(this)" class="overlay" /> ${display}</label></li>\n`;
+        if (level_json.overlays.classes.includes(type.class)) {
+            checkbox_string = `<li><label><input type="checkbox" id="class_${type.class}" onclick="toggle_checkbox(this)" class="overlay" /> ${display}</label></li>\n`;
+        } else if (level_json.overlays.ids.includes(type.id)) {
+            checkbox_string = `<li><label><input type="checkbox" id="id_${type.id}" onclick="toggle_checkbox(this)" class="overlay" /> ${display}</label></li>\n`;
+        } else {
+            // debug
+//             checkbox_string = `<li><label>${display}</label></li>\n`;
+        }
+        const sub_types = process_overlay_types(type.types);
+        if (null == checkbox_string && (undefined == type.types || '' == sub_types)) {
             continue;
         }
-        type_string += checkbox_string;
-        const s = process_overlay_types(type_types);
-        type_string += s;
+        if (null == checkbox_string) {
+            type_string += group_string;
+        } else {
+            type_string += checkbox_string;
+        }
+        type_string += sub_types;
     }
     if ('' == type_string) {
         return '';
@@ -289,20 +301,33 @@ function level_selection(dropdown) {
     load_level(level_info);
 }
 function generate_dynamic_style() {
-    let checkboxes = document.querySelectorAll('input[type=checkbox]');
+    let checkboxes = document.querySelectorAll('input.overlay[type=checkbox]');
     let style_content = '';
     for (let i in checkboxes) {
         if (!checkboxes[i].id) {
             continue;
         }
+        const selector = checkbox_id_to_css_selector(checkboxes[i].id);
         if (checkboxes[i].checked) {
-            style_content += '.'+checkboxes[i].id+' {display:block;}\n';
+            style_content += selector+' {display:block;}\n';
         } else {
-            style_content += '.'+checkboxes[i].id+' {display:none;}\n';
+            style_content += selector+' {display:none;}\n';
         }
     }
     style_content += process_polygons()+'\n';
     return style_content;
+}
+function checkbox_id_to_css_selector(id) {
+    const selectors = {
+        'class': '.',
+        'id': '#',
+    }
+    for (const [type, prefix] of Object.entries(selectors)) {
+        if (id.startsWith(type+'_')) {
+            return prefix + id.slice(type.length + 1);
+        }
+    }
+    return null;
 }
 function process_polygons() {
     const slider = document.getElementById('elevation-slider');
