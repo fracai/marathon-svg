@@ -4,6 +4,7 @@ import argparse
 import struct
 import json
 import xmltodict
+import sys
 
 FIXED_FRACTIONAL_BITS = 16
 FIXED_ONE = 1<<FIXED_FRACTIONAL_BITS
@@ -302,7 +303,6 @@ def parse_physics(record_index, f):
 NUMBER_OF_TRIGGERS = 2
 
 def parse_weapons(record_index, f):
-    pass
     data = {}
 
     for k in [
@@ -361,7 +361,9 @@ def parse_weapons(record_index, f):
     for i in range(NUMBER_OF_TRIGGERS):
         data['weapons_by_trigger'].append(unpack_trigger_definitions(f))
 
-def unpack_trigger_definition(f):
+    return data
+
+def unpack_trigger_definitions(f):
     return {
         'rounds_per_magazine': ReadSint16(f),
         'ammunition_type': ReadSint16(f),
@@ -747,6 +749,14 @@ def parse_m1_weapons(record_index, f):
 
     return data
 
+M1_TAGS = [
+    'mons',
+    'effe',
+    'proj',
+    'phys',
+    'weap',
+]
+
 TAG_MAP = {
     'MNpx': {'label':'monster', 'parser': parse_monster},
     'FXpx': {'label':'effects', 'parser': parse_effects},
@@ -765,14 +775,29 @@ def read_physics(args, f):
     f.seek(0, 2)
     eof = f.tell()
     f.seek(0, 0)
+
+    tag = ReadRaw(4, f).decode('Macroman')
+    f.seek(0, 0)
+
+    if tag in M1_TAGS:
+        read_physics_m1(f, eof)
+        return
+    read_physics_(f, eof)
+
+def read_physics_m1(f, eof):
     data = {}
     while (True):
+        print ('of:{}'.format(f.tell()))
         tag = ReadRaw(4, f).decode('Macroman')
+
+        if tag not in TAG_MAP:
+            print ('error: offset: {}, tag: {}'.format(f.tell(), tag.encode()))
+            sys.exit()
+        label = TAG_MAP[tag]['label']
+
         ReadPadding(4, f) # unused
         record_count = ReadUint16(f)
         size = ReadUint16(f)
-
-        label = TAG_MAP[tag]['label']
 
         data[tag] = {
             'count': record_count,
@@ -790,6 +815,279 @@ def read_physics(args, f):
 
 #         if tag == 'phys':
 #             data[tag][label].pop(0)
+
+        if f.tell() == eof:
+            break
+
+    if 'json' == args.output:
+        print (json.dumps(data))
+        return
+    if 'xml' == args.output:
+        print (dict2xml(data, root_node='physics'))
+        return
+
+# enum /* monster types */
+# {
+# 	_monster_marine,
+# 	_monster_tick_energy,
+# 	_monster_tick_oxygen,
+# 	_monster_tick_kamakazi,
+# 	_monster_compiler_minor,
+# 	_monster_compiler_major,
+# 	_monster_compiler_minor_invisible,
+# 	_monster_compiler_major_invisible,
+# 	_monster_fighter_minor,
+# 	_monster_fighter_major,
+# 	_monster_fighter_minor_projectile,
+# 	_monster_fighter_major_projectile,
+# 	_civilian_crew,
+# 	_civilian_science,
+# 	_civilian_security,
+# 	_civilian_assimilated,
+# 	_monster_hummer_minor, // slow hummer
+# 	_monster_hummer_major, // fast hummer
+# 	_monster_hummer_big_minor, // big hummer
+# 	_monster_hummer_big_major, // angry hummer
+# 	_monster_hummer_possessed, // hummer from durandal
+# 	_monster_cyborg_minor,
+# 	_monster_cyborg_major,
+# 	_monster_cyborg_flame_minor,
+# 	_monster_cyborg_flame_major,
+# 	_monster_enforcer_minor,
+# 	_monster_enforcer_major,
+# 	_monster_hunter_minor,
+# 	_monster_hunter_major,
+# 	_monster_trooper_minor,
+# 	_monster_trooper_major,
+# 	_monster_mother_of_all_cyborgs,
+# 	_monster_mother_of_all_hunters,
+# 	_monster_sewage_yeti,
+# 	_monster_water_yeti,
+# 	_monster_lava_yeti,
+# 	_monster_defender_minor,
+# 	_monster_defender_major,
+# 	_monster_juggernaut_minor,
+# 	_monster_juggernaut_major,
+# 	_monster_tiny_fighter,
+# 	_monster_tiny_bob,
+# 	_monster_tiny_yeti,
+# 	// LP addition:
+# 	_civilian_fusion_crew,
+# 	_civilian_fusion_science,
+# 	_civilian_fusion_security,
+# 	_civilian_fusion_assimilated,
+# 	NUMBER_OF_MONSTER_TYPES
+# };
+NUMBER_OF_MONSTER_TYPES = 47
+
+# enum /* effect types */
+# {
+# 	_effect_rocket_explosion,
+# 	_effect_rocket_contrail,
+# 	_effect_grenade_explosion,
+# 	_effect_grenade_contrail,
+# 	_effect_bullet_ricochet,
+# 	_effect_alien_weapon_ricochet,
+# 	_effect_flamethrower_burst,
+# 	_effect_fighter_blood_splash,
+# 	_effect_player_blood_splash,
+# 	_effect_civilian_blood_splash,
+# 	_effect_assimilated_civilian_blood_splash,
+# 	_effect_enforcer_blood_splash,
+# 	_effect_compiler_bolt_minor_detonation,
+# 	_effect_compiler_bolt_major_detonation,
+# 	_effect_compiler_bolt_major_contrail,
+# 	_effect_fighter_projectile_detonation,
+# 	_effect_fighter_melee_detonation,
+# 	_effect_hunter_projectile_detonation,
+# 	_effect_hunter_spark,
+# 	_effect_minor_fusion_detonation,
+# 	_effect_major_fusion_detonation,
+# 	_effect_major_fusion_contrail,
+# 	_effect_fist_detonation,
+# 	_effect_minor_defender_detonation,
+# 	_effect_major_defender_detonation,
+# 	_effect_defender_spark,
+# 	_effect_trooper_blood_splash,
+# 	_effect_water_lamp_breaking,
+# 	_effect_lava_lamp_breaking,
+# 	_effect_sewage_lamp_breaking,
+# 	_effect_alien_lamp_breaking,
+# 	_effect_metallic_clang,
+# 	_effect_teleport_object_in,
+# 	_effect_teleport_object_out,
+# 	_effect_small_water_splash,
+# 	_effect_medium_water_splash,
+# 	_effect_large_water_splash,
+# 	_effect_large_water_emergence,
+# 	_effect_small_lava_splash,
+# 	_effect_medium_lava_splash,
+# 	_effect_large_lava_splash,
+# 	_effect_large_lava_emergence,
+# 	_effect_small_sewage_splash,
+# 	_effect_medium_sewage_splash,
+# 	_effect_large_sewage_splash,
+# 	_effect_large_sewage_emergence,
+# 	_effect_small_goo_splash,
+# 	_effect_medium_goo_splash,
+# 	_effect_large_goo_splash,
+# 	_effect_large_goo_emergence,
+# 	_effect_minor_hummer_projectile_detonation,
+# 	_effect_major_hummer_projectile_detonation,
+# 	_effect_durandal_hummer_projectile_detonation,
+# 	_effect_hummer_spark,
+# 	_effect_cyborg_projectile_detonation,
+# 	_effect_cyborg_blood_splash,
+# 	_effect_minor_fusion_dispersal,
+# 	_effect_major_fusion_dispersal,
+# 	_effect_overloaded_fusion_dispersal,
+# 	_effect_sewage_yeti_blood_splash,
+# 	_effect_sewage_yeti_projectile_detonation,
+# 	_effect_water_yeti_blood_splash,
+# 	_effect_lava_yeti_blood_splash,
+# 	_effect_lava_yeti_projectile_detonation,
+# 	_effect_yeti_melee_detonation,
+# 	_effect_juggernaut_spark,
+# 	_effect_juggernaut_missile_contrail,
+# 	// LP addition: Jjaro stuff
+# 	_effect_small_jjaro_splash,
+# 	_effect_medium_jjaro_splash,
+# 	_effect_large_jjaro_splash,
+# 	_effect_large_jjaro_emergence,
+# 	_effect_civilian_fusion_blood_splash,
+# 	_effect_assimilated_civilian_fusion_blood_splash,
+# 	NUMBER_OF_EFFECT_TYPES
+# };
+NUMBER_OF_EFFECT_TYPES = 73
+
+# enum /* projectile types */
+# {
+# 	_projectile_rocket,
+# 	_projectile_grenade,
+# 	_projectile_pistol_bullet,
+# 	_projectile_rifle_bullet,
+# 	_projectile_shotgun_bullet,
+# 	_projectile_staff,
+# 	_projectile_staff_bolt,
+# 	_projectile_flamethrower_burst,
+# 	_projectile_compiler_bolt_minor,
+# 	_projectile_compiler_bolt_major,
+# 	_projectile_alien_weapon,
+# 	_projectile_fusion_bolt_minor,
+# 	_projectile_fusion_bolt_major,
+# 	_projectile_hunter,
+# 	_projectile_fist,
+# 	_projectile_armageddon_sphere,
+# 	_projectile_armageddon_electricity,
+# 	_projectile_juggernaut_rocket,
+# 	_projectile_trooper_bullet,
+# 	_projectile_trooper_grenade,
+# 	_projectile_minor_defender,
+# 	_projectile_major_defender,
+# 	_projectile_juggernaut_missile,
+# 	_projectile_minor_energy_drain,
+# 	_projectile_major_energy_drain,
+# 	_projectile_oxygen_drain,
+# 	_projectile_minor_hummer,
+# 	_projectile_major_hummer,
+# 	_projectile_durandal_hummer,
+# 	_projectile_minor_cyborg_ball,
+# 	_projectile_major_cyborg_ball,
+# 	_projectile_ball,
+# 	_projectile_minor_fusion_dispersal,
+# 	_projectile_major_fusion_dispersal,
+# 	_projectile_overloaded_fusion_dispersal,
+# 	_projectile_yeti,
+# 	_projectile_sewage_yeti,
+# 	_projectile_lava_yeti,
+# 	// LP additions:
+# 	_projectile_smg_bullet,
+# 	NUMBER_OF_PROJECTILE_TYPES
+# };
+NUMBER_OF_PROJECTILE_TYPES = 39
+
+# enum /* models */
+# {
+# 	_model_game_walking,
+# 	_model_game_running,
+# 	NUMBER_OF_PHYSICS_MODELS
+# };
+NUMBER_OF_PHYSICS_MODELS = 2
+
+# static int16 weapon_ordering_array[]= {
+# 	_weapon_fist,
+# 	_weapon_pistol,
+# 	_weapon_plasma_pistol,
+# 	_weapon_shotgun,
+# 	_weapon_assault_rifle,
+# 	// LP addition:
+# 	_weapon_smg,
+# 	_weapon_flamethrower,
+# 	_weapon_missile_launcher,
+# 	_weapon_alien_shotgun,
+# 	_weapon_ball
+# };
+# #define NUMBER_OF_WEAPONS 10
+NUMBER_OF_WEAPONS = 10
+
+COUNT_MAP = {
+    'MNpx': NUMBER_OF_MONSTER_TYPES,
+    'FXpx': NUMBER_OF_EFFECT_TYPES,
+    'PRpx': NUMBER_OF_PROJECTILE_TYPES,
+    'PXpx': NUMBER_OF_PHYSICS_MODELS,
+    'WPpx': NUMBER_OF_WEAPONS,
+}
+SIZE_MAP = {
+    'MNpx': 56,
+    'FXpx': 14,
+    'PRpx': 48,
+    'PXpx': 104,
+    'WPpx': 34,
+}
+
+
+def read_physics_(f, eof):
+    data = {}
+    while (True):
+        print ('of:{}'.format(f.tell()))
+        tag = ReadRaw(4, f).decode('Macroman')
+
+        if tag not in TAG_MAP:
+            print ('error: offset: {}, tag: {}'.format(f.tell(), tag.encode()))
+            sys.exit()
+        label = TAG_MAP[tag]['label']
+        print ('{}:{}'.format(tag, label))
+
+        next_offset = ReadUint32(f)
+        length = ReadUint32(f)
+        offset = ReadUint32(f)
+
+        data[tag] = {
+            'count': COUNT_MAP[tag],
+            'size': length,
+            label: [],
+        }
+
+        for i in range(COUNT_MAP[tag]):
+            record = TAG_MAP[tag]['parser'](0,f)
+            data[tag][label].append(record)
+            data[tag][label][-1]['index'] = i
+#             print ('{}/{}'.format(f.tell(), eof))
+            if f.tell() + SIZE_MAP[tag] > eof:
+                print ('file limit')
+                print ('remaining: {}'.format(eof-f.tell()))
+                break
+            if next_offset != 0 and f.tell() + SIZE_MAP[tag] > next_offset:
+                print ('section limit')
+                print ('remaining: {}'.format(next_offset-f.tell()))
+                break
+        data[tag]['actual_count'] = len(data[tag][label])
+
+        if next_offset == 0:
+            break
+
+        f.seek(next_offset, 0)
+        continue
 
         if f.tell() == eof:
             break
