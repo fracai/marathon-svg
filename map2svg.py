@@ -276,12 +276,17 @@ def update_player_position(level_info, player):
     })
     level_info['player'] = sorted(level_info['player'], key=operator.itemgetter('index'))
 
-def update_overlays(level_info, classes=[]):
-    if not classes:
+def update_overlays(level_info, classes=[], groups=[]):
+    if not classes and not groups:
         return
-    if not isinstance(classes, set) and not isinstance(classes, list):
-        classes = [classes]
-    level_info['overlays'].update(classes)
+    if groups:
+        if not isinstance(groups, set) and not isinstance(groups, list):
+            groups = [groups]
+        level_info['overlays']['ids'].update(groups)
+    if classes:
+        if not isinstance(classes, set) and not isinstance(classes, list):
+            classes = [classes]
+        level_info['overlays']['classes'].update(classes)
 
 def update_elevations(level_info, floor, ceiling):
     current = level_info['elevation']
@@ -403,8 +408,10 @@ def generate_trigger_lines(level_dict, poly_type, css_class_base, level_info):
             update_poly_info(level_info, poly=dest_poly, ids=gids)
     if not line_svg:
         return ''
-    return '<g id="poly_{css_class_base}_lines">\n{content}<!-- end group: "{css_class_base}_lines" -->\n</g>\n'.format(
-        css_class_base=css_class_base,
+    gid = 'poly_{}_lines'.format(css_class_base)
+    update_overlays(level_info, classes=['poly_line'], groups=[gid])
+    return '<g id="{gid}">\n{content}<!-- end group: "{gid}" -->\n</g>\n'.format(
+        gid=gid,
         content=line_svg
     )
 
@@ -434,8 +441,10 @@ def generate_panel_lines(level_dict, css_class_base, platform_map, map_type, lev
         line_svg += common_generate_lines(css_class_base, side, dest_sides, dest_polys, lights, level_dict, level_info)
     if not line_svg:
         return ''
-    return '<g id="panel_{css_class_base}_lines">\n{content}<!-- end group: "panel_{css_class_base}_lines" -->\n</g>\n'.format(
-        css_class_base=css_class_base,
+    gid = 'panel_{}_lines'.format(css_class_base)
+    update_overlays(level_info, classes=['panel_line'], groups=[gid])
+    return '<g id="{gid}">\n{content}<!-- end group: "{gid}" -->\n</g>\n'.format(
+        gid=gid,
         content=line_svg
     )
 
@@ -503,7 +512,6 @@ def common_generate_lines(css_class_base, side, dest_sides, dest_polys, lights, 
         group_class = 'panel_line panel_line-{css_class_base} panel_line_poly-{css_class_base}'.format(
             css_class_base=css_class_base
         )
-        update_overlays(level_info, group_class.split(' '))
         for source in source_polys:
             update_poly_info(level_info, poly_index=source, ids=[gid])
         update_poly_info(level_info, poly_index=dest_poly['index'], ids=[gid])
@@ -547,7 +555,6 @@ def common_generate_lines(css_class_base, side, dest_sides, dest_polys, lights, 
         group_class = 'panel_line panel_line-{css_class_base} panel_line_side-{css_class_base}'.format(
             css_class_base=css_class_base
         )
-        update_overlays(level_info, group_class.split(' '))
         side_line = level_dict['LINS']['line'][dest_side['line']]
         for source in source_polys:
             update_poly_info(level_info, poly_index=source, ids=[gid])
@@ -765,6 +772,7 @@ def generate_objects(objects, polygons, ignore_polys, level_info):
         if 5 == obj['type']:
             symbol = 'sound'
             css_class = 'sound'
+            css_class = 'sound sound-{}'.format(obj['object_index'])
             order = symbol
         if symbol is None:
             symbol = 'unknown'
@@ -788,7 +796,7 @@ def generate_objects(objects, polygons, ignore_polys, level_info):
             cy=cy,
             transform=transform,
             css_id=css_id,
-            css_class='{} object_type:{}'.format(css_class, obj['type']),
+            css_class=css_class,
         )
         update_poly_info(level_info, poly_index=obj['polygon_index'], ids=[css_id])
         update_dimensions(level_info, 'items', cx, cy)
@@ -826,7 +834,10 @@ def generate_svg(map_type, base_name, level_dict, ignore_polys):
         },
         'viewBox': {},
         'player': [],
-        'overlays': set(),
+        'overlays': {
+            'ids': set(),
+            'classes': set(),
+        },
         'polygons': defaultdict(lambda: {
             'floor_height': None,
             'ceiling_height': None,
