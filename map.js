@@ -434,7 +434,6 @@ function zoom(level) {
     let svg_obj = document.getElementById('map_object');
     let svg_doc = svg_obj.contentDocument;
     let svg_con = svg_doc.getElementsByTagName('svg')[0];
-    svg_con.viewBox = viewBox;
     gsap.to(svg_con, {
         duration: 1,
         attr: { viewBox: viewBox },

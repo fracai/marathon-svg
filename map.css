@@ -8,6 +8,20 @@ body {
     font-family: Menlo, ProFont, Monaco, monospace;
     font-size: 10pt;
 }
+
+#controls {
+    float:left;
+    text-align:left;
+    width:25%;
+}
+#map_object {
+    align: right;
+    max-width: 100vh;
+    max-height: 100vh;
+    display: flex;
+    flex-direction: row;
+}
+
 select {
     max-width: 150pt;
 }
