@@ -1,11 +1,16 @@
 /* http://www.hicksdesign.co.uk/journal/forcing-scrollbars-now-even-better */
 html { height: 100%; padding-bottom: 1px; }
 
+@font-face {
+    font-family: ProFontIIx;
+    src: url(/resources/fonts/ProFontIIx.woff2);
+}
+
 body {
     background: black;
     color: #0f0;
     text-align: center;
-    font-family: Menlo, ProFont, Monaco, monospace;
+    font-family: ProFontIIx, ProFont, Menlo, Monaco, monospace;
     font-size: 10pt;
 }
 
@@ -77,14 +82,14 @@ div#elevation-slider {
   background-color: #444;
 }
 .collapsible:after {
-  content: '\002B';
+  content: '\002b';
   color: white;
   font-weight: bold;
   float: right;
   margin-left: 5px;
 }
 .active:after {
-  content: "\2212";
+  content: '\2212';
 }
 .content {
   padding: 0 1pt;
@@ -92,4 +97,11 @@ div#elevation-slider {
   overflow: hidden;
   transition: max-height 0.2s ease-out;
   background-color: #222;
+}
+
+.collapsible-list .active:before {
+    content: '\25d1';
+}
+.collapsible-list:before {
+    content: '\25d2';
 }

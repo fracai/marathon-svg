@@ -24,10 +24,15 @@ polygon {
     vector-effect: non-scaling-stroke;
 }
 
+@font-face {
+    font-family: ProFontIIx;
+    src: url(/resources/fonts/ProFontIIx.woff2);
+}
+
 text.annotation {
     fill: rgb( 0, 255, 0 );
     font-size: .001em;
-    font-family: ProFont, Monaco, monospace;
+    font-family: ProFontIIx, ProFont, Monaco, monospace;
     paint-order: stroke;
     stroke: black;
     stroke-width: .2em;
