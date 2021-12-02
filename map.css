@@ -42,6 +42,9 @@ table.elevation-table td:nth-child(2) {
 div#elevation-slider {
     height: 500pt;
     /* margin-left: 50pt; */
+    margin-right: 60pt;
+    margin-bottom: 10pt;
+    float: right;
 }
 .noUi-vertical .noUi-handle {
     height: 10pt;
