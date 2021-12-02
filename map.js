@@ -180,7 +180,9 @@ function handle_toggle_click() {
     if (content.style.maxHeight) {
         content.style.maxHeight = null;
     } else {
-        content.style.maxHeight = content.scrollHeight + "px";
+        let max_height = content.scrollHeight;
+        max_height = 32768;
+        content.style.maxHeight = max_height + "px";
     }
 }
 function apply_collapsible() {
