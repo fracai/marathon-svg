@@ -49,8 +49,7 @@ function fill_map_menu(selection) {
         }
     }
     var first = -1;
-    for (let i in maps_json) {
-        let map = maps_json[i];
+    for (const map of maps_json) {
         if (-1 == first) {
             if (null == map_tokens[0] || map_tokens[0] == map.short_name) {
                 first = select.options.length;
@@ -58,7 +57,7 @@ function fill_map_menu(selection) {
         }
         select.options[select.options.length] = new Option(
             map.map_name,
-            i,
+            select.options.length,
             false,
             false);
     }
@@ -70,8 +69,7 @@ function fill_level_menu(level_info, level_token) {
     var select = document.getElementById('select_level');
     select.options.length = 0;
     var first = -1;
-    for (let i in levels_json.levels) {
-        let level = levels_json.levels[i];
+    for (const level of levels_json.levels) {
         if ('separator' in level) {
             const option = new Option(level.separator, null, false, false);
             option.disabled = true;
@@ -85,7 +83,7 @@ function fill_level_menu(level_info, level_token) {
         }
         select.options[select.options.length] = new Option(
             level.index + " " + level.name,
-            i,
+            select.options.length,
             false,
             false);
     }
@@ -137,8 +135,7 @@ function process_overlay_types(types) {
         return '';
     }
     let type_string = '';
-    for (let i in types) {
-        const type = types[i];
+    for (const type of types) {
         let display = type.display;
         if (undefined == display || '' == display) {
             display = type.class;
@@ -189,9 +186,9 @@ function handle_toggle_click() {
 function apply_collapsible() {
     // https://www.w3schools.com/howto/howto_js_collapsible.asp
     var coll = document.getElementsByClassName("collapsible");
-    for (let i in [...coll]) {
-        coll[i].removeEventListener("click", handle_toggle_click);
-        coll[i].addEventListener("click", handle_toggle_click);
+    for (const section of coll) {
+        section.removeEventListener("click", handle_toggle_click);
+        section.addEventListener("click", handle_toggle_click);
     }
 }
 function load_level(base_path) {
@@ -316,8 +313,7 @@ function build_overlay_style_map(types) {
     if (undefined == types) {
         return;
     }
-    for (let i in types) {
-        const type = types[i];
+    for (const type of types) {
         if (type.style) {
             for (const reference_type of Object.keys(selectors)) {
                 if (type[reference_type]) {
@@ -331,8 +327,8 @@ function build_overlay_style_map(types) {
 function generate_dynamic_style() {
     let checkboxes = document.querySelectorAll('input.overlay[type=checkbox]');
     let style_content = '';
-    for (let i in checkboxes) {
-        let reference = checkboxes[i].id;
+    for (const cb of checkboxes) {
+        let reference = cb.id;
         if (!reference) {
             continue;
         }
@@ -342,7 +338,7 @@ function generate_dynamic_style() {
         if (overlay) {
             styles = overlay;
         }
-        style_content += selector + ' {' + styles[checkboxes[i].checked ? 1 : 0] + '}\n';
+        style_content += selector + ' {' + styles[cb.checked ? 1 : 0] + '}\n';
     }
     style_content += process_polygons()+'\n';
     return style_content;
@@ -363,8 +359,7 @@ function process_polygons() {
     const elevation_type = document.querySelector('input[name="elevation"]:checked').value;
     let enabled = new Set();
     let disabled = new Set();
-    for (let i in level_json.polygons) {
-        const poly = level_json.polygons[i];
+    for (const poly of Object.values(level_json.polygons)) {
         let visible = true;
         if ('intersection' == elevation_type && (floor > poly.ceiling_height || ceiling < poly.floor_height)) {
             visible = false;
@@ -379,12 +374,12 @@ function process_polygons() {
             visible = false;
         }
         if (visible) {
-            for (let c in poly.connections) {
-                enabled.add(poly.connections[c]);
+            for (const c of poly.connections) {
+                enabled.add(c);
             }
         } else {
-            for (let c in poly.connections) {
-                disabled.add(poly.connections[c]);
+            for (const c of poly.connections) {
+                disabled.add(c);
             }
         }
     }
@@ -441,8 +436,7 @@ function toggle_checkbox(checkbox) {
     const li = label.parentElement;
     const ul = li.nextElementSibling;
     if (null != ul && null != ul.children) {
-        for (let i in ul.children) {
-            const child = ul.children[i];
+        for (const child of ul.children) {
             if (child.nodeName == 'LI') {
                 const child_checkbox = child.getElementsByTagName('INPUT')[0];
                 child_checkbox.checked = checkbox.checked;
