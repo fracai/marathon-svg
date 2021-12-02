@@ -876,6 +876,8 @@ def generate_svg(map_type, base_name, level_dict, ignore_polys):
         })
     }
 
+    update_overlays(level_info, groups='background-grid')
+
     level_svg = ''
 
     level_svg += generate_grid()
