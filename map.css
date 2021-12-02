@@ -13,9 +13,11 @@ body {
     float:left;
     text-align:left;
     width:25%;
+    height: 100vh;
+    overflow-x: hidden;
+    overflow-y: auto;
 }
 #map_object {
-    align: right;
     max-width: 100vh;
     max-height: 100vh;
     display: flex;
@@ -39,11 +41,17 @@ table.elevation-table td:nth-child(1) {
 table.elevation-table td:nth-child(2) {
     text-align: end;
 }
+div#elevation-settings {
+    float:left;
+    text-align:left;
+    padding: 10pt 0 0 10pt;
+}
 div#elevation-slider {
-    height: 500pt;
-    /* margin-left: 50pt; */
-    margin-right: 60pt;
-    margin-bottom: 10pt;
+    display: flex;
+    flex-direction: row;
+
+    height: 50vh;
+    margin: 10pt 80pt 10pt 0;
     float: right;
 }
 .noUi-vertical .noUi-handle {

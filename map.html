@@ -42,6 +42,7 @@
 
 <button class="collapsible">Elevation:</button>
 <div class="content">
+<div id="elevation-settings">
 <button onclick="set_player_elevation()">Player</button><br />
 <button onclick="set_initial_elevation()">Map</button><br />
 <input type="radio" id="elevation-contained" name="elevation" value="contained" onchange='update_svg_style()' />
@@ -57,6 +58,8 @@
 <tr><td>Floor:</td><td><span class="" id="floor-value"></span></td></tr>
 </table>
 <label><input type="checkbox" id="lock-handles" onclick="update_handle_locks()"/> Lock Range</label>
+<!-- end div: elevation settings -->
+</div>
 <div id="elevation-slider"></div>
 <script>
 create_slider(
