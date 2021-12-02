@@ -990,9 +990,11 @@ def calculate_line_class(line, sides, polygons, platform_map, ignore_polys):
         return 'landscape_'
     if line['flags'] & 0x4000 or not cw_poly or not ccw_poly or 5 == cw_poly['type'] or 5 == ccw_poly['type']:
         return 'solid'
-    if cw_poly['floor_height'] == ccw_poly['floor_height']:
+    if cw_poly['floor_height'] != ccw_poly['floor_height']:
+        return 'elevation'
+    if cw_poly['ceiling_height'] != ccw_poly['ceiling_height']:
         return 'ceiling'
-    return 'elevation'
+    return 'plain'
 
 def is_landscape_line(line, sides):
     return is_landscape_side(line,'cw_side', sides) or is_landscape_side(line,'ccw_side', sides)
