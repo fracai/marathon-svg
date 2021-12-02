@@ -488,8 +488,10 @@ def generate_terminal_lines(level_dict, page_type, css_class_base, map_type, lev
 
     if not line_svg:
         return ''
-    return '<g id="{css_class_base}_lines">\n{content}<!-- end group: "{css_class_base}_lines" -->\n</g>\n'.format(
-        css_class_base=css_class_base,
+    gid = '{}_lines'.format(css_class_base)
+    update_overlays(level_info, classes=['terminal_line'], groups=[gid])
+    return '<g id="{gid}">\n{content}<!-- end group: "{gid}" -->\n</g>\n'.format(
+        gid=gid,
         content=line_svg
     )
 
@@ -622,6 +624,9 @@ def generate_lines(level_dict, platform_map, ignore_polys, level_info):
         css_class = calculate_line_class(line, level_dict['SIDS']['side'], level_dict['POLY']['polygon'], platform_map, ignore_polys)
         if x1 == x2 and y1 == y2:
             css_class = 'pointless'
+        if 'solid' == css_class:
+            update_dimensions(level_info, 'map', x1,y1)
+            update_dimensions(level_info, 'map', x2,y2)
         css_id = 'line_{}'.format(line['index'])
         line_svg = '<line x1="{x1}" y1="{y1}" x2="{x2}" y2="{y2}" id="{css_id}" class="{css_class}" />'.format(
             x1=x1, y1=y1, x2=x2, y2=y2,
