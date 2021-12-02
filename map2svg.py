@@ -269,10 +269,11 @@ def update_dimensions(level_info, dim_type, x, y):
         max(current[3], y)
     )
 
-def update_player_position(level_info, player):
+def update_player_position(level_info, player, polygons):
+    polygon = polygons[player['polygon_index']]
     level_info['player'].append({
         'index': player['index'],
-        'elevation': player['location_z'] / MAX_POS,
+        'elevation': polygon['floor_height'] / MAX_POS,
     })
     level_info['player'] = sorted(level_info['player'], key=operator.itemgetter('index'))
 
@@ -788,7 +789,7 @@ def generate_objects(objects, polygons, ignore_polys, level_info):
             symbol = 'monster'
             css_class = 'player'
             order = 'player'
-            update_player_position(level_info, obj)
+            update_player_position(level_info, obj, polygons)
         if 4 == obj['type']:
             symbol = 'goal'
             css_class = 'goal'
@@ -981,6 +982,8 @@ def calculate_line_class(line, sides, polygons, platform_map, ignore_polys):
     ccw_poly = polygons[ccw_poly_ref] if ccw_poly_ref >= 0 else None
     if (not cw_poly or is_ignored_poly(cw_poly, ignore_polys)) and (not ccw_poly or is_ignored_poly(ccw_poly, ignore_polys)):
         return 'ignore'
+    if (cw_poly and cw_poly['index'] in platform_map) or (ccw_poly and ccw_poly['index'] in platform_map):
+        return 'solid'
     if line['cw_side'] < 0 and line['ccw_side'] < 0:
         return 'plain'
     if is_landscape_line(line, sides):
@@ -989,8 +992,6 @@ def calculate_line_class(line, sides, polygons, platform_map, ignore_polys):
         return 'solid'
     if cw_poly['floor_height'] == ccw_poly['floor_height']:
         return 'ceiling'
-    if (cw_poly and cw_poly['index'] in platform_map) or (ccw_poly and ccw_poly['index'] in platform_map):
-        return 'solid'
     return 'elevation'
 
 def is_landscape_line(line, sides):
