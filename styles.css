@@ -1,9 +1,10 @@
-.hidden, .landscape_, .ignore, .pointless { display: none!important; }
+/* .hidden, .landscape_, .ignore, .pointless { display: none!important; } */
 
 polygon.ignore          { color: rgb(   0,  47,   0 ); }
 polygon.plain           { color: rgb(   0,  47,   0 ); }
 polygon.platform        { color: rgb( 117,   0,   0 ); }
-polygon.secret_platform { color: rgb(  47,  47,   0 ); }
+/* polygon.secret_platform { color: rgb(  47,  47,   0 ); } */
+polygon.secret_platform { color: rgb( 117,   0,   0 ); }
 polygon.water           { color: rgb(  14,  37,  63 ); }
 polygon.lava            { color: rgb(  76,  27,   0 ); }
 polygon.sewage          { color: rgb(  70,  90,   0 ); }
@@ -49,9 +50,16 @@ line {
 .grid_major  { stroke: grey; stroke-width: .3; }
 .grid_minor  { stroke: grey; stroke-width: .1; }
 
+line.unconnected   { stroke: rgb(  0, 192,  0 ); stroke-width:  .5; }
+line.plain         { stroke: rgb(  0,   0, 64 ); stroke-width: 1.0; }
+
+line.landscape_ { stroke: rgb(  64,   0,  64 ); stroke-width: .5; }
+line.ignore,
 line.solid     { stroke: rgb( 0, 255, 0 ); stroke-width: 1.0; }
 line.elevation { stroke: rgb( 0, 157, 0 ); stroke-width:  .5; }
-line.plain     { stroke: rgb( 0,  47, 0 ); stroke-width:  .1; display: none!important; }
+
+line.ceiling { stroke: rgb( 0, 102, 0 ); stroke-width:  .5; }
+line.plain   { stroke: rgb( 0, 102, 0 ); stroke-width:  .1; }
 
 line.teleporter_border, 
 line.platform_on_border, 

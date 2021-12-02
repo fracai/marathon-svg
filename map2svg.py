@@ -276,8 +276,8 @@ def update_player_position(level_info, player):
     })
     level_info['player'] = sorted(level_info['player'], key=operator.itemgetter('index'))
 
-def update_overlays(level_info, classes=[], groups=[]):
-    if not classes and not groups:
+def update_overlays(level_info, classes=[], groups=[], selectors=[]):
+    if not classes and not groups and not selectors:
         return
     if groups:
         if not isinstance(groups, set) and not isinstance(groups, list):
@@ -287,6 +287,10 @@ def update_overlays(level_info, classes=[], groups=[]):
         if not isinstance(classes, set) and not isinstance(classes, list):
             classes = [classes]
         level_info['overlays']['classes'].update(classes)
+    if selectors:
+        if not isinstance(selectors, set) and not isinstance(selectors, list):
+            selectors = [selectors]
+        level_info['overlays']['selectors'].update(selectors)
 
 def update_elevations(level_info, floor, ceiling):
     current = level_info['elevation']
@@ -347,6 +351,7 @@ def generate_polygons(level_dict, platform_map, ignore_polys, map_type, level_in
             css_class=css_class,
             extra=extra,
         )
+        update_overlays(level_info, selectors='polygon.{}'.format(css_class))
         update_poly_info(level_info, poly=poly, ids=[css_id])
     poly_svg += '<!-- end group: "polygons" -->\n</g>\n'
     return poly_svg
@@ -606,7 +611,6 @@ def common_generate_lines(css_class_base, side, dest_sides, dest_polys, lights, 
     return line_svg
 
 def generate_lines(level_dict, platform_map, ignore_polys, level_info):
-    lines_svg = '<g id="borders">\n'
     lines = defaultdict(list)
     for line in level_dict['LINS']['line']:
         endpoint1_ref = line['endpoint1']
@@ -634,9 +638,25 @@ def generate_lines(level_dict, platform_map, ignore_polys, level_info):
             update_poly_info(level_info, poly_index=poly, ids=[css_id])
         update_dimensions(level_info, 'lines', x1, y1)
         update_dimensions(level_info, 'lines', x2, y2)
-    for line_type in ['pointless', 'ignore', 'landscape_', 'plain', 'elevation', 'solid']:
+    lines_svg = '<g id="borders">\n'
+    for line_type in [
+        'pointless',
+        'unconnected',
+        'ignore',
+        'landscape_',
+        'plain',
+        'ceiling',
+        'elevation',
+        'solid'
+    ]:
+        if not lines[line_type]:
+            del lines[line_type]
+            continue
+        update_overlays(level_info, groups='border_'+line_type)
+        lines_svg += '<g id="border_{}">\n'.format(line_type)
         for line in lines[line_type]:
             lines_svg += line + '\n'
+        lines_svg += '<!-- end group: "border_{}" -->\n</g>\n'.format(line_type)
         del lines[line_type]
     if 0 < len(lines):
         print ('leftover lines: {}'.format(set(lines.keys())))
@@ -742,7 +762,6 @@ def generate_panels(level_dict, ignore_polys, map_type, level_info):
     return panel_svg
 
 def generate_objects(objects, polygons, ignore_polys, level_info):
-    object_svg = '<g id="objects">\n'
     entries = defaultdict(list)
     for obj in objects:
         symbol = None
@@ -802,9 +821,15 @@ def generate_objects(objects, polygons, ignore_polys, level_info):
         update_dimensions(level_info, 'items', cx, cy)
         update_overlays(level_info, css_class.split(' '))
         entries[order].append(entry)
+    object_svg = '<g id="objects">\n'
     for symbol in ['unknown', 'sound', 'object', 'item', 'monster', 'goal', 'player']:
+        if not entries[symbol]:
+            del entries[symbol]
+            continue
+        object_svg += '<g id="objects_{}">\n'.format(symbol)
         for entry in entries[symbol]:
             object_svg += entry + '\n'
+        object_svg += '<!-- end group: "objects_{}" -->\n</g>\n'.format(symbol)
         del entries[symbol]
     if 0 < len(entries):
         print ('leftover objects: {}'.format(set(entries.keys())))
@@ -837,6 +862,7 @@ def generate_svg(map_type, base_name, level_dict, ignore_polys):
         'overlays': {
             'ids': set(),
             'classes': set(),
+            'selectors': set(),
         },
         'polygons': defaultdict(lambda: {
             'floor_height': None,
@@ -940,22 +966,22 @@ def calculate_poly_class(poly, platform_map, ignore_polys, liquids, map_type):
     return 'plain'
 
 def calculate_line_class(line, sides, polygons, platform_map, ignore_polys):
-    if line['cw_side'] < 0 and line['ccw_side'] < 0:
-        return 'ignore'
     if line['cw_poly'] < 0 and line['ccw_poly'] < 0:
-        return 'ignore'
+        return 'unconnected'
     cw_poly_ref = line['cw_poly']
     ccw_poly_ref = line['ccw_poly']
     cw_poly = polygons[cw_poly_ref] if cw_poly_ref >= 0 else None
     ccw_poly = polygons[ccw_poly_ref] if ccw_poly_ref >= 0 else None
     if (not cw_poly or is_ignored_poly(cw_poly, ignore_polys)) and (not ccw_poly or is_ignored_poly(ccw_poly, ignore_polys)):
         return 'ignore'
+    if line['cw_side'] < 0 and line['ccw_side'] < 0:
+        return 'plain'
     if is_landscape_line(line, sides):
         return 'landscape_'
     if line['flags'] & 0x4000 or not cw_poly or not ccw_poly or 5 == cw_poly['type'] or 5 == ccw_poly['type']:
         return 'solid'
     if cw_poly['floor_height'] == ccw_poly['floor_height']:
-        return 'plain'
+        return 'ceiling'
     if (cw_poly and cw_poly['index'] in platform_map) or (ccw_poly and ccw_poly['index'] in platform_map):
         return 'solid'
     return 'elevation'
@@ -968,8 +994,14 @@ def is_landscape_side(line, side_type, sides):
         return False
     return 9 == sides[line[side_type]]['primary_transfer']
 
+def is_landscape_floor(poly):
+    return 9 == poly['floor_transfer_mode']
+
+def is_landscape_ceiling(poly):
+    return 9 == poly['ceiling_transfer_mode']
+
 def is_landscape_poly(poly):
-    return 9 == poly['floor_transfer_mode'] and 9 == poly['ceiling_transfer_mode']
+    return is_landscape_floor(poly) and is_landscape_ceiling(poly)
 
 def is_unseen_poly(poly):
     return poly['type'] != 5 and poly['floor_height'] == poly['ceiling_height']
