@@ -10,7 +10,7 @@ body {
     background: black;
     color: #0f0;
     text-align: center;
-    font-family: ProFontIIx, ProFont, Menlo, Monaco, monospace;
+    font-family: Verdana, monospace;
     font-size: 10pt;
 }
 
@@ -27,6 +27,17 @@ body {
     max-height: 100vh;
     display: flex;
     flex-direction: row;
+}
+
+#controls {
+  scrollbar-color: #555 #333;
+  scrollbar-width: thin;
+}
+#controls::-webkit-scrollbar {
+    background: #333;
+}
+#controls::-webkit-scrollbar-thumb {
+    background: #555;
 }
 
 select {
