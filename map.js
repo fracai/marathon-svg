@@ -393,10 +393,9 @@ function process_polygons() {
 }
 function update_svg_style() {
     let svg_obj = document.getElementById('map_object');
-    if (null == svg_obj) {
-        return;
-    }
+    if (null == svg_obj) {return;}
     let svg_doc = svg_obj.contentDocument;
+    if (null == svg_doc) {return;}
     let old_style = svg_doc.getElementById('dynamic-style');
     let new_style = generate_dynamic_style();
     if (null == old_style || null == new_style) {
@@ -454,7 +453,9 @@ function zoom(level) {
         viewBox = '-1 -1 2 2';
     }
     let svg_obj = document.getElementById('map_object');
+    if (null == svg_obj) {return;}
     let svg_doc = svg_obj.contentDocument;
+    if (null == svg_doc) {return;}
     let svg_con = svg_doc.getElementsByTagName('svg')[0];
     gsap.to(svg_con, {
         duration: 1,
