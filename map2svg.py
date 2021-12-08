@@ -374,7 +374,7 @@ def generate_trigger_lines(level_dict, poly_type, css_class_base, level_info):
             poly_ids = {poly['permutation']}
         if poly_type in [7,9]:
             # exclude any platform triggers that don't point to platforms
-            poly_ids = [p['index'] for p in [level_dict['POLY']['polygon'][poly['permutation']]] if p['index'] in platform_polys]
+            poly_ids = [p['index'] for p in [level_dict['POLY']['polygon'][poly['permutation']]] if p['index'] in platform_polys or p['type'] == 5]
         if poly_type in [6,8]:
             # light triggers reference lights which might be used by multiple polygons
             light_ids = {poly['permutation']}
@@ -509,6 +509,11 @@ def common_generate_lines(css_class_base, source, poly_ids, light_ids, tag_ids, 
         # lines to the polys
         if 'p{}'.format(dest_poly['index']) == source_id:
             continue
+        dcx=dest_poly['center_x'] / MAX_POS
+        dcy=dest_poly['center_y'] / MAX_POS
+        if pcx == dcx and pcy == dcy:
+#             print ('skipping 0 length line')
+            continue
         gid = 'panel_{}_line_group_poly_{}_p{}'.format(css_class_base, source_id, dest_poly['index'])
         group_class = 'panel_line panel_line-{css_class_base} panel_line_poly-{css_class_base}'.format(
             css_class_base=css_class_base
@@ -519,8 +524,6 @@ def common_generate_lines(css_class_base, source, poly_ids, light_ids, tag_ids, 
         line_svg += '<g id="{g_id}">\n'.format(
             g_id=gid
         )
-        dcx=dest_poly['center_x'] / MAX_POS
-        dcy=dest_poly['center_y'] / MAX_POS
         rotation = math.atan2(dcy-pcy, dcx-pcx) * 180 / math.pi
         transform = 'transform="rotate({rotation} {cx} {cy})" '.format(
             rotation=rotation,
@@ -552,6 +555,16 @@ def common_generate_lines(css_class_base, source, poly_ids, light_ids, tag_ids, 
         # lines to the sides
         if 's{}'.format(dest_side['index']) == source_id:
             continue
+        dest_line = level_dict['LINS']['line'][dest_side['line']]
+        x1 = level_dict['EPNT']['endpoint'][dest_line['endpoint1']]['x']
+        y1 = level_dict['EPNT']['endpoint'][dest_line['endpoint1']]['y']
+        x2 = level_dict['EPNT']['endpoint'][dest_line['endpoint2']]['x']
+        y2 = level_dict['EPNT']['endpoint'][dest_line['endpoint2']]['y']
+        dcx = (x1 + x2) / 2 / MAX_POS
+        dcy = (y1 + y2) / 2 / MAX_POS
+        if pcx == dcx and pcy == dcy:
+#             print ('skipping 0 length line')
+            continue
         gid = 'panel_{}_line_group_side_{}_s{}'.format(css_class_base, source_id, dest_side['index'])
         group_class = 'panel_line panel_line-{css_class_base} panel_line_side-{css_class_base}'.format(
             css_class_base=css_class_base
@@ -570,13 +583,6 @@ def common_generate_lines(css_class_base, source, poly_ids, light_ids, tag_ids, 
             g_id=gid,
             g_class=group_class
         )
-        dest_line = level_dict['LINS']['line'][dest_side['line']]
-        x1 = level_dict['EPNT']['endpoint'][dest_line['endpoint1']]['x']
-        y1 = level_dict['EPNT']['endpoint'][dest_line['endpoint1']]['y']
-        x2 = level_dict['EPNT']['endpoint'][dest_line['endpoint2']]['x']
-        y2 = level_dict['EPNT']['endpoint'][dest_line['endpoint2']]['y']
-        dcx = (x1 + x2) / 2 / MAX_POS
-        dcy = (y1 + y2) / 2 / MAX_POS
         rotation = math.atan2(dcy-pcy, dcx-pcx) * 180 / math.pi
         transform = 'transform="rotate({rotation} {cx} {cy})" '.format(
             rotation=rotation,
