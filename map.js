@@ -322,7 +322,6 @@ function iterate_level(increment) {
     let new_index = value;
     do {
         new_index = (new_index + increment + levels_json.levels.length) % levels_json.levels.length;
-        console.log(dropdown.options[new_index]);
     } while (dropdown.options[new_index].disabled);
     dropdown.value = ''+new_index;
     const level_info = levels_json.levels[new_index].base_name
