@@ -359,59 +359,26 @@ def generate_polygons(level_dict, platform_map, ignore_polys, map_type, level_in
 
 def generate_trigger_lines(level_dict, poly_type, css_class_base, level_info):
     line_svg = ''
+    platform_polys = []
+    if 0 < len(level_dict['PLAT']):
+        platform_polys = map(lambda p: p['polygon_index'], level_dict['PLAT']['platform'])
+    if 0 < len(level_dict['plat']):
+        platform_polys = map(lambda p: p['polygon_index'], level_dict['plat']['platform'])
     for poly in level_dict['POLY']['polygon']:
         if poly['type'] != poly_type:
             continue
-        dest_polys = [level_dict['POLY']['polygon'][poly['permutation']]]
+        tag_ids = set()
+        poly_ids = set()
+        light_ids = set()
+        if poly_type == 10:
+            poly_ids = {poly['permutation']}
+        if poly_type in [7,9]:
+            # exclude any platform triggers that don't point to platforms
+            poly_ids = [p['index'] for p in [level_dict['POLY']['polygon'][poly['permutation']]] if p['index'] in platform_polys]
         if poly_type in [6,8]:
             # light triggers reference lights which might be used by multiple polygons
-            dest_polys =  [p for p in level_dict['POLY']['polygon'] if p['floor_lightsource_index'] == poly['permutation'] or p['ceiling_lightsource_index'] == poly['permutation']]
-        for dest_poly in dest_polys:
-            gid = 'poly_{}_line_group_p{}_p{}'.format(css_class_base, poly['index'], poly['permutation'])
-            # link the source and destination polygons to the trigger line
-            gids = [gid]
-            line_svg += '<g id="{g_id}">\n'.format(
-                g_id=gid
-            )
-            x1=poly['center_x'] / MAX_POS
-            y1=poly['center_y'] / MAX_POS
-            x2=dest_poly['center_x'] / MAX_POS
-            y2=dest_poly['center_y'] / MAX_POS
-            rotation = math.atan2(y2-y1, x2-x1) * 180 / math.pi
-            transform = 'transform="rotate({rotation} {cx} {cy})" '.format(
-                rotation=rotation,
-                cx=x2,
-                cy=y2,
-            )
-            css_id = 'poly_{}_border_p{}_p{}'.format(css_class_base, poly['index'], poly['permutation'])
-            gids.append(css_id)
-            line_svg += '<line x1="{x1}" y1="{y1}" x2="{x2}" y2="{y2}" id="{css_id}" class="{css_class}" />\n'.format(
-                x1=x1, y1=y1, x2=x2, y2=y2,
-                css_id=css_id,
-                css_class='{}_border'.format(css_class_base)
-            )
-            css_id = 'poly_{}_head_p{}_p{}'.format(css_class_base, poly['index'], poly['permutation'])
-            gids.append(css_id)
-            line_svg += '<use xlink:href="../common.svg#{symbol}" x="{cx}" y="{cy}" id="{css_id}" class="{css_class}" {transform}/>\n'.format(
-                symbol='arrow',
-                cx=x2,
-                cy=y2,
-                transform=transform,
-                css_id=css_id,
-                css_class='{}_line'.format(css_class_base),
-            )
-            css_id = 'poly_{}_line_p{}_p{}'.format(css_class_base, poly['index'], poly['permutation'])
-            gids.append(css_id)
-            line_svg += '<line x1="{x1}" y1="{y1}" x2="{x2}" y2="{y2}" id="{css_id}" class="{css_class}" />\n'.format(
-                x1=x1, y1=y1, x2=x2, y2=y2,
-                css_id=css_id,
-                css_class='{}_line'.format(css_class_base)
-            )
-            line_svg += '<!-- end group: "{g_id}" -->\n</g>\n'.format(
-                g_id=gid
-            )
-            update_poly_info(level_info, poly=poly, ids=gids)
-            update_poly_info(level_info, poly=dest_poly, ids=gids)
+            light_ids = {poly['permutation']}
+        line_svg += common_generate_lines(css_class_base, poly, poly_ids, light_ids, tag_ids, level_dict, level_info)
     if not line_svg:
         return ''
     gid = 'poly_{}_lines'.format(css_class_base)
@@ -429,22 +396,19 @@ def generate_panel_lines(level_dict, css_class_base, platform_map, map_type, lev
         panel_type = panel_to_switch(map_type, side['panel_type'])
         if not panel_type or panel_type != css_class_base:
             continue
-        lights = None
-        dest_polys = []
-        dest_sides = []
+        tag_ids = set()
+        poly_ids = set()
+        light_ids = set()
         if 'platform_switch' == panel_type:
-            dest_polys = [level_dict['POLY']['polygon'][side['panel_permutation']]]
+            poly_ids = {side['panel_permutation']}
         if 'light_switch' == panel_type:
             # light triggers reference lights which might be used by multiple polygons
-            # single light
-            lights = [side['panel_permutation']]
-            dest_polys = [p for p in level_dict['POLY']['polygon'] if any(map(lambda l: p[l] in lights, ['floor_lightsource_index', 'ceiling_lightsource_index']))]
+            light_ids = {side['panel_permutation']}
         if 'tag_switch' == panel_type:
             # tag triggers reference tags which might be used by multiple polygons and lights
-            dest_polys = [level_dict['POLY']['polygon'][p['polygon_index']] for p in platform_map.values() if p['tag'] == side['panel_permutation']]
-            lights = [l for l in level_dict['LITE']['light'] if 'tag' in l and l['tag'] == side['panel_permutation']]
+            tag_ids = {side['panel_permutation']}
         # common lines
-        line_svg += common_generate_lines(css_class_base, side, dest_sides, dest_polys, lights, level_dict, level_info)
+        line_svg += common_generate_lines(css_class_base, side, poly_ids, light_ids, tag_ids, level_dict, level_info)
     if not line_svg:
         return ''
     gid = 'panel_{}_lines'.format(css_class_base)
@@ -471,21 +435,16 @@ def generate_terminal_lines(level_dict, page_type, css_class_base, map_type, lev
         terminal_id = side['panel_permutation']
         if terminal_id not in terminal_destination_map:
             continue
-        dest_polys = []
-        dest_sides = []
-        lights = []
+        tag_ids = set()
+        poly_ids = set()
         if 7 == page_type:
             # teleport
-            dest_polys = [terminal_destination_map[terminal_id]]
-            dest_polys = map(lambda p: level_dict['POLY']['polygon'][p], dest_polys)
+            poly_ids = {terminal_destination_map[terminal_id]}
         if 16 == page_type:
             # tag control: reference tags which might be used by multiple polygons and lights
-            target_tag = [terminal_destination_map[terminal_id]]
-            dest_polys = [level_dict['POLY']['polygon'][p['polygon_index']] for p in platform_map.values() if p['tag'] == target_tag]
-            lights = [l for l in level_dict['LITE']['light'] if 'tag' in l and l['tag'] == target_tag]
-
+            tag_ids = {terminal_destination_map[terminal_id]}
         # common lines
-        line_svg += common_generate_lines(css_class_base, side, dest_sides, dest_polys, lights, level_dict, level_info)
+        line_svg += common_generate_lines(css_class_base, side, poly_ids, set(), tag_ids, level_dict, level_info)
 
     if not line_svg:
         return ''
@@ -496,27 +455,61 @@ def generate_terminal_lines(level_dict, page_type, css_class_base, map_type, lev
         content=line_svg
     )
 
-def common_generate_lines(css_class_base, side, dest_sides, dest_polys, lights, level_dict, level_info):
+def common_build_destinations(polygons, lights, tags, level_dict):
+    tag_ids = set(tags)
+    poly_ids = set(polygons)
+    light_ids = set(lights)
+    side_ids = set()
+    media_ids = set()
+    platform_ids = set()
+    for tag_id in tag_ids:
+        light_ids.update([l['index'] for l in level_dict['LITE']['light'] if l['tag'] == tag_id])
+        if 0 < len(level_dict['PLAT']):
+            platform_ids.update([p['index'] for p in level_dict['PLAT']['platform'] if p['tag'] == tag_id])
+        if 0 < len(level_dict['plat']):
+            platform_ids.update([p['index'] for p in level_dict['plat']['platform'] if p['tag'] == tag_id])
+    for platform_id in platform_ids:
+        if 0 < len(level_dict['PLAT']):
+            poly_ids.update([level_dict['PLAT']['platform'][platform_id]['polygon_index']])
+        if 0 < len(level_dict['plat']):
+            poly_ids.update([level_dict['plat']['platform'][platform_id]['polygon_index']])
+    for light_id in light_ids:
+        poly_ids.update([p['index'] for p in level_dict['POLY']['polygon'] if any(map(lambda l: p[l] == light_id, ['floor_lightsource_index', 'ceiling_lightsource_index', 'media_lightsource_index']))])
+        side_ids.update([s['index'] for s in level_dict['SIDS']['side'] if any(map(lambda l: s[l] == light_id, ['primary_light', 'secondary_light', 'transparent_light']))])
+        media_ids.update([m['index'] for m in level_dict['medi']['media'] if m['light_index'] == light_id])
+    for media_id in media_ids:
+        poly_ids.update([p['index'] for p in level_dict['POLY']['polygon'] if p['media_index'] == media_id])
+    dest_polys = [p for p in level_dict['POLY']['polygon'] if p['index'] in poly_ids]
+    dest_sides = [s for s in level_dict['SIDS']['side'] if s['index'] in side_ids]
+    return dest_polys, dest_sides
+
+def common_generate_lines(css_class_base, source, poly_ids, light_ids, tag_ids, level_dict, level_info):
+    (dest_polys, dest_sides) = common_build_destinations(poly_ids, light_ids, tag_ids, level_dict)
     line_svg = ''
-    line = level_dict['LINS']['line'][side['line']]
-    px1 = level_dict['EPNT']['endpoint'][line['endpoint1']]['x']
-    py1 = level_dict['EPNT']['endpoint'][line['endpoint1']]['y']
-    px2 = level_dict['EPNT']['endpoint'][line['endpoint2']]['x']
-    py2 = level_dict['EPNT']['endpoint'][line['endpoint2']]['y']
-    pcx = (px1 + px2) / 2 / MAX_POS
-    pcy = (py1 + py2) / 2 / MAX_POS
-
-    source_polys = filter(
-        lambda i: i >= 0,
-        map(
-            lambda s: line[s],
-            ['cw_poly', 'ccw_poly']))
-
-    if lights:
-        dest_sides = [s for s in level_dict['SIDS']['side'] if any(map(lambda l: s[l] in lights, ['primary_light', 'secondary_light', 'transparent_light']))]
+    if 'vertex_count' in source:
+        source_id = 'p{}'.format(source['index'])
+        pcx = source['center_x'] / MAX_POS
+        pcy = source['center_y'] / MAX_POS
+        source_polys = [source['index']]
+    if 'line' in source:
+        source_id = 's{}'.format(source['index'])
+        line = level_dict['LINS']['line'][source['line']]
+        px1 = level_dict['EPNT']['endpoint'][line['endpoint1']]['x']
+        py1 = level_dict['EPNT']['endpoint'][line['endpoint1']]['y']
+        px2 = level_dict['EPNT']['endpoint'][line['endpoint2']]['x']
+        py2 = level_dict['EPNT']['endpoint'][line['endpoint2']]['y']
+        pcx = (px1 + px2) / 2 / MAX_POS
+        pcy = (py1 + py2) / 2 / MAX_POS
+        source_polys = filter(
+            lambda i: i >= 0,
+            map(
+                lambda s: line[s],
+                ['cw_poly', 'ccw_poly']))
     for dest_poly in dest_polys:
         # lines to the polys
-        gid = 'panel_{}_line_group_poly_s{}_p{}'.format(css_class_base, side['index'], dest_poly['index'])
+        if 'p{}'.format(dest_poly['index']) == source_id:
+            continue
+        gid = 'panel_{}_line_group_poly_{}_p{}'.format(css_class_base, source_id, dest_poly['index'])
         group_class = 'panel_line panel_line-{css_class_base} panel_line_poly-{css_class_base}'.format(
             css_class_base=css_class_base
         )
@@ -536,7 +529,7 @@ def common_generate_lines(css_class_base, side, dest_sides, dest_polys, lights, 
         )
         line_svg += '<line x1="{x1}" y1="{y1}" x2="{x2}" y2="{y2}" id="{css_id}" class="{css_class}" />\n'.format(
             x1=pcx, y1=pcy, x2=dcx, y2=dcy,
-            css_id='panel_{}_border_s{}_p{}'.format(css_class_base, side['index'], dest_poly['index']),
+            css_id='panel_{}_border_{}_p{}'.format(css_class_base, source_id, dest_poly['index']),
             css_class='{}_border'.format(css_class_base)
         )
         line_svg += '<use xlink:href="../common.svg#{symbol}" x="{cx}" y="{cy}" id="{css_id}" class="{css_class}" {transform}/>\n'.format(
@@ -544,12 +537,12 @@ def common_generate_lines(css_class_base, side, dest_sides, dest_polys, lights, 
             cx=dcx,
             cy=dcy,
             transform=transform,
-            css_id='panel_{}_head_s{}_p{}'.format(css_class_base, side['index'], dest_poly['index']),
+            css_id='panel_{}_head_{}_p{}'.format(css_class_base, source_id, dest_poly['index']),
             css_class='{}_line'.format(css_class_base),
         )
         line_svg += '<line x1="{x1}" y1="{y1}" x2="{x2}" y2="{y2}" id="{css_id}" class="{css_class}" />\n'.format(
             x1=pcx, y1=pcy, x2=dcx, y2=dcy,
-            css_id='panel_{}_line_{}_{}'.format(css_class_base, side['index'], dest_poly['index']),
+            css_id='panel_{}_line_{}_p{}'.format(css_class_base, source_id, dest_poly['index']),
             css_class='{}_line'.format(css_class_base)
         )
         line_svg += '<!-- end group: "{g_id}" -->\n</g>\n'.format(
@@ -557,9 +550,9 @@ def common_generate_lines(css_class_base, side, dest_sides, dest_polys, lights, 
         )
     for dest_side in dest_sides:
         # lines to the sides
-        if dest_side['index'] == side['index']:
+        if 's{}'.format(dest_side['index']) == source_id:
             continue
-        gid = 'panel_{}_line_group_side_s{}_s{}'.format(css_class_base, side['index'], dest_side['index'])
+        gid = 'panel_{}_line_group_side_{}_s{}'.format(css_class_base, source_id, dest_side['index'])
         group_class = 'panel_line panel_line-{css_class_base} panel_line_side-{css_class_base}'.format(
             css_class_base=css_class_base
         )
@@ -592,7 +585,7 @@ def common_generate_lines(css_class_base, side, dest_sides, dest_polys, lights, 
         )
         line_svg += '<line x1="{x1}" y1="{y1}" x2="{x2}" y2="{y2}" id="{css_id}" class="{css_class}" />\n'.format(
             x1=pcx, y1=pcy, x2=dcx, y2=dcy,
-            css_id='panel_{}_border_s{}_s{}'.format(css_class_base, side['index'], dest_side['index']),
+            css_id='panel_{}_border_{}_s{}'.format(css_class_base, source_id, dest_side['index']),
             css_class='{}_border'.format(css_class_base)
         )
         line_svg += '<use xlink:href="../common.svg#{symbol}" x="{cx}" y="{cy}" id="{css_id}" class="{css_class}" {transform}/>\n'.format(
@@ -600,12 +593,12 @@ def common_generate_lines(css_class_base, side, dest_sides, dest_polys, lights, 
             cx=dcx,
             cy=dcy,
             transform=transform,
-            css_id='panel_{}_head_s{}_s{}'.format(css_class_base, side['index'], dest_side['index']),
+            css_id='panel_{}_head_{}_s{}'.format(css_class_base, source_id, dest_side['index']),
             css_class='{}_line'.format(css_class_base),
         )
         line_svg += '<line x1="{x1}" y1="{y1}" x2="{x2}" y2="{y2}" id="{css_id}" class="{css_class}" />\n'.format(
             x1=pcx, y1=pcy, x2=dcx, y2=dcy,
-            css_id='panel_{}_line_s{}_s{}'.format(css_class_base, side['index'], dest_side['index']),
+            css_id='panel_{}_line_{}_s{}'.format(css_class_base, source_id, dest_side['index']),
             css_class='{}_line'.format(css_class_base)
         )
         line_svg += '<!-- end group: "{g_id}" -->\n</g>\n'.format(
