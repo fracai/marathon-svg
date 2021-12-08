@@ -40,6 +40,15 @@ body {
     background: #555;
 }
 
+.reload_level,
+.next_level,
+.previous_level {
+    color: #0f0;
+    font-weight: bold;
+    font-size: 12pt;
+    text-decoration: none;
+}
+
 select {
     max-width: 150pt;
 }

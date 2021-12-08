@@ -22,7 +22,11 @@
 <div id="controls">
 <table class="menu-table">
 <tr><td>Map:</td><td><select name="select_map" id="select_map" onchange='map_selection(this);'></select></td></tr>
-<tr><td>Level:</td><td><select name="select_level" id="select_level" onchange='level_selection(this);'></select></td></tr>
+<tr><td>Level:</td><td><select name="select_level" id="select_level" onchange='level_selection(this);'></select>
+<a href="#previous_level" class="previous_level" onclick='previous_level();'> &#x2190;</a>
+<a href="#reload_level" class="reload_level" onclick='reload_level();'> &#x21bb;</a>
+<a href="#next_level" class="next_level" onclick='next_level();'> &#x2192;</a>
+</td></tr>
 </table>
 <br />
 

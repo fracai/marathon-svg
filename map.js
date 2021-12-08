@@ -302,8 +302,35 @@ function map_selection(dropdown) {
 }
 function level_selection(dropdown) {
     var selected_index = dropdown.selectedIndex;
-    var value = dropdown.options[selected_index].value;
-    var level_info = levels_json.levels[value].base_name
+    var value = Number(dropdown.options[selected_index].value);
+    var level_info = levels_json.levels[value].base_name;
+    load_level(level_info);
+}
+function reload_level() {
+    iterate_level(0);
+}
+function previous_level() {
+    iterate_level(-1);
+}
+function next_level() {
+    iterate_level(1);
+}
+function iterate_level(increment) {
+    const dropdown = document.getElementById('select_level');
+    const selected_index = dropdown.selectedIndex;
+    const value = Number(dropdown.options[selected_index].value);
+    let new_index = value;
+    do {
+        new_index = (new_index + increment + levels_json.levels.length) % levels_json.levels.length;
+        console.log(dropdown.options[new_index]);
+    } while (dropdown.options[new_index].disabled);
+    dropdown.value = ''+new_index;
+    const level_info = levels_json.levels[new_index].base_name
+    load_level(level_info);
+}
+function select_level(index, dropdown) {
+    dropdown.value = index;
+    const level_info = levels_json.levels[index].base_name
     load_level(level_info);
 }
 const selectors = {
