@@ -34,7 +34,7 @@ function load_json(path, callback) {
     return load_common(path, callback, r => r.json());
 }
 function load_path(path, callback) {
-    return load_common(path, callback, r => r.body());
+    return load_common(path, callback, r => r.body);
 }
 
 function fill_map_menu(selection) {
