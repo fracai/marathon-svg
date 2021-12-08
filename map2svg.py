@@ -412,7 +412,8 @@ def generate_panel_lines(level_dict, css_class_base, platform_map, map_type, lev
     if not line_svg:
         return ''
     gid = 'panel_{}_lines'.format(css_class_base)
-    update_overlays(level_info, classes=['panel_line'], groups=[gid])
+    # allow switch lines to be handled by level.js
+#     update_overlays(level_info, classes=['panel_line'], groups=[gid])
     return '<g id="{gid}">\n{content}<!-- end group: "{gid}" -->\n</g>\n'.format(
         gid=gid,
         content=line_svg
@@ -449,7 +450,8 @@ def generate_terminal_lines(level_dict, page_type, css_class_base, map_type, lev
     if not line_svg:
         return ''
     gid = '{}_lines'.format(css_class_base)
-    update_overlays(level_info, classes=['terminal_line'], groups=[gid])
+    # allow terminal lines to be handled by level.js
+#     update_overlays(level_info, classes=['terminal_line'], groups=[gid])
     return '<g id="{gid}">\n{content}<!-- end group: "{gid}" -->\n</g>\n'.format(
         gid=gid,
         content=line_svg
@@ -610,7 +612,10 @@ def common_generate_lines(css_class_base, source, poly_ids, light_ids, tag_ids, 
         line_svg += '<!-- end group: "{g_id}" -->\n</g>\n'.format(
             g_id=gid
         )
-    return line_svg
+    if not line_svg:
+        return ''
+    gid = 'panel_{}_lines_{}'.format(css_class_base, source_id)
+    return '<g id="{}">\n'.format(gid) + line_svg + '<!-- end group: "{}" -->\n</g>\n'.format(gid)
 
 def generate_lines(level_dict, platform_map, ignore_polys, level_info):
     lines = defaultdict(list)
@@ -749,11 +754,18 @@ def generate_panels(level_dict, ignore_polys, map_type, level_info):
         y2 = level_dict['EPNT']['endpoint'][line['endpoint2']]['y']
         css_id = 'side_{}'.format(side['index'])
         css_class = 'panel-{}'.format(panel_types[side['panel_type']])
-        panel_svg += '<use xlink:href="../common.svg#panel" x="{cx}" y="{cy}" id="{css_id}" class="{css_class}" />\n'.format(
+        hover = ''
+        if '_switch' in css_class or css_class == 'panel-computer_terminal':
+            hover = 'onmouseover="{mouseover}" onmouseout="{mouseout}" '.format(
+                mouseover="m_over('{}');".format(css_id),
+                mouseout="m_out('{}');".format(css_id),
+            )
+        panel_svg += '<use xlink:href="../common.svg#panel" x="{cx}" y="{cy}" id="{css_id}" class="{css_class}" {hover}/>\n'.format(
             cx = (x1 + x2) / 2 / MAX_POS,
             cy = (y1 + y2) / 2 / MAX_POS,
             css_id=css_id,
             css_class = css_class,
+            hover=hover,
         )
         source_polys = filter(
             lambda i: i >= 0,
@@ -906,7 +918,7 @@ def generate_svg(map_type, base_name, level_dict, ignore_polys):
     # update the level_info dimensions to merge the
     finalize_dimensions(level_info)
 
-    svg_js = ''
+    svg_js = '\n<script xlink:href="../level.js" ></script>\n'
 #     svg_js = '''\
 # <script type="text/javascript" href="_script.js"></script>
 # <text id="tooltip" display="none" fill="red" font-size=".03" style="position: absolute; display: none;"></text>
