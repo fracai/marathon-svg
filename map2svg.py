@@ -15,8 +15,10 @@ import html
 
 IGNORE_RE = re.compile('(?P<level>\d+): (?P<poly>[\d ]+)')
 
-SCALE=1
-MAX_POS=32768/SCALE
+SCALE=1000
+MAX_INT=32768
+MAX_POS=MAX_INT/SCALE
+ONE_WU=MAX_POS/1024
 
 CHUNK_TYPES = [
     'NAME', # map name
@@ -216,7 +218,7 @@ def generate_grid():
     max_dim = SCALE
     width = 2 * max_dim
     height = 2 * max_dim
-    major_step = max_dim * 1 / 32 # 32 WU in each direction
+    major_step = max_dim * 1 / ONE_WU # 32 WU in each direction
     minor_step = major_step / 10 # .1 WU
     return '''<g id="background-grid">
 <defs>
@@ -259,11 +261,16 @@ def finalize_dimensions(level_info):
     merge_dimensions(level_info, 'items', 'lines')
     # round min/max coordinates to the nearest WU, +1
     for k,v in level_info['dimensions'].items():
+        print (k)
         (min_x, min_y, max_x, max_y) = v
-        min_x = max(-1, math.floor(min_x * 32 - 1)/32) * SCALE
-        min_y = max(-1, math.floor(min_y * 32 - 1)/32) * SCALE
-        max_x = min( 1, math.ceil( max_x * 32 + 1)/32) * SCALE
-        max_y = min( 1, math.ceil( max_y * 32 + 1)/32) * SCALE
+        print ((min_x, min_y, max_x, max_y))
+        min_x = max(-SCALE, math.floor(min_x * ONE_WU - 1)/ONE_WU)
+        min_y = max(-SCALE, math.floor(min_y * ONE_WU - 1)/ONE_WU)
+        max_x = min( SCALE, math.ceil( max_x * ONE_WU + 1)/ONE_WU)
+        max_y = min( SCALE, math.ceil( max_y * ONE_WU + 1)/ONE_WU)
+#         print ((min_x, min_y, max_x, max_y))
+#         (min_x, min_y, max_x, max_y) = map(lambda n: n * SCALE, (min_x, min_y, max_x, max_y))
+        print ((min_x, min_y, max_x, max_y))
         level_info['dimensions'][k] = (min_x, min_y, max_x, max_y)
         level_info['viewBox'][k] = ' '.join(map(str, [min_x, min_y, max_x - min_x, max_y - min_y]))
 
@@ -280,7 +287,7 @@ def update_player_position(level_info, player, polygons):
     polygon = polygons[player['polygon_index']]
     level_info['player'].append({
         'index': player['index'],
-        'elevation': polygon['floor_height'] / MAX_POS,
+        'elevation': polygon['floor_height'] / MAX_INT,
     })
     level_info['player'] = sorted(level_info['player'], key=operator.itemgetter('index'))
 
@@ -312,8 +319,8 @@ def update_poly_info(level_info, poly_index=None, poly=None, ids=None):
         raise Exception('cannot update poly info without poly index or polygon')
     poly_info = level_info['polygons'][poly_index]
     if poly is not None:
-        floor = poly['floor_height']/MAX_POS
-        ceiling = poly['ceiling_height']/MAX_POS
+        floor = poly['floor_height']/MAX_INT
+        ceiling = poly['ceiling_height']/MAX_INT
         poly_info['floor_height'] = floor
         poly_info['ceiling_height'] = ceiling
         update_elevations(level_info, floor, ceiling)
@@ -871,11 +878,12 @@ def generate_svg(map_type, base_name, level_dict, ignore_polys):
         platform_map = build_platform_map(level_dict['PLAT'])
 
     level_info = {
+        'scale': SCALE,
         'dimensions': {
             # initial values start at the opposite extremes
-            'map':   [1, 1, -1, -1],
-            'items': [1, 1, -1, -1],
-            'lines': [1, 1, -1, -1],
+            'map':   [SCALE, SCALE, -SCALE, -SCALE],
+            'items': [SCALE, SCALE, -SCALE, -SCALE],
+            'lines': [SCALE, SCALE, -SCALE, -SCALE],
         },
         'elevation': {
             'floor': 1,
