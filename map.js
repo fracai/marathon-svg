@@ -506,7 +506,8 @@ function hover_line(label, id, display) {
 function zoom(level) {
     var viewBox = level_json.viewBox[level];
     if (null == viewBox) {
-        viewBox = '-1 -1 2 2';
+        let scale = level_json.scale;
+        viewBox = [-scale, -scale, scale*2, scale*2].join(' ')
     }
     let svg_obj = document.getElementById('map_object');
     if (null == svg_obj) {return;}

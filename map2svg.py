@@ -218,14 +218,13 @@ def generate_grid():
     max_dim = SCALE
     width = 2 * max_dim
     height = 2 * max_dim
-    major_step = max_dim * 1 / ONE_WU # 32 WU in each direction
+    major_step = max_dim / ONE_WU # 32 WU in each direction
     minor_step = major_step / 10 # .1 WU
     return '''<g id="background-grid">
 <defs>
 <pattern id="grid_minor" width="{minor_step}" height="{minor_step}" patternUnits="userSpaceOnUse">
 <path d="M {minor_step} 0 L 0 0 0 {minor_step}" fill="none" class="grid_minor" />
 </pattern>
-
 <pattern id="grid_major" width="{major_step}" height="{major_step}" patternUnits="userSpaceOnUse">
 <rect width="{major_step}" height="{major_step}" fill="url(#grid_minor)"/>
 <path d="M {major_step} 0 L 0 0 0 {major_step}" fill="none" class="grid_major" />
@@ -261,16 +260,11 @@ def finalize_dimensions(level_info):
     merge_dimensions(level_info, 'items', 'lines')
     # round min/max coordinates to the nearest WU, +1
     for k,v in level_info['dimensions'].items():
-        print (k)
         (min_x, min_y, max_x, max_y) = v
-        print ((min_x, min_y, max_x, max_y))
         min_x = max(-SCALE, math.floor(min_x * ONE_WU - 1)/ONE_WU)
         min_y = max(-SCALE, math.floor(min_y * ONE_WU - 1)/ONE_WU)
         max_x = min( SCALE, math.ceil( max_x * ONE_WU + 1)/ONE_WU)
         max_y = min( SCALE, math.ceil( max_y * ONE_WU + 1)/ONE_WU)
-#         print ((min_x, min_y, max_x, max_y))
-#         (min_x, min_y, max_x, max_y) = map(lambda n: n * SCALE, (min_x, min_y, max_x, max_y))
-        print ((min_x, min_y, max_x, max_y))
         level_info['dimensions'][k] = (min_x, min_y, max_x, max_y)
         level_info['viewBox'][k] = ' '.join(map(str, [min_x, min_y, max_x - min_x, max_y - min_y]))
 

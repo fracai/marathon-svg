@@ -31,7 +31,7 @@ polygon {
 
 text.annotation {
     fill: rgb( 0, 255, 0 );
-    font-size: .001em;
+    font-size: 1em;
     font-family: ProFontIIx, ProFont, Monaco, monospace;
     paint-order: stroke;
     stroke: black;

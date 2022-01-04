@@ -25,63 +25,63 @@
 <!-- hollow, outlined circle -->
 <symbol id='panel' style='overflow: visible;'>
 <!-- outline -->
-<circle r=".012" stroke-width=".004" stroke="black" fill="none" pointer-events="visible" />
+<circle r="12" stroke-width="4" stroke="black" fill="none" pointer-events="visible" />
 <!-- ring color -->
-<circle r=".012" stroke-width=".002" stroke="currentColor" fill="none" />
+<circle r="12" stroke-width="2" stroke="currentColor" fill="none" />
 </symbol>
 
 <!-- center oriented, tall triangle -->
 <symbol id='monster' style='overflow: visible;'>
-<polygon points="-.01,.005 .01,0 -.01,-.005" fill="currentColor" stroke="black" stroke-width=".001" />
+<polygon points="-10,5 10,0 -10,-5" fill="currentColor" stroke="black" stroke-width="1" />
 </symbol>
 
 <!-- tip oriented, tall triangle -->
 <symbol id='arrow' style='overflow: visible;'>
-<polygon points="-.02,.005 0,0 -.02,-.005" fill="currentColor" stroke="black" stroke-width=".001" />
+<polygon points="-20,5 0,0 -20,-5" fill="currentColor" stroke="black" stroke-width="1" />
 </symbol>
 
 <!-- solid, outlined square -->
 <symbol id='object' style='overflow: visible;'>
-<rect width=".005" height=".005" fill="currentColor" stroke="black" stroke-width=".001" />
+<rect width="5" height="5" fill="currentColor" stroke="black" stroke-width="1" />
 </symbol>
 
 <!-- solid, outlined circle -->
 <symbol id='item' style='overflow: visible;'>
 <!-- outline -->
-<circle r=".003" fill="black" />
+<circle r="3" fill="black" />
 <!-- inner color -->
-<circle r=".002" fill="currentColor" />
+<circle r="2" fill="currentColor" />
 </symbol>
 
 <!-- center oriented, downward pointing, equilateral triangle -->
 <symbol id='unknown' style='overflow: visible;'>
-<polygon points="-.005,-.00288675134594813 .005,-.00288675134594813 0,.00866025403784439" fill="currentColor" stroke="black" stroke-width=".001" />
+<polygon points="-5,-2.88675134594813 5,-2.88675134594813 0,8.66025403784439" fill="currentColor" stroke="black" stroke-width="1" />
 </symbol>
 
 <!-- inward facing equilateral triangles, with a center background circle -->
 <symbol id='sound' style='overflow: visible;'>
-<circle r=".006" fill="black" />
-<circle r=".005" fill="currentColor" />
-<polygon points=".011547005383793,-.005 .011547005383793,.005 0,0" fill="currentColor" stroke="black" stroke-width=".001" />
-<polygon points="-.011547005383793,-.005 -.011547005383793,.005 0,0" fill="currentColor" stroke="black" stroke-width=".001" />
+<circle r="6" fill="black" />
+<circle r="5" fill="currentColor" />
+<polygon points="11.547005383793,-5 11.547005383793,5 0,0" fill="currentColor" stroke="black" stroke-width="1" />
+<polygon points="-11.547005383793,-5 -11.547005383793,5 0,0" fill="currentColor" stroke="black" stroke-width="1" />
 </symbol>
 
 <!-- center oriented, right pointing, equilateral triangle -->
 <symbol id='center_right_triangle' style='overflow: visible;'>
-<polygon points="-.00288675134594813,.005 -.00288675134594813,-.005 .00866025403784439,0" fill="currentColor" stroke="black" stroke-width=".001" />
+<polygon points="-2.88675134594813,5 -2.88675134594813,-5 8.66025403784439,0" fill="currentColor" stroke="black" stroke-width="1" />
 </symbol>
 
 <!-- center oriented, downward pointing, equilateral triangle -->
 <symbol id='center_down_triangle' style='overflow: visible;'>
-<polygon points=".005,.00288675134594813 -.005,.00288675134594813 0,.00866025403784439" fill="currentColor" stroke="black" stroke-width=".001" />
+<polygon points="5,2.88675134594813 -5,2.88675134594813 0,8.66025403784439" fill="currentColor" stroke="black" stroke-width="1" />
 </symbol>
 
 <!-- hollow, outlined star -->
 <symbol id='goal' style='overflow: visible;'>
 <!-- outline -->
-<polygon points=".000,-.0085 -.006,.0085 .009,-.0035 -.009,-.0035 .006,.0085" fill="none" stroke="black" stroke-width=".003" pointer-events="visible" />
+<polygon points="0,-8.5 -6,8.5 9,-3.5 -9,-3.5 6,8.5" fill="none" stroke="black" stroke-width="3" pointer-events="visible" />
 <!-- inner color -->
-<polygon points=".000,-.0085 -.006,.0085 .009,-.0035 -.009,-.0035 .006,.0085" fill="none" stroke="currentColor" stroke-width=".001" />
+<polygon points="0,-8.5 -6,8.5 9,-3.5 -9,-3.5 6,8.5" fill="none" stroke="currentColor" stroke-width="1" />
 </symbol>
 
 </svg>
