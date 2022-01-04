@@ -15,7 +15,8 @@ import html
 
 IGNORE_RE = re.compile('(?P<level>\d+): (?P<poly>[\d ]+)')
 
-MAX_POS=32768
+SCALE=1
+MAX_POS=32768/SCALE
 
 CHUNK_TYPES = [
     'NAME', # map name
@@ -212,7 +213,10 @@ def build_platform_map(platforms):
     return plat_map
 
 def generate_grid():
-    major_step = 1 / 32 # 32 WU in each direction
+    max_dim = SCALE
+    width = 2 * max_dim
+    height = 2 * max_dim
+    major_step = max_dim * 1 / 32 # 32 WU in each direction
     minor_step = major_step / 10 # .1 WU
     return '''<g id="background-grid">
 <defs>
@@ -225,12 +229,15 @@ def generate_grid():
 <path d="M {major_step} 0 L 0 0 0 {major_step}" fill="none" class="grid_major" />
 </pattern>
 </defs>
-<rect x="-1" y="-1" width="2" height="2" fill="url(#grid_major)" />
-<line x1="0" y1="1" x2="0" y2="-1" class="grid_origin" />
-<line x1="1" y1="0" x2="-1" y2="0" class="grid_origin" />
+<rect x="-{max_dim}" y="-{max_dim}" width="{width}" height="{height}" fill="url(#grid_major)" />
+<line x1="0" y1="{max_dim}" x2="0" y2="-{max_dim}" class="grid_origin" />
+<line x1="{max_dim}" y1="0" x2="-{max_dim}" y2="0" class="grid_origin" />
 <!-- end group: "background-grid" -->
 </g>
 '''.format(
+        max_dim = max_dim,
+        width = width,
+        height = height,
         major_step = major_step,
         minor_step = minor_step,
     )
@@ -253,10 +260,10 @@ def finalize_dimensions(level_info):
     # round min/max coordinates to the nearest WU, +1
     for k,v in level_info['dimensions'].items():
         (min_x, min_y, max_x, max_y) = v
-        min_x = max(-1, math.floor(min_x * 32 - 1)/32)
-        min_y = max(-1, math.floor(min_y * 32 - 1)/32)
-        max_x = min( 1, math.ceil( max_x * 32 + 1)/32)
-        max_y = min( 1, math.ceil( max_y * 32 + 1)/32)
+        min_x = max(-1, math.floor(min_x * 32 - 1)/32) * SCALE
+        min_y = max(-1, math.floor(min_y * 32 - 1)/32) * SCALE
+        max_x = min( 1, math.ceil( max_x * 32 + 1)/32) * SCALE
+        max_y = min( 1, math.ceil( max_y * 32 + 1)/32) * SCALE
         level_info['dimensions'][k] = (min_x, min_y, max_x, max_y)
         level_info['viewBox'][k] = ' '.join(map(str, [min_x, min_y, max_x - min_x, max_y - min_y]))
 
