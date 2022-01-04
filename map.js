@@ -147,13 +147,19 @@ function process_overlay_types(types) {
             display = type.selector;
         }
         let checkbox_string = null;
-        let group_string = `<li><label><input type="checkbox" onclick="toggle_checkbox(this)" class="overlay" /> ${display}</label></li>\n`;
+        let group_string = `<li><label><input type="checkbox" onchange="toggle_checkbox(this)" class="overlay" /> ${display}</label></li>\n`;
+        let hover = ` onmouseover="hover_line(this, null, 'block')" onmouseout="hover_line(this, null, 'none')"`;
         if (level_json.overlays.classes.includes(type.class)) {
-            checkbox_string = `<li><label><input type="checkbox" id="class_${type.class}" onclick="toggle_checkbox(this)" class="overlay" /> ${display}</label></li>\n`;
+            if (type.class.endsWith('-computer_terminal')) {
+                hover = ` onmouseover="hover_line(this, 'panel-terminal_teleport', 'block')" onmouseout="hover_line(this, 'panel-terminal_teleport', 'none')"`;
+            } else if (type.class.endsWith('_switch')) {
+                hover = ` onmouseover="hover_line(this, '${type.class}', 'block')" onmouseout="hover_line(this, '${type.class}', 'none')"`;
+            }
+            checkbox_string = `<li><label${hover}><input type="checkbox" id="class_${type.class}" class="overlay" onchange="toggle_checkbox(this)" /> ${display}</label></li>\n`;
         } else if (level_json.overlays.ids.includes(type.id)) {
-            checkbox_string = `<li><label><input type="checkbox" id="id_${type.id}" onclick="toggle_checkbox(this)" class="overlay" /> ${display}</label></li>\n`;
+            checkbox_string = `<li><label${hover}><input type="checkbox" id="id_${type.id}" class="overlay" onchange="toggle_checkbox(this)" /> ${display}</label></li>\n`;
         } else if (level_json.overlays.selectors.includes(type.selector)) {
-            checkbox_string = `<li><label><input type="checkbox" id="selector_${type.selector}" onclick="toggle_checkbox(this)" class="overlay" /> ${display}</label></li>\n`;
+            checkbox_string = `<li><label${hover}><input type="checkbox" id="selector_${type.selector}" class="overlay" onchange="toggle_checkbox(this)" /> ${display}</label></li>\n`;
         } else {
             // debug
 //             checkbox_string = `<li><label>${display}</label></li>\n`;
@@ -453,7 +459,6 @@ function svg_loaded() {
     update_svg_style();
 }
 function toggle_checkbox(checkbox) {
-//     console.log(checkbox.id);
 //     if (checkbox.readOnly) checkbox.checked=checkbox.readOnly=false;
 //     else if (!checkbox.checked) checkbox.readOnly=checkbox.indeterminate=true;
     // checked = false,true
@@ -462,6 +467,7 @@ function toggle_checkbox(checkbox) {
     const label = checkbox.parentElement;
     const li = label.parentElement;
     const ul = li.nextElementSibling;
+//     console.log("toggle: "+checkbox.id + " = " + checkbox.checked);
     if (null != ul && null != ul.children) {
         for (const child of ul.children) {
             if (child.nodeName == 'LI') {
@@ -472,6 +478,30 @@ function toggle_checkbox(checkbox) {
         }
     }
     update_svg_style();
+}
+function hover_line(label, id, display) {
+    let svg_obj = document.getElementById('map_object');
+    if (null == svg_obj) {return;}
+    let svg_doc = svg_obj.contentDocument;
+    if (null == svg_doc) {return;}
+
+    if (null != id) {
+        const search_id = id.replace(/-/g,'_')+'_lines_';
+        const elements = svg_doc.querySelectorAll('*');
+        const filtered = [...elements].filter(e => e.id.startsWith(search_id));
+        filtered.forEach(e => e.style.display = display);
+    }
+
+    const checkbox = label.getElementsByTagName('INPUT')[0];
+    let reference = checkbox.id;
+    const selector = checkbox_id_to_css_selector(reference);
+
+    if (checkbox.checked && 'none' == display) {
+        return;
+    }
+
+    const elements = svg_doc.querySelectorAll(selector);
+    elements.forEach(e => e.style.display = display);
 }
 function zoom(level) {
     var viewBox = level_json.viewBox[level];
