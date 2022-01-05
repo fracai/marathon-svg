@@ -18,7 +18,8 @@ IGNORE_RE = re.compile('(?P<level>\d+): (?P<poly>[\d ]+)')
 SCALE=1000
 MAX_INT=32768
 MAX_POS=MAX_INT/SCALE
-ONE_WU=MAX_POS/1024
+ONE_WU=32
+ONE_SCALE_WU=SCALE/ONE_WU
 
 CHUNK_TYPES = [
     'NAME', # map name
@@ -259,12 +260,18 @@ def finalize_dimensions(level_info):
     # update the 'lines' dimensions with those from 'items'
     merge_dimensions(level_info, 'items', 'lines')
     # round min/max coordinates to the nearest WU, +1
+    major_step = SCALE / ONE_WU # 32 WU in each direction
     for k,v in level_info['dimensions'].items():
         (min_x, min_y, max_x, max_y) = v
-        min_x = max(-SCALE, math.floor(min_x * ONE_WU - 1)/ONE_WU)
-        min_y = max(-SCALE, math.floor(min_y * ONE_WU - 1)/ONE_WU)
-        max_x = min( SCALE, math.ceil( max_x * ONE_WU + 1)/ONE_WU)
-        max_y = min( SCALE, math.ceil( max_y * ONE_WU + 1)/ONE_WU)
+# alternate padding method that snaps to an even WU grid
+#         min_x = max(-SCALE, math.floor(min_x / ONE_SCALE_WU - 1) * ONE_SCALE_WU)
+#         min_y = max(-SCALE, math.floor(min_y / ONE_SCALE_WU - 1) * ONE_SCALE_WU)
+#         max_x = min( SCALE, math.ceil( max_x / ONE_SCALE_WU + 1) * ONE_SCALE_WU)
+#         max_y = min( SCALE, math.ceil( max_y / ONE_SCALE_WU + 1) * ONE_SCALE_WU)
+        min_x = max(-SCALE, (min_x / ONE_SCALE_WU - 1) * ONE_SCALE_WU)
+        min_y = max(-SCALE, (min_y / ONE_SCALE_WU - 1) * ONE_SCALE_WU)
+        max_x = min( SCALE, (max_x / ONE_SCALE_WU + 1) * ONE_SCALE_WU)
+        max_y = min( SCALE, (max_y / ONE_SCALE_WU + 1) * ONE_SCALE_WU)
         level_info['dimensions'][k] = (min_x, min_y, max_x, max_y)
         level_info['viewBox'][k] = ' '.join(map(str, [min_x, min_y, max_x - min_x, max_y - min_y]))
 
