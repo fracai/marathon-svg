@@ -148,12 +148,12 @@ function process_overlay_types(types) {
         }
         let checkbox_string = null;
         let group_string = `<li><label><input type="checkbox" onchange="toggle_checkbox(this)" class="overlay" /> ${display}</label></li>\n`;
-        let hover = ` onmouseover="hover_line(this, null, 'block')" onmouseout="hover_line(this, null, 'none')"`;
+        let hover = ` onmouseover="hover_line(this, null, 1)" onmouseout="hover_line(this, null, 0)"`;
         if (level_json.overlays.classes.includes(type.class)) {
             if (type.class.endsWith('-computer_terminal')) {
-                hover = ` onmouseover="hover_line(this, 'panel-terminal_teleport', 'block')" onmouseout="hover_line(this, 'panel-terminal_teleport', 'none')"`;
+                hover = ` onmouseover="hover_line(this, 'panel-terminal_teleport', 1)" onmouseout="hover_line(this, 'panel-terminal_teleport', 0)"`;
             } else if (type.class.endsWith('_switch')) {
-                hover = ` onmouseover="hover_line(this, '${type.class}', 'block')" onmouseout="hover_line(this, '${type.class}', 'none')"`;
+                hover = ` onmouseover="hover_line(this, '${type.class}', 1)" onmouseout="hover_line(this, '${type.class}', 0)"`;
             }
             checkbox_string = `<li><label${hover}><input type="checkbox" id="class_${type.class}" class="overlay" onchange="toggle_checkbox(this)" /> ${display}</label></li>\n`;
         } else if (level_json.overlays.ids.includes(type.id)) {
@@ -489,19 +489,32 @@ function hover_line(label, id, display) {
         const search_id = id.replace(/-/g,'_')+'_lines_';
         const elements = svg_doc.querySelectorAll('*');
         const filtered = [...elements].filter(e => e.id.startsWith(search_id));
-        filtered.forEach(e => e.style.display = display);
+        filtered.forEach(e => {
+            const overlay = overlay_style_map[e.id];
+            let styles = overlay_json.style;
+            if (overlay) {
+                styles = overlay;
+            }
+            e.style = styles[display];
+        });
     }
 
     const checkbox = label.getElementsByTagName('INPUT')[0];
-    let reference = checkbox.id;
-    const selector = checkbox_id_to_css_selector(reference);
 
-    if (checkbox.checked && 'none' == display) {
+    if (checkbox.checked && 0 == display) {
         return;
     }
 
+    const overlay = overlay_style_map[checkbox.id];
+    let styles = overlay_json.style;
+    if (overlay) {
+        styles = overlay;
+    }
+    let style_content = styles[display];
+
+    const selector = checkbox_id_to_css_selector(checkbox.id);
     const elements = svg_doc.querySelectorAll(selector);
-    elements.forEach(e => e.style.display = display);
+    elements.forEach(e => e.style = style_content);
 }
 function zoom(level) {
     var viewBox = level_json.viewBox[level];
