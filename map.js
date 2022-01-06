@@ -518,8 +518,6 @@ function hover_checkbox(label, id, display) {
 
     const li = label.parentElement;
     const ul = li.nextElementSibling;
-    console.log('hover child: li: ' + li);
-    console.log('hover child: ul: ' + ul);
     if (null != ul && null != ul.children) {
         for (const child of ul.children) {
             if (child.nodeName == 'LI') {
