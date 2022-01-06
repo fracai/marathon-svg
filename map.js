@@ -147,13 +147,13 @@ function process_overlay_types(types) {
             display = type.selector;
         }
         let checkbox_string = null;
-        let group_string = `<li><label><input type="checkbox" onchange="toggle_checkbox(this)" class="overlay" /> ${display}</label></li>\n`;
-        let hover = ` onmouseover="hover_line(this, null, 1)" onmouseout="hover_line(this, null, 0)"`;
+        let hover = ` onmouseover="hover_checkbox(this, null, 1)" onmouseout="hover_checkbox(this, null, 0)"`;
+        let group_string = `<li><label${hover}><input type="checkbox" onchange="toggle_checkbox(this)" class="overlay" /> ${display}</label></li>\n`;
         if (level_json.overlays.classes.includes(type.class)) {
             if (type.class.endsWith('-computer_terminal')) {
-                hover = ` onmouseover="hover_line(this, 'panel-terminal_teleport', 1)" onmouseout="hover_line(this, 'panel-terminal_teleport', 0)"`;
+                hover = ` onmouseover="hover_checkbox(this, 'panel-terminal_teleport', 1)" onmouseout="hover_checkbox(this, 'panel-terminal_teleport', 0)"`;
             } else if (type.class.endsWith('_switch')) {
-                hover = ` onmouseover="hover_line(this, '${type.class}', 1)" onmouseout="hover_line(this, '${type.class}', 0)"`;
+                hover = ` onmouseover="hover_checkbox(this, '${type.class}', 1)" onmouseout="hover_checkbox(this, '${type.class}', 0)"`;
             }
             checkbox_string = `<li><label${hover}><input type="checkbox" id="class_${type.class}" class="overlay" onchange="toggle_checkbox(this)" /> ${display}</label></li>\n`;
         } else if (level_json.overlays.ids.includes(type.id)) {
@@ -479,7 +479,7 @@ function toggle_checkbox(checkbox) {
     }
     update_svg_style();
 }
-function hover_line(label, id, display) {
+function hover_checkbox(label, id, display) {
     let svg_obj = document.getElementById('map_object');
     if (null == svg_obj) {return;}
     let svg_doc = svg_obj.contentDocument;
@@ -515,6 +515,20 @@ function hover_line(label, id, display) {
     const selector = checkbox_id_to_css_selector(checkbox.id);
     const elements = svg_doc.querySelectorAll(selector);
     elements.forEach(e => e.style = style_content);
+
+    const li = label.parentElement;
+    const ul = li.nextElementSibling;
+    console.log('hover child: li: ' + li);
+    console.log('hover child: ul: ' + ul);
+    if (null != ul && null != ul.children) {
+        for (const child of ul.children) {
+            if (child.nodeName == 'LI') {
+                const child_checkbox = child.getElementsByTagName('INPUT')[0];
+                const child_label = child.getElementsByTagName('LABEL')[0];
+                hover_checkbox(child_label, null, display);
+            }
+        }
+    }
 }
 function zoom(level) {
     var viewBox = level_json.viewBox[level];
