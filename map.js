@@ -358,7 +358,7 @@ function build_overlay_style_map(types) {
         build_overlay_style_map(type.types);
     }
 }
-function generate_dynamic_style() {
+function generate_dynamic_style(hovered = []) {
     let checkboxes = document.querySelectorAll('input.overlay[type=checkbox]');
     let style_content = '';
     for (const cb of checkboxes) {
@@ -374,6 +374,14 @@ function generate_dynamic_style() {
         }
         style_content += selector + ' {' + styles[cb.checked ? 1 : 0] + '}\n';
     }
+    for (const id of hovered) {
+        const overlay = overlay_style_map[id];
+        let styles = overlay_json.style;
+        if (overlay) {
+            styles = overlay;
+        }
+        style_content += id + ' {' + styles[1] + '}\n';
+    }
     style_content += process_polygons()+'\n';
     return style_content;
 }
@@ -385,7 +393,7 @@ function checkbox_id_to_css_selector(id) {
     }
     return null;
 }
-function process_polygons() {
+function process_polygons(hovered = []) {
     const slider = document.getElementById('elevation-slider');
     const values = slider.noUiSlider.get(true);
     const floor = values[0] /32;
@@ -408,13 +416,9 @@ function process_polygons() {
             visible = false;
         }
         if (visible) {
-            for (const c of poly.connections) {
-                enabled.add(c);
-            }
+            poly.connections.forEach(c => enabled.add(c));
         } else {
-            for (const c of poly.connections) {
-                disabled.add(c);
-            }
+            poly.connections.forEach(c => disabled.add(c));
         }
     }
     const to_disable = new Set([...disabled].filter(x => !enabled.has(x)));
@@ -423,13 +427,13 @@ function process_polygons() {
     }
     return [...to_disable].map(item => '#' + item + ' {display: none;}').reduce((result, item) => item + '\n' + result, '');
 }
-function update_svg_style() {
+function update_svg_style(hovered = []) {
     let svg_obj = document.getElementById('map_object');
     if (null == svg_obj) {return;}
     let svg_doc = svg_obj.contentDocument;
     if (null == svg_doc) {return;}
     let old_style = svg_doc.getElementById('dynamic-style');
-    let new_style = generate_dynamic_style();
+    let new_style = generate_dynamic_style(hovered);
     if (null == old_style || null == new_style) {
         return;
     }
@@ -485,36 +489,43 @@ function hover_checkbox(label, id, display) {
     let svg_doc = svg_obj.contentDocument;
     if (null == svg_doc) {return;}
 
-    if (null != id) {
-        const search_id = id.replace(/-/g,'_')+'_lines_';
-        const elements = svg_doc.querySelectorAll('*');
-        const filtered = [...elements].filter(e => e.id.startsWith(search_id));
-        filtered.forEach(e => {
-            const overlay = overlay_style_map[e.id];
-            let styles = overlay_json.style;
-            if (overlay) {
-                styles = overlay;
-            }
-            e.style = styles[display];
-        });
+    let ids = [];
+    if (0 != display) {
+        ids = [...gather_hovered_lines(id), ...gather_hovered_elements(label, display)];
+        ids = [...new Set(ids)];
     }
+    update_svg_style(ids)
+}
+function gather_hovered_lines(id) {
+    if (null == id) {return [];}
+    let svg_obj = document.getElementById('map_object');
+    if (null == svg_obj) {return [];}
+    let svg_doc = svg_obj.contentDocument;
+    if (null == svg_doc) {return [];}
+
+    const search_id = id.replace(/-/g,'_')+'_lines_';
+    const elements = svg_doc.querySelectorAll('*');
+    const filtered = [...elements].filter(e => e.id.startsWith(search_id));
+    return filtered.map(e => e.id);
+}
+function gather_hovered_elements(label, display) {
+    if (null == label) {return [];}
+    let svg_obj = document.getElementById('map_object');
+    if (null == svg_obj) {return [];}
+    let svg_doc = svg_obj.contentDocument;
+    if (null == svg_doc) {return [];}
 
     const checkbox = label.getElementsByTagName('INPUT')[0];
 
     if (checkbox.checked && 0 == display) {
-        return;
+        return [];
     }
-
-    const overlay = overlay_style_map[checkbox.id];
-    let styles = overlay_json.style;
-    if (overlay) {
-        styles = overlay;
-    }
-    let style_content = styles[display];
 
     const selector = checkbox_id_to_css_selector(checkbox.id);
     const elements = svg_doc.querySelectorAll(selector);
-    elements.forEach(e => e.style = style_content);
+    let ids = [...elements].map(e => '#'+e.id);
+
+    ids = [[selector], ...ids]
 
     const li = label.parentElement;
     const ul = li.nextElementSibling;
@@ -523,10 +534,12 @@ function hover_checkbox(label, id, display) {
             if (child.nodeName == 'LI') {
                 const child_checkbox = child.getElementsByTagName('INPUT')[0];
                 const child_label = child.getElementsByTagName('LABEL')[0];
-                hover_checkbox(child_label, null, display);
+                const child_ids = gather_hovered_elements(child_label, display);
+                ids = [...ids, ...child_ids];
             }
         }
     }
+    return ids;
 }
 function zoom(level) {
     var viewBox = level_json.viewBox[level];
