@@ -362,28 +362,26 @@ function generate_dynamic_style(hovered = []) {
     let checkboxes = document.querySelectorAll('input.overlay[type=checkbox]');
     let style_content = '';
     for (const cb of checkboxes) {
-        let reference = cb.id;
-        if (!reference) {
-            continue;
-        }
-        const selector = checkbox_id_to_css_selector(reference);
-        let styles = overlay_json.style;
-        const overlay = overlay_style_map[reference];
-        if (overlay) {
-            styles = overlay;
-        }
-        style_content += selector + ' {' + styles[cb.checked ? 1 : 0] + '}\n';
+        style_content += selector_style(cb.id, cb.checked ? 1 : 0);
     }
     for (const id of hovered) {
-        const overlay = overlay_style_map[id];
-        let styles = overlay_json.style;
-        if (overlay) {
-            styles = overlay;
-        }
-        style_content += id + ' {' + styles[1] + '}\n';
+        style_content += selector_style(id, 1);
     }
     style_content += process_polygons()+'\n';
     return style_content;
+}
+function selector_style(id, style_index) {
+    let reference = id;
+    if (!reference) {
+        return '';
+    }
+    const selector = checkbox_id_to_css_selector(reference);
+    const overlay = overlay_style_map[reference];
+    let styles = overlay_json.style;
+    if (overlay) {
+        styles = overlay;
+    }
+    return selector + ' {' + styles[style_index] + '}\n';
 }
 function checkbox_id_to_css_selector(id) {
     for (const [type, prefix] of Object.entries(selectors)) {
@@ -521,11 +519,7 @@ function gather_hovered_elements(label, display) {
         return [];
     }
 
-    const selector = checkbox_id_to_css_selector(checkbox.id);
-    const elements = svg_doc.querySelectorAll(selector);
-    let ids = [...elements].map(e => '#'+e.id);
-
-    ids = [[selector], ...ids]
+    let ids = [checkbox.id];
 
     const li = label.parentElement;
     const ul = li.nextElementSibling;
