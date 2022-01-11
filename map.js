@@ -360,14 +360,13 @@ function build_overlay_style_map(types) {
 }
 function generate_dynamic_style(hovered = []) {
     let checkboxes = document.querySelectorAll('input.overlay[type=checkbox]');
-    let style_content = '';
-    for (const cb of checkboxes) {
-        style_content += selector_style(cb.id, cb.checked ? 1 : 0);
-    }
-    for (const id of hovered) {
-        style_content += selector_style(id, 1);
-    }
-    style_content += process_polygons()+'\n';
+    let style_content = [
+        ...[...checkboxes].map(cb => selector_style(cb.id, cb.checked ? 1 : 0)),
+        ...hovered.map(id => selector_style(id, 1)),
+        ...process_polygons()
+    ].filter(e => null!=e)
+     .filter(e => ''!=e)
+     .join('\n');
     return style_content;
 }
 function selector_style(id, style_index) {
@@ -381,7 +380,7 @@ function selector_style(id, style_index) {
     if (overlay) {
         styles = overlay;
     }
-    return selector + ' {' + styles[style_index] + '}\n';
+    return selector + ' {' + styles[style_index] + '}';
 }
 function checkbox_id_to_css_selector(id) {
     for (const [type, prefix] of Object.entries(selectors)) {
@@ -423,7 +422,7 @@ function process_polygons(hovered = []) {
     if (to_disable.size == 0) {
         return '';
     }
-    return [...to_disable].map(item => '#' + item + ' {display: none;}').reduce((result, item) => item + '\n' + result, '');
+    return [...to_disable].map(item => '#' + item + ' {display: none;}');
 }
 function update_svg_style(hovered = []) {
     let svg_obj = document.getElementById('map_object');
