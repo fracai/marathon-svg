@@ -3,13 +3,13 @@
 hide_lines();
 
 function find_lines_group(id) {
-    const search_id = '_lines_s'+id.split('_',2)[1];
-    const elements = document.querySelectorAll('*');
-    const filtered = [...elements].filter(e => e.id.endsWith(search_id));
-    if (filtered.length <= 0) {
+    const split_id = id.split('_',2);
+    const search_id = '_lines_'+split_id[0].substring(0,1)+split_id[1];
+    const elements = document.querySelectorAll('g[id$='+search_id+']');
+    if (elements.length <= 0) {
         return null;
     }
-    return filtered[0];
+    return elements[0];
 }
 function set_display(id, display) {
     const lines = find_lines_group(id);

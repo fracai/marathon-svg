@@ -500,9 +500,8 @@ function gather_hovered_lines(id) {
     if (null == svg_doc) {return [];}
 
     const search_id = id.replace(/-/g,'_')+'_lines_';
-    const elements = svg_doc.querySelectorAll('*');
-    const filtered = [...elements].filter(e => e.id.startsWith(search_id));
-    return filtered.map(e => e.id);
+    const elements = svg_doc.querySelectorAll('g[id^='+search_id+']');
+    return elements.map(e => e.id);
 }
 function gather_hovered_elements(label, display) {
     if (null == label) {return [];}
