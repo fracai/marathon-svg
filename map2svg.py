@@ -435,12 +435,12 @@ def generate_panel_lines(level_dict, css_class_base, platform_map, map_type, lev
     )
 
 def generate_terminal_lines(level_dict, page_type, css_class_base, map_type, level_info):
-    terminal_destination_map = dict()
+    terminal_destination_map = defaultdict(list)
     for terminal in level_dict['term']['terminal']:
         for grouping in terminal['children']['grouping']:
             if grouping['type'] != page_type:
                 continue
-            terminal_destination_map[terminal['index']] = grouping['permutation']
+            terminal_destination_map[terminal['index']].append(grouping['permutation'])
     line_svg = ''
     for side in level_dict['SIDS']['side']:
         if not side['flags'] & 0x2:
@@ -455,10 +455,10 @@ def generate_terminal_lines(level_dict, page_type, css_class_base, map_type, lev
         poly_ids = set()
         if 7 == page_type:
             # teleport
-            poly_ids = {terminal_destination_map[terminal_id]}
+            poly_ids = terminal_destination_map[terminal_id]
         if 16 == page_type:
             # tag control: reference tags which might be used by multiple polygons and lights
-            tag_ids = {terminal_destination_map[terminal_id]}
+            tag_ids = terminal_destination_map[terminal_id]
         # common lines
         line_svg += common_generate_lines(css_class_base, side, poly_ids, set(), tag_ids, level_dict, level_info)
 
