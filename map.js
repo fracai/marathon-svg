@@ -501,7 +501,7 @@ function gather_hovered_lines(id) {
 
     const search_id = id.replace(/-/g,'_')+'_lines_';
     const elements = svg_doc.querySelectorAll('g[id^='+search_id+']');
-    return elements.map(e => e.id);
+    return [...elements].map(e => e.id);
 }
 function gather_hovered_elements(label, display) {
     if (null == label) {return [];}
