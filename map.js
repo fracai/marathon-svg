@@ -6,8 +6,6 @@ var level_json = null;
 var overlay_json = null;
 var overlay_style_map = {};
 
-const PRECISION = 10000;
-
 function load_common(path, callback, data_extractor) {
     // fetch the path
     return fetch(path)
@@ -392,8 +390,8 @@ function checkbox_id_to_css_selector(id) {
     return null;
 }
 function out_of_bounds(floor, ceiling, comparison_min, comparison_max) {
-    return Math.round(floor * PRECISION) > Math.round(comparison_min * PRECISION)
-        || Math.round(ceiling * PRECISION) < Math.round(comparison_max * PRECISION);
+    return Math.fround(floor  ) > Math.fround(comparison_min)
+        || Math.fround(ceiling) < Math.fround(comparison_max);
 }
 function process_polygons(hovered = []) {
     const slider = document.getElementById('elevation-slider');
