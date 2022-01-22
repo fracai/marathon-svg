@@ -6,6 +6,8 @@ var level_json = null;
 var overlay_json = null;
 var overlay_style_map = {};
 
+const PRECISION = 10000;
+
 function load_common(path, callback, data_extractor) {
     // fetch the path
     return fetch(path)
@@ -389,6 +391,10 @@ function checkbox_id_to_css_selector(id) {
     }
     return null;
 }
+function out_of_bounds(floor, ceiling, comparison_min, comparison_max) {
+    return Math.round(floor * PRECISION) > Math.round(comparison_min * PRECISION)
+        || Math.round(ceiling * PRECISION) < Math.round(comparison_max * PRECISION);
+}
 function process_polygons(hovered = []) {
     const slider = document.getElementById('elevation-slider');
     const values = slider.noUiSlider.get(true);
@@ -397,18 +403,18 @@ function process_polygons(hovered = []) {
     const elevation_type = document.querySelector('input[name="elevation"]:checked').value;
     const enabled = new Set();
     const disabled = new Set();
-    for (const poly of Object.values(level_json.polygons)) {
+    for (const [id, poly] of Object.entries(level_json.polygons)) {
         let visible = true;
-        if ('intersection' == elevation_type && (floor > poly.ceiling_height || ceiling < poly.floor_height)) {
+        if ('intersection' == elevation_type && out_of_bounds(floor, ceiling, poly.ceiling_height, poly.floor_height)) {
             visible = false;
         }
-        else if ('contained' == elevation_type && (floor > poly.floor_height || ceiling < poly.ceiling_height)) {
+        else if ('contained' == elevation_type && out_of_bounds(floor, ceiling, poly.floor_height, poly.ceiling_height)) {
             visible = false;
         }
-        else if ('ceiling' == elevation_type && (floor > poly.ceiling_height || ceiling < poly.ceiling_height)) {
+        else if ('ceiling' == elevation_type && out_of_bounds(floor, ceiling, poly.ceiling_height, poly.ceiling_height)) {
             visible = false;
         }
-        else if ('floor' == elevation_type && (floor > poly.floor_height || ceiling < poly.floor_height)) {
+        else if ('floor' == elevation_type && out_of_bounds(floor, ceiling, poly.floor_height, poly.floor_height)) {
             visible = false;
         }
         if (visible) {
