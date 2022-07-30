@@ -1,0 +1,46 @@
+pipeline:
+
+  clone-marathon-utils:
+    image: woodpeckerci/plugin-git
+    group: clone
+    settings:
+      remote: https://github.com/Hopper262/marathon-utils
+      sha: e297f264f4da2e7283adcb120ffadca9720c84d6
+      ref: e297f264f4da2e7283adcb120ffadca9720c84d6
+      path: marathon-utils
+
+  clone-classic-mac-utils:
+    image: woodpeckerci/plugin-git
+    group: clone
+    settings:
+      remote: https://github.com/Hopper262/classic-mac-utils
+      sha: cfa801ec4b4611b2fc9460f1c45eb10bf0c79586
+      ref: cfa801ec4b4611b2fc9460f1c45eb10bf0c79586
+      path: classic-mac-utils
+
+  clone-m1:
+    image: woodpeckerci/plugin-git
+    group: clone
+    settings:
+      remote: https://github.com/Aleph-One-Marathon/data-marathon
+      sha: 75f194c3a03e60597f04c887a5d07165ad1c2b0e
+      ref: 75f194c3a03e60597f04c887a5d07165ad1c2b0e
+      path: data/m1
+
+  clone-m2:
+    image: woodpeckerci/plugin-git
+    group: clone
+    settings:
+      remote: https://github.com/Aleph-One-Marathon/data-marathon-2
+      sha: 0c5dcb94003936111dcae1420f782abfb7c3b1fd
+      ref: 0c5dcb94003936111dcae1420f782abfb7c3b1fd
+      path: data/m2
+
+  clone-m3:
+    image: woodpeckerci/plugin-git
+    group: clone
+    settings:
+      remote: https://github.com/Aleph-One-Marathon/data-marathon-infinity
+      sha: 95045260f343bb700bddb557515617ba578a464e
+      ref: 95045260f343bb700bddb557515617ba578a464e
+      path: data/m3
