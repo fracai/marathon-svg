@@ -103,3 +103,16 @@ pipeline:
     commands:
       - mkdir -p output
       - ./map2svg.py -d output/m3 -m data/m3-map.xml -i marathon-utils/map-extras/M3_ignored_polys.txt
+
+# deploy
+
+  rsync:
+    image: drillster/drone-rsync
+    settings:
+      hosts: bottle.fracas.net
+      source: ./output/
+      target: ~/svg-marathon/
+      user: arno
+      key:
+        from_secret: rsync_key
+      secrets: [ rsync_key ]
