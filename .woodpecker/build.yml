@@ -3,6 +3,8 @@ depends_on:
 
 pipeline:
 
+# clone dependencies
+
   clone-marathon-utils:
     image: woodpeckerci/plugin-git
     group: clone
@@ -21,7 +23,8 @@ pipeline:
       ref: cfa801ec4b4611b2fc9460f1c45eb10bf0c79586
       path: classic-mac-utils
 
-# Marathon
+# clone maps
+
   clone-m1:
     image: woodpeckerci/plugin-git
     group: clone
@@ -31,15 +34,6 @@ pipeline:
       ref: 75f194c3a03e60597f04c887a5d07165ad1c2b0e
       path: data/m1
 
-  map2xml-m1:
-    image: ${REGISTRY_HOST}/arno/marathon-perl:latest
-    pull: true
-    group: xml
-    commands:
-      - classic-mac-utils/macbin2data.pl < data/m1/Map.scen > data/m1.map
-      - marathon-utils/map2xml.pl < data/m1.map > data/m1-map.xml
-
-# Marathon 2: Durandal
   clone-m2:
     image: woodpeckerci/plugin-git
     group: clone
@@ -49,15 +43,6 @@ pipeline:
       ref: 0c5dcb94003936111dcae1420f782abfb7c3b1fd
       path: data/m2
 
-  map2xml-m2:
-    image: ${REGISTRY_HOST}/arno/marathon-perl:latest
-    pull: true
-    group: xml
-    commands:
-      - classic-mac-utils/macbin2data.pl < data/m2/Map.sceA > data/m2.map
-      - marathon-utils/map2xml.pl < data/m2.map > data/m2-map.xml
-
-# Marathon: Infinity
   clone-m3:
     image: woodpeckerci/plugin-git
     group: clone
@@ -67,6 +52,24 @@ pipeline:
       ref: 95045260f343bb700bddb557515617ba578a464e
       path: data/m3
 
+# convert to XML
+
+  map2xml-m1:
+    image: ${REGISTRY_HOST}/arno/marathon-perl:latest
+    pull: true
+    group: xml
+    commands:
+      - classic-mac-utils/macbin2data.pl < data/m1/Map.scen > data/m1.map
+      - marathon-utils/map2xml.pl < data/m1.map > data/m1-map.xml
+
+  map2xml-m2:
+    image: ${REGISTRY_HOST}/arno/marathon-perl:latest
+    pull: true
+    group: xml
+    commands:
+      - classic-mac-utils/macbin2data.pl < data/m2/Map.sceA > data/m2.map
+      - marathon-utils/map2xml.pl < data/m2.map > data/m2-map.xml
+
   map2xml-m3:
     image: ${REGISTRY_HOST}/arno/marathon-perl:latest
     pull: true
@@ -74,3 +77,29 @@ pipeline:
     commands:
       - classic-mac-utils/macbin2data.pl < data/m3/Map.sceA > data/m3.map
       - marathon-utils/map2xml.pl < data/m3.map > data/m3-map.xml
+
+# convert to SVG
+
+  xml2svg-m1:
+    image: ${REGISTRY_HOST}/arno/marathon-python:latest
+    pull: true
+    group: svg
+    commands:
+      - mkdir -p output
+      - ./map2svg.py -d output/m1 -m data/m1-map.xml -i marathon-utils/map-extras/M1_ignored_polys.txt
+
+  xml2svg-m2:
+    image: ${REGISTRY_HOST}/arno/marathon-python:latest
+    pull: true
+    group: svg
+    commands:
+      - mkdir -p output
+      - ./map2svg.py -d output/m2 -m data/m2-map.xml -i marathon-utils/map-extras/M2_ignored_polys.txt
+
+  xml2svg-m3:
+    image: ${REGISTRY_HOST}/arno/marathon-python:latest
+    pull: true
+    group: svg
+    commands:
+      - mkdir -p output
+      - ./map2svg.py -d output/m3 -m data/m3-map.xml -i marathon-utils/map-extras/M3_ignored_polys.txt
