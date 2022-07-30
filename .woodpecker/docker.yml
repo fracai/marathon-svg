@@ -1,0 +1,31 @@
+pipeline:
+
+  build-perl:
+    image: woodpeckerci/plugin-docker-buildx
+    group: docker
+    settings:
+      dry_run: false
+      dockerfile: Dockerfile-perl
+      repo: ${REGISTRY_HOST}/${CI_REPO_OWNER}/marathon-perl
+      custom_dns: ${PRIVATE_DNS}
+      platforms: linux/amd64
+      tag: [ latest ]
+    when:
+      path:
+        - .woodpecker/docker.yml
+        - Dockerfile-perl
+
+  build-python:
+    image: woodpeckerci/plugin-docker-buildx
+    group: docker
+    settings:
+      dry_run: false
+      dockerfile: Dockerfile-python
+      repo: ${REGISTRY_HOST}/${CI_REPO_OWNER}/marathon-python
+      custom_dns: ${PRIVATE_DNS}
+      platforms: linux/amd64
+      tag: [ latest ]
+    when:
+      path:
+        - .woodpecker/docker.yml
+        - Dockerfile-python

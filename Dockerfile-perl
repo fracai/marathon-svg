@@ -1,0 +1,2 @@
+FROM perl:5-slim
+RUN cpanm XML::Writer
