@@ -46,21 +46,21 @@ pipeline:
       path: data/m3
 
   map2xml-m1:
-    image: perl:5-slim
+    image: ${REGISTRY_HOST}/arno/marathon-perl:latest
     group: map2xml
     commands:
       - classic-mac-utils/macbin2data.pl < data/m1/Map.scen > data/m1.map
       - marathon-utils/map2xml.pl < data/m1.map > data/m1-map.xml
 
   map2xml-m2:
-    image: perl:5-slim
+    image: ${REGISTRY_HOST}/arno/marathon-perl:latest
     group: map2xml
     commands:
       - classic-mac-utils/macbin2data.pl < data/m2/Map.sceA > data/m2.map
       - marathon-utils/map2xml.pl < data/m2.map > data/m2-map.xml
 
   map2xml-m3:
-    image: perl:5-slim
+    image: ${REGISTRY_HOST}/arno/marathon-perl:latest
     group: map2xml
     commands:
       - classic-mac-utils/macbin2data.pl < data/m3/Map.sceA > data/m3.map
