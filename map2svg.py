@@ -103,7 +103,7 @@ def fix_encoding(text):
         b''
     ).decode()
 
-def process_map_file(map_xml_path, ignore_file, chapters_file):
+def process_map_file(map_xml_path, ignore_file, chapters_file, base_prefix=''):
     print ('map: {}'.format(map_xml_path))
     ignore_map = dict()
     if ignore_file:
@@ -153,7 +153,7 @@ def process_map_file(map_xml_path, ignore_file, chapters_file):
         map_info['levels'].append({
             'index': level_index,
             'name': level_name,
-            'base_name': base_name,
+            'base_name': base_prefix+base_name,
         })
         preview += '<h3>{:0>2} {}</h3><p><object type="image/svg+xml" data="{}.svg"></object></p>\n'.format(
             level_index, level_name, base_name)
@@ -1088,6 +1088,7 @@ if __name__ == '__main__':
     parser.add_argument('-M', '--mml', dest='mml', type=str, help='an MML file')
     parser.add_argument('-i', '--ignore', dest='ignores', type=str, help='a file of polygons to ignore')
     parser.add_argument('-c', '--chapters', dest='chapters', type=str, help='a file of chapter markers')
+    parser.add_argument('-b', '--base_prefix', dest='base_prefix', type=str, help='base directory where map data will be found')
     parser.add_argument('-l', '--level', dest='levels', type=int, nargs='+', help='which levels to generate')
     args = parser.parse_args()
 
@@ -1095,6 +1096,6 @@ if __name__ == '__main__':
         mml_data = process_mml_file(args.mml)
         print ('mml: \n{}'.format(json.dumps(mml_data, indent=2)))
         sys.exit(0)
-    process_map_file(args.map, args.ignores, args.chapters)
+    process_map_file(args.map, args.ignores, args.chapters, args.base_prefix)
     print ('done')
 
