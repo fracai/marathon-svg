@@ -1,0 +1,16 @@
+pipeline:
+  success:
+    image: ${REGISTRY_HOST}/arno/woodpecker-plugin-notify-apprise:latest
+    pull: true
+    settings:
+      url: ${APPRISE_HOST}/notify/woodpecker
+      body: |
+        <b><a href="${CI_SYSTEM_LINK}/${CI_REPO}/build/${CI_BUILD_NUMBER}">Build ${CI_BUILD_NUMBER} ${CI_BUILD_STATUS}</a></b><br /><br />${CI_BUILD_EVENT} on ${CI_COMMIT_BRANCH}:<br /><a href="${CI_BUILD_LINK}">${CI_COMMIT_MESSAGE}</a>
+      title: ${CI_REPO}
+      type: info
+      format: html
+depends_on:
+  - build
+run_on:
+  - success
+skip_clone: true
