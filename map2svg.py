@@ -103,7 +103,7 @@ def fix_encoding(text):
         b''
     ).decode()
 
-def process_map_file(map_xml_path, ignore_file):
+def process_map_file(map_xml_path, ignore_file, chapters_file):
     print ('map: {}'.format(map_xml_path))
     ignore_map = dict()
     if ignore_file:
@@ -125,6 +125,15 @@ def process_map_file(map_xml_path, ignore_file):
     map_info = {
         'levels': []
     }
+    chapters_dict = {}
+    if chapters_file:
+        with open(chapters_file, 'r') as f:
+            while True:
+                line = f.readline()
+                if not line:
+                    break
+                level_index, chapter_name = line.strip().split(' ', 1)
+                chapters_dict[int(level_index)] = chapter_name
     for child in root:
         # <wadinfo type="0" size="3863054" count="37">Map</wadinfo>
         if 'wadinfo' == child.tag:
@@ -139,6 +148,8 @@ def process_map_file(map_xml_path, ignore_file):
         if level_index not in ignore_map:
             ignore_map[level_index] = []
         level_name, base_name = process_level(map_type, child, ignore_map[level_index])
+        if level_index in chapters_dict:
+            map_info['levels'].append({'separator': chapters_dict[level_index]})
         map_info['levels'].append({
             'index': level_index,
             'name': level_name,
@@ -1076,6 +1087,7 @@ if __name__ == '__main__':
     parser.add_argument('-m', '--map', dest='map', type=str, help='a map XML file')
     parser.add_argument('-M', '--mml', dest='mml', type=str, help='an MML file')
     parser.add_argument('-i', '--ignore', dest='ignores', type=str, help='a file of polygons to ignore')
+    parser.add_argument('-c', '--chapters', dest='chapters', type=str, help='a file of chapter markers')
     parser.add_argument('-l', '--level', dest='levels', type=int, nargs='+', help='which levels to generate')
     args = parser.parse_args()
 
@@ -1083,6 +1095,6 @@ if __name__ == '__main__':
         mml_data = process_mml_file(args.mml)
         print ('mml: \n{}'.format(json.dumps(mml_data, indent=2)))
         sys.exit(0)
-    process_map_file(args.map, args.ignores)
+    process_map_file(args.map, args.ignores, args.chapters)
     print ('done')
 

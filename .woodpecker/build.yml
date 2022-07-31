@@ -86,7 +86,7 @@ pipeline:
     group: svg
     commands:
       - mkdir -p output
-      - ./map2svg.py -d output/m1 -m data/m1-map.xml -i marathon-utils/map-extras/M1_ignored_polys.txt
+      - ./map2svg.py -d output/m1 -m data/m1-map.xml -i marathon-utils/map-extras/M1_ignored_polys.txt -c map_info/chapters-m1.txt
 
   xml2svg-m2:
     image: ${REGISTRY_HOST}/arno/marathon-python:latest
@@ -94,7 +94,7 @@ pipeline:
     group: svg
     commands:
       - mkdir -p output
-      - ./map2svg.py -d output/m2 -m data/m2-map.xml -i marathon-utils/map-extras/M2_ignored_polys.txt
+      - ./map2svg.py -d output/m2 -m data/m2-map.xml -i marathon-utils/map-extras/M2_ignored_polys.txt -c map_info/chapters-m2.txt
 
   xml2svg-m3:
     image: ${REGISTRY_HOST}/arno/marathon-python:latest
@@ -102,7 +102,7 @@ pipeline:
     group: svg
     commands:
       - mkdir -p output
-      - ./map2svg.py -d output/m3 -m data/m3-map.xml -i marathon-utils/map-extras/M3_ignored_polys.txt
+      - ./map2svg.py -d output/m3 -m data/m3-map.xml -i marathon-utils/map-extras/M3_ignored_polys.txt -c map_info/chapters-m3.txt
 
 # deploy
 
