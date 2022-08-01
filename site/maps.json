@@ -1,0 +1,17 @@
+[
+    {
+      "map_name": "Marathon",
+      "short_name": "marathon",
+      "map_info": "m1"
+    },
+    {
+      "map_name": "Marathon 2: Durandal",
+      "short_name": "durandal",
+      "map_info": "m2"
+    },
+    {
+      "map_name": "Marathon: Infinity",
+      "short_name": "infinity",
+      "map_info": "m3"
+    }
+]
