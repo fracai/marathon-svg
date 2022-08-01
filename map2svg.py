@@ -563,7 +563,7 @@ def common_generate_lines(css_class_base, source, poly_ids, light_ids, tag_ids, 
             css_id='panel_{}_border_{}_p{}'.format(css_class_base, source_id, dest_poly['index']),
             css_class='{}_border'.format(css_class_base)
         )
-        line_svg += '<use xlink:href="../common.svg#{symbol}" x="{cx}" y="{cy}" id="{css_id}" class="{css_class}" {transform}/>\n'.format(
+        line_svg += '<use xlink:href="../resources/svg/common.svg#{symbol}" x="{cx}" y="{cy}" id="{css_id}" class="{css_class}" {transform}/>\n'.format(
             symbol='arrow',
             cx=dcx,
             cy=dcy,
@@ -622,7 +622,7 @@ def common_generate_lines(css_class_base, source, poly_ids, light_ids, tag_ids, 
             css_id='panel_{}_border_{}_s{}'.format(css_class_base, source_id, dest_side['index']),
             css_class='{}_border'.format(css_class_base)
         )
-        line_svg += '<use xlink:href="../common.svg#{symbol}" x="{cx}" y="{cy}" id="{css_id}" class="{css_class}" {transform}/>\n'.format(
+        line_svg += '<use xlink:href="../resources/svg/common.svg#{symbol}" x="{cx}" y="{cy}" id="{css_id}" class="{css_class}" {transform}/>\n'.format(
             symbol='arrow',
             cx=dcx,
             cy=dcy,
@@ -786,7 +786,7 @@ def generate_panels(level_dict, ignore_polys, map_type, level_info):
                 mouseover="m_over('{}');".format(css_id),
                 mouseout="m_out('{}');".format(css_id),
             )
-        panel_svg += '<use xlink:href="../common.svg#panel" x="{cx}" y="{cy}" id="{css_id}" class="{css_class}" {hover}/>\n'.format(
+        panel_svg += '<use xlink:href="../resources/svg/common.svg#panel" x="{cx}" y="{cy}" id="{css_id}" class="{css_class}" {hover}/>\n'.format(
             cx = (x1 + x2) / 2 / MAX_POS,
             cy = (y1 + y2) / 2 / MAX_POS,
             css_id=css_id,
@@ -852,7 +852,7 @@ def generate_objects(objects, polygons, ignore_polys, level_info):
                 cy=cy,
             )
         css_id = 'object_{}'.format(obj['index'])
-        entry = '<use xlink:href="../common.svg#{symbol}" x="{cx}" y="{cy}" id="{css_id}" class="{css_class}" {transform}/>'.format(
+        entry = '<use xlink:href="../resources/svg/common.svg#{symbol}" x="{cx}" y="{cy}" id="{css_id}" class="{css_class}" {transform}/>'.format(
             symbol=symbol,
             cx=cx,
             cy=cy,
@@ -945,7 +945,7 @@ def generate_svg(map_type, base_name, level_dict, ignore_polys):
     # update the level_info dimensions to merge the
     finalize_dimensions(level_info)
 
-    svg_js = '\n<script xlink:href="../level.js" ></script>\n'
+    svg_js = '\n<script xlink:href="../resources/js/level.js" ></script>\n'
 #     svg_js = '''\
 # <script type="text/javascript" href="_script.js"></script>
 # <text id="tooltip" display="none" fill="red" font-size=".03" style="position: absolute; display: none;"></text>
@@ -962,7 +962,7 @@ def generate_svg(map_type, base_name, level_dict, ignore_polys):
         vbheight=max_x-min_x,
         vbwidth=max_y-min_y,
     )
-    svg_style = '<link xmlns="http://www.w3.org/1999/xhtml" rel="stylesheet" href="../styles.css" type="text/css" />\n'
+    svg_style = '<link xmlns="http://www.w3.org/1999/xhtml" rel="stylesheet" href="../resources/css/styles.css" type="text/css" />\n'
     svg_style += '<style id="dynamic-style" />\n'
     svg_end = '</svg>'
     level_svg = svg_prefix + svg_size + svg_style + level_svg + svg_js + svg_end
