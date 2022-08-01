@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+set -e
+
 WNUMB=740c52102acdbed17a5b4c3746600dfb116356c1
 NOUISLIDER=ab25fad2918ae796c2f401aedfce9accdafa19ce
 
@@ -9,8 +11,11 @@ FILES=(
     https://raw.githubusercontent.com/leongersen/noUiSlider/${NOUISLIDER}/dist/nouislider.min.css
 )
 
+mkdir -p site/resources/external/
+
+chmod 777 site/resources/external/
+
 for FILE in "${FILES[@]}"
 do
-    echo "$FILE"
-    curl -o "site/resources/external/$(basename "$FILE")" "$FILE"
+    echo -e "url = \"${FILE}\"\n-O\n--output-dir site/resources/external\n"
 done

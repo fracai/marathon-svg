@@ -104,6 +104,20 @@ pipeline:
       - mkdir -p output
       - ./map2svg.py -d output/m3 -m data/m3-map.xml -i marathon-utils/map-extras/M3_ignored_polys.txt -c map_info/chapters-m3.txt -b m3/
 
+# prepare resources list
+
+  resources-prep:
+    image: bash:5
+    commands:
+      - ./prep-external-resources.sh > data/external-resources.txt
+
+# fetch external resources
+
+  fetch-resources:
+    image: curlimages/curl:7.84.0
+    commands:
+      - curl -K data/external-resources.txt
+
 # deploy
 
   rsync:
