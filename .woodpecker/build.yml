@@ -80,7 +80,7 @@ pipeline:
 
 # prepare resources list
 
-  resources-prep:
+  prepare-resources:
     image: bash:5
     commands:
       - cp -a site output
