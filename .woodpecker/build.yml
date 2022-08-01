@@ -78,37 +78,12 @@ pipeline:
       - classic-mac-utils/macbin2data.pl < data/m3/Map.sceA > data/m3.map
       - marathon-utils/map2xml.pl < data/m3.map > data/m3-map.xml
 
-# convert to SVG
-
-  xml2svg-m1:
-    image: ${REGISTRY_HOST}/arno/marathon-python:latest
-    pull: true
-    group: svg
-    commands:
-      - mkdir -p output
-      - ./map2svg.py -d output/m1 -m data/m1-map.xml -i marathon-utils/map-extras/M1_ignored_polys.txt -c map_info/chapters-m1.txt -b m1/
-
-  xml2svg-m2:
-    image: ${REGISTRY_HOST}/arno/marathon-python:latest
-    pull: true
-    group: svg
-    commands:
-      - mkdir -p output
-      - ./map2svg.py -d output/m2 -m data/m2-map.xml -i marathon-utils/map-extras/M2_ignored_polys.txt -c map_info/chapters-m2.txt -b m2/
-
-  xml2svg-m3:
-    image: ${REGISTRY_HOST}/arno/marathon-python:latest
-    pull: true
-    group: svg
-    commands:
-      - mkdir -p output
-      - ./map2svg.py -d output/m3 -m data/m3-map.xml -i marathon-utils/map-extras/M3_ignored_polys.txt -c map_info/chapters-m3.txt -b m3/
-
 # prepare resources list
 
   resources-prep:
     image: bash:5
     commands:
+      - cp -a site output
       - ./prep-external-resources.sh > data/external-resources.txt
 
 # fetch external resources
@@ -117,6 +92,29 @@ pipeline:
     image: curlimages/curl:7.84.0
     commands:
       - curl -K data/external-resources.txt
+
+# convert to SVG
+
+  xml2svg-m1:
+    image: ${REGISTRY_HOST}/arno/marathon-python:latest
+    pull: true
+    group: svg
+    commands:
+      - ./map2svg.py -d output/m1 -m data/m1-map.xml -i marathon-utils/map-extras/M1_ignored_polys.txt -c map_info/chapters-m1.txt -b m1/
+
+  xml2svg-m2:
+    image: ${REGISTRY_HOST}/arno/marathon-python:latest
+    pull: true
+    group: svg
+    commands:
+      - ./map2svg.py -d output/m2 -m data/m2-map.xml -i marathon-utils/map-extras/M2_ignored_polys.txt -c map_info/chapters-m2.txt -b m2/
+
+  xml2svg-m3:
+    image: ${REGISTRY_HOST}/arno/marathon-python:latest
+    pull: true
+    group: svg
+    commands:
+      - ./map2svg.py -d output/m3 -m data/m3-map.xml -i marathon-utils/map-extras/M3_ignored_polys.txt -c map_info/chapters-m3.txt -b m3/
 
 # deploy
 

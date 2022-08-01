@@ -11,11 +11,11 @@ FILES=(
     https://raw.githubusercontent.com/leongersen/noUiSlider/${NOUISLIDER}/dist/nouislider.min.css
 )
 
-mkdir -p site/resources/external/
+mkdir -p output/resources/external/
 
-chmod 777 site/resources/external/
+chmod 777 output/resources/external/
 
 for FILE in "${FILES[@]}"
 do
-    echo -e "url = \"${FILE}\"\n-O\n--output-dir site/resources/external\n"
+    echo -e "url = \"${FILE}\"\n-O\n--output-dir output/resources/external\n"
 done
