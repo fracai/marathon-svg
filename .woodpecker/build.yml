@@ -151,15 +151,3 @@ pipeline:
       ssh_key:
         from_secret: git_key
       secrets: [ git_key ]
-
-  rsync:
-    image: drillster/drone-rsync
-    group: deploy
-    settings:
-      hosts: bottle.fracas.net
-      source: ../_tmp/site/
-      target: ~/svg-marathon/
-      user: arno
-      key:
-        from_secret: rsync_key
-      secrets: [ rsync_key ]
