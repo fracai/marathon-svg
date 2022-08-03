@@ -29,3 +29,18 @@ pipeline:
       path:
         - .woodpecker/docker.yml
         - Dockerfile-python
+
+  build-rsync:
+    image: woodpeckerci/plugin-docker-buildx
+    group: docker
+    settings:
+      dry_run: false
+      dockerfile: Dockerfile-rsync
+      repo: ${REGISTRY_HOST}/${CI_REPO_OWNER}/marathon-rsync
+      custom_dns: ${PRIVATE_DNS}
+      platforms: linux/amd64
+      tag: [ latest ]
+    when:
+      path:
+        - .woodpecker/docker.yml
+        - Dockerfile-rsync

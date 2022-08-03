@@ -1,0 +1,11 @@
+ARG ALPINE_VERSION=latest
+ARG SOURCE_COMMIT
+ARG VERSION=latest
+
+FROM alpine:$ALPINE_VERSION
+
+# Install rsync
+RUN apk add --no-cache rsync
+
+# Run rsync in daemon mode
+CMD ["rsync", "--help"]

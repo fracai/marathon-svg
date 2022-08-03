@@ -3,6 +3,18 @@ depends_on:
 
 pipeline:
 
+# clone output site
+
+  clone-site:
+    image: woodpeckerci/plugin-git
+    group: clone
+    settings:
+      remote: https://${GIT_HOST}/${CI_REPO_OWNER}/${CI_REPO_NAME}
+      branch: site
+      ref: refs/heads/site
+      sha: FETCH_HEAD
+      path: ../_tmp/site
+
 # clone dependencies
 
   clone-marathon-utils:
@@ -12,7 +24,7 @@ pipeline:
       remote: https://github.com/Hopper262/marathon-utils
       sha: e297f264f4da2e7283adcb120ffadca9720c84d6
       ref: e297f264f4da2e7283adcb120ffadca9720c84d6
-      path: marathon-utils
+      path: ../_tmp/repos/marathon-utils
 
   clone-classic-mac-utils:
     image: woodpeckerci/plugin-git
@@ -21,7 +33,7 @@ pipeline:
       remote: https://github.com/Hopper262/classic-mac-utils
       sha: cfa801ec4b4611b2fc9460f1c45eb10bf0c79586
       ref: cfa801ec4b4611b2fc9460f1c45eb10bf0c79586
-      path: classic-mac-utils
+      path: ../_tmp/repos/classic-mac-utils
 
 # clone maps
 
@@ -32,7 +44,7 @@ pipeline:
       remote: https://github.com/Aleph-One-Marathon/data-marathon
       sha: 75f194c3a03e60597f04c887a5d07165ad1c2b0e
       ref: 75f194c3a03e60597f04c887a5d07165ad1c2b0e
-      path: data/m1
+      path: ../_tmp/data/m1
 
   clone-m2:
     image: woodpeckerci/plugin-git
@@ -41,7 +53,7 @@ pipeline:
       remote: https://github.com/Aleph-One-Marathon/data-marathon-2
       sha: 0c5dcb94003936111dcae1420f782abfb7c3b1fd
       ref: 0c5dcb94003936111dcae1420f782abfb7c3b1fd
-      path: data/m2
+      path: ../_tmp/data/m2
 
   clone-m3:
     image: woodpeckerci/plugin-git
@@ -50,7 +62,30 @@ pipeline:
       remote: https://github.com/Aleph-One-Marathon/data-marathon-infinity
       sha: 95045260f343bb700bddb557515617ba578a464e
       ref: 95045260f343bb700bddb557515617ba578a464e
-      path: data/m3
+      path: ../_tmp/data/m3
+
+# prepare resources list
+
+  prepare-resources:
+    image: bash:5
+    commands:
+      - ./prep-external-resources.sh > ../_tmp/data/external-resources.txt
+      - chmod -R ugo=rwX ../_tmp/site
+
+# update site base
+
+  update-site-base:
+    image: ${REGISTRY_HOST}/arno/marathon-rsync:latest
+    pull: true
+    commands:
+      - rsync -Pva site ../_tmp/
+
+# fetch external resources
+
+  fetch-resources:
+    image: curlimages/curl:7.84.0
+    commands:
+      - curl -K ../_tmp/data/external-resources.txt
 
 # convert to XML
 
@@ -59,39 +94,24 @@ pipeline:
     pull: true
     group: xml
     commands:
-      - classic-mac-utils/macbin2data.pl < data/m1/Map.scen > data/m1.map
-      - marathon-utils/map2xml.pl < data/m1.map > data/m1-map.xml
+      - ../_tmp/repos/classic-mac-utils/macbin2data.pl < ../_tmp/data/m1/Map.scen > ../_tmp/data/m1.map
+      - ../_tmp/repos/marathon-utils/map2xml.pl < ../_tmp/data/m1.map > ../_tmp/data/m1-map.xml
 
   map2xml-m2:
     image: ${REGISTRY_HOST}/arno/marathon-perl:latest
     pull: true
     group: xml
     commands:
-      - classic-mac-utils/macbin2data.pl < data/m2/Map.sceA > data/m2.map
-      - marathon-utils/map2xml.pl < data/m2.map > data/m2-map.xml
+      - ../_tmp/repos/classic-mac-utils/macbin2data.pl < ../_tmp/data/m2/Map.sceA > ../_tmp/data/m2.map
+      - ../_tmp/repos/marathon-utils/map2xml.pl < ../_tmp/data/m2.map > ../_tmp/data/m2-map.xml
 
   map2xml-m3:
     image: ${REGISTRY_HOST}/arno/marathon-perl:latest
     pull: true
     group: xml
     commands:
-      - classic-mac-utils/macbin2data.pl < data/m3/Map.sceA > data/m3.map
-      - marathon-utils/map2xml.pl < data/m3.map > data/m3-map.xml
-
-# prepare resources list
-
-  prepare-resources:
-    image: bash:5
-    commands:
-      - cp -a site output
-      - ./prep-external-resources.sh > data/external-resources.txt
-
-# fetch external resources
-
-  fetch-resources:
-    image: curlimages/curl:7.84.0
-    commands:
-      - curl -K data/external-resources.txt
+      - ../_tmp/repos/classic-mac-utils/macbin2data.pl < ../_tmp/data/m3/Map.sceA > ../_tmp/data/m3.map
+      - ../_tmp/repos/marathon-utils/map2xml.pl < ../_tmp/data/m3.map > ../_tmp/data/m3-map.xml
 
 # convert to SVG
 
@@ -100,21 +120,21 @@ pipeline:
     pull: true
     group: svg
     commands:
-      - ./map2svg.py -d output/m1 -m data/m1-map.xml -i marathon-utils/map-extras/M1_ignored_polys.txt -c map_info/chapters-m1.txt -b m1/
+      - ./map2svg.py -d ../_tmp/site/m1 -m ../_tmp/data/m1-map.xml -i ../_tmp/repos/marathon-utils/map-extras/M1_ignored_polys.txt -c map_info/chapters-m1.txt -b m1/
 
   xml2svg-m2:
     image: ${REGISTRY_HOST}/arno/marathon-python:latest
     pull: true
     group: svg
     commands:
-      - ./map2svg.py -d output/m2 -m data/m2-map.xml -i marathon-utils/map-extras/M2_ignored_polys.txt -c map_info/chapters-m2.txt -b m2/
+      - ./map2svg.py -d ../_tmp/site/m2 -m ../_tmp/data/m2-map.xml -i ../_tmp/repos/marathon-utils/map-extras/M2_ignored_polys.txt -c map_info/chapters-m2.txt -b m2/
 
   xml2svg-m3:
     image: ${REGISTRY_HOST}/arno/marathon-python:latest
     pull: true
     group: svg
     commands:
-      - ./map2svg.py -d output/m3 -m data/m3-map.xml -i marathon-utils/map-extras/M3_ignored_polys.txt -c map_info/chapters-m3.txt -b m3/
+      - ./map2svg.py -d ../_tmp/site/m3 -m ../_tmp/data/m3-map.xml -i ../_tmp/repos/marathon-utils/map-extras/M3_ignored_polys.txt -c map_info/chapters-m3.txt -b m3/
 
 # deploy
 
@@ -122,9 +142,9 @@ pipeline:
     image: appleboy/drone-git-push
     group: deploy
     settings:
+      remote: ssh://git@${GIT_HOST}/${CI_REPO_OWNER}/${CI_REPO_NAME}.git
+      path: ../_tmp/site/
       branch: site
-      remote: git@${GIT_HOST}:marathon-svg.git
-      path: output
       commit: true
       author_name: woodpecker-ci
       commit_message: ${CI_COMMIT_BRANCH}:${CI_COMMIT_SHA}
@@ -137,7 +157,7 @@ pipeline:
     group: deploy
     settings:
       hosts: bottle.fracas.net
-      source: ./output/
+      source: ../_tmp/site/
       target: ~/svg-marathon/
       user: arno
       key:
