@@ -118,8 +118,23 @@ pipeline:
 
 # deploy
 
+  commit:
+    image: appleboy/drone-git-push
+    group: deploy
+    settings:
+      branch: site
+      remote: git@${GIT_HOST}:marathon-svg.git
+      path: output
+      commit: true
+      author_name: woodpecker-ci
+      commit_message: ${CI_COMMIT_BRANCH}:${CI_COMMIT_SHA}
+      ssh_key:
+        from_secret: git_key
+      secrets: [ git_key ]
+
   rsync:
     image: drillster/drone-rsync
+    group: deploy
     settings:
       hosts: bottle.fracas.net
       source: ./output/
