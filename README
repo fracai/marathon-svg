@@ -1,0 +1,16 @@
+Inspired by the multiple vertical layers of maps like _By Committee_ and _The Hard Stuff Rules_, I wanted an interactive map where I could hide polygons by elevation. I fortunately found a lot of help in the work previously completed by [Hopper](https://github.com/Hopper262/).
+
+The original game data is copyright 1994-present Bungie Studios, generously allowed for use by the open-source community. The code here is provided as GPLv3.0.
+
+TODO:
+- zoom and pan (? https://github.com/bumbu/svg-pan-zoom)
+- on-map (or adjacent) legend and scale
+- play sounds on hover (including monsters, platforms, water, etc.)
+- per-level overlays.json to support changing monster alliances
+- link terminals to Story pages
+- some method to better highlight the locations of overlay items (single items can get lost on busy maps)
+- display category counts
+- dynamic water level
+    - fluctuating between the min/max at the appropriate rate
+    - changing by toggling map switches and triggers
+- implement top-down map navigation, item inventory, attacks, and damage
