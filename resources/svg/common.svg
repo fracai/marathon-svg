@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg
+    xmlns="http://www.w3.org/2000/svg"
+    xmlns:xlink="http://www.w3.org/1999/xlink"
+    version="1.1"
+    style='display: none!important;'>
+
+<!-- marathon logo -->
+<symbol id='logo' style='overflow: visible;'>
+<circle cx="0" cy="-3.3" r="5.5" />
+<path
+    d="
+        M .3,9.7
+        A 9.7,9.7 0 1,0 -.3,9.7
+        L -.3,2.7
+        A 6,6 0 1,1 .3,2.7
+        Z
+    "
+    />
+</symbol>
+
+<!-- hollow, outlined circle -->
+<symbol id='panel' style='overflow: visible;'>
+<!-- outline -->
+<circle r="12" stroke-width="4" stroke="black" fill="none" pointer-events="visible" />
+<!-- ring color -->
+<circle r="12" stroke-width="2" stroke="currentColor" fill="none" />
+</symbol>
+
+<!-- center oriented, tall triangle -->
+<symbol id='monster' style='overflow: visible;'>
+<polygon points="-10,5 10,0 -10,-5" fill="currentColor" stroke="black" stroke-width="1" />
+</symbol>
+
+<!-- tip oriented, tall triangle -->
+<symbol id='arrow' style='overflow: visible;'>
+<polygon points="-20,5 0,0 -20,-5" fill="currentColor" stroke="black" stroke-width="1" />
+</symbol>
+
+<!-- solid, outlined square -->
+<symbol id='object' style='overflow: visible;'>
+<rect width="5" height="5" fill="currentColor" stroke="black" stroke-width="1" />
+</symbol>
+
+<!-- solid, outlined circle -->
+<symbol id='item' style='overflow: visible;'>
+<!-- outline -->
+<circle r="3" fill="black" />
+<!-- inner color -->
+<circle r="2" fill="currentColor" />
+</symbol>
+
+<!-- center oriented, downward pointing, equilateral triangle -->
+<symbol id='unknown' style='overflow: visible;'>
+<polygon points="-5,-2.88675134594813 5,-2.88675134594813 0,8.66025403784439" fill="currentColor" stroke="black" stroke-width="1" />
+</symbol>
+
+<!-- inward facing equilateral triangles, with a center background circle -->
+<symbol id='sound' style='overflow: visible;'>
+<circle r="6" fill="black" />
+<circle r="5" fill="currentColor" />
+<polygon points="11.547005383793,-5 11.547005383793,5 0,0" fill="currentColor" stroke="black" stroke-width="1" />
+<polygon points="-11.547005383793,-5 -11.547005383793,5 0,0" fill="currentColor" stroke="black" stroke-width="1" />
+</symbol>
+
+<!-- center oriented, right pointing, equilateral triangle -->
+<symbol id='center_right_triangle' style='overflow: visible;'>
+<polygon points="-2.88675134594813,5 -2.88675134594813,-5 8.66025403784439,0" fill="currentColor" stroke="black" stroke-width="1" />
+</symbol>
+
+<!-- center oriented, downward pointing, equilateral triangle -->
+<symbol id='center_down_triangle' style='overflow: visible;'>
+<polygon points="5,2.88675134594813 -5,2.88675134594813 0,8.66025403784439" fill="currentColor" stroke="black" stroke-width="1" />
+</symbol>
+
+<!-- hollow, outlined star -->
+<symbol id='goal' style='overflow: visible;'>
+<!-- outline -->
+<polygon points="0,-8.5 -6,8.5 9,-3.5 -9,-3.5 6,8.5" fill="none" stroke="black" stroke-width="3" pointer-events="visible" />
+<!-- inner color -->
+<polygon points="0,-8.5 -6,8.5 9,-3.5 -9,-3.5 6,8.5" fill="none" stroke="currentColor" stroke-width="1" />
+</symbol>
+
+</svg>

@@ -1,0 +1,239 @@
+{
+  "levels": [
+    {
+      "separator": "Lh'owon"
+    },
+    {
+      "index": 0,
+      "name": "Waterloo Waterpark",
+      "base_name": "m2/00_WaterlooWaterpark"
+    },
+    {
+      "index": 1,
+      "name": "The Slings & Arrows of Outrageous Fortune",
+      "base_name": "m2/01_TheSlingsArrowsofOutrageousFortune"
+    },
+    {
+      "index": 2,
+      "name": "Charon Doesn't Make Change",
+      "base_name": "m2/02_CharonDoesntMakeChange"
+    },
+    {
+      "separator": "Volunteers"
+    },
+    {
+      "index": 3,
+      "name": "What About Bob?",
+      "base_name": "m2/03_WhatAboutBob"
+    },
+    {
+      "index": 4,
+      "name": "Come and Take your Medicine",
+      "base_name": "m2/04_ComeandTakeyourMedicine"
+    },
+    {
+      "index": 5,
+      "name": "We\u2019re Everywhere",
+      "base_name": "m2/05_WereEverywhere"
+    },
+    {
+      "separator": "Garrison"
+    },
+    {
+      "index": 6,
+      "name": "Ex Cathedra",
+      "base_name": "m2/06_ExCathedra"
+    },
+    {
+      "index": 7,
+      "name": "Nuke And Pave",
+      "base_name": "m2/07_NukeAndPave"
+    },
+    {
+      "index": 8,
+      "name": "Curiouser and Curiouser\u2026",
+      "base_name": "m2/08_CuriouserandCuriouser"
+    },
+    {
+      "separator": "Citadel"
+    },
+    {
+      "index": 9,
+      "name": "Eat It, Vid Boi!",
+      "base_name": "m2/09_EatItVidBoi"
+    },
+    {
+      "index": 10,
+      "name": "The Hard Stuff Rules\u2026",
+      "base_name": "m2/10_TheHardStuffRules"
+    },
+    {
+      "index": 11,
+      "name": "Bob\u2019s Big Date",
+      "base_name": "m2/11_BobsBigDate"
+    },
+    {
+      "index": 12,
+      "name": "Six Thousand Feet Under",
+      "base_name": "m2/12_SixThousandFeetUnder"
+    },
+    {
+      "separator": "Durandal"
+    },
+    {
+      "index": 13,
+      "name": "If I Had a Rocket Launcher, I'd Make Somebody Pay",
+      "base_name": "m2/13_IfIHadaRocketLauncherIdMakeSomebodyPay"
+    },
+    {
+      "index": 14,
+      "name": "Sorry Don\u2019t Make It So",
+      "base_name": "m2/14_SorryDontMakeItSo"
+    },
+    {
+      "index": 15,
+      "name": "For Carnage, Apply Within",
+      "base_name": "m2/15_ForCarnageApplyWithin"
+    },
+    {
+      "index": 16,
+      "name": "Begging For Mercy Makes Me Angry!",
+      "base_name": "m2/16_BeggingForMercyMakesMeAngry"
+    },
+    {
+      "separator": "Captured"
+    },
+    {
+      "index": 17,
+      "name": "The Big House",
+      "base_name": "m2/17_TheBigHouse"
+    },
+    {
+      "separator": "Blake"
+    },
+    {
+      "index": 18,
+      "name": "This Side Toward Enemy",
+      "base_name": "m2/18_ThisSideTowardEnemy"
+    },
+    {
+      "index": 19,
+      "name": "God Will Sort The Dead\u2026",
+      "base_name": "m2/19_GodWillSortTheDead"
+    },
+    {
+      "index": 20,
+      "name": "My Own Private Thermopylae",
+      "base_name": "m2/20_MyOwnPrivateThermopylae"
+    },
+    {
+      "index": 21,
+      "name": "Kill Your Television",
+      "base_name": "m2/21_KillYourTelevision"
+    },
+    {
+      "separator": "Simulacrums"
+    },
+    {
+      "index": 22,
+      "name": "Where the Twist Flops",
+      "base_name": "m2/22_WheretheTwistFlops"
+    },
+    {
+      "index": 23,
+      "name": "Beware of Abandoned Rental Trucks",
+      "base_name": "m2/23_BewareofAbandonedRentalTrucks"
+    },
+    {
+      "index": 24,
+      "name": "Requiem For a Cyborg",
+      "base_name": "m2/24_RequiemForaCyborg"
+    },
+    {
+      "separator": "S'pht'Kr"
+    },
+    {
+      "index": 25,
+      "name": "Fatum Iustum Stultorum",
+      "base_name": "m2/25_FatumIustumStultorum"
+    },
+    {
+      "index": 26,
+      "name": "Feel the Noise",
+      "base_name": "m2/26_FeeltheNoise"
+    },
+    {
+      "index": 27,
+      "name": "All Roads Lead To Sol\u2026",
+      "base_name": "m2/27_AllRoadsLeadToSol"
+    },
+    {
+      "separator": "Network Maps"
+    },
+    {
+      "index": 28,
+      "name": "Thunderdome",
+      "base_name": "m2/28_Thunderdome"
+    },
+    {
+      "index": 29,
+      "name": "Shangri-La",
+      "base_name": "m2/29_ShangriLa"
+    },
+    {
+      "index": 30,
+      "name": "No Disintegrations",
+      "base_name": "m2/30_NoDisintegrations"
+    },
+    {
+      "index": 31,
+      "name": "Ok, honeybunny",
+      "base_name": "m2/31_Okhoneybunny"
+    },
+    {
+      "index": 32,
+      "name": "Lack of Vision",
+      "base_name": "m2/32_LackofVision"
+    },
+    {
+      "index": 33,
+      "name": "Flight of the Toolator",
+      "base_name": "m2/33_FlightoftheToolator"
+    },
+    {
+      "index": 34,
+      "name": "Giant Flaming Pit of Lava",
+      "base_name": "m2/34_GiantFlamingPitofLava"
+    },
+    {
+      "index": 35,
+      "name": "House of Pain",
+      "base_name": "m2/35_HouseofPain"
+    },
+    {
+      "index": 36,
+      "name": "16th Parallel",
+      "base_name": "m2/36_16thParallel"
+    },
+    {
+      "index": 37,
+      "name": "One Hit Wonder",
+      "base_name": "m2/37_OneHitWonder"
+    },
+    {
+      "index": 38,
+      "name": "Ok, Who Wants Some?",
+      "base_name": "m2/38_OkWhoWantsSome"
+    },
+    {
+      "index": 39,
+      "name": "Everyone\u2019s Mortal But Me",
+      "base_name": "m2/39_EveryonesMortalButMe"
+    },
+    {
+      "index": 40,
+      "name": "5-D Space",
+      "base_name": "m2/40_5DSpace"
+    }
+  ]
+}

@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>Map Viewer</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<link rel="stylesheet" href="resources/css/reset.css" />
+
+<script src="resources/js/map.js"></script>
+
+<link rel="stylesheet" href="resources/external/nouislider.min.css" />
+<script src="resources/external/nouislider.min.js"></script>
+<script src="resources/external/wNumb.min.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.8.0/gsap.min.js" defer></script>
+
+<link rel="stylesheet" href="resources/css/map.css" />
+<link rel="stylesheet" href="resources/css/styles.css" />
+
+</head>
+<body onload="loaded()">
+<div id="controls">
+<table class="menu-table">
+<tr><td>Map:</td><td><select name="select_map" id="select_map" onchange='map_selection(this);'></select></td></tr>
+<tr><td>Level:</td><td><select name="select_level" id="select_level" onchange='level_selection(this);'></select>
+<a href="#previous_level" class="previous_level" onclick='previous_level();'> &#x2190;</a>
+<a href="#reload_level" class="reload_level" onclick='reload_level();'> &#x21bb;</a>
+<a href="#next_level" class="next_level" onclick='next_level();'> &#x2192;</a>
+</td></tr>
+</table>
+<br />
+
+<button class="collapsible">Zoom:</button>
+<div class="content">
+<button onclick="zoom('map')">Map</button><br />
+<button onclick="zoom('items')">Map &amp; Items</button><br />
+<button onclick="zoom('lines')">All Lines</button><br />
+<button onclick="zoom()">World</button><br />
+<!-- end collapsible section: zoom -->
+</div>
+
+<button class="collapsible">Map Overlays:</button>
+<div class="content" id="overlays">
+<!-- end collapsible section: map overlays -->
+</div>
+
+<button class="collapsible">Elevation:</button>
+<div class="content">
+<div id="elevation-settings">
+<button onclick="set_player_elevation()">Player</button><br />
+<button onclick="set_initial_elevation()">Map</button><br />
+<input type="radio" id="elevation-contained" name="elevation" value="contained" onchange='update_svg_style()' />
+<label for="elevation-contained">Contained</label><br>
+<input type="radio" id="elevation-intersection" name="elevation" value="intersection" checked="checked" onchange='update_svg_style()' />
+<label for="elevation-intersection">Intersection</label><br>
+<input type="radio" id="elevation-ceiling" name="elevation" value="ceiling" onchange='update_svg_style()' />
+<label for="elevation-ceiling">Ceiling</label><br>
+<input type="radio" id="elevation-floor" name="elevation" value="floor" onchange='update_svg_style()' />
+<label for="elevation-floor">Floor</label><br>
+<table class="elevation-table">
+<tr><td>Maximum:</td><td><span class="" id="ceiling-value"></span></td></tr>
+<tr><td>Minimum:</td><td><span class="" id="floor-value"></span></td></tr>
+</table>
+<label><input type="checkbox" id="lock-handles" onclick="update_handle_locks()"/> Lock Range</label>
+<!-- end div: elevation settings -->
+</div>
+<div id="elevation-slider"></div>
+<script>
+create_slider(
+    'drag',
+    {
+        'min': -32,
+        'max':  32
+    },
+    [0, 819/1024]
+);
+</script>
+<!-- end collapsible section: elevation -->
+</div>
+
+<!-- end div: controls -->
+</div>
+
+<div><object id="map_object" type="image/svg+xml" data="resources/svg/logo.svg" /></div>
+
+</body>
+</html>

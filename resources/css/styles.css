@@ -1,0 +1,122 @@
+/* .hidden, .landscape_, .ignore, .pointless { display: none!important; } */
+
+polygon.ignore          { color: rgb(   0,  47,   0 ); }
+polygon.plain           { color: rgb(   0,  47,   0 ); }
+polygon.platform        { color: rgb( 117,   0,   0 ); }
+/* polygon.secret_platform { color: rgb(  47,  47,   0 ); } */
+polygon.secret_platform { color: rgb( 117,   0,   0 ); }
+polygon.water           { color: rgb(  14,  37,  63 ); }
+polygon.lava            { color: rgb(  76,  27,   0 ); }
+polygon.sewage          { color: rgb(  70,  90,   0 ); }
+polygon.jjaro           { color: rgb(  70,  90,   0 ); }
+polygon.pfhor           { color: rgb( 137,   0, 137 ); }
+polygon.minor_ouch      { color: rgb(  76,  27,   0 ); }
+polygon.major_ouch      { color: rgb( 137,   0, 137 ); }
+polygon.teleporter      { color: rgb( 128,   0, 128 ); }
+polygon.hill            { color: rgb(   0,  47,   0 ); }
+polygon.landscape_      { color: rgb(  37,   0,  37 ); }
+polygon {
+    fill: currentColor;
+    stroke: currentColor;
+    stroke-width: 1;
+    stroke-linecap: round;
+    stroke-linejoin: miter;
+    vector-effect: non-scaling-stroke;
+}
+
+@font-face {
+    font-family: ProFontIIx;
+    src: url(/resources/fonts/ProFontIIx.woff2);
+}
+
+text.annotation {
+    fill: rgb( 0, 255, 0 );
+    font-size: 1em;
+    font-family: ProFontIIx, ProFont, Monaco, monospace;
+    paint-order: stroke;
+    stroke: black;
+    stroke-width: .2em;
+    stroke-linecap: round;
+    stroke-linejoin: miter;
+}
+
+path {
+    stroke-linecap: round;
+    stroke-linejoin: miter;
+    vector-effect: non-scaling-stroke;
+}
+line {
+    stroke-width: 1;
+    stroke-linecap: round;
+    stroke-linejoin: miter;
+    vector-effect: non-scaling-stroke;
+}
+.grid_origin { stroke: grey; stroke-width: .7; }
+.grid_major  { stroke: grey; stroke-width: .3; }
+.grid_minor  { stroke: grey; stroke-width: .1; }
+
+line.unconnected   { stroke: rgb(  0, 192,  0 ); stroke-width:  .5; }
+line.plain         { stroke: rgb(  0,   0, 64 ); stroke-width: 1.0; }
+
+line.landscape_ { stroke: rgb(  64,   0,  64 ); stroke-width: .5; }
+line.ignore,
+line.solid     { stroke: rgb( 0, 255, 0 ); stroke-width: 1.0; }
+line.elevation { stroke: rgb( 0, 157, 0 ); stroke-width:  .5; }
+
+line.ceiling { stroke: rgb( 0, 102, 0 ); stroke-width:  .5; }
+line.plain   { stroke: rgb( 0, 102, 0 ); stroke-width:  .1; }
+
+line.teleporter_border, 
+line.platform_on_border, 
+line.platform_off_border, 
+line.light_on_border, 
+line.light_off_border, 
+line.platform_switch_border,  
+line.light_switch_border,  
+line.tag_switch_border,
+line.terminal_teleport_border
+{ stroke: black; stroke-width:  1; }
+
+line.teleporter_line   { stroke: rgb( 128,  64, 128 ); stroke-width:  .5; }
+ use.teleporter_line   {  color: rgb( 128,  64, 128 ); }
+line.platform_on_line  { stroke: rgb( 255, 128, 128 ); stroke-width:  .5; }
+ use.platform_on_line  {  color: rgb( 255, 128, 128 ); }
+line.platform_off_line { stroke: rgb( 128,   0,   0 ); stroke-width:  .5; }
+ use.platform_off_line {  color: rgb( 128,   0,   0 ); }
+line.light_on_line     { stroke: rgb( 255, 255, 128 ); stroke-width:  .5; }
+ use.light_on_line     {  color: rgb( 255, 255, 128 ); }
+line.light_off_line    { stroke: rgb( 128, 128,   0 ); stroke-width:  .5; }
+ use.light_off_line    {  color: rgb( 128, 128,   0 ); }
+ 
+line.platform_switch_line   { stroke: rgb( 255,  64,  64 ); stroke-width:  .5; }
+ use.platform_switch_line   {  color: rgb( 255,  64,  64 ); }
+line.light_switch_line      { stroke: rgb( 255, 192, 128 ); stroke-width:  .5; }
+ use.light_switch_line      {  color: rgb( 255, 192, 128 ); }
+line.tag_switch_line        { stroke: rgb( 192, 192, 192 ); stroke-width:  .5; }
+ use.tag_switch_line        {  color: rgb( 192, 192, 192 ); }
+line.terminal_teleport_line { stroke: rgb(  64, 192,  64 ); stroke-width:  .5; }
+ use.terminal_teleport_line {  color: rgb(  64, 192,  64 ); }
+
+.panel-shield_refuel        { color: rgb( 255,   0,   0 ); }
+.panel-double_shield_refuel { color: rgb( 255, 255,   0 ); }
+.panel-triple_shield_refuel { color: rgb( 255,   0, 255 ); }
+.panel-oxygen_refuel        { color: rgb(   0, 255, 255 ); }
+.panel-pattern_buffer       { color: rgb( 255, 128,  64 ); }
+.panel-computer_terminal    { color: rgb( 255, 255, 255 ); }
+
+.panel-platform_switch      { color: rgb( 255,  64,  64 ); }
+.panel-light_switch         { color: rgb( 255, 192, 128 ); }
+.panel-tag_switch           { color: rgb( 192, 192, 192 ); }
+.panel-goal_switch          { color: rgb( 255, 215,   0 ); }
+
+.unknown { color: rgb( 192, 192, 192 ); }
+
+.sound { color: rgb( 255, 255, 128 ); }
+
+.item   { color: rgb(  86, 244,  23 ); }
+.object { color: rgb( 255, 165,   0 ); }
+.goal   { color: rgb( 255, 215,   0 ); }
+
+.player   { color: rgb(   0, 128, 255 ); }
+.monster  { color: rgb( 255,  64,   0 ); }
+.friendly { color: rgb(   0, 255,   0 ); }

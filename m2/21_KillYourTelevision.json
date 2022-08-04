@@ -1,0 +1,5429 @@
+{
+  "scale": 1000,
+  "dimensions": {
+    "map": [
+      -984.375,
+      -648.4375,
+      953.125,
+      984.375
+    ],
+    "items": [
+      -984.375,
+      -648.4375,
+      953.125,
+      984.375
+    ],
+    "lines": [
+      -984.375,
+      -648.4375,
+      953.125,
+      984.375
+    ]
+  },
+  "elevation": {
+    "floor": -0.28125,
+    "ceiling": 0.28125
+  },
+  "viewBox": {
+    "map": "-984.375 -648.4375 1937.5 1632.8125",
+    "items": "-984.375 -648.4375 1937.5 1632.8125",
+    "lines": "-984.375 -648.4375 1937.5 1632.8125"
+  },
+  "player": [
+    {
+      "index": 25,
+      "elevation": -0.15625
+    },
+    {
+      "index": 26,
+      "elevation": -0.15625
+    },
+    {
+      "index": 27,
+      "elevation": -0.15625
+    },
+    {
+      "index": 28,
+      "elevation": -0.15625
+    },
+    {
+      "index": 29,
+      "elevation": -0.15625
+    },
+    {
+      "index": 30,
+      "elevation": -0.15625
+    },
+    {
+      "index": 31,
+      "elevation": -0.15625
+    },
+    {
+      "index": 32,
+      "elevation": -0.15625
+    }
+  ],
+  "overlays": {
+    "ids": [
+      "background-grid",
+      "border_ceiling",
+      "border_elevation",
+      "border_landscape_",
+      "border_plain",
+      "border_solid",
+      "border_unconnected"
+    ],
+    "classes": [
+      "item",
+      "item-15",
+      "item-16",
+      "item-2",
+      "item-20",
+      "item-23",
+      "item-3",
+      "item-4",
+      "item-6",
+      "item-7",
+      "monster",
+      "monster-1",
+      "monster-21",
+      "monster-22",
+      "monster-34",
+      "object",
+      "object-14",
+      "object-15",
+      "object-16",
+      "object-17",
+      "object-18",
+      "object-19",
+      "object-20",
+      "object-21",
+      "object-22",
+      "object-24",
+      "object-25",
+      "object-27",
+      "panel",
+      "panel-computer_terminal",
+      "panel-double_shield_refuel",
+      "panel-light_switch",
+      "panel-oxygen_refuel",
+      "panel-pattern_buffer",
+      "panel-platform_switch",
+      "panel-tag_switch",
+      "player",
+      "sound",
+      "sound-0",
+      "sound-20",
+      "sound-22"
+    ],
+    "selectors": [
+      "polygon.plain",
+      "polygon.platform",
+      "polygon.water"
+    ]
+  },
+  "polygons": {
+    "290": {
+      "floor_height": -0.28125,
+      "ceiling_height": -0.25,
+      "connections": [
+        "line_944",
+        "line_946",
+        "line_947",
+        "line_948",
+        "panel_light_switch_line_group_poly_s123_p290",
+        "panel_light_switch_line_group_poly_s124_p290",
+        "poly_290"
+      ]
+    },
+    "288": {
+      "floor_height": -0.28125,
+      "ceiling_height": -0.21875,
+      "connections": [
+        "line_936",
+        "line_937",
+        "line_938",
+        "line_939",
+        "panel_light_switch_line_group_poly_s123_p288",
+        "panel_light_switch_line_group_poly_s124_p288",
+        "poly_288"
+      ]
+    },
+    "289": {
+      "floor_height": -0.28125,
+      "ceiling_height": -0.21875,
+      "connections": [
+        "line_937",
+        "line_943",
+        "line_944",
+        "line_945",
+        "panel_light_switch_line_group_poly_s123_p289",
+        "panel_light_switch_line_group_poly_s124_p289",
+        "poly_289"
+      ]
+    },
+    "291": {
+      "floor_height": -0.28125,
+      "ceiling_height": -0.125,
+      "connections": [
+        "line_947",
+        "line_949",
+        "line_950",
+        "line_952",
+        "line_953",
+        "line_955",
+        "object_103",
+        "object_104",
+        "object_105",
+        "object_106",
+        "object_107",
+        "object_108",
+        "object_242",
+        "object_243",
+        "poly_291"
+      ]
+    },
+    "292": {
+      "floor_height": -0.28125,
+      "ceiling_height": -0.125,
+      "connections": [
+        "line_955",
+        "line_968",
+        "line_974",
+        "line_975",
+        "object_100",
+        "object_101",
+        "object_102",
+        "object_109",
+        "object_99",
+        "poly_292"
+      ]
+    },
+    "287": {
+      "floor_height": -0.274993896484375,
+      "ceiling_height": -0.21875,
+      "connections": [
+        "line_935",
+        "line_939",
+        "line_940",
+        "line_941",
+        "panel_light_switch_line_group_poly_s123_p287",
+        "panel_light_switch_line_group_poly_s124_p287",
+        "poly_287"
+      ]
+    },
+    "286": {
+      "floor_height": -0.26873779296875,
+      "ceiling_height": -0.21875,
+      "connections": [
+        "line_932",
+        "line_934",
+        "line_940",
+        "line_942",
+        "panel_light_switch_line_group_poly_s123_p286",
+        "panel_light_switch_line_group_poly_s124_p286",
+        "poly_286"
+      ]
+    },
+    "285": {
+      "floor_height": -0.262481689453125,
+      "ceiling_height": -0.21875,
+      "connections": [
+        "line_929",
+        "line_931",
+        "line_932",
+        "line_933",
+        "panel_light_switch_line_group_poly_s123_p285",
+        "panel_light_switch_line_group_poly_s124_p285",
+        "poly_285"
+      ]
+    },
+    "284": {
+      "floor_height": -0.2562255859375,
+      "ceiling_height": -0.21875,
+      "connections": [
+        "line_926",
+        "line_928",
+        "line_929",
+        "line_930",
+        "panel_light_switch_line_group_poly_s123_p284",
+        "panel_light_switch_line_group_poly_s124_p284",
+        "poly_284"
+      ]
+    },
+    "17": {
+      "floor_height": -0.25,
+      "ceiling_height": -0.21875,
+      "connections": [
+        "line_56",
+        "line_57",
+        "line_59",
+        "line_78",
+        "panel_light_switch_line_group_poly_s123_p17",
+        "panel_light_switch_line_group_poly_s124_p17",
+        "poly_17"
+      ]
+    },
+    "20": {
+      "floor_height": -0.25,
+      "ceiling_height": -0.21875,
+      "connections": [
+        "line_76",
+        "line_77",
+        "line_78",
+        "line_86",
+        "panel_light_switch_line_group_poly_s123_p20",
+        "panel_light_switch_line_group_poly_s124_p20",
+        "poly_20"
+      ]
+    },
+    "283": {
+      "floor_height": -0.25,
+      "ceiling_height": -0.21875,
+      "connections": [
+        "line_86",
+        "line_926",
+        "line_927",
+        "panel_light_switch_line_group_poly_s123_p283",
+        "panel_light_switch_line_group_poly_s124_p283",
+        "poly_283"
+      ]
+    },
+    "335": {
+      "floor_height": -0.25,
+      "ceiling_height": -0.21875,
+      "connections": [
+        "line_1025",
+        "line_1049",
+        "line_1083",
+        "line_1084",
+        "poly_335"
+      ]
+    },
+    "337": {
+      "floor_height": -0.25,
+      "ceiling_height": -0.21875,
+      "connections": [
+        "line_1048",
+        "line_1052",
+        "line_1085",
+        "line_1087",
+        "poly_337"
+      ]
+    },
+    "331": {
+      "floor_height": -0.25,
+      "ceiling_height": 0.1875,
+      "connections": [
+        "line_1023",
+        "line_1024",
+        "line_1025",
+        "line_1051",
+        "line_1058",
+        "line_584",
+        "object_77",
+        "poly_331"
+      ]
+    },
+    "1": {
+      "floor_height": -0.25,
+      "ceiling_height": 0.28125,
+      "connections": [
+        "line_24",
+        "line_28",
+        "line_29",
+        "line_74",
+        "object_118",
+        "object_294",
+        "panel_light_switch_line_group_poly_s123_p1",
+        "panel_light_switch_line_group_poly_s124_p1",
+        "poly_1"
+      ]
+    },
+    "2": {
+      "floor_height": -0.25,
+      "ceiling_height": 0.28125,
+      "connections": [
+        "line_17",
+        "line_19",
+        "line_22",
+        "line_73",
+        "object_121",
+        "object_244",
+        "object_292",
+        "panel_light_switch_line_group_poly_s123_p2",
+        "panel_light_switch_line_group_poly_s124_p2",
+        "poly_2"
+      ]
+    },
+    "4": {
+      "floor_height": -0.25,
+      "ceiling_height": 0.28125,
+      "connections": [
+        "line_11",
+        "line_13",
+        "line_16",
+        "line_72",
+        "object_222",
+        "object_290",
+        "object_291",
+        "panel_light_switch_line_group_poly_s123_p4",
+        "panel_light_switch_line_group_poly_s124_p4",
+        "poly_4"
+      ]
+    },
+    "6": {
+      "floor_height": -0.25,
+      "ceiling_height": 0.28125,
+      "connections": [
+        "line_2",
+        "line_7",
+        "line_71",
+        "line_9",
+        "object_120",
+        "object_289",
+        "panel_light_switch_line_group_poly_s123_p6",
+        "panel_light_switch_line_group_poly_s124_p6",
+        "poly_6"
+      ]
+    },
+    "8": {
+      "floor_height": -0.25,
+      "ceiling_height": 0.28125,
+      "connections": [
+        "line_3",
+        "line_40",
+        "line_5",
+        "line_70",
+        "object_287",
+        "object_288",
+        "panel_light_switch_line_group_poly_s123_p8",
+        "panel_light_switch_line_group_poly_s124_p8",
+        "poly_8"
+      ]
+    },
+    "10": {
+      "floor_height": -0.25,
+      "ceiling_height": 0.28125,
+      "connections": [
+        "line_42",
+        "line_46",
+        "line_47",
+        "line_69",
+        "object_245",
+        "object_285",
+        "object_286",
+        "panel_light_switch_line_group_poly_s123_p10",
+        "panel_light_switch_line_group_poly_s124_p10",
+        "poly_10"
+      ]
+    },
+    "12": {
+      "floor_height": -0.25,
+      "ceiling_height": 0.28125,
+      "connections": [
+        "line_37",
+        "line_48",
+        "line_51",
+        "line_68",
+        "object_119",
+        "object_223",
+        "object_284",
+        "panel_light_switch_line_group_poly_s123_p12",
+        "panel_light_switch_line_group_poly_s124_p12",
+        "poly_12"
+      ]
+    },
+    "14": {
+      "floor_height": -0.25,
+      "ceiling_height": 0.28125,
+      "connections": [
+        "line_30",
+        "line_32",
+        "line_35",
+        "line_75",
+        "object_221",
+        "object_293",
+        "object_295",
+        "panel_light_switch_line_group_poly_s123_p14",
+        "panel_light_switch_line_group_poly_s124_p14",
+        "poly_14"
+      ]
+    },
+    "42": {
+      "floor_height": -0.25,
+      "ceiling_height": 0.28125,
+      "connections": [
+        "line_144",
+        "line_145",
+        "line_146",
+        "line_171",
+        "line_172",
+        "object_123",
+        "object_23",
+        "panel_light_switch_line_group_poly_s123_p42",
+        "panel_light_switch_line_group_poly_s124_p42",
+        "poly_42"
+      ]
+    },
+    "47": {
+      "floor_height": -0.25,
+      "ceiling_height": 0.28125,
+      "connections": [
+        "line_147",
+        "line_172",
+        "line_21",
+        "line_88",
+        "line_89",
+        "object_122",
+        "object_246",
+        "panel_light_switch_line_group_poly_s123_p47",
+        "panel_light_switch_line_group_poly_s124_p47",
+        "poly_47"
+      ]
+    },
+    "50": {
+      "floor_height": -0.25,
+      "ceiling_height": 0.28125,
+      "connections": [
+        "line_148",
+        "line_156",
+        "line_171",
+        "line_173",
+        "line_177",
+        "line_178",
+        "line_179",
+        "line_182",
+        "object_124",
+        "panel_light_switch_line_group_poly_s123_p50",
+        "panel_light_switch_line_group_poly_s124_p50",
+        "poly_50"
+      ]
+    },
+    "53": {
+      "floor_height": -0.25,
+      "ceiling_height": 0.28125,
+      "connections": [
+        "line_187",
+        "line_52",
+        "line_66",
+        "line_68",
+        "line_69",
+        "panel_light_switch_line_group_poly_s123_p53",
+        "panel_light_switch_line_group_poly_s124_p53",
+        "poly_53"
+      ]
+    },
+    "54": {
+      "floor_height": -0.25,
+      "ceiling_height": 0.28125,
+      "connections": [
+        "line_184",
+        "line_36",
+        "line_62",
+        "line_74",
+        "line_75",
+        "panel_light_switch_line_group_poly_s123_p54",
+        "panel_light_switch_line_group_poly_s124_p54",
+        "poly_54"
+      ]
+    },
+    "55": {
+      "floor_height": -0.25,
+      "ceiling_height": 0.28125,
+      "connections": [
+        "line_184",
+        "line_185",
+        "line_186",
+        "line_187",
+        "line_54",
+        "line_56",
+        "line_60",
+        "line_64",
+        "object_116",
+        "object_117",
+        "object_24",
+        "panel_light_switch_line_group_poly_s123_p55",
+        "panel_light_switch_line_group_poly_s124_p55",
+        "poly_55"
+      ]
+    },
+    "56": {
+      "floor_height": -0.25,
+      "ceiling_height": 0.28125,
+      "connections": [
+        "line_185",
+        "line_23",
+        "line_58",
+        "line_72",
+        "line_73",
+        "panel_light_switch_line_group_poly_s123_p56",
+        "panel_light_switch_line_group_poly_s124_p56",
+        "poly_56"
+      ]
+    },
+    "57": {
+      "floor_height": -0.25,
+      "ceiling_height": 0.28125,
+      "connections": [
+        "line_10",
+        "line_186",
+        "line_41",
+        "line_70",
+        "line_71",
+        "panel_light_switch_line_group_poly_s123_p57",
+        "panel_light_switch_line_group_poly_s124_p57",
+        "poly_57"
+      ]
+    },
+    "329": {
+      "floor_height": -0.25,
+      "ceiling_height": 0.28125,
+      "connections": [
+        "line_1035",
+        "line_1036",
+        "line_1047",
+        "line_1048",
+        "line_1050",
+        "line_555",
+        "object_80",
+        "poly_329"
+      ]
+    },
+    "330": {
+      "floor_height": -0.25,
+      "ceiling_height": 0.28125,
+      "connections": [
+        "line_1034",
+        "line_1047",
+        "line_1055",
+        "line_576",
+        "poly_330"
+      ]
+    },
+    "332": {
+      "floor_height": -0.2406005859375,
+      "ceiling_height": -0.2249755859375,
+      "connections": [
+        "line_1056",
+        "line_1057",
+        "line_1058",
+        "line_1059",
+        "poly_332",
+        "side_839"
+      ]
+    },
+    "336": {
+      "floor_height": -0.234375,
+      "ceiling_height": -0.234375,
+      "connections": [
+        "line_1082",
+        "line_1084",
+        "line_1086",
+        "line_1087",
+        "object_183",
+        "poly_336"
+      ]
+    },
+    "52": {
+      "floor_height": -0.234375,
+      "ceiling_height": -0.21875,
+      "connections": [
+        "line_174",
+        "line_175",
+        "line_176",
+        "line_177",
+        "panel_light_switch_line_group_poly_s123_p52",
+        "panel_light_switch_line_group_poly_s124_p1",
+        "panel_light_switch_line_group_poly_s124_p52",
+        "poly_52",
+        "side_124"
+      ]
+    },
+    "306": {
+      "floor_height": -0.165618896484375,
+      "ceiling_height": 0.28125,
+      "connections": [
+        "line_1041",
+        "line_1042",
+        "line_1045",
+        "line_561",
+        "object_82",
+        "poly_306"
+      ]
+    },
+    "308": {
+      "floor_height": -0.165618896484375,
+      "ceiling_height": 0.28125,
+      "connections": [
+        "line_1044",
+        "line_1045",
+        "line_569",
+        "line_571",
+        "poly_308"
+      ]
+    },
+    "310": {
+      "floor_height": -0.165618896484375,
+      "ceiling_height": 0.28125,
+      "connections": [
+        "line_1039",
+        "line_1040",
+        "line_1046",
+        "line_558",
+        "poly_310"
+      ]
+    },
+    "314": {
+      "floor_height": -0.165618896484375,
+      "ceiling_height": 0.28125,
+      "connections": [
+        "line_1038",
+        "line_1046",
+        "line_572",
+        "line_574",
+        "object_79",
+        "poly_314"
+      ]
+    },
+    "333": {
+      "floor_height": -0.165618896484375,
+      "ceiling_height": 0.28125,
+      "connections": [
+        "line_1028",
+        "line_1031",
+        "line_1032",
+        "line_1081",
+        "poly_333"
+      ]
+    },
+    "334": {
+      "floor_height": -0.165618896484375,
+      "ceiling_height": 0.28125,
+      "connections": [
+        "line_1027",
+        "line_1030",
+        "line_1081",
+        "line_568",
+        "object_81",
+        "poly_334"
+      ]
+    },
+    "16": {
+      "floor_height": -0.15625,
+      "ceiling_height": -0.125,
+      "connections": [
+        "line_53",
+        "line_54",
+        "line_55",
+        "line_85",
+        "panel_light_switch_line_group_poly_s123_p16",
+        "panel_light_switch_line_group_poly_s124_p16",
+        "poly_16"
+      ]
+    },
+    "18": {
+      "floor_height": -0.15625,
+      "ceiling_height": -0.125,
+      "connections": [
+        "line_60",
+        "line_61",
+        "line_63",
+        "line_79",
+        "panel_light_switch_line_group_poly_s123_p18",
+        "panel_light_switch_line_group_poly_s124_p18",
+        "poly_18"
+      ]
+    },
+    "281": {
+      "floor_height": -0.15625,
+      "ceiling_height": -0.125,
+      "connections": [
+        "line_83",
+        "line_84",
+        "line_85",
+        "line_87",
+        "line_921",
+        "line_924",
+        "panel_light_switch_line_group_poly_s123_p281",
+        "panel_light_switch_line_group_poly_s124_p281",
+        "poly_281"
+      ]
+    },
+    "293": {
+      "floor_height": -0.15625,
+      "ceiling_height": -0.125,
+      "connections": [
+        "line_965",
+        "line_966",
+        "line_967",
+        "line_968",
+        "line_969",
+        "line_973",
+        "poly_293"
+      ]
+    },
+    "294": {
+      "floor_height": -0.15625,
+      "ceiling_height": -0.125,
+      "connections": [
+        "line_964",
+        "line_971",
+        "line_972",
+        "line_973",
+        "poly_294"
+      ]
+    },
+    "296": {
+      "floor_height": -0.15625,
+      "ceiling_height": -0.125,
+      "connections": [
+        "line_958",
+        "line_959",
+        "line_960",
+        "line_962",
+        "poly_296"
+      ]
+    },
+    "298": {
+      "floor_height": -0.15625,
+      "ceiling_height": -0.125,
+      "connections": [
+        "line_79",
+        "line_976",
+        "line_977",
+        "line_978",
+        "line_981",
+        "line_983",
+        "panel_light_switch_line_group_poly_s123_p298",
+        "panel_light_switch_line_group_poly_s124_p298",
+        "poly_298"
+      ]
+    },
+    "360": {
+      "floor_height": -0.15625,
+      "ceiling_height": -0.125,
+      "connections": [
+        "line_1145",
+        "line_1146",
+        "line_198",
+        "line_495",
+        "poly_360"
+      ]
+    },
+    "363": {
+      "floor_height": -0.15625,
+      "ceiling_height": -0.125,
+      "connections": [
+        "line_1138",
+        "line_1140",
+        "line_1141",
+        "line_1148",
+        "poly_363"
+      ]
+    },
+    "364": {
+      "floor_height": -0.15625,
+      "ceiling_height": -0.125,
+      "connections": [
+        "line_1065",
+        "line_1137",
+        "line_1139",
+        "line_1141",
+        "poly_364"
+      ]
+    },
+    "365": {
+      "floor_height": -0.15625,
+      "ceiling_height": -0.125,
+      "connections": [
+        "line_1142",
+        "line_1148",
+        "line_1156",
+        "line_1158",
+        "object_170",
+        "poly_365"
+      ]
+    },
+    "366": {
+      "floor_height": -0.15625,
+      "ceiling_height": -0.125,
+      "connections": [
+        "line_1154",
+        "line_1155",
+        "line_1157",
+        "line_1158",
+        "poly_366"
+      ]
+    },
+    "369": {
+      "floor_height": -0.15625,
+      "ceiling_height": -0.125,
+      "connections": [
+        "line_1161",
+        "line_1162",
+        "line_189",
+        "line_193",
+        "poly_369"
+      ]
+    },
+    "98": {
+      "floor_height": -0.15625,
+      "ceiling_height": -0.09375,
+      "connections": [
+        "line_326",
+        "line_329",
+        "line_352",
+        "line_353",
+        "poly_98"
+      ]
+    },
+    "99": {
+      "floor_height": -0.15625,
+      "ceiling_height": -0.09375,
+      "connections": [
+        "line_325",
+        "line_328",
+        "line_345",
+        "line_346",
+        "poly_99"
+      ]
+    },
+    "100": {
+      "floor_height": -0.15625,
+      "ceiling_height": -0.09375,
+      "connections": [
+        "line_328",
+        "line_330",
+        "line_331",
+        "line_348",
+        "poly_100"
+      ]
+    },
+    "101": {
+      "floor_height": -0.15625,
+      "ceiling_height": -0.09375,
+      "connections": [
+        "line_347",
+        "line_348",
+        "line_350",
+        "line_351",
+        "poly_101"
+      ]
+    },
+    "103": {
+      "floor_height": -0.15625,
+      "ceiling_height": -0.09375,
+      "connections": [
+        "line_194",
+        "line_327",
+        "line_344",
+        "line_346",
+        "object_241",
+        "poly_103"
+      ]
+    },
+    "105": {
+      "floor_height": -0.15625,
+      "ceiling_height": -0.09375,
+      "connections": [
+        "line_322",
+        "line_323",
+        "line_332",
+        "line_336",
+        "poly_105"
+      ]
+    },
+    "115": {
+      "floor_height": -0.15625,
+      "ceiling_height": -0.09375,
+      "connections": [
+        "line_279",
+        "line_376",
+        "line_377",
+        "line_378",
+        "poly_115"
+      ]
+    },
+    "124": {
+      "floor_height": -0.15625,
+      "ceiling_height": -0.09375,
+      "connections": [
+        "line_321",
+        "line_355",
+        "line_359",
+        "line_379",
+        "poly_124"
+      ]
+    },
+    "128": {
+      "floor_height": -0.15625,
+      "ceiling_height": -0.09375,
+      "connections": [
+        "line_354",
+        "line_356",
+        "line_357",
+        "line_358",
+        "poly_128"
+      ]
+    },
+    "129": {
+      "floor_height": -0.15625,
+      "ceiling_height": -0.09375,
+      "connections": [
+        "line_329",
+        "line_358",
+        "line_372",
+        "line_375",
+        "poly_129"
+      ]
+    },
+    "130": {
+      "floor_height": -0.15625,
+      "ceiling_height": -0.09375,
+      "connections": [
+        "line_299",
+        "line_340",
+        "line_341",
+        "line_408",
+        "poly_130"
+      ]
+    },
+    "297": {
+      "floor_height": -0.15625,
+      "ceiling_height": -0.09375,
+      "connections": [
+        "line_194",
+        "line_954",
+        "line_956",
+        "line_957",
+        "line_958",
+        "line_961",
+        "poly_297"
+      ]
+    },
+    "361": {
+      "floor_height": -0.15625,
+      "ceiling_height": -0.09375,
+      "connections": [
+        "line_1136",
+        "line_1146",
+        "line_1150",
+        "line_353",
+        "line_494",
+        "poly_361"
+      ]
+    },
+    "362": {
+      "floor_height": -0.15625,
+      "ceiling_height": -0.09375,
+      "connections": [
+        "line_1149",
+        "line_1150",
+        "line_1152",
+        "line_1153",
+        "poly_362"
+      ]
+    },
+    "367": {
+      "floor_height": -0.15625,
+      "ceiling_height": -0.09375,
+      "connections": [
+        "line_1147",
+        "line_1155",
+        "line_1159",
+        "line_1160",
+        "poly_367"
+      ]
+    },
+    "368": {
+      "floor_height": -0.15625,
+      "ceiling_height": -0.09375,
+      "connections": [
+        "line_1143",
+        "line_1144",
+        "line_1151",
+        "line_1153",
+        "line_1160",
+        "poly_368"
+      ]
+    },
+    "370": {
+      "floor_height": -0.15625,
+      "ceiling_height": -0.09375,
+      "connections": [
+        "line_1162",
+        "line_1163",
+        "line_1164",
+        "line_951",
+        "line_956",
+        "poly_370"
+      ]
+    },
+    "371": {
+      "floor_height": -0.15625,
+      "ceiling_height": -0.09375,
+      "connections": [
+        "line_1166",
+        "line_1167",
+        "line_374",
+        "line_375",
+        "poly_371"
+      ]
+    },
+    "372": {
+      "floor_height": -0.15625,
+      "ceiling_height": -0.09375,
+      "connections": [
+        "line_1165",
+        "line_1167",
+        "line_1168",
+        "line_330",
+        "line_373",
+        "poly_372"
+      ]
+    },
+    "112": {
+      "floor_height": -0.15625,
+      "ceiling_height": 0.125,
+      "connections": [
+        "line_448",
+        "line_450",
+        "line_451",
+        "line_452",
+        "poly_112"
+      ]
+    },
+    "58": {
+      "floor_height": -0.15625,
+      "ceiling_height": 0.15625,
+      "connections": [
+        "line_163",
+        "line_188",
+        "line_189",
+        "line_191",
+        "object_126",
+        "poly_58"
+      ]
+    },
+    "155": {
+      "floor_height": -0.15625,
+      "ceiling_height": 0.15625,
+      "connections": [
+        "line_198",
+        "line_207",
+        "line_496",
+        "line_498",
+        "object_125",
+        "poly_155"
+      ]
+    },
+    "305": {
+      "floor_height": -0.15625,
+      "ceiling_height": 0.1875,
+      "connections": [
+        "line_1063",
+        "line_1064",
+        "line_1065",
+        "line_1080",
+        "line_594",
+        "object_78",
+        "poly_305"
+      ]
+    },
+    "59": {
+      "floor_height": -0.15625,
+      "ceiling_height": 0.28125,
+      "connections": [
+        "line_142",
+        "line_191",
+        "line_208",
+        "line_209",
+        "poly_59"
+      ]
+    },
+    "62": {
+      "floor_height": -0.15625,
+      "ceiling_height": 0.28125,
+      "connections": [
+        "line_199",
+        "line_202",
+        "line_242",
+        "line_243",
+        "object_138",
+        "poly_62"
+      ]
+    },
+    "65": {
+      "floor_height": -0.15625,
+      "ceiling_height": 0.28125,
+      "connections": [
+        "line_199",
+        "line_201",
+        "line_204",
+        "line_205",
+        "line_249",
+        "line_251",
+        "object_139",
+        "object_144",
+        "object_248",
+        "poly_65"
+      ]
+    },
+    "73": {
+      "floor_height": -0.15625,
+      "ceiling_height": 0.28125,
+      "connections": [
+        "line_202",
+        "line_203",
+        "line_206",
+        "line_255",
+        "object_142",
+        "object_143",
+        "object_247",
+        "poly_73"
+      ]
+    },
+    "81": {
+      "floor_height": -0.15625,
+      "ceiling_height": 0.28125,
+      "connections": [
+        "line_255",
+        "line_298",
+        "line_299",
+        "line_300",
+        "poly_81"
+      ]
+    },
+    "89": {
+      "floor_height": -0.15625,
+      "ceiling_height": 0.28125,
+      "connections": [
+        "line_205",
+        "line_278",
+        "line_279",
+        "line_280",
+        "poly_89"
+      ]
+    },
+    "102": {
+      "floor_height": -0.15625,
+      "ceiling_height": 0.28125,
+      "connections": [
+        "line_333",
+        "line_334",
+        "line_349",
+        "line_351",
+        "poly_102"
+      ]
+    },
+    "104": {
+      "floor_height": -0.15625,
+      "ceiling_height": 0.28125,
+      "connections": [
+        "line_324",
+        "line_334",
+        "line_335",
+        "line_336",
+        "object_130",
+        "poly_104"
+      ]
+    },
+    "106": {
+      "floor_height": -0.15625,
+      "ceiling_height": 0.28125,
+      "connections": [
+        "line_192",
+        "line_196",
+        "line_257",
+        "line_332",
+        "poly_106"
+      ]
+    },
+    "111": {
+      "floor_height": -0.15625,
+      "ceiling_height": 0.28125,
+      "connections": [
+        "line_383",
+        "line_429",
+        "line_439",
+        "line_449",
+        "line_450",
+        "poly_111"
+      ]
+    },
+    "114": {
+      "floor_height": -0.15625,
+      "ceiling_height": 0.28125,
+      "connections": [
+        "line_377",
+        "line_382",
+        "line_383",
+        "line_384",
+        "poly_114"
+      ]
+    },
+    "119": {
+      "floor_height": -0.15625,
+      "ceiling_height": 0.28125,
+      "connections": [
+        "line_365",
+        "line_366",
+        "line_381",
+        "line_382",
+        "line_435",
+        "object_135",
+        "poly_119"
+      ]
+    },
+    "123": {
+      "floor_height": -0.15625,
+      "ceiling_height": 0.28125,
+      "connections": [
+        "line_379",
+        "line_385",
+        "line_386",
+        "line_387",
+        "object_137",
+        "poly_123"
+      ]
+    },
+    "125": {
+      "floor_height": -0.15625,
+      "ceiling_height": 0.28125,
+      "connections": [
+        "line_190",
+        "line_197",
+        "line_261",
+        "line_355",
+        "poly_125"
+      ]
+    },
+    "126": {
+      "floor_height": -0.15625,
+      "ceiling_height": 0.28125,
+      "connections": [
+        "line_320",
+        "line_357",
+        "line_380",
+        "line_387",
+        "poly_126"
+      ]
+    },
+    "131": {
+      "floor_height": -0.15625,
+      "ceiling_height": 0.28125,
+      "connections": [
+        "line_407",
+        "line_408",
+        "line_409",
+        "line_410",
+        "poly_131"
+      ]
+    },
+    "133": {
+      "floor_height": -0.15625,
+      "ceiling_height": 0.28125,
+      "connections": [
+        "line_342",
+        "line_392",
+        "line_397",
+        "line_406",
+        "line_407",
+        "object_132",
+        "poly_133"
+      ]
+    },
+    "137": {
+      "floor_height": -0.15625,
+      "ceiling_height": 0.28125,
+      "connections": [
+        "line_339",
+        "line_343",
+        "line_395",
+        "line_396",
+        "line_397",
+        "object_131",
+        "poly_137"
+      ]
+    },
+    "138": {
+      "floor_height": -0.15625,
+      "ceiling_height": 0.28125,
+      "connections": [
+        "line_335",
+        "line_337",
+        "line_338",
+        "line_476",
+        "line_480",
+        "poly_138"
+      ]
+    },
+    "140": {
+      "floor_height": -0.15625,
+      "ceiling_height": 0.28125,
+      "connections": [
+        "line_475",
+        "line_478",
+        "line_479",
+        "line_480",
+        "poly_140"
+      ]
+    },
+    "141": {
+      "floor_height": -0.15625,
+      "ceiling_height": 0.28125,
+      "connections": [
+        "line_339",
+        "line_471",
+        "line_474",
+        "line_477",
+        "line_478",
+        "poly_141"
+      ]
+    },
+    "143": {
+      "floor_height": -0.15625,
+      "ceiling_height": 0.28125,
+      "connections": [
+        "line_385",
+        "line_437",
+        "line_464",
+        "line_467",
+        "line_468",
+        "poly_143"
+      ]
+    },
+    "146": {
+      "floor_height": -0.15625,
+      "ceiling_height": 0.28125,
+      "connections": [
+        "line_360",
+        "line_361",
+        "line_435",
+        "line_460",
+        "line_463",
+        "line_466",
+        "object_136",
+        "object_249",
+        "poly_146"
+      ]
+    },
+    "148": {
+      "floor_height": -0.15625,
+      "ceiling_height": 0.28125,
+      "connections": [
+        "line_409",
+        "line_415",
+        "line_426",
+        "line_487",
+        "line_493",
+        "poly_148"
+      ]
+    },
+    "151": {
+      "floor_height": -0.15625,
+      "ceiling_height": 0.28125,
+      "connections": [
+        "line_488",
+        "line_491",
+        "line_492",
+        "line_493",
+        "poly_151"
+      ]
+    },
+    "152": {
+      "floor_height": -0.15625,
+      "ceiling_height": 0.28125,
+      "connections": [
+        "line_416",
+        "line_417",
+        "line_482",
+        "line_489",
+        "line_490",
+        "line_491",
+        "object_133",
+        "poly_152"
+      ]
+    },
+    "156": {
+      "floor_height": -0.15625,
+      "ceiling_height": 0.28125,
+      "connections": [
+        "line_208",
+        "line_26",
+        "line_497",
+        "line_498",
+        "poly_156"
+      ]
+    },
+    "157": {
+      "floor_height": -0.15625,
+      "ceiling_height": 0.28125,
+      "connections": [
+        "line_465",
+        "line_466",
+        "line_468",
+        "line_499",
+        "poly_157"
+      ]
+    },
+    "158": {
+      "floor_height": -0.15625,
+      "ceiling_height": 0.28125,
+      "connections": [
+        "line_197",
+        "line_200",
+        "line_242",
+        "line_500",
+        "object_140",
+        "poly_158"
+      ]
+    },
+    "159": {
+      "floor_height": -0.15625,
+      "ceiling_height": 0.28125,
+      "connections": [
+        "line_195",
+        "line_196",
+        "line_243",
+        "line_502",
+        "object_141",
+        "poly_159"
+      ]
+    },
+    "315": {
+      "floor_height": -0.15625,
+      "ceiling_height": 0.28125,
+      "connections": [
+        "line_1040",
+        "line_1043",
+        "line_1044",
+        "line_1066",
+        "line_1067",
+        "line_1068",
+        "object_184",
+        "object_191",
+        "object_192",
+        "object_26",
+        "poly_315"
+      ]
+    },
+    "316": {
+      "floor_height": -0.15625,
+      "ceiling_height": 0.28125,
+      "connections": [
+        "line_1006",
+        "line_1042",
+        "line_1066",
+        "line_990",
+        "line_994",
+        "object_179",
+        "object_180",
+        "object_181",
+        "object_182",
+        "object_28",
+        "poly_316"
+      ]
+    },
+    "317": {
+      "floor_height": -0.15625,
+      "ceiling_height": 0.28125,
+      "connections": [
+        "line_1000",
+        "line_1009",
+        "line_1037",
+        "line_1038",
+        "line_1067",
+        "object_29",
+        "poly_317"
+      ]
+    },
+    "319": {
+      "floor_height": -0.15625,
+      "ceiling_height": 0.28125,
+      "connections": [
+        "line_1002",
+        "line_1003",
+        "line_1008",
+        "line_1036",
+        "line_1053",
+        "object_30",
+        "poly_319"
+      ]
+    },
+    "320": {
+      "floor_height": -0.15625,
+      "ceiling_height": 0.28125,
+      "connections": [
+        "line_1006",
+        "line_1007",
+        "line_1013",
+        "line_1014",
+        "line_1061",
+        "line_566",
+        "object_25",
+        "poly_320"
+      ]
+    },
+    "323": {
+      "floor_height": -0.15625,
+      "ceiling_height": 0.28125,
+      "connections": [
+        "line_1007",
+        "line_1029",
+        "line_1030",
+        "line_1054",
+        "line_1060",
+        "object_186",
+        "object_31",
+        "poly_323"
+      ]
+    },
+    "356": {
+      "floor_height": -0.15625,
+      "ceiling_height": 0.28125,
+      "connections": [
+        "line_1001",
+        "line_1008",
+        "line_1009",
+        "line_1017",
+        "line_1019",
+        "line_1109",
+        "line_1111",
+        "line_565",
+        "object_27",
+        "object_83",
+        "poly_356"
+      ]
+    },
+    "357": {
+      "floor_height": -0.15625,
+      "ceiling_height": 0.28125,
+      "connections": [
+        "line_1032",
+        "line_1033",
+        "line_1034",
+        "line_1053",
+        "line_1054",
+        "line_1069",
+        "line_1126",
+        "line_1129",
+        "object_185",
+        "object_193",
+        "object_194",
+        "object_32",
+        "poly_357"
+      ]
+    },
+    "374": {
+      "floor_height": -0.15625,
+      "ceiling_height": 0.28125,
+      "connections": [
+        "line_1174",
+        "line_416",
+        "line_418",
+        "line_428",
+        "line_446",
+        "poly_374"
+      ]
+    },
+    "379": {
+      "floor_height": -0.15625,
+      "ceiling_height": 0.28125,
+      "connections": [
+        "line_1172",
+        "line_1173",
+        "line_1174",
+        "line_447",
+        "line_451",
+        "object_134",
+        "poly_379"
+      ]
+    },
+    "282": {
+      "floor_height": -0.1468505859375,
+      "ceiling_height": -0.1312255859375,
+      "connections": [
+        "line_922",
+        "line_923",
+        "line_924",
+        "line_925",
+        "panel_light_switch_line_group_poly_s123_p282",
+        "panel_light_switch_line_group_poly_s124_p282",
+        "poly_282",
+        "side_669"
+      ]
+    },
+    "299": {
+      "floor_height": -0.1468505859375,
+      "ceiling_height": -0.1312255859375,
+      "connections": [
+        "line_979",
+        "line_980",
+        "line_981",
+        "line_982",
+        "panel_light_switch_line_group_poly_s123_p299",
+        "panel_light_switch_line_group_poly_s124_p299",
+        "poly_299",
+        "side_720"
+      ]
+    },
+    "359": {
+      "floor_height": -0.1468505859375,
+      "ceiling_height": -0.1312255859375,
+      "connections": [
+        "line_1131",
+        "line_1132",
+        "line_1133",
+        "line_1135",
+        "panel_light_switch_line_group_poly_s876_p338",
+        "poly_359",
+        "side_876"
+      ]
+    },
+    "373": {
+      "floor_height": -0.1468505859375,
+      "ceiling_height": -0.1312255859375,
+      "connections": [
+        "line_1165",
+        "line_1169",
+        "line_1170",
+        "line_1171",
+        "poly_373",
+        "side_922"
+      ]
+    },
+    "295": {
+      "floor_height": -0.140625,
+      "ceiling_height": -0.140625,
+      "connections": [
+        "line_960",
+        "line_963",
+        "line_970",
+        "line_971",
+        "object_76",
+        "poly_295"
+      ]
+    },
+    "358": {
+      "floor_height": -0.125,
+      "ceiling_height": -0.125,
+      "connections": [
+        "line_1126",
+        "line_1127",
+        "line_1128",
+        "line_1130",
+        "line_1131",
+        "line_1134",
+        "object_75",
+        "poly_358"
+      ]
+    },
+    "19": {
+      "floor_height": 0.0,
+      "ceiling_height": 0.03125,
+      "connections": [
+        "line_64",
+        "line_65",
+        "line_67",
+        "line_82",
+        "panel_light_switch_line_group_poly_s123_p19",
+        "panel_light_switch_line_group_poly_s124_p19",
+        "poly_19"
+      ]
+    },
+    "176": {
+      "floor_height": 0.0,
+      "ceiling_height": 0.03125,
+      "connections": [
+        "line_542",
+        "line_543",
+        "line_544",
+        "line_546",
+        "poly_176"
+      ]
+    },
+    "277": {
+      "floor_height": 0.0,
+      "ceiling_height": 0.03125,
+      "connections": [
+        "line_80",
+        "line_81",
+        "line_82",
+        "line_906",
+        "panel_light_switch_line_group_poly_s123_p277",
+        "panel_light_switch_line_group_poly_s124_p277",
+        "poly_277"
+      ]
+    },
+    "279": {
+      "floor_height": 0.0,
+      "ceiling_height": 0.03125,
+      "connections": [
+        "line_906",
+        "line_907",
+        "line_918",
+        "line_920",
+        "panel_light_switch_line_group_poly_s123_p279",
+        "panel_light_switch_line_group_poly_s124_p279",
+        "poly_279"
+      ]
+    },
+    "280": {
+      "floor_height": 0.0,
+      "ceiling_height": 0.03125,
+      "connections": [
+        "line_908",
+        "line_917",
+        "line_919",
+        "line_920",
+        "panel_light_switch_line_group_poly_s123_p280",
+        "panel_light_switch_line_group_poly_s124_p280",
+        "poly_280"
+      ]
+    },
+    "178": {
+      "floor_height": 0.0,
+      "ceiling_height": 0.15625,
+      "connections": [
+        "line_260",
+        "line_545",
+        "line_546",
+        "line_548",
+        "line_549",
+        "line_552",
+        "object_73",
+        "object_98",
+        "panel_platform_switch_line_group_poly_s375_p178",
+        "poly_178"
+      ]
+    },
+    "276": {
+      "floor_height": 0.0,
+      "ceiling_height": 0.15625,
+      "connections": [
+        "line_911",
+        "line_913",
+        "line_914",
+        "line_915",
+        "panel_light_switch_line_group_poly_s123_p276",
+        "panel_light_switch_line_group_poly_s124_p276",
+        "poly_276"
+      ]
+    },
+    "278": {
+      "floor_height": 0.0,
+      "ceiling_height": 0.15625,
+      "connections": [
+        "line_875",
+        "line_909",
+        "line_910",
+        "line_912",
+        "line_915",
+        "line_916",
+        "line_917",
+        "object_128",
+        "panel_light_switch_line_group_poly_s123_p278",
+        "panel_light_switch_line_group_poly_s124_p278",
+        "poly_278"
+      ]
+    },
+    "60": {
+      "floor_height": 0.0,
+      "ceiling_height": 0.28125,
+      "connections": [
+        "line_195",
+        "line_211",
+        "line_241",
+        "line_244",
+        "poly_60"
+      ]
+    },
+    "61": {
+      "floor_height": 0.0,
+      "ceiling_height": 0.28125,
+      "connections": [
+        "line_203",
+        "line_234",
+        "line_235",
+        "line_240",
+        "line_244",
+        "line_245",
+        "object_238",
+        "poly_61"
+      ]
+    },
+    "63": {
+      "floor_height": 0.0,
+      "ceiling_height": 0.28125,
+      "connections": [
+        "line_204",
+        "line_225",
+        "line_232",
+        "line_246",
+        "line_247",
+        "line_248",
+        "line_250",
+        "object_235",
+        "poly_63"
+      ]
+    },
+    "64": {
+      "floor_height": 0.0,
+      "ceiling_height": 0.28125,
+      "connections": [
+        "line_206",
+        "line_223",
+        "line_224",
+        "line_246",
+        "poly_64"
+      ]
+    },
+    "66": {
+      "floor_height": 0.0,
+      "ceiling_height": 0.28125,
+      "connections": [
+        "line_201",
+        "line_217",
+        "line_252",
+        "line_253",
+        "line_254",
+        "object_237",
+        "poly_66"
+      ]
+    },
+    "67": {
+      "floor_height": 0.0,
+      "ceiling_height": 0.28125,
+      "connections": [
+        "line_200",
+        "line_215",
+        "line_216",
+        "line_254",
+        "poly_67"
+      ]
+    },
+    "68": {
+      "floor_height": 0.0,
+      "ceiling_height": 0.28125,
+      "connections": [
+        "line_218",
+        "line_219",
+        "line_220",
+        "line_253",
+        "poly_68"
+      ]
+    },
+    "69": {
+      "floor_height": 0.0,
+      "ceiling_height": 0.28125,
+      "connections": [
+        "line_221",
+        "line_222",
+        "line_251",
+        "line_252",
+        "poly_69"
+      ]
+    },
+    "70": {
+      "floor_height": 0.0,
+      "ceiling_height": 0.28125,
+      "connections": [
+        "line_233",
+        "line_237",
+        "line_249",
+        "line_250",
+        "poly_70"
+      ]
+    },
+    "71": {
+      "floor_height": 0.0,
+      "ceiling_height": 0.28125,
+      "connections": [
+        "line_229",
+        "line_230",
+        "line_231",
+        "line_247",
+        "poly_71"
+      ]
+    },
+    "72": {
+      "floor_height": 0.0,
+      "ceiling_height": 0.28125,
+      "connections": [
+        "line_226",
+        "line_227",
+        "line_228",
+        "line_248",
+        "poly_72"
+      ]
+    },
+    "74": {
+      "floor_height": 0.0,
+      "ceiling_height": 0.28125,
+      "connections": [
+        "line_236",
+        "line_238",
+        "line_239",
+        "line_245",
+        "poly_74"
+      ]
+    },
+    "160": {
+      "floor_height": 0.0,
+      "ceiling_height": 0.28125,
+      "connections": [
+        "line_210",
+        "line_212",
+        "line_501",
+        "line_502",
+        "object_236",
+        "poly_160"
+      ]
+    },
+    "173": {
+      "floor_height": 0.0,
+      "ceiling_height": 0.28125,
+      "connections": [
+        "line_213",
+        "line_214",
+        "line_500",
+        "line_501",
+        "line_540",
+        "object_95",
+        "object_96",
+        "object_97",
+        "poly_173"
+      ]
+    },
+    "179": {
+      "floor_height": 0.015625,
+      "ceiling_height": 0.03125,
+      "connections": [
+        "line_549",
+        "line_550",
+        "line_551",
+        "line_553",
+        "panel_platform_switch_line_group_poly_s375_p178",
+        "poly_179",
+        "side_375"
+      ]
+    },
+    "174": {
+      "floor_height": 0.03125,
+      "ceiling_height": 0.03125,
+      "connections": [
+        "line_259",
+        "line_540",
+        "line_541",
+        "line_543",
+        "object_74",
+        "poly_174"
+      ]
+    },
+    "180": {
+      "floor_height": 0.09375,
+      "ceiling_height": 0.21875,
+      "connections": [
+        "line_596",
+        "line_597",
+        "line_599",
+        "line_624",
+        "line_628",
+        "line_641",
+        "line_642",
+        "panel_light_switch_line_group_side_s509_s386",
+        "panel_light_switch_line_group_side_s509_s389",
+        "panel_light_switch_line_group_side_s509_s422",
+        "panel_light_switch_line_group_side_s509_s423",
+        "panel_light_switch_line_group_side_s639_s386",
+        "panel_light_switch_line_group_side_s639_s387",
+        "panel_light_switch_line_group_side_s639_s389",
+        "panel_light_switch_line_group_side_s639_s422",
+        "panel_light_switch_line_group_side_s639_s423",
+        "panel_tag_switch_line_group_poly_s505_p180",
+        "poly_180"
+      ]
+    },
+    "182": {
+      "floor_height": 0.09375,
+      "ceiling_height": 0.21875,
+      "connections": [
+        "line_601",
+        "line_602",
+        "line_605",
+        "line_615",
+        "object_161",
+        "panel_light_switch_line_group_side_s509_s391",
+        "panel_light_switch_line_group_side_s509_s403",
+        "panel_light_switch_line_group_side_s639_s391",
+        "panel_light_switch_line_group_side_s639_s403",
+        "panel_tag_switch_line_group_poly_s505_p182",
+        "poly_182"
+      ]
+    },
+    "183": {
+      "floor_height": 0.09375,
+      "ceiling_height": 0.21875,
+      "connections": [
+        "line_602",
+        "line_603",
+        "line_616",
+        "line_624",
+        "panel_light_switch_line_group_side_s509_s392",
+        "panel_light_switch_line_group_side_s509_s404",
+        "panel_light_switch_line_group_side_s639_s392",
+        "panel_light_switch_line_group_side_s639_s404",
+        "panel_tag_switch_line_group_poly_s505_p183",
+        "poly_183"
+      ]
+    },
+    "185": {
+      "floor_height": 0.09375,
+      "ceiling_height": 0.21875,
+      "connections": [
+        "line_605",
+        "line_606",
+        "line_618",
+        "line_625",
+        "panel_light_switch_line_group_side_s509_s394",
+        "panel_light_switch_line_group_side_s509_s406",
+        "panel_light_switch_line_group_side_s639_s394",
+        "panel_light_switch_line_group_side_s639_s406",
+        "panel_tag_switch_line_group_poly_s505_p185",
+        "poly_185"
+      ]
+    },
+    "186": {
+      "floor_height": 0.09375,
+      "ceiling_height": 0.21875,
+      "connections": [
+        "line_608",
+        "line_609",
+        "line_610",
+        "line_626",
+        "line_719",
+        "panel_light_switch_line_group_side_s509_s396",
+        "panel_light_switch_line_group_side_s509_s397",
+        "panel_light_switch_line_group_side_s639_s396",
+        "panel_light_switch_line_group_side_s639_s397",
+        "panel_light_switch_line_group_side_s639_s398",
+        "panel_light_switch_line_group_side_s639_s486",
+        "panel_tag_switch_line_group_poly_s505_p186",
+        "poly_186"
+      ]
+    },
+    "188": {
+      "floor_height": 0.09375,
+      "ceiling_height": 0.21875,
+      "connections": [
+        "line_612",
+        "line_613",
+        "line_623",
+        "line_628",
+        "line_652",
+        "line_653",
+        "line_656",
+        "object_62",
+        "panel_light_switch_line_group_side_s509_s400",
+        "panel_light_switch_line_group_side_s509_s401",
+        "panel_light_switch_line_group_side_s509_s433",
+        "panel_light_switch_line_group_side_s509_s434",
+        "panel_light_switch_line_group_side_s639_s400",
+        "panel_light_switch_line_group_side_s639_s401",
+        "panel_light_switch_line_group_side_s639_s411",
+        "panel_light_switch_line_group_side_s639_s433",
+        "panel_light_switch_line_group_side_s639_s434",
+        "panel_tag_switch_line_group_poly_s505_p188",
+        "poly_188"
+      ]
+    },
+    "190": {
+      "floor_height": 0.09375,
+      "ceiling_height": 0.21875,
+      "connections": [
+        "line_620",
+        "line_621",
+        "line_622",
+        "line_627",
+        "line_716",
+        "line_717",
+        "line_742",
+        "panel_light_switch_line_group_side_s509_s408",
+        "panel_light_switch_line_group_side_s509_s409",
+        "panel_light_switch_line_group_side_s639_s408",
+        "panel_light_switch_line_group_side_s639_s409",
+        "panel_light_switch_line_group_side_s639_s410",
+        "panel_light_switch_line_group_side_s639_s484",
+        "panel_light_switch_line_group_side_s639_s508",
+        "panel_tag_switch_line_group_poly_s505_p190",
+        "poly_190"
+      ]
+    },
+    "191": {
+      "floor_height": 0.09375,
+      "ceiling_height": 0.21875,
+      "connections": [
+        "line_625",
+        "line_626",
+        "line_627",
+        "line_725",
+        "line_726",
+        "line_731",
+        "line_732",
+        "object_129",
+        "object_66",
+        "panel_light_switch_line_group_side_s639_s491",
+        "panel_light_switch_line_group_side_s639_s492",
+        "panel_light_switch_line_group_side_s639_s497",
+        "panel_light_switch_line_group_side_s639_s498",
+        "panel_tag_switch_line_group_poly_s505_p191",
+        "poly_191"
+      ]
+    },
+    "192": {
+      "floor_height": 0.09375,
+      "ceiling_height": 0.21875,
+      "connections": [
+        "line_629",
+        "line_630",
+        "line_632",
+        "line_655",
+        "line_657",
+        "line_670",
+        "panel_light_switch_line_group_side_s509_s412",
+        "panel_light_switch_line_group_side_s509_s415",
+        "panel_light_switch_line_group_side_s509_s446",
+        "panel_light_switch_line_group_side_s639_s412",
+        "panel_light_switch_line_group_side_s639_s413",
+        "panel_light_switch_line_group_side_s639_s415",
+        "panel_light_switch_line_group_side_s639_s446",
+        "panel_tag_switch_line_group_poly_s505_p192",
+        "poly_192"
+      ]
+    },
+    "194": {
+      "floor_height": 0.09375,
+      "ceiling_height": 0.21875,
+      "connections": [
+        "line_634",
+        "line_635",
+        "line_638",
+        "line_647",
+        "object_162",
+        "panel_light_switch_line_group_side_s509_s417",
+        "panel_light_switch_line_group_side_s509_s428",
+        "panel_light_switch_line_group_side_s639_s417",
+        "panel_light_switch_line_group_side_s639_s428",
+        "panel_tag_switch_line_group_poly_s505_p194",
+        "poly_194"
+      ]
+    },
+    "195": {
+      "floor_height": 0.09375,
+      "ceiling_height": 0.21875,
+      "connections": [
+        "line_635",
+        "line_636",
+        "line_648",
+        "line_655",
+        "panel_light_switch_line_group_side_s509_s418",
+        "panel_light_switch_line_group_side_s509_s429",
+        "panel_light_switch_line_group_side_s639_s418",
+        "panel_light_switch_line_group_side_s639_s429",
+        "panel_tag_switch_line_group_poly_s505_p195",
+        "poly_195"
+      ]
+    },
+    "197": {
+      "floor_height": 0.09375,
+      "ceiling_height": 0.21875,
+      "connections": [
+        "line_638",
+        "line_639",
+        "line_650",
+        "line_656",
+        "panel_light_switch_line_group_side_s509_s420",
+        "panel_light_switch_line_group_side_s509_s431",
+        "panel_light_switch_line_group_side_s639_s420",
+        "panel_light_switch_line_group_side_s639_s431",
+        "panel_tag_switch_line_group_poly_s505_p197",
+        "poly_197"
+      ]
+    },
+    "199": {
+      "floor_height": 0.09375,
+      "ceiling_height": 0.21875,
+      "connections": [
+        "line_644",
+        "line_645",
+        "line_654",
+        "line_657",
+        "line_671",
+        "line_681",
+        "line_682",
+        "line_685",
+        "object_63",
+        "panel_light_switch_line_group_side_s509_s425",
+        "panel_light_switch_line_group_side_s509_s426",
+        "panel_light_switch_line_group_side_s509_s447",
+        "panel_light_switch_line_group_side_s509_s457",
+        "panel_light_switch_line_group_side_s509_s458",
+        "panel_light_switch_line_group_side_s639_s425",
+        "panel_light_switch_line_group_side_s639_s426",
+        "panel_light_switch_line_group_side_s639_s435",
+        "panel_light_switch_line_group_side_s639_s447",
+        "panel_light_switch_line_group_side_s639_s457",
+        "panel_light_switch_line_group_side_s639_s458",
+        "panel_tag_switch_line_group_poly_s505_p199",
+        "poly_199"
+      ]
+    },
+    "201": {
+      "floor_height": 0.09375,
+      "ceiling_height": 0.21875,
+      "connections": [
+        "line_658",
+        "line_659",
+        "line_661",
+        "line_684",
+        "line_686",
+        "line_699",
+        "line_700",
+        "panel_light_switch_line_group_side_s509_s436",
+        "panel_light_switch_line_group_side_s509_s439",
+        "panel_light_switch_line_group_side_s509_s470",
+        "panel_light_switch_line_group_side_s509_s471",
+        "panel_light_switch_line_group_side_s639_s436",
+        "panel_light_switch_line_group_side_s639_s437",
+        "panel_light_switch_line_group_side_s639_s439",
+        "panel_light_switch_line_group_side_s639_s470",
+        "panel_light_switch_line_group_side_s639_s471",
+        "panel_tag_switch_line_group_poly_s505_p201",
+        "poly_201"
+      ]
+    },
+    "203": {
+      "floor_height": 0.09375,
+      "ceiling_height": 0.21875,
+      "connections": [
+        "line_663",
+        "line_664",
+        "line_667",
+        "line_676",
+        "object_163",
+        "panel_light_switch_line_group_side_s509_s441",
+        "panel_light_switch_line_group_side_s509_s452",
+        "panel_light_switch_line_group_side_s639_s441",
+        "panel_light_switch_line_group_side_s639_s452",
+        "panel_tag_switch_line_group_poly_s505_p203",
+        "poly_203"
+      ]
+    },
+    "204": {
+      "floor_height": 0.09375,
+      "ceiling_height": 0.21875,
+      "connections": [
+        "line_664",
+        "line_665",
+        "line_677",
+        "line_684",
+        "panel_light_switch_line_group_side_s509_s442",
+        "panel_light_switch_line_group_side_s509_s453",
+        "panel_light_switch_line_group_side_s639_s442",
+        "panel_light_switch_line_group_side_s639_s453",
+        "panel_tag_switch_line_group_poly_s505_p204",
+        "poly_204"
+      ]
+    },
+    "206": {
+      "floor_height": 0.09375,
+      "ceiling_height": 0.21875,
+      "connections": [
+        "line_667",
+        "line_668",
+        "line_679",
+        "line_685",
+        "panel_light_switch_line_group_side_s509_s444",
+        "panel_light_switch_line_group_side_s509_s455",
+        "panel_light_switch_line_group_side_s639_s444",
+        "panel_light_switch_line_group_side_s639_s455",
+        "panel_tag_switch_line_group_poly_s505_p206",
+        "poly_206"
+      ]
+    },
+    "208": {
+      "floor_height": 0.09375,
+      "ceiling_height": 0.21875,
+      "connections": [
+        "line_673",
+        "line_674",
+        "line_683",
+        "line_686",
+        "line_710",
+        "line_711",
+        "line_714",
+        "object_64",
+        "panel_light_switch_line_group_side_s509_s449",
+        "panel_light_switch_line_group_side_s509_s450",
+        "panel_light_switch_line_group_side_s509_s481",
+        "panel_light_switch_line_group_side_s509_s482",
+        "panel_light_switch_line_group_side_s639_s449",
+        "panel_light_switch_line_group_side_s639_s450",
+        "panel_light_switch_line_group_side_s639_s459",
+        "panel_light_switch_line_group_side_s639_s481",
+        "panel_light_switch_line_group_side_s639_s482",
+        "panel_tag_switch_line_group_poly_s505_p208",
+        "poly_208"
+      ]
+    },
+    "210": {
+      "floor_height": 0.09375,
+      "ceiling_height": 0.21875,
+      "connections": [
+        "line_687",
+        "line_688",
+        "line_690",
+        "line_713",
+        "line_715",
+        "line_750",
+        "object_273",
+        "panel_light_switch_line_group_side_s509_s460",
+        "panel_light_switch_line_group_side_s509_s463",
+        "panel_light_switch_line_group_side_s509_s515",
+        "panel_light_switch_line_group_side_s639_s460",
+        "panel_light_switch_line_group_side_s639_s461",
+        "panel_light_switch_line_group_side_s639_s463",
+        "panel_light_switch_line_group_side_s639_s515",
+        "panel_tag_switch_line_group_poly_s505_p210",
+        "poly_210"
+      ]
+    },
+    "212": {
+      "floor_height": 0.09375,
+      "ceiling_height": 0.21875,
+      "connections": [
+        "line_692",
+        "line_693",
+        "line_696",
+        "line_705",
+        "object_164",
+        "panel_light_switch_line_group_side_s509_s465",
+        "panel_light_switch_line_group_side_s509_s476",
+        "panel_light_switch_line_group_side_s639_s465",
+        "panel_light_switch_line_group_side_s639_s476",
+        "panel_tag_switch_line_group_poly_s505_p212",
+        "poly_212"
+      ]
+    },
+    "213": {
+      "floor_height": 0.09375,
+      "ceiling_height": 0.21875,
+      "connections": [
+        "line_693",
+        "line_694",
+        "line_706",
+        "line_713",
+        "panel_light_switch_line_group_side_s509_s466",
+        "panel_light_switch_line_group_side_s509_s477",
+        "panel_light_switch_line_group_side_s639_s466",
+        "panel_light_switch_line_group_side_s639_s477",
+        "panel_tag_switch_line_group_poly_s505_p213",
+        "poly_213"
+      ]
+    },
+    "215": {
+      "floor_height": 0.09375,
+      "ceiling_height": 0.21875,
+      "connections": [
+        "line_696",
+        "line_697",
+        "line_708",
+        "line_714",
+        "panel_light_switch_line_group_side_s509_s468",
+        "panel_light_switch_line_group_side_s509_s479",
+        "panel_light_switch_line_group_side_s639_s468",
+        "panel_light_switch_line_group_side_s639_s479",
+        "panel_tag_switch_line_group_poly_s505_p215",
+        "poly_215"
+      ]
+    },
+    "217": {
+      "floor_height": 0.09375,
+      "ceiling_height": 0.21875,
+      "connections": [
+        "line_702",
+        "line_703",
+        "line_712",
+        "line_715",
+        "line_745",
+        "line_747",
+        "object_264",
+        "object_265",
+        "object_266",
+        "object_267",
+        "object_268",
+        "object_269",
+        "object_272",
+        "object_65",
+        "panel_light_switch_line_group_side_s509_s473",
+        "panel_light_switch_line_group_side_s509_s474",
+        "panel_light_switch_line_group_side_s509_s511",
+        "panel_light_switch_line_group_side_s639_s473",
+        "panel_light_switch_line_group_side_s639_s474",
+        "panel_light_switch_line_group_side_s639_s483",
+        "panel_light_switch_line_group_side_s639_s511",
+        "panel_tag_switch_line_group_poly_s505_p217",
+        "poly_217"
+      ]
+    },
+    "219": {
+      "floor_height": 0.09375,
+      "ceiling_height": 0.21875,
+      "connections": [
+        "line_717",
+        "line_718",
+        "line_735",
+        "line_736",
+        "panel_light_switch_line_group_side_s639_s485",
+        "panel_light_switch_line_group_side_s639_s501",
+        "panel_light_switch_line_group_side_s639_s502",
+        "panel_tag_switch_line_group_poly_s505_p219",
+        "poly_219"
+      ]
+    },
+    "227": {
+      "floor_height": 0.09375,
+      "ceiling_height": 0.21875,
+      "connections": [
+        "line_746",
+        "line_747",
+        "line_748",
+        "line_749",
+        "object_165",
+        "object_261",
+        "object_262",
+        "object_263",
+        "object_270",
+        "object_271",
+        "panel_light_switch_line_group_side_s509_s512",
+        "panel_light_switch_line_group_side_s509_s514",
+        "panel_light_switch_line_group_side_s639_s512",
+        "panel_light_switch_line_group_side_s639_s513",
+        "panel_light_switch_line_group_side_s639_s514",
+        "panel_tag_switch_line_group_poly_s505_p227",
+        "poly_227"
+      ]
+    },
+    "228": {
+      "floor_height": 0.09375,
+      "ceiling_height": 0.21875,
+      "connections": [
+        "line_751",
+        "line_752",
+        "line_754",
+        "line_779",
+        "line_783",
+        "line_796",
+        "line_797",
+        "panel_light_switch_line_group_side_s639_s516",
+        "panel_light_switch_line_group_side_s639_s517",
+        "panel_light_switch_line_group_side_s639_s519",
+        "panel_light_switch_line_group_side_s639_s552",
+        "panel_light_switch_line_group_side_s639_s553",
+        "panel_tag_switch_line_group_poly_s635_p228",
+        "poly_228"
+      ]
+    },
+    "230": {
+      "floor_height": 0.09375,
+      "ceiling_height": 0.21875,
+      "connections": [
+        "line_756",
+        "line_757",
+        "line_760",
+        "line_770",
+        "object_166",
+        "panel_light_switch_line_group_side_s639_s521",
+        "panel_light_switch_line_group_side_s639_s533",
+        "panel_tag_switch_line_group_poly_s635_p230",
+        "poly_230"
+      ]
+    },
+    "231": {
+      "floor_height": 0.09375,
+      "ceiling_height": 0.21875,
+      "connections": [
+        "line_757",
+        "line_758",
+        "line_771",
+        "line_779",
+        "panel_light_switch_line_group_side_s639_s522",
+        "panel_light_switch_line_group_side_s639_s534",
+        "panel_tag_switch_line_group_poly_s635_p231",
+        "poly_231"
+      ]
+    },
+    "233": {
+      "floor_height": 0.09375,
+      "ceiling_height": 0.21875,
+      "connections": [
+        "line_760",
+        "line_761",
+        "line_773",
+        "line_780",
+        "panel_light_switch_line_group_side_s639_s524",
+        "panel_light_switch_line_group_side_s639_s536",
+        "panel_tag_switch_line_group_poly_s635_p233",
+        "poly_233"
+      ]
+    },
+    "234": {
+      "floor_height": 0.09375,
+      "ceiling_height": 0.21875,
+      "connections": [
+        "line_763",
+        "line_764",
+        "line_765",
+        "line_781",
+        "line_874",
+        "panel_light_switch_line_group_side_s639_s526",
+        "panel_light_switch_line_group_side_s639_s527",
+        "panel_light_switch_line_group_side_s639_s528",
+        "panel_light_switch_line_group_side_s639_s616",
+        "panel_tag_switch_line_group_poly_s635_p234",
+        "poly_234"
+      ]
+    },
+    "236": {
+      "floor_height": 0.09375,
+      "ceiling_height": 0.21875,
+      "connections": [
+        "line_767",
+        "line_768",
+        "line_778",
+        "line_783",
+        "line_807",
+        "line_808",
+        "line_811",
+        "object_69",
+        "panel_light_switch_line_group_side_s639_s530",
+        "panel_light_switch_line_group_side_s639_s531",
+        "panel_light_switch_line_group_side_s639_s541",
+        "panel_light_switch_line_group_side_s639_s563",
+        "panel_light_switch_line_group_side_s639_s564",
+        "panel_tag_switch_line_group_poly_s635_p236",
+        "poly_236"
+      ]
+    },
+    "238": {
+      "floor_height": 0.09375,
+      "ceiling_height": 0.21875,
+      "connections": [
+        "line_775",
+        "line_776",
+        "line_777",
+        "line_782",
+        "line_871",
+        "line_872",
+        "line_897",
+        "panel_light_switch_line_group_side_s639_s538",
+        "panel_light_switch_line_group_side_s639_s539",
+        "panel_light_switch_line_group_side_s639_s540",
+        "panel_light_switch_line_group_side_s639_s614",
+        "panel_light_switch_line_group_side_s639_s638",
+        "panel_tag_switch_line_group_poly_s635_p238",
+        "poly_238"
+      ]
+    },
+    "239": {
+      "floor_height": 0.09375,
+      "ceiling_height": 0.21875,
+      "connections": [
+        "line_780",
+        "line_781",
+        "line_782",
+        "line_880",
+        "line_881",
+        "line_886",
+        "line_887",
+        "object_127",
+        "object_71",
+        "panel_light_switch_line_group_side_s639_s621",
+        "panel_light_switch_line_group_side_s639_s622",
+        "panel_light_switch_line_group_side_s639_s627",
+        "panel_light_switch_line_group_side_s639_s628",
+        "panel_tag_switch_line_group_poly_s635_p239",
+        "poly_239"
+      ]
+    },
+    "240": {
+      "floor_height": 0.09375,
+      "ceiling_height": 0.21875,
+      "connections": [
+        "line_784",
+        "line_785",
+        "line_787",
+        "line_810",
+        "line_812",
+        "line_825",
+        "object_219",
+        "panel_light_switch_line_group_side_s639_s542",
+        "panel_light_switch_line_group_side_s639_s543",
+        "panel_light_switch_line_group_side_s639_s545",
+        "panel_light_switch_line_group_side_s639_s576",
+        "panel_tag_switch_line_group_poly_s635_p240",
+        "poly_240"
+      ]
+    },
+    "242": {
+      "floor_height": 0.09375,
+      "ceiling_height": 0.21875,
+      "connections": [
+        "line_789",
+        "line_790",
+        "line_793",
+        "line_802",
+        "object_167",
+        "panel_light_switch_line_group_side_s639_s547",
+        "panel_light_switch_line_group_side_s639_s558",
+        "panel_tag_switch_line_group_poly_s635_p242",
+        "poly_242"
+      ]
+    },
+    "243": {
+      "floor_height": 0.09375,
+      "ceiling_height": 0.21875,
+      "connections": [
+        "line_790",
+        "line_791",
+        "line_803",
+        "line_810",
+        "panel_light_switch_line_group_side_s639_s548",
+        "panel_light_switch_line_group_side_s639_s559",
+        "panel_tag_switch_line_group_poly_s635_p243",
+        "poly_243"
+      ]
+    },
+    "245": {
+      "floor_height": 0.09375,
+      "ceiling_height": 0.21875,
+      "connections": [
+        "line_793",
+        "line_794",
+        "line_805",
+        "line_811",
+        "panel_light_switch_line_group_side_s639_s550",
+        "panel_light_switch_line_group_side_s639_s561",
+        "panel_tag_switch_line_group_poly_s635_p245",
+        "poly_245"
+      ]
+    },
+    "247": {
+      "floor_height": 0.09375,
+      "ceiling_height": 0.21875,
+      "connections": [
+        "line_799",
+        "line_800",
+        "line_809",
+        "line_812",
+        "line_826",
+        "line_836",
+        "line_837",
+        "line_840",
+        "object_220",
+        "object_68",
+        "panel_light_switch_line_group_side_s639_s555",
+        "panel_light_switch_line_group_side_s639_s556",
+        "panel_light_switch_line_group_side_s639_s565",
+        "panel_light_switch_line_group_side_s639_s577",
+        "panel_light_switch_line_group_side_s639_s587",
+        "panel_light_switch_line_group_side_s639_s588",
+        "panel_tag_switch_line_group_poly_s635_p247",
+        "poly_247"
+      ]
+    },
+    "249": {
+      "floor_height": 0.09375,
+      "ceiling_height": 0.21875,
+      "connections": [
+        "line_813",
+        "line_814",
+        "line_816",
+        "line_839",
+        "line_841",
+        "line_854",
+        "line_855",
+        "panel_light_switch_line_group_side_s639_s566",
+        "panel_light_switch_line_group_side_s639_s567",
+        "panel_light_switch_line_group_side_s639_s569",
+        "panel_light_switch_line_group_side_s639_s600",
+        "panel_light_switch_line_group_side_s639_s601",
+        "panel_tag_switch_line_group_poly_s635_p249",
+        "poly_249"
+      ]
+    },
+    "251": {
+      "floor_height": 0.09375,
+      "ceiling_height": 0.21875,
+      "connections": [
+        "line_818",
+        "line_819",
+        "line_822",
+        "line_831",
+        "panel_light_switch_line_group_side_s639_s571",
+        "panel_light_switch_line_group_side_s639_s582",
+        "panel_tag_switch_line_group_poly_s635_p251",
+        "poly_251"
+      ]
+    },
+    "252": {
+      "floor_height": 0.09375,
+      "ceiling_height": 0.21875,
+      "connections": [
+        "line_819",
+        "line_820",
+        "line_832",
+        "line_839",
+        "panel_light_switch_line_group_side_s639_s572",
+        "panel_light_switch_line_group_side_s639_s583",
+        "panel_tag_switch_line_group_poly_s635_p252",
+        "poly_252"
+      ]
+    },
+    "254": {
+      "floor_height": 0.09375,
+      "ceiling_height": 0.21875,
+      "connections": [
+        "line_822",
+        "line_823",
+        "line_834",
+        "line_840",
+        "panel_light_switch_line_group_side_s639_s574",
+        "panel_light_switch_line_group_side_s639_s585",
+        "panel_tag_switch_line_group_poly_s635_p254",
+        "poly_254"
+      ]
+    },
+    "256": {
+      "floor_height": 0.09375,
+      "ceiling_height": 0.21875,
+      "connections": [
+        "line_828",
+        "line_829",
+        "line_838",
+        "line_841",
+        "line_865",
+        "line_866",
+        "line_869",
+        "object_254",
+        "object_70",
+        "panel_light_switch_line_group_side_s639_s579",
+        "panel_light_switch_line_group_side_s639_s580",
+        "panel_light_switch_line_group_side_s639_s589",
+        "panel_light_switch_line_group_side_s639_s611",
+        "panel_light_switch_line_group_side_s639_s612",
+        "panel_tag_switch_line_group_poly_s635_p256",
+        "poly_256"
+      ]
+    },
+    "258": {
+      "floor_height": 0.09375,
+      "ceiling_height": 0.21875,
+      "connections": [
+        "line_842",
+        "line_843",
+        "line_845",
+        "line_868",
+        "line_870",
+        "line_905",
+        "object_216",
+        "object_217",
+        "object_251",
+        "panel_light_switch_line_group_side_s639_s590",
+        "panel_light_switch_line_group_side_s639_s591",
+        "panel_light_switch_line_group_side_s639_s593",
+        "panel_light_switch_line_group_side_s639_s645",
+        "panel_tag_switch_line_group_poly_s635_p258",
+        "poly_258"
+      ]
+    },
+    "260": {
+      "floor_height": 0.09375,
+      "ceiling_height": 0.21875,
+      "connections": [
+        "line_847",
+        "line_848",
+        "line_851",
+        "line_860",
+        "object_169",
+        "panel_light_switch_line_group_side_s639_s595",
+        "panel_light_switch_line_group_side_s639_s606",
+        "panel_tag_switch_line_group_poly_s635_p260",
+        "poly_260"
+      ]
+    },
+    "261": {
+      "floor_height": 0.09375,
+      "ceiling_height": 0.21875,
+      "connections": [
+        "line_848",
+        "line_849",
+        "line_861",
+        "line_868",
+        "panel_light_switch_line_group_side_s639_s596",
+        "panel_light_switch_line_group_side_s639_s607",
+        "panel_tag_switch_line_group_poly_s635_p261",
+        "poly_261"
+      ]
+    },
+    "263": {
+      "floor_height": 0.09375,
+      "ceiling_height": 0.21875,
+      "connections": [
+        "line_851",
+        "line_852",
+        "line_863",
+        "line_869",
+        "panel_light_switch_line_group_side_s639_s598",
+        "panel_light_switch_line_group_side_s639_s609",
+        "panel_tag_switch_line_group_poly_s635_p263",
+        "poly_263"
+      ]
+    },
+    "265": {
+      "floor_height": 0.09375,
+      "ceiling_height": 0.21875,
+      "connections": [
+        "line_857",
+        "line_858",
+        "line_867",
+        "line_870",
+        "line_900",
+        "line_902",
+        "object_210",
+        "object_211",
+        "object_212",
+        "object_213",
+        "object_214",
+        "object_215",
+        "object_218",
+        "object_250",
+        "object_67",
+        "panel_light_switch_line_group_side_s639_s603",
+        "panel_light_switch_line_group_side_s639_s604",
+        "panel_light_switch_line_group_side_s639_s613",
+        "panel_light_switch_line_group_side_s639_s641",
+        "panel_tag_switch_line_group_poly_s635_p265",
+        "poly_265"
+      ]
+    },
+    "267": {
+      "floor_height": 0.09375,
+      "ceiling_height": 0.21875,
+      "connections": [
+        "line_872",
+        "line_873",
+        "line_890",
+        "line_891",
+        "panel_light_switch_line_group_side_s639_s615",
+        "panel_light_switch_line_group_side_s639_s631",
+        "panel_light_switch_line_group_side_s639_s632",
+        "panel_tag_switch_line_group_poly_s635_p267",
+        "poly_267"
+      ]
+    },
+    "275": {
+      "floor_height": 0.09375,
+      "ceiling_height": 0.21875,
+      "connections": [
+        "line_901",
+        "line_902",
+        "line_903",
+        "line_904",
+        "object_168",
+        "object_252",
+        "object_253",
+        "panel_light_switch_line_group_side_s639_s642",
+        "panel_light_switch_line_group_side_s639_s643",
+        "panel_light_switch_line_group_side_s639_s644",
+        "panel_tag_switch_line_group_poly_s635_p275",
+        "poly_275"
+      ]
+    },
+    "224": {
+      "floor_height": 0.0999755859375,
+      "ceiling_height": 0.21875,
+      "connections": [
+        "line_732",
+        "line_733",
+        "line_734",
+        "line_735",
+        "panel_light_switch_line_group_side_s639_s498",
+        "panel_light_switch_line_group_side_s639_s501",
+        "panel_tag_switch_line_group_poly_s505_p224",
+        "poly_224"
+      ]
+    },
+    "272": {
+      "floor_height": 0.0999755859375,
+      "ceiling_height": 0.21875,
+      "connections": [
+        "line_887",
+        "line_888",
+        "line_889",
+        "line_890",
+        "panel_light_switch_line_group_side_s639_s628",
+        "panel_light_switch_line_group_side_s639_s631",
+        "panel_tag_switch_line_group_poly_s635_p272",
+        "poly_272"
+      ]
+    },
+    "226": {
+      "floor_height": 0.103118896484375,
+      "ceiling_height": 0.118743896484375,
+      "connections": [
+        "line_741",
+        "line_742",
+        "line_743",
+        "line_744",
+        "panel_light_switch_line_group_side_s509_s386",
+        "panel_light_switch_line_group_side_s639_s508",
+        "panel_tag_switch_line_group_poly_s505_p226",
+        "poly_226",
+        "side_509"
+      ]
+    },
+    "274": {
+      "floor_height": 0.103118896484375,
+      "ceiling_height": 0.118743896484375,
+      "connections": [
+        "line_896",
+        "line_897",
+        "line_898",
+        "line_899",
+        "panel_light_switch_line_group_side_s639_s386",
+        "panel_light_switch_line_group_side_s639_s638",
+        "panel_tag_switch_line_group_poly_s635_p274",
+        "poly_274",
+        "side_639"
+      ]
+    },
+    "223": {
+      "floor_height": 0.106231689453125,
+      "ceiling_height": 0.21875,
+      "connections": [
+        "line_729",
+        "line_730",
+        "line_731",
+        "line_733",
+        "panel_light_switch_line_group_side_s639_s497",
+        "panel_tag_switch_line_group_poly_s505_p223",
+        "poly_223"
+      ]
+    },
+    "271": {
+      "floor_height": 0.106231689453125,
+      "ceiling_height": 0.21875,
+      "connections": [
+        "line_884",
+        "line_885",
+        "line_886",
+        "line_888",
+        "panel_light_switch_line_group_side_s639_s627",
+        "panel_tag_switch_line_group_poly_s635_p271",
+        "poly_271"
+      ]
+    },
+    "51": {
+      "floor_height": 0.109375,
+      "ceiling_height": 0.125,
+      "connections": [
+        "line_179",
+        "line_180",
+        "line_181",
+        "line_183",
+        "panel_light_switch_line_group_poly_s123_p1",
+        "panel_light_switch_line_group_poly_s123_p51",
+        "panel_light_switch_line_group_poly_s124_p51",
+        "poly_51",
+        "side_123"
+      ]
+    },
+    "222": {
+      "floor_height": 0.11248779296875,
+      "ceiling_height": 0.21875,
+      "connections": [
+        "line_726",
+        "line_727",
+        "line_728",
+        "line_729",
+        "panel_light_switch_line_group_side_s639_s492",
+        "panel_tag_switch_line_group_poly_s505_p222",
+        "poly_222"
+      ]
+    },
+    "270": {
+      "floor_height": 0.11248779296875,
+      "ceiling_height": 0.21875,
+      "connections": [
+        "line_881",
+        "line_882",
+        "line_883",
+        "line_884",
+        "panel_light_switch_line_group_side_s639_s622",
+        "panel_tag_switch_line_group_poly_s635_p270",
+        "poly_270"
+      ]
+    },
+    "221": {
+      "floor_height": 0.118743896484375,
+      "ceiling_height": 0.21875,
+      "connections": [
+        "line_722",
+        "line_723",
+        "line_725",
+        "line_727",
+        "panel_light_switch_line_group_side_s639_s491",
+        "panel_tag_switch_line_group_poly_s505_p221",
+        "poly_221"
+      ]
+    },
+    "269": {
+      "floor_height": 0.118743896484375,
+      "ceiling_height": 0.21875,
+      "connections": [
+        "line_877",
+        "line_878",
+        "line_880",
+        "line_882",
+        "panel_light_switch_line_group_side_s639_s621",
+        "panel_tag_switch_line_group_poly_s635_p269",
+        "poly_269"
+      ]
+    },
+    "161": {
+      "floor_height": 0.125,
+      "ceiling_height": 0.125,
+      "connections": [
+        "line_207",
+        "line_497",
+        "line_503",
+        "line_504",
+        "line_507",
+        "poly_161"
+      ]
+    },
+    "162": {
+      "floor_height": 0.125,
+      "ceiling_height": 0.125,
+      "connections": [
+        "line_188",
+        "line_209",
+        "line_505",
+        "line_506",
+        "line_507",
+        "poly_162"
+      ]
+    },
+    "21": {
+      "floor_height": 0.125,
+      "ceiling_height": 0.15625,
+      "connections": [
+        "line_110",
+        "line_112",
+        "line_113",
+        "line_114",
+        "line_31",
+        "object_0",
+        "poly_21"
+      ]
+    },
+    "22": {
+      "floor_height": 0.125,
+      "ceiling_height": 0.15625,
+      "connections": [
+        "line_34",
+        "line_38",
+        "line_94",
+        "line_95",
+        "object_14",
+        "object_228",
+        "poly_22"
+      ]
+    },
+    "23": {
+      "floor_height": 0.125,
+      "ceiling_height": 0.15625,
+      "connections": [
+        "line_100",
+        "line_101",
+        "line_49",
+        "line_96",
+        "line_98",
+        "object_13",
+        "object_274",
+        "object_275",
+        "object_276",
+        "object_280",
+        "object_281",
+        "poly_23"
+      ]
+    },
+    "24": {
+      "floor_height": 0.125,
+      "ceiling_height": 0.15625,
+      "connections": [
+        "line_100",
+        "line_45",
+        "line_97",
+        "line_99",
+        "object_12",
+        "object_277",
+        "object_278",
+        "object_279",
+        "object_282",
+        "poly_24"
+      ]
+    },
+    "25": {
+      "floor_height": 0.125,
+      "ceiling_height": 0.15625,
+      "connections": [
+        "line_39",
+        "line_43",
+        "line_90",
+        "line_91",
+        "object_11",
+        "object_16",
+        "object_225",
+        "poly_25"
+      ]
+    },
+    "26": {
+      "floor_height": 0.125,
+      "ceiling_height": 0.15625,
+      "connections": [
+        "line_102",
+        "line_105",
+        "line_106",
+        "line_4",
+        "object_10",
+        "object_224",
+        "poly_26"
+      ]
+    },
+    "27": {
+      "floor_height": 0.125,
+      "ceiling_height": 0.15625,
+      "connections": [
+        "line_1",
+        "line_103",
+        "line_104",
+        "line_105",
+        "line_107",
+        "object_9",
+        "poly_27"
+      ]
+    },
+    "28": {
+      "floor_height": 0.125,
+      "ceiling_height": 0.15625,
+      "connections": [
+        "line_12",
+        "line_8",
+        "line_92",
+        "line_93",
+        "object_226",
+        "object_8",
+        "poly_28"
+      ]
+    },
+    "29": {
+      "floor_height": 0.125,
+      "ceiling_height": 0.15625,
+      "connections": [
+        "line_115",
+        "line_120",
+        "line_18",
+        "line_88",
+        "object_6",
+        "poly_29"
+      ]
+    },
+    "30": {
+      "floor_height": 0.125,
+      "ceiling_height": 0.15625,
+      "connections": [
+        "line_119",
+        "line_120",
+        "line_121",
+        "line_122",
+        "poly_30"
+      ]
+    },
+    "31": {
+      "floor_height": 0.125,
+      "ceiling_height": 0.15625,
+      "connections": [
+        "line_116",
+        "line_117",
+        "line_122",
+        "line_14",
+        "object_7",
+        "poly_31"
+      ]
+    },
+    "40": {
+      "floor_height": 0.125,
+      "ceiling_height": 0.15625,
+      "connections": [
+        "line_157",
+        "line_159",
+        "line_160",
+        "line_161",
+        "object_3",
+        "poly_40"
+      ]
+    },
+    "41": {
+      "floor_height": 0.125,
+      "ceiling_height": 0.15625,
+      "connections": [
+        "line_160",
+        "line_162",
+        "line_163",
+        "line_164",
+        "object_2",
+        "poly_41"
+      ]
+    },
+    "43": {
+      "floor_height": 0.125,
+      "ceiling_height": 0.15625,
+      "connections": [
+        "line_150",
+        "line_153",
+        "line_154",
+        "line_155",
+        "object_229",
+        "object_4",
+        "poly_43"
+      ]
+    },
+    "44": {
+      "floor_height": 0.125,
+      "ceiling_height": 0.15625,
+      "connections": [
+        "line_149",
+        "line_150",
+        "line_151",
+        "line_152",
+        "object_5",
+        "poly_44"
+      ]
+    },
+    "49": {
+      "floor_height": 0.125,
+      "ceiling_height": 0.15625,
+      "connections": [
+        "line_123",
+        "line_143",
+        "line_145",
+        "line_20",
+        "line_25",
+        "object_1",
+        "object_227",
+        "poly_49"
+      ]
+    },
+    "76": {
+      "floor_height": 0.125,
+      "ceiling_height": 0.15625,
+      "connections": [
+        "line_309",
+        "line_311",
+        "line_312",
+        "line_313",
+        "object_45",
+        "poly_76"
+      ]
+    },
+    "78": {
+      "floor_height": 0.125,
+      "ceiling_height": 0.15625,
+      "connections": [
+        "line_304",
+        "line_306",
+        "line_307",
+        "line_308",
+        "object_234",
+        "object_46",
+        "poly_78"
+      ]
+    },
+    "79": {
+      "floor_height": 0.125,
+      "ceiling_height": 0.15625,
+      "connections": [
+        "line_302",
+        "line_303",
+        "line_304",
+        "line_305",
+        "object_47",
+        "poly_79"
+      ]
+    },
+    "83": {
+      "floor_height": 0.125,
+      "ceiling_height": 0.15625,
+      "connections": [
+        "line_293",
+        "line_294",
+        "line_295",
+        "line_296",
+        "object_48",
+        "poly_83"
+      ]
+    },
+    "85": {
+      "floor_height": 0.125,
+      "ceiling_height": 0.15625,
+      "connections": [
+        "line_287",
+        "line_289",
+        "line_290",
+        "line_291",
+        "object_49",
+        "poly_85"
+      ]
+    },
+    "86": {
+      "floor_height": 0.125,
+      "ceiling_height": 0.15625,
+      "connections": [
+        "line_285",
+        "line_286",
+        "line_287",
+        "line_288",
+        "object_50",
+        "poly_86"
+      ]
+    },
+    "91": {
+      "floor_height": 0.125,
+      "ceiling_height": 0.15625,
+      "connections": [
+        "line_271",
+        "line_272",
+        "line_273",
+        "line_274",
+        "object_233",
+        "object_52",
+        "poly_91"
+      ]
+    },
+    "93": {
+      "floor_height": 0.125,
+      "ceiling_height": 0.15625,
+      "connections": [
+        "line_268",
+        "line_269",
+        "line_270",
+        "line_271",
+        "object_53",
+        "poly_93"
+      ]
+    },
+    "95": {
+      "floor_height": 0.125,
+      "ceiling_height": 0.15625,
+      "connections": [
+        "line_263",
+        "line_264",
+        "line_265",
+        "line_266",
+        "object_54",
+        "poly_95"
+      ]
+    },
+    "107": {
+      "floor_height": 0.125,
+      "ceiling_height": 0.15625,
+      "connections": [
+        "line_276",
+        "line_281",
+        "line_282",
+        "line_283",
+        "line_441",
+        "line_443",
+        "object_51",
+        "poly_107"
+      ]
+    },
+    "108": {
+      "floor_height": 0.125,
+      "ceiling_height": 0.15625,
+      "connections": [
+        "line_440",
+        "line_441",
+        "line_442",
+        "line_445",
+        "poly_108"
+      ]
+    },
+    "109": {
+      "floor_height": 0.125,
+      "ceiling_height": 0.15625,
+      "connections": [
+        "line_438",
+        "line_440",
+        "line_444",
+        "line_454",
+        "line_455",
+        "line_456",
+        "object_57",
+        "poly_109"
+      ]
+    },
+    "116": {
+      "floor_height": 0.125,
+      "ceiling_height": 0.15625,
+      "connections": [
+        "line_419",
+        "line_421",
+        "line_424",
+        "line_425",
+        "poly_116"
+      ]
+    },
+    "117": {
+      "floor_height": 0.125,
+      "ceiling_height": 0.15625,
+      "connections": [
+        "line_420",
+        "line_421",
+        "line_422",
+        "line_423",
+        "object_58",
+        "poly_117"
+      ]
+    },
+    "120": {
+      "floor_height": 0.125,
+      "ceiling_height": 0.15625,
+      "connections": [
+        "line_367",
+        "line_368",
+        "line_371",
+        "line_436",
+        "object_112",
+        "poly_120"
+      ]
+    },
+    "121": {
+      "floor_height": 0.125,
+      "ceiling_height": 0.15625,
+      "connections": [
+        "line_362",
+        "line_369",
+        "line_370",
+        "line_436",
+        "object_113",
+        "object_56",
+        "poly_121"
+      ]
+    },
+    "135": {
+      "floor_height": 0.125,
+      "ceiling_height": 0.15625,
+      "connections": [
+        "line_393",
+        "line_398",
+        "line_399",
+        "line_400",
+        "poly_135"
+      ]
+    },
+    "136": {
+      "floor_height": 0.125,
+      "ceiling_height": 0.15625,
+      "connections": [
+        "line_394",
+        "line_400",
+        "line_401",
+        "line_402",
+        "object_60",
+        "poly_136"
+      ]
+    },
+    "145": {
+      "floor_height": 0.125,
+      "ceiling_height": 0.15625,
+      "connections": [
+        "line_457",
+        "line_458",
+        "line_459",
+        "line_462",
+        "object_55",
+        "poly_145"
+      ]
+    },
+    "150": {
+      "floor_height": 0.125,
+      "ceiling_height": 0.15625,
+      "connections": [
+        "line_481",
+        "line_483",
+        "line_485",
+        "line_486",
+        "object_231",
+        "object_59",
+        "poly_150"
+      ]
+    },
+    "154": {
+      "floor_height": 0.125,
+      "ceiling_height": 0.15625,
+      "connections": [
+        "line_111",
+        "line_112",
+        "line_27",
+        "line_496",
+        "poly_154"
+      ]
+    },
+    "169": {
+      "floor_height": 0.125,
+      "ceiling_height": 0.15625,
+      "connections": [
+        "line_472",
+        "line_473",
+        "line_536",
+        "line_537",
+        "object_94",
+        "poly_169"
+      ]
+    },
+    "170": {
+      "floor_height": 0.125,
+      "ceiling_height": 0.15625,
+      "connections": [
+        "line_529",
+        "line_537",
+        "line_538",
+        "line_539",
+        "object_283",
+        "object_61",
+        "poly_170"
+      ]
+    },
+    "171": {
+      "floor_height": 0.125,
+      "ceiling_height": 0.15625,
+      "connections": [
+        "line_469",
+        "line_470",
+        "line_531",
+        "line_539",
+        "poly_171"
+      ]
+    },
+    "172": {
+      "floor_height": 0.125,
+      "ceiling_height": 0.15625,
+      "connections": [
+        "line_529",
+        "line_530",
+        "line_532",
+        "line_535",
+        "poly_172"
+      ]
+    },
+    "175": {
+      "floor_height": 0.125,
+      "ceiling_height": 0.15625,
+      "connections": [
+        "line_256",
+        "line_259",
+        "line_315",
+        "line_319",
+        "line_542",
+        "line_545",
+        "object_43",
+        "poly_175"
+      ]
+    },
+    "177": {
+      "floor_height": 0.125,
+      "ceiling_height": 0.15625,
+      "connections": [
+        "line_260",
+        "line_315",
+        "line_316",
+        "line_317",
+        "line_547",
+        "object_44",
+        "poly_177"
+      ]
+    },
+    "300": {
+      "floor_height": 0.125,
+      "ceiling_height": 0.15625,
+      "connections": [
+        "line_533",
+        "line_534",
+        "line_535",
+        "line_987",
+        "poly_300"
+      ]
+    },
+    "301": {
+      "floor_height": 0.125,
+      "ceiling_height": 0.15625,
+      "connections": [
+        "line_985",
+        "line_987",
+        "line_988",
+        "line_989",
+        "poly_301"
+      ]
+    },
+    "302": {
+      "floor_height": 0.125,
+      "ceiling_height": 0.15625,
+      "connections": [
+        "line_720",
+        "line_984",
+        "line_985",
+        "line_986",
+        "poly_302"
+      ]
+    },
+    "340": {
+      "floor_height": 0.125,
+      "ceiling_height": 0.15625,
+      "connections": [
+        "line_1012",
+        "line_1013",
+        "line_1015",
+        "line_1016",
+        "object_196",
+        "object_197",
+        "object_198",
+        "object_199",
+        "object_200",
+        "object_201",
+        "object_208",
+        "object_209",
+        "poly_340"
+      ]
+    },
+    "341": {
+      "floor_height": 0.125,
+      "ceiling_height": 0.15625,
+      "connections": [
+        "line_1010",
+        "line_1018",
+        "line_1019",
+        "line_1020",
+        "poly_341"
+      ]
+    },
+    "339": {
+      "floor_height": 0.125,
+      "ceiling_height": 0.1875,
+      "connections": [
+        "line_1010",
+        "line_1011",
+        "line_1015",
+        "line_1021",
+        "line_1070",
+        "line_1073",
+        "line_1075",
+        "line_1078",
+        "object_202",
+        "object_203",
+        "object_204",
+        "object_205",
+        "object_206",
+        "object_207",
+        "poly_339"
+      ]
+    },
+    "181": {
+      "floor_height": 0.125,
+      "ceiling_height": 0.21875,
+      "connections": [
+        "line_598",
+        "line_599",
+        "line_600",
+        "line_603",
+        "panel_light_switch_line_group_side_s509_s388",
+        "panel_light_switch_line_group_side_s509_s389",
+        "panel_light_switch_line_group_side_s509_s390",
+        "panel_light_switch_line_group_side_s509_s392",
+        "panel_light_switch_line_group_side_s639_s388",
+        "panel_light_switch_line_group_side_s639_s389",
+        "panel_light_switch_line_group_side_s639_s390",
+        "panel_light_switch_line_group_side_s639_s392",
+        "panel_tag_switch_line_group_poly_s505_p181",
+        "poly_181"
+      ]
+    },
+    "184": {
+      "floor_height": 0.125,
+      "ceiling_height": 0.21875,
+      "connections": [
+        "line_604",
+        "line_606",
+        "line_607",
+        "line_609",
+        "panel_light_switch_line_group_side_s509_s393",
+        "panel_light_switch_line_group_side_s509_s394",
+        "panel_light_switch_line_group_side_s509_s395",
+        "panel_light_switch_line_group_side_s509_s397",
+        "panel_light_switch_line_group_side_s639_s393",
+        "panel_light_switch_line_group_side_s639_s394",
+        "panel_light_switch_line_group_side_s639_s395",
+        "panel_light_switch_line_group_side_s639_s397",
+        "panel_tag_switch_line_group_poly_s505_p184",
+        "poly_184"
+      ]
+    },
+    "187": {
+      "floor_height": 0.125,
+      "ceiling_height": 0.21875,
+      "connections": [
+        "line_611",
+        "line_613",
+        "line_614",
+        "line_616",
+        "panel_light_switch_line_group_side_s509_s399",
+        "panel_light_switch_line_group_side_s509_s401",
+        "panel_light_switch_line_group_side_s509_s402",
+        "panel_light_switch_line_group_side_s509_s404",
+        "panel_light_switch_line_group_side_s639_s399",
+        "panel_light_switch_line_group_side_s639_s401",
+        "panel_light_switch_line_group_side_s639_s402",
+        "panel_light_switch_line_group_side_s639_s404",
+        "panel_tag_switch_line_group_poly_s505_p187",
+        "poly_187"
+      ]
+    },
+    "189": {
+      "floor_height": 0.125,
+      "ceiling_height": 0.21875,
+      "connections": [
+        "line_617",
+        "line_618",
+        "line_619",
+        "line_621",
+        "panel_light_switch_line_group_side_s509_s405",
+        "panel_light_switch_line_group_side_s509_s406",
+        "panel_light_switch_line_group_side_s509_s407",
+        "panel_light_switch_line_group_side_s509_s409",
+        "panel_light_switch_line_group_side_s639_s405",
+        "panel_light_switch_line_group_side_s639_s406",
+        "panel_light_switch_line_group_side_s639_s407",
+        "panel_light_switch_line_group_side_s639_s409",
+        "panel_tag_switch_line_group_poly_s505_p189",
+        "poly_189"
+      ]
+    },
+    "193": {
+      "floor_height": 0.125,
+      "ceiling_height": 0.21875,
+      "connections": [
+        "line_631",
+        "line_632",
+        "line_633",
+        "line_636",
+        "panel_light_switch_line_group_side_s509_s414",
+        "panel_light_switch_line_group_side_s509_s415",
+        "panel_light_switch_line_group_side_s509_s416",
+        "panel_light_switch_line_group_side_s509_s418",
+        "panel_light_switch_line_group_side_s639_s414",
+        "panel_light_switch_line_group_side_s639_s415",
+        "panel_light_switch_line_group_side_s639_s416",
+        "panel_light_switch_line_group_side_s639_s418",
+        "panel_tag_switch_line_group_poly_s505_p193",
+        "poly_193"
+      ]
+    },
+    "196": {
+      "floor_height": 0.125,
+      "ceiling_height": 0.21875,
+      "connections": [
+        "line_637",
+        "line_639",
+        "line_640",
+        "line_642",
+        "panel_light_switch_line_group_side_s509_s419",
+        "panel_light_switch_line_group_side_s509_s420",
+        "panel_light_switch_line_group_side_s509_s421",
+        "panel_light_switch_line_group_side_s509_s423",
+        "panel_light_switch_line_group_side_s639_s419",
+        "panel_light_switch_line_group_side_s639_s420",
+        "panel_light_switch_line_group_side_s639_s421",
+        "panel_light_switch_line_group_side_s639_s423",
+        "panel_tag_switch_line_group_poly_s505_p196",
+        "poly_196"
+      ]
+    },
+    "198": {
+      "floor_height": 0.125,
+      "ceiling_height": 0.21875,
+      "connections": [
+        "line_643",
+        "line_645",
+        "line_646",
+        "line_648",
+        "panel_light_switch_line_group_side_s509_s424",
+        "panel_light_switch_line_group_side_s509_s426",
+        "panel_light_switch_line_group_side_s509_s427",
+        "panel_light_switch_line_group_side_s509_s429",
+        "panel_light_switch_line_group_side_s639_s424",
+        "panel_light_switch_line_group_side_s639_s426",
+        "panel_light_switch_line_group_side_s639_s427",
+        "panel_light_switch_line_group_side_s639_s429",
+        "panel_tag_switch_line_group_poly_s505_p198",
+        "poly_198"
+      ]
+    },
+    "200": {
+      "floor_height": 0.125,
+      "ceiling_height": 0.21875,
+      "connections": [
+        "line_649",
+        "line_650",
+        "line_651",
+        "line_653",
+        "panel_light_switch_line_group_side_s509_s430",
+        "panel_light_switch_line_group_side_s509_s431",
+        "panel_light_switch_line_group_side_s509_s432",
+        "panel_light_switch_line_group_side_s509_s434",
+        "panel_light_switch_line_group_side_s639_s430",
+        "panel_light_switch_line_group_side_s639_s431",
+        "panel_light_switch_line_group_side_s639_s432",
+        "panel_light_switch_line_group_side_s639_s434",
+        "panel_tag_switch_line_group_poly_s505_p200",
+        "poly_200"
+      ]
+    },
+    "202": {
+      "floor_height": 0.125,
+      "ceiling_height": 0.21875,
+      "connections": [
+        "line_660",
+        "line_661",
+        "line_662",
+        "line_665",
+        "panel_light_switch_line_group_side_s509_s438",
+        "panel_light_switch_line_group_side_s509_s439",
+        "panel_light_switch_line_group_side_s509_s440",
+        "panel_light_switch_line_group_side_s509_s442",
+        "panel_light_switch_line_group_side_s639_s438",
+        "panel_light_switch_line_group_side_s639_s439",
+        "panel_light_switch_line_group_side_s639_s440",
+        "panel_light_switch_line_group_side_s639_s442",
+        "panel_tag_switch_line_group_poly_s505_p202",
+        "poly_202"
+      ]
+    },
+    "205": {
+      "floor_height": 0.125,
+      "ceiling_height": 0.21875,
+      "connections": [
+        "line_666",
+        "line_668",
+        "line_669",
+        "line_671",
+        "panel_light_switch_line_group_side_s509_s443",
+        "panel_light_switch_line_group_side_s509_s444",
+        "panel_light_switch_line_group_side_s509_s445",
+        "panel_light_switch_line_group_side_s509_s447",
+        "panel_light_switch_line_group_side_s639_s443",
+        "panel_light_switch_line_group_side_s639_s444",
+        "panel_light_switch_line_group_side_s639_s445",
+        "panel_light_switch_line_group_side_s639_s447",
+        "panel_tag_switch_line_group_poly_s505_p205",
+        "poly_205"
+      ]
+    },
+    "207": {
+      "floor_height": 0.125,
+      "ceiling_height": 0.21875,
+      "connections": [
+        "line_672",
+        "line_674",
+        "line_675",
+        "line_677",
+        "panel_light_switch_line_group_side_s509_s448",
+        "panel_light_switch_line_group_side_s509_s450",
+        "panel_light_switch_line_group_side_s509_s451",
+        "panel_light_switch_line_group_side_s509_s453",
+        "panel_light_switch_line_group_side_s639_s448",
+        "panel_light_switch_line_group_side_s639_s450",
+        "panel_light_switch_line_group_side_s639_s451",
+        "panel_light_switch_line_group_side_s639_s453",
+        "panel_tag_switch_line_group_poly_s505_p207",
+        "poly_207"
+      ]
+    },
+    "209": {
+      "floor_height": 0.125,
+      "ceiling_height": 0.21875,
+      "connections": [
+        "line_678",
+        "line_679",
+        "line_680",
+        "line_682",
+        "panel_light_switch_line_group_side_s509_s454",
+        "panel_light_switch_line_group_side_s509_s455",
+        "panel_light_switch_line_group_side_s509_s456",
+        "panel_light_switch_line_group_side_s509_s458",
+        "panel_light_switch_line_group_side_s639_s454",
+        "panel_light_switch_line_group_side_s639_s455",
+        "panel_light_switch_line_group_side_s639_s456",
+        "panel_light_switch_line_group_side_s639_s458",
+        "panel_tag_switch_line_group_poly_s505_p209",
+        "poly_209"
+      ]
+    },
+    "211": {
+      "floor_height": 0.125,
+      "ceiling_height": 0.21875,
+      "connections": [
+        "line_689",
+        "line_690",
+        "line_691",
+        "line_694",
+        "panel_light_switch_line_group_side_s509_s462",
+        "panel_light_switch_line_group_side_s509_s463",
+        "panel_light_switch_line_group_side_s509_s464",
+        "panel_light_switch_line_group_side_s509_s466",
+        "panel_light_switch_line_group_side_s639_s462",
+        "panel_light_switch_line_group_side_s639_s463",
+        "panel_light_switch_line_group_side_s639_s464",
+        "panel_light_switch_line_group_side_s639_s466",
+        "panel_tag_switch_line_group_poly_s505_p211",
+        "poly_211"
+      ]
+    },
+    "214": {
+      "floor_height": 0.125,
+      "ceiling_height": 0.21875,
+      "connections": [
+        "line_695",
+        "line_697",
+        "line_698",
+        "line_700",
+        "panel_light_switch_line_group_side_s509_s467",
+        "panel_light_switch_line_group_side_s509_s468",
+        "panel_light_switch_line_group_side_s509_s469",
+        "panel_light_switch_line_group_side_s509_s471",
+        "panel_light_switch_line_group_side_s639_s467",
+        "panel_light_switch_line_group_side_s639_s468",
+        "panel_light_switch_line_group_side_s639_s469",
+        "panel_light_switch_line_group_side_s639_s471",
+        "panel_tag_switch_line_group_poly_s505_p214",
+        "poly_214"
+      ]
+    },
+    "216": {
+      "floor_height": 0.125,
+      "ceiling_height": 0.21875,
+      "connections": [
+        "line_701",
+        "line_703",
+        "line_704",
+        "line_706",
+        "panel_light_switch_line_group_side_s509_s472",
+        "panel_light_switch_line_group_side_s509_s474",
+        "panel_light_switch_line_group_side_s509_s475",
+        "panel_light_switch_line_group_side_s509_s477",
+        "panel_light_switch_line_group_side_s639_s472",
+        "panel_light_switch_line_group_side_s639_s474",
+        "panel_light_switch_line_group_side_s639_s475",
+        "panel_light_switch_line_group_side_s639_s477",
+        "panel_tag_switch_line_group_poly_s505_p216",
+        "poly_216"
+      ]
+    },
+    "218": {
+      "floor_height": 0.125,
+      "ceiling_height": 0.21875,
+      "connections": [
+        "line_707",
+        "line_708",
+        "line_709",
+        "line_711",
+        "panel_light_switch_line_group_side_s509_s478",
+        "panel_light_switch_line_group_side_s509_s479",
+        "panel_light_switch_line_group_side_s509_s480",
+        "panel_light_switch_line_group_side_s509_s482",
+        "panel_light_switch_line_group_side_s639_s478",
+        "panel_light_switch_line_group_side_s639_s479",
+        "panel_light_switch_line_group_side_s639_s480",
+        "panel_light_switch_line_group_side_s639_s482",
+        "panel_tag_switch_line_group_poly_s505_p218",
+        "poly_218"
+      ]
+    },
+    "220": {
+      "floor_height": 0.125,
+      "ceiling_height": 0.21875,
+      "connections": [
+        "line_719",
+        "line_720",
+        "line_721",
+        "line_722",
+        "line_724",
+        "line_737",
+        "panel_light_switch_line_group_side_s639_s486",
+        "poly_220"
+      ]
+    },
+    "229": {
+      "floor_height": 0.125,
+      "ceiling_height": 0.21875,
+      "connections": [
+        "line_753",
+        "line_754",
+        "line_755",
+        "line_758",
+        "panel_light_switch_line_group_side_s639_s518",
+        "panel_light_switch_line_group_side_s639_s519",
+        "panel_light_switch_line_group_side_s639_s520",
+        "panel_light_switch_line_group_side_s639_s522",
+        "panel_tag_switch_line_group_poly_s635_p229",
+        "poly_229"
+      ]
+    },
+    "232": {
+      "floor_height": 0.125,
+      "ceiling_height": 0.21875,
+      "connections": [
+        "line_759",
+        "line_761",
+        "line_762",
+        "line_764",
+        "object_72",
+        "panel_light_switch_line_group_side_s639_s523",
+        "panel_light_switch_line_group_side_s639_s524",
+        "panel_light_switch_line_group_side_s639_s525",
+        "panel_light_switch_line_group_side_s639_s527",
+        "panel_tag_switch_line_group_poly_s635_p232",
+        "poly_232"
+      ]
+    },
+    "235": {
+      "floor_height": 0.125,
+      "ceiling_height": 0.21875,
+      "connections": [
+        "line_766",
+        "line_768",
+        "line_769",
+        "line_771",
+        "panel_light_switch_line_group_side_s639_s529",
+        "panel_light_switch_line_group_side_s639_s531",
+        "panel_light_switch_line_group_side_s639_s532",
+        "panel_light_switch_line_group_side_s639_s534",
+        "panel_tag_switch_line_group_poly_s635_p235",
+        "poly_235"
+      ]
+    },
+    "237": {
+      "floor_height": 0.125,
+      "ceiling_height": 0.21875,
+      "connections": [
+        "line_772",
+        "line_773",
+        "line_774",
+        "line_776",
+        "panel_light_switch_line_group_side_s639_s535",
+        "panel_light_switch_line_group_side_s639_s536",
+        "panel_light_switch_line_group_side_s639_s537",
+        "panel_light_switch_line_group_side_s639_s539",
+        "panel_tag_switch_line_group_poly_s635_p237",
+        "poly_237"
+      ]
+    },
+    "241": {
+      "floor_height": 0.125,
+      "ceiling_height": 0.21875,
+      "connections": [
+        "line_786",
+        "line_787",
+        "line_788",
+        "line_791",
+        "panel_light_switch_line_group_side_s639_s544",
+        "panel_light_switch_line_group_side_s639_s545",
+        "panel_light_switch_line_group_side_s639_s546",
+        "panel_light_switch_line_group_side_s639_s548",
+        "panel_tag_switch_line_group_poly_s635_p241",
+        "poly_241"
+      ]
+    },
+    "244": {
+      "floor_height": 0.125,
+      "ceiling_height": 0.21875,
+      "connections": [
+        "line_792",
+        "line_794",
+        "line_795",
+        "line_797",
+        "panel_light_switch_line_group_side_s639_s549",
+        "panel_light_switch_line_group_side_s639_s550",
+        "panel_light_switch_line_group_side_s639_s551",
+        "panel_light_switch_line_group_side_s639_s553",
+        "panel_tag_switch_line_group_poly_s635_p244",
+        "poly_244"
+      ]
+    },
+    "246": {
+      "floor_height": 0.125,
+      "ceiling_height": 0.21875,
+      "connections": [
+        "line_798",
+        "line_800",
+        "line_801",
+        "line_803",
+        "panel_light_switch_line_group_side_s639_s554",
+        "panel_light_switch_line_group_side_s639_s556",
+        "panel_light_switch_line_group_side_s639_s557",
+        "panel_light_switch_line_group_side_s639_s559",
+        "panel_tag_switch_line_group_poly_s635_p246",
+        "poly_246"
+      ]
+    },
+    "248": {
+      "floor_height": 0.125,
+      "ceiling_height": 0.21875,
+      "connections": [
+        "line_804",
+        "line_805",
+        "line_806",
+        "line_808",
+        "panel_light_switch_line_group_side_s639_s560",
+        "panel_light_switch_line_group_side_s639_s561",
+        "panel_light_switch_line_group_side_s639_s562",
+        "panel_light_switch_line_group_side_s639_s564",
+        "panel_tag_switch_line_group_poly_s635_p248",
+        "poly_248"
+      ]
+    },
+    "250": {
+      "floor_height": 0.125,
+      "ceiling_height": 0.21875,
+      "connections": [
+        "line_815",
+        "line_816",
+        "line_817",
+        "line_820",
+        "panel_light_switch_line_group_side_s639_s568",
+        "panel_light_switch_line_group_side_s639_s569",
+        "panel_light_switch_line_group_side_s639_s570",
+        "panel_light_switch_line_group_side_s639_s572",
+        "panel_tag_switch_line_group_poly_s635_p250",
+        "poly_250"
+      ]
+    },
+    "253": {
+      "floor_height": 0.125,
+      "ceiling_height": 0.21875,
+      "connections": [
+        "line_821",
+        "line_823",
+        "line_824",
+        "line_826",
+        "panel_light_switch_line_group_side_s639_s573",
+        "panel_light_switch_line_group_side_s639_s574",
+        "panel_light_switch_line_group_side_s639_s575",
+        "panel_light_switch_line_group_side_s639_s577",
+        "panel_tag_switch_line_group_poly_s635_p253",
+        "poly_253"
+      ]
+    },
+    "255": {
+      "floor_height": 0.125,
+      "ceiling_height": 0.21875,
+      "connections": [
+        "line_827",
+        "line_829",
+        "line_830",
+        "line_832",
+        "panel_light_switch_line_group_side_s639_s578",
+        "panel_light_switch_line_group_side_s639_s580",
+        "panel_light_switch_line_group_side_s639_s581",
+        "panel_light_switch_line_group_side_s639_s583",
+        "panel_tag_switch_line_group_poly_s635_p255",
+        "poly_255"
+      ]
+    },
+    "257": {
+      "floor_height": 0.125,
+      "ceiling_height": 0.21875,
+      "connections": [
+        "line_833",
+        "line_834",
+        "line_835",
+        "line_837",
+        "panel_light_switch_line_group_side_s639_s584",
+        "panel_light_switch_line_group_side_s639_s585",
+        "panel_light_switch_line_group_side_s639_s586",
+        "panel_light_switch_line_group_side_s639_s588",
+        "panel_tag_switch_line_group_poly_s635_p257",
+        "poly_257"
+      ]
+    },
+    "259": {
+      "floor_height": 0.125,
+      "ceiling_height": 0.21875,
+      "connections": [
+        "line_844",
+        "line_845",
+        "line_846",
+        "line_849",
+        "panel_light_switch_line_group_side_s639_s592",
+        "panel_light_switch_line_group_side_s639_s593",
+        "panel_light_switch_line_group_side_s639_s594",
+        "panel_light_switch_line_group_side_s639_s596",
+        "panel_tag_switch_line_group_poly_s635_p259",
+        "poly_259"
+      ]
+    },
+    "262": {
+      "floor_height": 0.125,
+      "ceiling_height": 0.21875,
+      "connections": [
+        "line_850",
+        "line_852",
+        "line_853",
+        "line_855",
+        "panel_light_switch_line_group_side_s639_s597",
+        "panel_light_switch_line_group_side_s639_s598",
+        "panel_light_switch_line_group_side_s639_s599",
+        "panel_light_switch_line_group_side_s639_s601",
+        "panel_tag_switch_line_group_poly_s635_p262",
+        "poly_262"
+      ]
+    },
+    "264": {
+      "floor_height": 0.125,
+      "ceiling_height": 0.21875,
+      "connections": [
+        "line_856",
+        "line_858",
+        "line_859",
+        "line_861",
+        "panel_light_switch_line_group_side_s639_s602",
+        "panel_light_switch_line_group_side_s639_s604",
+        "panel_light_switch_line_group_side_s639_s605",
+        "panel_light_switch_line_group_side_s639_s607",
+        "panel_tag_switch_line_group_poly_s635_p264",
+        "poly_264"
+      ]
+    },
+    "266": {
+      "floor_height": 0.125,
+      "ceiling_height": 0.21875,
+      "connections": [
+        "line_862",
+        "line_863",
+        "line_864",
+        "line_866",
+        "panel_light_switch_line_group_side_s639_s608",
+        "panel_light_switch_line_group_side_s639_s609",
+        "panel_light_switch_line_group_side_s639_s610",
+        "panel_light_switch_line_group_side_s639_s612",
+        "panel_tag_switch_line_group_poly_s635_p266",
+        "poly_266"
+      ]
+    },
+    "268": {
+      "floor_height": 0.125,
+      "ceiling_height": 0.21875,
+      "connections": [
+        "line_874",
+        "line_875",
+        "line_876",
+        "line_877",
+        "line_879",
+        "line_892",
+        "object_173",
+        "object_89",
+        "panel_light_switch_line_group_side_s639_s616",
+        "poly_268"
+      ]
+    },
+    "0": {
+      "floor_height": 0.125,
+      "ceiling_height": 0.28125,
+      "connections": [
+        "line_25",
+        "line_26",
+        "line_27",
+        "line_28",
+        "object_20",
+        "object_21",
+        "poly_0"
+      ]
+    },
+    "3": {
+      "floor_height": 0.125,
+      "ceiling_height": 0.28125,
+      "connections": [
+        "line_18",
+        "line_19",
+        "line_20",
+        "line_21",
+        "poly_3"
+      ]
+    },
+    "5": {
+      "floor_height": 0.125,
+      "ceiling_height": 0.28125,
+      "connections": [
+        "line_12",
+        "line_13",
+        "line_14",
+        "line_15",
+        "object_171",
+        "poly_5"
+      ]
+    },
+    "7": {
+      "floor_height": 0.125,
+      "ceiling_height": 0.28125,
+      "connections": [
+        "line_0",
+        "line_1",
+        "line_7",
+        "line_8",
+        "object_17",
+        "poly_7"
+      ]
+    },
+    "9": {
+      "floor_height": 0.125,
+      "ceiling_height": 0.28125,
+      "connections": [
+        "line_39",
+        "line_4",
+        "line_5",
+        "line_6",
+        "object_172",
+        "poly_9"
+      ]
+    },
+    "11": {
+      "floor_height": 0.125,
+      "ceiling_height": 0.28125,
+      "connections": [
+        "line_43",
+        "line_44",
+        "line_45",
+        "line_46",
+        "poly_11"
+      ]
+    },
+    "13": {
+      "floor_height": 0.125,
+      "ceiling_height": 0.28125,
+      "connections": [
+        "line_38",
+        "line_49",
+        "line_50",
+        "line_51",
+        "poly_13"
+      ]
+    },
+    "15": {
+      "floor_height": 0.125,
+      "ceiling_height": 0.28125,
+      "connections": [
+        "line_31",
+        "line_33",
+        "line_34",
+        "line_35",
+        "poly_15"
+      ]
+    },
+    "39": {
+      "floor_height": 0.125,
+      "ceiling_height": 0.28125,
+      "connections": [
+        "line_154",
+        "line_156",
+        "line_157",
+        "line_158",
+        "object_22",
+        "poly_39"
+      ]
+    },
+    "45": {
+      "floor_height": 0.125,
+      "ceiling_height": 0.28125,
+      "connections": [
+        "line_118",
+        "line_119",
+        "line_152",
+        "line_89",
+        "object_15",
+        "poly_45"
+      ]
+    },
+    "48": {
+      "floor_height": 0.125,
+      "ceiling_height": 0.28125,
+      "connections": [
+        "line_142",
+        "line_143",
+        "line_144",
+        "line_164",
+        "object_18",
+        "object_19",
+        "poly_48"
+      ]
+    },
+    "75": {
+      "floor_height": 0.125,
+      "ceiling_height": 0.28125,
+      "connections": [
+        "line_192",
+        "line_211",
+        "line_312",
+        "line_314",
+        "poly_75"
+      ]
+    },
+    "77": {
+      "floor_height": 0.125,
+      "ceiling_height": 0.28125,
+      "connections": [
+        "line_238",
+        "line_307",
+        "line_309",
+        "line_310",
+        "object_159",
+        "poly_77"
+      ]
+    },
+    "80": {
+      "floor_height": 0.125,
+      "ceiling_height": 0.28125,
+      "connections": [
+        "line_234",
+        "line_300",
+        "line_301",
+        "line_302",
+        "object_160",
+        "poly_80"
+      ]
+    },
+    "82": {
+      "floor_height": 0.125,
+      "ceiling_height": 0.28125,
+      "connections": [
+        "line_223",
+        "line_295",
+        "line_297",
+        "line_298",
+        "object_239",
+        "poly_82"
+      ]
+    },
+    "84": {
+      "floor_height": 0.125,
+      "ceiling_height": 0.28125,
+      "connections": [
+        "line_227",
+        "line_290",
+        "line_292",
+        "line_293",
+        "object_158",
+        "poly_84"
+      ]
+    },
+    "87": {
+      "floor_height": 0.125,
+      "ceiling_height": 0.28125,
+      "connections": [
+        "line_230",
+        "line_281",
+        "line_284",
+        "line_285",
+        "object_157",
+        "poly_87"
+      ]
+    },
+    "88": {
+      "floor_height": 0.125,
+      "ceiling_height": 0.28125,
+      "connections": [
+        "line_233",
+        "line_276",
+        "line_277",
+        "line_278",
+        "poly_88"
+      ]
+    },
+    "90": {
+      "floor_height": 0.125,
+      "ceiling_height": 0.28125,
+      "connections": [
+        "line_222",
+        "line_273",
+        "line_275",
+        "line_280",
+        "object_156",
+        "poly_90"
+      ]
+    },
+    "92": {
+      "floor_height": 0.125,
+      "ceiling_height": 0.28125,
+      "connections": [
+        "line_219",
+        "line_265",
+        "line_267",
+        "line_269",
+        "object_155",
+        "object_178",
+        "poly_92"
+      ]
+    },
+    "94": {
+      "floor_height": 0.125,
+      "ceiling_height": 0.28125,
+      "connections": [
+        "line_215",
+        "line_261",
+        "line_262",
+        "line_263",
+        "poly_94"
+      ]
+    },
+    "96": {
+      "floor_height": 0.125,
+      "ceiling_height": 0.28125,
+      "connections": [
+        "line_190",
+        "line_214",
+        "line_318",
+        "line_319",
+        "object_153",
+        "poly_96"
+      ]
+    },
+    "97": {
+      "floor_height": 0.125,
+      "ceiling_height": 0.28125,
+      "connections": [
+        "line_210",
+        "line_257",
+        "line_258",
+        "line_317",
+        "object_154",
+        "poly_97"
+      ]
+    },
+    "110": {
+      "floor_height": 0.125,
+      "ceiling_height": 0.28125,
+      "connections": [
+        "line_429",
+        "line_432",
+        "line_453",
+        "line_454",
+        "poly_110"
+      ]
+    },
+    "113": {
+      "floor_height": 0.125,
+      "ceiling_height": 0.28125,
+      "connections": [
+        "line_384",
+        "line_431",
+        "line_432",
+        "line_433",
+        "poly_113"
+      ]
+    },
+    "118": {
+      "floor_height": 0.125,
+      "ceiling_height": 0.28125,
+      "connections": [
+        "line_365",
+        "line_367",
+        "line_433",
+        "line_434",
+        "poly_118"
+      ]
+    },
+    "122": {
+      "floor_height": 0.125,
+      "ceiling_height": 0.28125,
+      "connections": [
+        "line_386",
+        "line_388",
+        "line_389",
+        "line_391",
+        "poly_122"
+      ]
+    },
+    "127": {
+      "floor_height": 0.125,
+      "ceiling_height": 0.28125,
+      "connections": [
+        "line_364",
+        "line_380",
+        "line_390",
+        "line_391",
+        "object_115",
+        "object_255",
+        "object_256",
+        "object_257",
+        "object_258",
+        "object_259",
+        "object_260",
+        "poly_127"
+      ]
+    },
+    "132": {
+      "floor_height": 0.125,
+      "ceiling_height": 0.28125,
+      "connections": [
+        "line_410",
+        "line_412",
+        "line_413",
+        "line_414",
+        "poly_132"
+      ]
+    },
+    "134": {
+      "floor_height": 0.125,
+      "ceiling_height": 0.28125,
+      "connections": [
+        "line_398",
+        "line_406",
+        "line_411",
+        "line_412",
+        "object_240",
+        "poly_134"
+      ]
+    },
+    "139": {
+      "floor_height": 0.125,
+      "ceiling_height": 0.28125,
+      "connections": [
+        "line_324",
+        "line_333",
+        "line_338",
+        "line_404",
+        "line_405",
+        "line_470",
+        "object_114",
+        "object_230",
+        "object_296",
+        "object_297",
+        "object_298",
+        "object_299",
+        "object_300",
+        "poly_139"
+      ]
+    },
+    "142": {
+      "floor_height": 0.125,
+      "ceiling_height": 0.28125,
+      "connections": [
+        "line_396",
+        "line_402",
+        "line_403",
+        "line_471",
+        "line_473",
+        "object_90",
+        "object_91",
+        "object_92",
+        "object_93",
+        "poly_142"
+      ]
+    },
+    "144": {
+      "floor_height": 0.125,
+      "ceiling_height": 0.28125,
+      "connections": [
+        "line_363",
+        "line_389",
+        "line_437",
+        "line_459",
+        "object_232",
+        "poly_144"
+      ]
+    },
+    "147": {
+      "floor_height": 0.125,
+      "ceiling_height": 0.28125,
+      "connections": [
+        "line_362",
+        "line_460",
+        "line_461",
+        "line_462",
+        "object_110",
+        "object_111",
+        "poly_147"
+      ]
+    },
+    "149": {
+      "floor_height": 0.125,
+      "ceiling_height": 0.28125,
+      "connections": [
+        "line_413",
+        "line_426",
+        "line_484",
+        "line_486",
+        "poly_149"
+      ]
+    },
+    "153": {
+      "floor_height": 0.125,
+      "ceiling_height": 0.28125,
+      "connections": [
+        "line_423",
+        "line_427",
+        "line_482",
+        "line_483",
+        "poly_153"
+      ]
+    },
+    "375": {
+      "floor_height": 0.125,
+      "ceiling_height": 0.28125,
+      "connections": [
+        "line_1176",
+        "line_424",
+        "line_430",
+        "line_446",
+        "poly_375"
+      ]
+    },
+    "378": {
+      "floor_height": 0.125,
+      "ceiling_height": 0.28125,
+      "connections": [
+        "line_1173",
+        "line_1175",
+        "line_1176",
+        "line_456",
+        "poly_378"
+      ]
+    },
+    "225": {
+      "floor_height": 0.134368896484375,
+      "ceiling_height": 0.149993896484375,
+      "connections": [
+        "line_737",
+        "line_738",
+        "line_739",
+        "line_740",
+        "panel_tag_switch_line_group_poly_s505_p180",
+        "poly_225",
+        "side_505"
+      ]
+    },
+    "273": {
+      "floor_height": 0.134368896484375,
+      "ceiling_height": 0.149993896484375,
+      "connections": [
+        "line_892",
+        "line_893",
+        "line_894",
+        "line_895",
+        "panel_tag_switch_line_group_poly_s635_p228",
+        "poly_273",
+        "side_635"
+      ]
+    },
+    "338": {
+      "floor_height": 0.134368896484375,
+      "ceiling_height": 0.149993896484375,
+      "connections": [
+        "line_1076",
+        "line_1077",
+        "line_1078",
+        "line_1079",
+        "panel_light_switch_line_group_poly_s876_p338",
+        "panel_light_switch_line_group_side_s876_s796",
+        "panel_light_switch_line_group_side_s876_s806",
+        "panel_light_switch_line_group_side_s876_s863",
+        "poly_338",
+        "side_863"
+      ]
+    },
+    "342": {
+      "floor_height": 0.134368896484375,
+      "ceiling_height": 0.149993896484375,
+      "connections": [
+        "line_1070",
+        "line_1071",
+        "line_1072",
+        "line_1074",
+        "panel_light_switch_line_group_poly_s876_p342",
+        "panel_light_switch_line_group_side_s876_s804",
+        "panel_light_switch_line_group_side_s876_s805",
+        "panel_light_switch_line_group_side_s876_s864",
+        "poly_342",
+        "side_864"
+      ]
+    },
+    "32": {
+      "floor_height": 0.15625,
+      "ceiling_height": 0.15625,
+      "connections": [
+        "line_124",
+        "line_125",
+        "line_126",
+        "line_15",
+        "poly_32"
+      ]
+    },
+    "33": {
+      "floor_height": 0.15625,
+      "ceiling_height": 0.15625,
+      "connections": [
+        "line_0",
+        "line_127",
+        "line_128",
+        "line_129",
+        "poly_33"
+      ]
+    },
+    "34": {
+      "floor_height": 0.15625,
+      "ceiling_height": 0.15625,
+      "connections": [
+        "line_130",
+        "line_131",
+        "line_132",
+        "line_6",
+        "poly_34"
+      ]
+    },
+    "35": {
+      "floor_height": 0.15625,
+      "ceiling_height": 0.15625,
+      "connections": [
+        "line_133",
+        "line_134",
+        "line_135",
+        "line_44",
+        "poly_35"
+      ]
+    },
+    "36": {
+      "floor_height": 0.15625,
+      "ceiling_height": 0.15625,
+      "connections": [
+        "line_136",
+        "line_137",
+        "line_138",
+        "line_50",
+        "poly_36"
+      ]
+    },
+    "37": {
+      "floor_height": 0.15625,
+      "ceiling_height": 0.15625,
+      "connections": [
+        "line_139",
+        "line_140",
+        "line_141",
+        "line_33",
+        "poly_37"
+      ]
+    },
+    "38": {
+      "floor_height": 0.15625,
+      "ceiling_height": 0.15625,
+      "connections": [
+        "line_158",
+        "line_165",
+        "line_166",
+        "line_167",
+        "poly_38"
+      ]
+    },
+    "46": {
+      "floor_height": 0.15625,
+      "ceiling_height": 0.15625,
+      "connections": [
+        "line_118",
+        "line_168",
+        "line_169",
+        "line_170",
+        "poly_46"
+      ]
+    },
+    "163": {
+      "floor_height": 0.15625,
+      "ceiling_height": 0.15625,
+      "connections": [
+        "line_404",
+        "line_508",
+        "line_509",
+        "line_510",
+        "poly_163"
+      ]
+    },
+    "164": {
+      "floor_height": 0.15625,
+      "ceiling_height": 0.15625,
+      "connections": [
+        "line_363",
+        "line_388",
+        "line_390",
+        "line_526",
+        "line_527",
+        "line_528",
+        "poly_164"
+      ]
+    },
+    "165": {
+      "floor_height": 0.15625,
+      "ceiling_height": 0.15625,
+      "connections": [
+        "line_431",
+        "line_434",
+        "line_453",
+        "line_520",
+        "line_521",
+        "line_522",
+        "poly_165"
+      ]
+    },
+    "166": {
+      "floor_height": 0.15625,
+      "ceiling_height": 0.15625,
+      "connections": [
+        "line_461",
+        "line_523",
+        "line_524",
+        "line_525",
+        "poly_166"
+      ]
+    },
+    "167": {
+      "floor_height": 0.15625,
+      "ceiling_height": 0.15625,
+      "connections": [
+        "line_427",
+        "line_514",
+        "line_515",
+        "line_516",
+        "poly_167"
+      ]
+    },
+    "168": {
+      "floor_height": 0.15625,
+      "ceiling_height": 0.15625,
+      "connections": [
+        "line_411",
+        "line_414",
+        "line_484",
+        "line_511",
+        "line_512",
+        "line_513",
+        "poly_168"
+      ]
+    },
+    "376": {
+      "floor_height": 0.15625,
+      "ceiling_height": 0.15625,
+      "connections": [
+        "line_1177",
+        "line_1178",
+        "line_430",
+        "line_517",
+        "poly_376"
+      ]
+    },
+    "377": {
+      "floor_height": 0.15625,
+      "ceiling_height": 0.15625,
+      "connections": [
+        "line_1175",
+        "line_1178",
+        "line_518",
+        "line_519",
+        "poly_377"
+      ]
+    },
+    "380": {
+      "floor_height": 0.15625,
+      "ceiling_height": 0.15625,
+      "connections": [
+        "line_1180",
+        "line_1181",
+        "line_1182",
+        "line_403",
+        "poly_380"
+      ]
+    },
+    "303": {
+      "floor_height": 0.15625,
+      "ceiling_height": 0.1875,
+      "connections": [
+        "line_1062",
+        "line_567",
+        "line_591",
+        "line_594",
+        "line_595",
+        "object_195",
+        "object_41",
+        "poly_303"
+      ]
+    },
+    "304": {
+      "floor_height": 0.15625,
+      "ceiling_height": 0.1875,
+      "connections": [
+        "line_1064",
+        "line_560",
+        "line_592",
+        "line_593",
+        "line_595",
+        "object_42",
+        "object_84",
+        "poly_304"
+      ]
+    },
+    "311": {
+      "floor_height": 0.15625,
+      "ceiling_height": 0.1875,
+      "connections": [
+        "line_570",
+        "line_587",
+        "line_589",
+        "line_590",
+        "object_188",
+        "object_33",
+        "poly_311"
+      ]
+    },
+    "312": {
+      "floor_height": 0.15625,
+      "ceiling_height": 0.1875,
+      "connections": [
+        "line_557",
+        "line_586",
+        "line_588",
+        "line_590",
+        "object_34",
+        "poly_312"
+      ]
+    },
+    "321": {
+      "floor_height": 0.15625,
+      "ceiling_height": 0.1875,
+      "connections": [
+        "line_991",
+        "line_992",
+        "line_993",
+        "line_996",
+        "object_189",
+        "object_40",
+        "poly_321"
+      ]
+    },
+    "324": {
+      "floor_height": 0.15625,
+      "ceiling_height": 0.1875,
+      "connections": [
+        "line_1026",
+        "line_563",
+        "line_578",
+        "line_580",
+        "object_39",
+        "object_88",
+        "poly_324"
+      ]
+    },
+    "325": {
+      "floor_height": 0.15625,
+      "ceiling_height": 0.1875,
+      "connections": [
+        "line_575",
+        "line_577",
+        "line_579",
+        "line_580",
+        "object_38",
+        "object_85",
+        "object_86",
+        "object_87",
+        "poly_325"
+      ]
+    },
+    "327": {
+      "floor_height": 0.15625,
+      "ceiling_height": 0.1875,
+      "connections": [
+        "line_1022",
+        "line_554",
+        "line_581",
+        "line_584",
+        "line_585",
+        "object_190",
+        "object_37",
+        "poly_327"
+      ]
+    },
+    "328": {
+      "floor_height": 0.15625,
+      "ceiling_height": 0.1875,
+      "connections": [
+        "line_1024",
+        "line_573",
+        "line_582",
+        "line_583",
+        "line_585",
+        "object_36",
+        "poly_328"
+      ]
+    },
+    "349": {
+      "floor_height": 0.15625,
+      "ceiling_height": 0.1875,
+      "connections": [
+        "line_1004",
+        "line_1114",
+        "line_1125",
+        "line_999",
+        "object_187",
+        "poly_349"
+      ]
+    },
+    "350": {
+      "floor_height": 0.15625,
+      "ceiling_height": 0.1875,
+      "connections": [
+        "line_1005",
+        "line_1106",
+        "line_1124",
+        "line_1125",
+        "line_998",
+        "object_35",
+        "poly_350"
+      ]
+    },
+    "351": {
+      "floor_height": 0.15625,
+      "ceiling_height": 0.1875,
+      "connections": [
+        "line_1106",
+        "line_1107",
+        "line_1116",
+        "line_1118",
+        "poly_351"
+      ]
+    },
+    "352": {
+      "floor_height": 0.15625,
+      "ceiling_height": 0.1875,
+      "connections": [
+        "line_1115",
+        "line_1117",
+        "line_1118",
+        "line_1123",
+        "poly_352"
+      ]
+    },
+    "353": {
+      "floor_height": 0.15625,
+      "ceiling_height": 0.1875,
+      "connections": [
+        "line_1108",
+        "line_1113",
+        "line_1122",
+        "line_1123",
+        "poly_353"
+      ]
+    },
+    "354": {
+      "floor_height": 0.15625,
+      "ceiling_height": 0.1875,
+      "connections": [
+        "line_1110",
+        "line_1120",
+        "line_1121",
+        "line_1122",
+        "poly_354"
+      ]
+    },
+    "355": {
+      "floor_height": 0.15625,
+      "ceiling_height": 0.1875,
+      "connections": [
+        "line_1111",
+        "line_1112",
+        "line_1119",
+        "line_1121",
+        "poly_355"
+      ]
+    },
+    "307": {
+      "floor_height": 0.15625,
+      "ceiling_height": 0.28125,
+      "connections": [
+        "line_1041",
+        "line_562",
+        "line_567",
+        "line_990",
+        "line_993",
+        "object_148",
+        "poly_307"
+      ]
+    },
+    "309": {
+      "floor_height": 0.15625,
+      "ceiling_height": 0.28125,
+      "connections": [
+        "line_1039",
+        "line_1043",
+        "line_559",
+        "line_560",
+        "line_570",
+        "line_571",
+        "object_146",
+        "object_147",
+        "poly_309"
+      ]
+    },
+    "313": {
+      "floor_height": 0.15625,
+      "ceiling_height": 0.28125,
+      "connections": [
+        "line_1037",
+        "line_557",
+        "line_574",
+        "line_997",
+        "line_999",
+        "object_145",
+        "object_174",
+        "poly_313"
+      ]
+    },
+    "318": {
+      "floor_height": 0.15625,
+      "ceiling_height": 0.28125,
+      "connections": [
+        "line_1002",
+        "line_1005",
+        "line_1035",
+        "line_556",
+        "line_573",
+        "object_152",
+        "object_175",
+        "poly_318"
+      ]
+    },
+    "322": {
+      "floor_height": 0.15625,
+      "ceiling_height": 0.28125,
+      "connections": [
+        "line_1029",
+        "line_563",
+        "line_568",
+        "line_995",
+        "line_996",
+        "object_149",
+        "object_177",
+        "poly_322"
+      ]
+    },
+    "326": {
+      "floor_height": 0.15625,
+      "ceiling_height": 0.28125,
+      "connections": [
+        "line_1031",
+        "line_1033",
+        "line_554",
+        "line_564",
+        "line_575",
+        "line_576",
+        "object_150",
+        "object_151",
+        "object_176",
+        "poly_326"
+      ]
+    },
+    "343": {
+      "floor_height": 0.1875,
+      "ceiling_height": 0.1875,
+      "connections": [
+        "line_1088",
+        "line_1089",
+        "line_1090",
+        "line_995",
+        "poly_343"
+      ]
+    },
+    "344": {
+      "floor_height": 0.1875,
+      "ceiling_height": 0.1875,
+      "connections": [
+        "line_1103",
+        "line_1104",
+        "line_1105",
+        "line_564",
+        "poly_344"
+      ]
+    },
+    "345": {
+      "floor_height": 0.1875,
+      "ceiling_height": 0.1875,
+      "connections": [
+        "line_1100",
+        "line_1101",
+        "line_1102",
+        "line_556",
+        "poly_345"
+      ]
+    },
+    "346": {
+      "floor_height": 0.1875,
+      "ceiling_height": 0.1875,
+      "connections": [
+        "line_1097",
+        "line_1098",
+        "line_1099",
+        "line_997",
+        "poly_346"
+      ]
+    },
+    "347": {
+      "floor_height": 0.1875,
+      "ceiling_height": 0.1875,
+      "connections": [
+        "line_1094",
+        "line_1095",
+        "line_1096",
+        "line_559",
+        "poly_347"
+      ]
+    },
+    "348": {
+      "floor_height": 0.1875,
+      "ceiling_height": 0.1875,
+      "connections": [
+        "line_1091",
+        "line_1092",
+        "line_1093",
+        "line_562",
+        "poly_348"
+      ]
+    }
+  }
+}

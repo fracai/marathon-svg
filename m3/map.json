@@ -1,0 +1,310 @@
+{
+  "levels": [
+    {
+      "separator": "Prologue"
+    },
+    {
+      "index": 0,
+      "name": "Ne Cede Malis",
+      "base_name": "m3/00_NeCedeMalis"
+    },
+    {
+      "separator": "Despair"
+    },
+    {
+      "index": 1,
+      "name": "Rise Robot Rise",
+      "base_name": "m3/01_RiseRobotRise"
+    },
+    {
+      "index": 2,
+      "name": "Poor Yorick",
+      "base_name": "m3/02_PoorYorick"
+    },
+    {
+      "index": 3,
+      "name": "Confound Delivery",
+      "base_name": "m3/03_ConfoundDelivery"
+    },
+    {
+      "index": 4,
+      "name": "Electric Sheep One",
+      "base_name": "m3/04_ElectricSheepOne"
+    },
+    {
+      "index": 5,
+      "name": "Where are monsters in dreams",
+      "base_name": "m3/05_Wherearemonstersindreams"
+    },
+    {
+      "separator": "Rage"
+    },
+    {
+      "index": 6,
+      "name": "Acme Station",
+      "base_name": "m3/06_AcmeStation"
+    },
+    {
+      "index": 7,
+      "name": "Post Naval Trauma",
+      "base_name": "m3/07_PostNavalTrauma"
+    },
+    {
+      "index": 8,
+      "name": "Where Some Rarely Go",
+      "base_name": "m3/08_WhereSomeRarelyGo"
+    },
+    {
+      "index": 9,
+      "name": "Thing What Kicks...",
+      "base_name": "m3/09_ThingWhatKicks"
+    },
+    {
+      "index": 10,
+      "name": "Electric Sheep Two",
+      "base_name": "m3/10_ElectricSheepTwo"
+    },
+    {
+      "index": 11,
+      "name": "Whatever You Please",
+      "base_name": "m3/11_WhateverYouPlease"
+    },
+    {
+      "index": 12,
+      "name": "Naw Man He\u2019s Close",
+      "base_name": "m3/12_NawManHesClose"
+    },
+    {
+      "index": 13,
+      "name": "Foe Hammer",
+      "base_name": "m3/13_FoeHammer"
+    },
+    {
+      "index": 14,
+      "name": "Hang Brain",
+      "base_name": "m3/14_HangBrain"
+    },
+    {
+      "index": 15,
+      "name": "Electric Sheep Three",
+      "base_name": "m3/15_ElectricSheepThree"
+    },
+    {
+      "index": 16,
+      "name": "Eat the Path",
+      "base_name": "m3/16_EatthePath"
+    },
+    {
+      "separator": "Envy"
+    },
+    {
+      "index": 17,
+      "name": "By Committee",
+      "base_name": "m3/17_ByCommittee"
+    },
+    {
+      "index": 18,
+      "name": "One thousand thousand slimy things",
+      "base_name": "m3/18_Onethousandthousandslimythings"
+    },
+    {
+      "index": 19,
+      "name": "A Converted Church in Venice, Italy",
+      "base_name": "m3/19_AConvertedChurchinVeniceItaly"
+    },
+    {
+      "index": 20,
+      "name": "Son of Grendel",
+      "base_name": "m3/20_SonofGrendel"
+    },
+    {
+      "index": 21,
+      "name": "Strange Aeons",
+      "base_name": "m3/21_StrangeAeons"
+    },
+    {
+      "index": 22,
+      "name": "Bagged Again",
+      "base_name": "m3/22_BaggedAgain"
+    },
+    {
+      "index": 23,
+      "name": "You Think You\u2019re Big Time? You\u2019re Gonna Die Big Time!",
+      "base_name": "m3/23_YouThinkYoureBigTimeYoureGonnaDieBigTime"
+    },
+    {
+      "index": 24,
+      "name": "Aye Mak Sicur",
+      "base_name": "m3/24_AyeMakSicur"
+    },
+    {
+      "separator": "Secret Levels"
+    },
+    {
+      "index": 25,
+      "name": "Robot World Arena",
+      "base_name": "m3/25_RobotWorldArena"
+    },
+    {
+      "index": 26,
+      "name": "Two for the Price of One",
+      "base_name": "m3/26_TwoforthePriceofOne"
+    },
+    {
+      "index": 27,
+      "name": "Aie Mak Sicur",
+      "base_name": "m3/27_AieMakSicur"
+    },
+    {
+      "index": 28,
+      "name": "Carroll Street Station",
+      "base_name": "m3/28_CarrollStreetStation"
+    },
+    {
+      "index": 29,
+      "name": "You\u2019re Wormfood, Dude",
+      "base_name": "m3/29_YoureWormfoodDude"
+    },
+    {
+      "separator": "VidMaster Challenge"
+    },
+    {
+      "index": 30,
+      "name": "Try again ",
+      "base_name": "m3/30_Tryagain"
+    },
+    {
+      "index": 31,
+      "name": "If I Had a Rocket Launcher, I'd Make Somebody Pay",
+      "base_name": "m3/31_IfIHadaRocketLauncherIdMakeSomebodyPay"
+    },
+    {
+      "index": 32,
+      "name": "You Think You\u2019re Big Time? You\u2019re Gonna Die Big Time!",
+      "base_name": "m3/32_YouThinkYoureBigTimeYoureGonnaDieBigTime"
+    },
+    {
+      "separator": "Network Maps"
+    },
+    {
+      "index": 33,
+      "name": "Duality",
+      "base_name": "m3/33_Duality"
+    },
+    {
+      "index": 34,
+      "name": "Thrud",
+      "base_name": "m3/34_Thrud"
+    },
+    {
+      "index": 35,
+      "name": "Wrath No More?",
+      "base_name": "m3/35_WrathNoMore"
+    },
+    {
+      "index": 36,
+      "name": "Y.A.F.N.M.",
+      "base_name": "m3/36_YAFNM"
+    },
+    {
+      "index": 37,
+      "name": "Beyond Thunderdome",
+      "base_name": "m3/37_BeyondThunderdome"
+    },
+    {
+      "index": 38,
+      "name": "Vulcan",
+      "base_name": "m3/38_Vulcan"
+    },
+    {
+      "index": 39,
+      "name": "House of Pain",
+      "base_name": "m3/39_HouseofPain"
+    },
+    {
+      "index": 40,
+      "name": "King of Pain",
+      "base_name": "m3/40_KingofPain"
+    },
+    {
+      "index": 41,
+      "name": "Ex Justicia Mortis",
+      "base_name": "m3/41_ExJusticiaMortis"
+    },
+    {
+      "index": 42,
+      "name": "Dead Fields",
+      "base_name": "m3/42_DeadFields"
+    },
+    {
+      "index": 43,
+      "name": "Return to Waldo",
+      "base_name": "m3/43_ReturntoWaldo"
+    },
+    {
+      "index": 44,
+      "name": "Thick and Chunky",
+      "base_name": "m3/44_ThickandChunky"
+    },
+    {
+      "index": 45,
+      "name": "Route 66",
+      "base_name": "m3/45_Route66"
+    },
+    {
+      "index": 46,
+      "name": "Morpfhine",
+      "base_name": "m3/46_Morpfhine"
+    },
+    {
+      "index": 47,
+      "name": "Route 66 (604 or better)",
+      "base_name": "m3/47_Route66604orbetter"
+    },
+    {
+      "index": 48,
+      "name": "La Cosa Nostra",
+      "base_name": "m3/48_LaCosaNostra"
+    },
+    {
+      "index": 49,
+      "name": "Delusions of Grandeur",
+      "base_name": "m3/49_DelusionsofGrandeur"
+    },
+    {
+      "index": 50,
+      "name": "Spline",
+      "base_name": "m3/50_Spline"
+    },
+    {
+      "index": 51,
+      "name": "Mars Needs Women",
+      "base_name": "m3/51_MarsNeedsWomen"
+    },
+    {
+      "index": 52,
+      "name": "Who's Got The Itchies",
+      "base_name": "m3/52_WhosGotTheItchies"
+    },
+    {
+      "index": 53,
+      "name": "reverof nohtaram",
+      "base_name": "m3/53_reverofnohtaram"
+    },
+    {
+      "index": 54,
+      "name": "\u2019Fugee Camp",
+      "base_name": "m3/54_FugeeCamp"
+    },
+    {
+      "index": 55,
+      "name": "Melatonin",
+      "base_name": "m3/55_Melatonin"
+    },
+    {
+      "index": 56,
+      "name": "Fortress Lh'owon",
+      "base_name": "m3/56_FortressLhowon"
+    }
+  ]
+}

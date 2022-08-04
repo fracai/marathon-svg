@@ -1,0 +1,3104 @@
+{
+  "scale": 1000,
+  "dimensions": {
+    "map": [
+      -329.40673828125,
+      -542.96875,
+      957.03125,
+      801.1474609375
+    ],
+    "items": [
+      -329.40673828125,
+      -542.96875,
+      957.03125,
+      801.1474609375
+    ],
+    "lines": [
+      -329.40673828125,
+      -542.96875,
+      957.03125,
+      801.1474609375
+    ]
+  },
+  "elevation": {
+    "floor": -0.098419189453125,
+    "ceiling": 0.15625
+  },
+  "viewBox": {
+    "map": "-329.40673828125 -542.96875 1286.43798828125 1344.1162109375",
+    "items": "-329.40673828125 -542.96875 1286.43798828125 1344.1162109375",
+    "lines": "-329.40673828125 -542.96875 1286.43798828125 1344.1162109375"
+  },
+  "player": [
+    {
+      "index": 0,
+      "elevation": 0.00311279296875
+    }
+  ],
+  "overlays": {
+    "ids": [
+      "background-grid",
+      "border_ceiling",
+      "border_elevation",
+      "border_landscape_",
+      "border_plain",
+      "border_solid",
+      "poly_platform_on_lines",
+      "poly_teleporter_lines"
+    ],
+    "classes": [
+      "monster",
+      "monster-1",
+      "monster-2",
+      "monster-20",
+      "monster-21",
+      "monster-24",
+      "monster-25",
+      "monster-26",
+      "monster-3",
+      "monster-32",
+      "monster-33",
+      "monster-4",
+      "monster-5",
+      "monster-6",
+      "monster-7",
+      "monster-8",
+      "monster-9",
+      "object",
+      "object-13",
+      "object-15",
+      "panel",
+      "panel-double_shield_refuel",
+      "panel-pattern_buffer",
+      "panel-triple_shield_refuel",
+      "player",
+      "poly_line"
+    ],
+    "selectors": [
+      "polygon.major_ouch",
+      "polygon.plain",
+      "polygon.platform",
+      "polygon.teleporter"
+    ]
+  },
+  "polygons": {
+    "140": {
+      "floor_height": -0.098419189453125,
+      "ceiling_height": 0.0,
+      "connections": [
+        "line_473",
+        "line_474",
+        "line_486",
+        "line_487",
+        "line_488",
+        "poly_140"
+      ]
+    },
+    "155": {
+      "floor_height": -0.098419189453125,
+      "ceiling_height": 0.0,
+      "connections": [
+        "line_242",
+        "line_475",
+        "line_488",
+        "line_527",
+        "poly_155"
+      ]
+    },
+    "132": {
+      "floor_height": -0.098419189453125,
+      "ceiling_height": 0.03436279296875,
+      "connections": [
+        "line_361",
+        "line_466",
+        "line_467",
+        "line_482",
+        "poly_132"
+      ]
+    },
+    "134": {
+      "floor_height": -0.098419189453125,
+      "ceiling_height": 0.03436279296875,
+      "connections": [
+        "line_360",
+        "line_468",
+        "line_482",
+        "line_483",
+        "poly_134"
+      ]
+    },
+    "136": {
+      "floor_height": -0.098419189453125,
+      "ceiling_height": 0.03436279296875,
+      "connections": [
+        "line_359",
+        "line_469",
+        "line_483",
+        "line_484",
+        "poly_136"
+      ]
+    },
+    "137": {
+      "floor_height": -0.098419189453125,
+      "ceiling_height": 0.03436279296875,
+      "connections": [
+        "line_358",
+        "line_470",
+        "line_484",
+        "line_485",
+        "poly_137"
+      ]
+    },
+    "159": {
+      "floor_height": -0.098419189453125,
+      "ceiling_height": 0.03436279296875,
+      "connections": [
+        "line_263",
+        "line_357",
+        "line_471",
+        "line_485",
+        "line_531",
+        "poly_159"
+      ]
+    },
+    "160": {
+      "floor_height": -0.098419189453125,
+      "ceiling_height": 0.03436279296875,
+      "connections": [
+        "line_266",
+        "line_472",
+        "line_531",
+        "object_84",
+        "poly_160"
+      ]
+    },
+    "87": {
+      "floor_height": -0.09375,
+      "ceiling_height": -0.0625,
+      "connections": [
+        "line_319",
+        "line_320",
+        "line_321",
+        "line_323",
+        "poly_87"
+      ]
+    },
+    "88": {
+      "floor_height": -0.09375,
+      "ceiling_height": -0.0625,
+      "connections": [
+        "line_322",
+        "line_323",
+        "line_324",
+        "line_326",
+        "poly_88"
+      ]
+    },
+    "89": {
+      "floor_height": -0.09375,
+      "ceiling_height": -0.0625,
+      "connections": [
+        "line_316",
+        "line_318",
+        "line_325",
+        "line_326",
+        "poly_89"
+      ]
+    },
+    "90": {
+      "floor_height": -0.09375,
+      "ceiling_height": -0.0625,
+      "connections": [
+        "line_314",
+        "line_315",
+        "line_317",
+        "line_318",
+        "poly_90"
+      ]
+    },
+    "116": {
+      "floor_height": -0.09375,
+      "ceiling_height": -0.0625,
+      "connections": [
+        "line_317",
+        "line_411",
+        "line_433",
+        "line_436",
+        "line_438",
+        "object_64",
+        "poly_116"
+      ]
+    },
+    "117": {
+      "floor_height": -0.09375,
+      "ceiling_height": -0.0625,
+      "connections": [
+        "line_410",
+        "line_434",
+        "line_437",
+        "line_438",
+        "poly_117"
+      ]
+    },
+    "118": {
+      "floor_height": -0.09375,
+      "ceiling_height": -0.0625,
+      "connections": [
+        "line_412",
+        "line_435",
+        "line_437",
+        "line_439",
+        "line_440",
+        "poly_118"
+      ]
+    },
+    "119": {
+      "floor_height": -0.09375,
+      "ceiling_height": -0.0625,
+      "connections": [
+        "line_413",
+        "line_424",
+        "line_440",
+        "line_441",
+        "object_63",
+        "poly_119"
+      ]
+    },
+    "120": {
+      "floor_height": -0.09375,
+      "ceiling_height": -0.0625,
+      "connections": [
+        "line_414",
+        "line_425",
+        "line_441",
+        "line_442",
+        "poly_120"
+      ]
+    },
+    "121": {
+      "floor_height": -0.09375,
+      "ceiling_height": -0.0625,
+      "connections": [
+        "line_415",
+        "line_426",
+        "line_442",
+        "line_443",
+        "poly_121"
+      ]
+    },
+    "122": {
+      "floor_height": -0.09375,
+      "ceiling_height": -0.0625,
+      "connections": [
+        "line_416",
+        "line_417",
+        "line_427",
+        "line_443",
+        "line_444",
+        "poly_122"
+      ]
+    },
+    "123": {
+      "floor_height": -0.09375,
+      "ceiling_height": -0.0625,
+      "connections": [
+        "line_418",
+        "line_419",
+        "line_428",
+        "line_444",
+        "line_445",
+        "poly_123"
+      ]
+    },
+    "124": {
+      "floor_height": -0.09375,
+      "ceiling_height": -0.0625,
+      "connections": [
+        "line_420",
+        "line_429",
+        "line_445",
+        "line_446",
+        "poly_124"
+      ]
+    },
+    "125": {
+      "floor_height": -0.09375,
+      "ceiling_height": -0.0625,
+      "connections": [
+        "line_421",
+        "line_422",
+        "line_430",
+        "line_446",
+        "line_447",
+        "poly_125"
+      ]
+    },
+    "126": {
+      "floor_height": -0.09375,
+      "ceiling_height": -0.0625,
+      "connections": [
+        "line_216",
+        "line_423",
+        "line_431",
+        "line_432",
+        "line_447",
+        "poly_126"
+      ]
+    },
+    "149": {
+      "floor_height": -0.09375,
+      "ceiling_height": -0.0625,
+      "connections": [
+        "line_510",
+        "line_511",
+        "line_517",
+        "line_518",
+        "poly_149"
+      ]
+    },
+    "150": {
+      "floor_height": -0.09375,
+      "ceiling_height": -0.0625,
+      "connections": [
+        "line_436",
+        "line_508",
+        "line_509",
+        "line_517",
+        "poly_150"
+      ]
+    },
+    "246": {
+      "floor_height": -0.09375,
+      "ceiling_height": -0.0625,
+      "connections": [
+        "line_764",
+        "line_788",
+        "line_795",
+        "line_796",
+        "line_797",
+        "poly_246"
+      ]
+    },
+    "247": {
+      "floor_height": -0.09375,
+      "ceiling_height": -0.0625,
+      "connections": [
+        "line_789",
+        "line_794",
+        "line_797",
+        "line_798",
+        "poly_247"
+      ]
+    },
+    "248": {
+      "floor_height": -0.09375,
+      "ceiling_height": -0.0625,
+      "connections": [
+        "line_790",
+        "line_793",
+        "line_798",
+        "line_799",
+        "poly_248"
+      ]
+    },
+    "249": {
+      "floor_height": -0.09375,
+      "ceiling_height": -0.0625,
+      "connections": [
+        "line_792",
+        "line_799",
+        "line_800",
+        "line_802",
+        "poly_249"
+      ]
+    },
+    "250": {
+      "floor_height": -0.09375,
+      "ceiling_height": -0.0625,
+      "connections": [
+        "line_421",
+        "line_791",
+        "line_801",
+        "line_802",
+        "poly_250"
+      ]
+    },
+    "198": {
+      "floor_height": -0.09375,
+      "ceiling_height": -0.04998779296875,
+      "connections": [
+        "line_630",
+        "line_635",
+        "line_636",
+        "line_661",
+        "poly_198"
+      ]
+    },
+    "207": {
+      "floor_height": -0.09375,
+      "ceiling_height": -0.04998779296875,
+      "connections": [
+        "line_672",
+        "line_685",
+        "line_750",
+        "line_757",
+        "object_9",
+        "poly_207"
+      ]
+    },
+    "208": {
+      "floor_height": -0.09375,
+      "ceiling_height": -0.04998779296875,
+      "connections": [
+        "line_670",
+        "line_671",
+        "line_757",
+        "object_43",
+        "poly_208"
+      ]
+    },
+    "210": {
+      "floor_height": -0.09375,
+      "ceiling_height": -0.04998779296875,
+      "connections": [
+        "line_679",
+        "line_684",
+        "line_749",
+        "line_760",
+        "object_10",
+        "poly_210"
+      ]
+    },
+    "211": {
+      "floor_height": -0.09375,
+      "ceiling_height": -0.04998779296875,
+      "connections": [
+        "line_677",
+        "line_678",
+        "line_760",
+        "object_41",
+        "poly_211"
+      ]
+    },
+    "215": {
+      "floor_height": -0.09375,
+      "ceiling_height": -0.04998779296875,
+      "connections": [
+        "line_688",
+        "line_691",
+        "line_753",
+        "line_758",
+        "object_8",
+        "poly_215"
+      ]
+    },
+    "216": {
+      "floor_height": -0.09375,
+      "ceiling_height": -0.04998779296875,
+      "connections": [
+        "line_689",
+        "line_690",
+        "line_758",
+        "object_40",
+        "poly_216"
+      ]
+    },
+    "218": {
+      "floor_height": -0.09375,
+      "ceiling_height": -0.04998779296875,
+      "connections": [
+        "line_698",
+        "line_699",
+        "line_752",
+        "line_759",
+        "object_7",
+        "poly_218"
+      ]
+    },
+    "220": {
+      "floor_height": -0.09375,
+      "ceiling_height": -0.04998779296875,
+      "connections": [
+        "line_696",
+        "line_697",
+        "line_759",
+        "object_42",
+        "poly_220"
+      ]
+    },
+    "235": {
+      "floor_height": -0.09375,
+      "ceiling_height": -0.04998779296875,
+      "connections": [
+        "line_721",
+        "line_735",
+        "line_736",
+        "line_774",
+        "object_4",
+        "object_44",
+        "object_45",
+        "poly_235"
+      ]
+    },
+    "236": {
+      "floor_height": -0.09375,
+      "ceiling_height": -0.04998779296875,
+      "connections": [
+        "line_737",
+        "line_738",
+        "line_739",
+        "line_740",
+        "line_741",
+        "line_774",
+        "poly_236"
+      ]
+    },
+    "147": {
+      "floor_height": -0.09375,
+      "ceiling_height": -0.03125,
+      "connections": [
+        "line_514",
+        "line_515",
+        "line_516",
+        "line_519",
+        "object_2",
+        "poly_147"
+      ]
+    },
+    "148": {
+      "floor_height": -0.09375,
+      "ceiling_height": -0.03125,
+      "connections": [
+        "line_512",
+        "line_513",
+        "line_518",
+        "line_519",
+        "poly_148"
+      ]
+    },
+    "199": {
+      "floor_height": -0.09375,
+      "ceiling_height": -0.03125,
+      "connections": [
+        "line_638",
+        "line_639",
+        "line_660",
+        "line_661",
+        "line_662",
+        "poly_199"
+      ]
+    },
+    "201": {
+      "floor_height": -0.09375,
+      "ceiling_height": -0.03125,
+      "connections": [
+        "line_643",
+        "line_647",
+        "line_659",
+        "line_662",
+        "line_663",
+        "line_667",
+        "poly_201"
+      ]
+    },
+    "203": {
+      "floor_height": -0.09375,
+      "ceiling_height": -0.03125,
+      "connections": [
+        "line_651",
+        "line_655",
+        "line_664",
+        "line_665",
+        "line_666",
+        "line_667",
+        "poly_203"
+      ]
+    },
+    "204": {
+      "floor_height": -0.09375,
+      "ceiling_height": -0.03125,
+      "connections": [
+        "line_648",
+        "line_649",
+        "line_650",
+        "line_664",
+        "poly_204"
+      ]
+    },
+    "212": {
+      "floor_height": -0.09375,
+      "ceiling_height": -0.03125,
+      "connections": [
+        "line_649",
+        "line_668",
+        "line_669",
+        "line_748",
+        "line_749",
+        "line_750",
+        "poly_212"
+      ]
+    },
+    "214": {
+      "floor_height": -0.09375,
+      "ceiling_height": -0.03125,
+      "connections": [
+        "line_686",
+        "line_687",
+        "line_748",
+        "line_751",
+        "line_752",
+        "line_753",
+        "poly_214"
+      ]
+    },
+    "221": {
+      "floor_height": -0.09375,
+      "ceiling_height": -0.03125,
+      "connections": [
+        "line_704",
+        "line_705",
+        "line_751",
+        "line_754",
+        "object_36",
+        "poly_221"
+      ]
+    },
+    "222": {
+      "floor_height": -0.09375,
+      "ceiling_height": -0.03125,
+      "connections": [
+        "line_706",
+        "line_707",
+        "line_754",
+        "line_755",
+        "poly_222"
+      ]
+    },
+    "223": {
+      "floor_height": -0.09375,
+      "ceiling_height": -0.03125,
+      "connections": [
+        "line_708",
+        "line_709",
+        "line_755",
+        "line_756",
+        "poly_223"
+      ]
+    },
+    "224": {
+      "floor_height": -0.09375,
+      "ceiling_height": -0.03125,
+      "connections": [
+        "line_710",
+        "line_711",
+        "line_756",
+        "line_761",
+        "object_35",
+        "poly_224"
+      ]
+    },
+    "225": {
+      "floor_height": -0.09375,
+      "ceiling_height": -0.03125,
+      "connections": [
+        "line_712",
+        "line_713",
+        "line_714",
+        "line_761",
+        "line_762",
+        "poly_225"
+      ]
+    },
+    "226": {
+      "floor_height": -0.09375,
+      "ceiling_height": -0.03125,
+      "connections": [
+        "line_715",
+        "line_716",
+        "line_717",
+        "line_718",
+        "line_762",
+        "line_763",
+        "object_34",
+        "object_6",
+        "poly_226"
+      ]
+    },
+    "227": {
+      "floor_height": -0.09375,
+      "ceiling_height": -0.03125,
+      "connections": [
+        "line_719",
+        "line_720",
+        "line_727",
+        "line_763",
+        "line_765",
+        "object_5",
+        "object_71",
+        "poly_227"
+      ]
+    },
+    "228": {
+      "floor_height": -0.09375,
+      "ceiling_height": -0.03125,
+      "connections": [
+        "line_731",
+        "line_764",
+        "line_765",
+        "line_766",
+        "line_768",
+        "poly_228"
+      ]
+    },
+    "229": {
+      "floor_height": -0.09375,
+      "ceiling_height": -0.03125,
+      "connections": [
+        "line_726",
+        "line_730",
+        "line_766",
+        "line_773",
+        "poly_229"
+      ]
+    },
+    "230": {
+      "floor_height": -0.09375,
+      "ceiling_height": -0.03125,
+      "connections": [
+        "line_725",
+        "line_729",
+        "line_772",
+        "line_773",
+        "poly_230"
+      ]
+    },
+    "231": {
+      "floor_height": -0.09375,
+      "ceiling_height": -0.03125,
+      "connections": [
+        "line_724",
+        "line_728",
+        "line_771",
+        "line_772",
+        "object_46",
+        "object_47",
+        "object_48",
+        "poly_231"
+      ]
+    },
+    "232": {
+      "floor_height": -0.09375,
+      "ceiling_height": -0.03125,
+      "connections": [
+        "line_723",
+        "line_734",
+        "line_770",
+        "line_771",
+        "poly_232"
+      ]
+    },
+    "233": {
+      "floor_height": -0.09375,
+      "ceiling_height": -0.03125,
+      "connections": [
+        "line_722",
+        "line_733",
+        "line_769",
+        "line_770",
+        "object_105",
+        "poly_233"
+      ]
+    },
+    "234": {
+      "floor_height": -0.09375,
+      "ceiling_height": -0.03125,
+      "connections": [
+        "line_721",
+        "line_732",
+        "line_767",
+        "line_768",
+        "line_769",
+        "poly_234"
+      ]
+    },
+    "70": {
+      "floor_height": -0.09375,
+      "ceiling_height": 0.03436279296875,
+      "connections": [
+        "line_209",
+        "line_216",
+        "line_278",
+        "line_280",
+        "poly_70"
+      ]
+    },
+    "133": {
+      "floor_height": -0.09375,
+      "ceiling_height": 0.03436279296875,
+      "connections": [
+        "line_465",
+        "line_466",
+        "line_476",
+        "poly_133"
+      ]
+    },
+    "135": {
+      "floor_height": -0.09375,
+      "ceiling_height": 0.03436279296875,
+      "connections": [
+        "line_243",
+        "line_468",
+        "line_469",
+        "line_470",
+        "line_477",
+        "line_478",
+        "object_39",
+        "object_72",
+        "poly_135"
+      ]
+    },
+    "138": {
+      "floor_height": -0.09375,
+      "ceiling_height": 0.03436279296875,
+      "connections": [
+        "line_252",
+        "line_472",
+        "line_474",
+        "line_475",
+        "line_479",
+        "line_480",
+        "line_481",
+        "object_85",
+        "object_87",
+        "poly_138"
+      ]
+    },
+    "139": {
+      "floor_height": -0.09375,
+      "ceiling_height": 0.03436279296875,
+      "connections": [
+        "line_260",
+        "line_319",
+        "line_473",
+        "line_481",
+        "object_83",
+        "poly_139"
+      ]
+    },
+    "154": {
+      "floor_height": -0.09375,
+      "ceiling_height": 0.03436279296875,
+      "connections": [
+        "line_245",
+        "line_249",
+        "line_259",
+        "line_471",
+        "line_478",
+        "line_479",
+        "object_73",
+        "object_74",
+        "object_88",
+        "object_89",
+        "object_90",
+        "poly_154"
+      ]
+    },
+    "156": {
+      "floor_height": -0.09375,
+      "ceiling_height": 0.03436279296875,
+      "connections": [
+        "line_254",
+        "line_257",
+        "line_480",
+        "line_527",
+        "poly_156"
+      ]
+    },
+    "157": {
+      "floor_height": -0.09375,
+      "ceiling_height": 0.03436279296875,
+      "connections": [
+        "line_467",
+        "line_476",
+        "line_477",
+        "line_529",
+        "line_530",
+        "object_82",
+        "object_86",
+        "object_91",
+        "poly_157"
+      ]
+    },
+    "197": {
+      "floor_height": -0.09375,
+      "ceiling_height": 0.043731689453125,
+      "connections": [
+        "line_628",
+        "line_629",
+        "line_630",
+        "line_631",
+        "line_632",
+        "line_634",
+        "panel_platform_on_line_group_poly_p195_p197",
+        "poly_197"
+      ]
+    },
+    "82": {
+      "floor_height": -0.09375,
+      "ceiling_height": 0.15625,
+      "connections": [
+        "line_273",
+        "line_274",
+        "line_275",
+        "line_306",
+        "line_310",
+        "line_311",
+        "object_92",
+        "poly_82"
+      ]
+    },
+    "83": {
+      "floor_height": -0.09375,
+      "ceiling_height": 0.15625,
+      "connections": [
+        "line_238",
+        "line_271",
+        "line_277",
+        "line_308",
+        "line_312",
+        "line_313",
+        "object_93",
+        "poly_83"
+      ]
+    },
+    "84": {
+      "floor_height": -0.09375,
+      "ceiling_height": 0.15625,
+      "connections": [
+        "line_272",
+        "line_309",
+        "line_311",
+        "line_312",
+        "object_94",
+        "poly_84"
+      ]
+    },
+    "85": {
+      "floor_height": -0.09375,
+      "ceiling_height": 0.15625,
+      "connections": [
+        "line_276",
+        "line_307",
+        "line_310",
+        "line_313",
+        "poly_85"
+      ]
+    },
+    "86": {
+      "floor_height": -0.09375,
+      "ceiling_height": 0.15625,
+      "connections": [
+        "line_306",
+        "line_307",
+        "line_308",
+        "line_309",
+        "poly_86"
+      ]
+    },
+    "114": {
+      "floor_height": -0.09375,
+      "ceiling_height": 0.15625,
+      "connections": [
+        "line_276",
+        "line_407",
+        "line_408",
+        "line_409",
+        "poly_114"
+      ]
+    },
+    "115": {
+      "floor_height": -0.09375,
+      "ceiling_height": 0.15625,
+      "connections": [
+        "line_272",
+        "line_404",
+        "line_405",
+        "line_406",
+        "poly_115"
+      ]
+    },
+    "252": {
+      "floor_height": -0.087493896484375,
+      "ceiling_height": -0.056243896484375,
+      "connections": [
+        "line_515",
+        "line_806",
+        "line_807",
+        "line_808",
+        "poly_252",
+        "side_664"
+      ]
+    },
+    "79": {
+      "floor_height": -0.087493896484375,
+      "ceiling_height": 0.03125,
+      "connections": [
+        "line_245",
+        "line_246",
+        "line_247",
+        "line_248",
+        "poly_79"
+      ]
+    },
+    "80": {
+      "floor_height": -0.087493896484375,
+      "ceiling_height": 0.03125,
+      "connections": [
+        "line_249",
+        "line_250",
+        "line_251",
+        "line_253",
+        "poly_80"
+      ]
+    },
+    "81": {
+      "floor_height": -0.087493896484375,
+      "ceiling_height": 0.03436279296875,
+      "connections": [
+        "line_254",
+        "line_255",
+        "line_256",
+        "line_258",
+        "poly_81"
+      ]
+    },
+    "158": {
+      "floor_height": -0.087493896484375,
+      "ceiling_height": 0.03436279296875,
+      "connections": [
+        "line_244",
+        "line_268",
+        "line_528",
+        "line_529",
+        "poly_158"
+      ]
+    },
+    "200": {
+      "floor_height": -0.08123779296875,
+      "ceiling_height": -0.04998779296875,
+      "connections": [
+        "line_640",
+        "line_641",
+        "line_642",
+        "line_660",
+        "poly_200"
+      ]
+    },
+    "202": {
+      "floor_height": -0.08123779296875,
+      "ceiling_height": -0.04998779296875,
+      "connections": [
+        "line_644",
+        "line_645",
+        "line_646",
+        "line_663",
+        "object_117",
+        "poly_202"
+      ]
+    },
+    "205": {
+      "floor_height": -0.08123779296875,
+      "ceiling_height": -0.04998779296875,
+      "connections": [
+        "line_652",
+        "line_653",
+        "line_654",
+        "line_665",
+        "object_114",
+        "object_115",
+        "object_116",
+        "poly_205"
+      ]
+    },
+    "206": {
+      "floor_height": -0.08123779296875,
+      "ceiling_height": -0.04998779296875,
+      "connections": [
+        "line_656",
+        "line_657",
+        "line_658",
+        "line_666",
+        "object_111",
+        "object_112",
+        "object_113",
+        "poly_206"
+      ]
+    },
+    "209": {
+      "floor_height": -0.08123779296875,
+      "ceiling_height": -0.04998779296875,
+      "connections": [
+        "line_671",
+        "line_672",
+        "line_673",
+        "line_674",
+        "line_675",
+        "line_676",
+        "object_68",
+        "poly_209"
+      ]
+    },
+    "213": {
+      "floor_height": -0.08123779296875,
+      "ceiling_height": -0.04998779296875,
+      "connections": [
+        "line_678",
+        "line_679",
+        "line_680",
+        "line_681",
+        "line_682",
+        "line_683",
+        "object_69",
+        "poly_213"
+      ]
+    },
+    "217": {
+      "floor_height": -0.08123779296875,
+      "ceiling_height": -0.04998779296875,
+      "connections": [
+        "line_690",
+        "line_691",
+        "line_692",
+        "line_693",
+        "line_694",
+        "line_695",
+        "object_67",
+        "poly_217"
+      ]
+    },
+    "219": {
+      "floor_height": -0.08123779296875,
+      "ceiling_height": -0.04998779296875,
+      "connections": [
+        "line_697",
+        "line_698",
+        "line_700",
+        "line_701",
+        "line_702",
+        "line_703",
+        "object_70",
+        "poly_219"
+      ]
+    },
+    "237": {
+      "floor_height": -0.078125,
+      "ceiling_height": -0.04998779296875,
+      "connections": [
+        "line_740",
+        "line_742",
+        "line_743",
+        "line_744",
+        "poly_237"
+      ]
+    },
+    "238": {
+      "floor_height": -0.078125,
+      "ceiling_height": -0.04998779296875,
+      "connections": [
+        "line_738",
+        "line_745",
+        "line_746",
+        "line_747",
+        "poly_238"
+      ]
+    },
+    "239": {
+      "floor_height": -0.078125,
+      "ceiling_height": -0.046875,
+      "connections": [
+        "line_723",
+        "line_784",
+        "line_785",
+        "line_786",
+        "object_11",
+        "poly_239"
+      ]
+    },
+    "240": {
+      "floor_height": -0.078125,
+      "ceiling_height": -0.046875,
+      "connections": [
+        "line_729",
+        "line_775",
+        "line_776",
+        "line_777",
+        "poly_240"
+      ]
+    },
+    "241": {
+      "floor_height": -0.078125,
+      "ceiling_height": -0.046875,
+      "connections": [
+        "line_719",
+        "line_778",
+        "line_779",
+        "line_780",
+        "poly_241"
+      ]
+    },
+    "242": {
+      "floor_height": -0.078125,
+      "ceiling_height": -0.046875,
+      "connections": [
+        "line_717",
+        "line_781",
+        "line_782",
+        "line_783",
+        "poly_242"
+      ]
+    },
+    "4": {
+      "floor_height": -0.00311279296875,
+      "ceiling_height": 0.0374755859375,
+      "connections": [
+        "line_20",
+        "line_21",
+        "line_22",
+        "line_23",
+        "line_24",
+        "poly_4"
+      ]
+    },
+    "8": {
+      "floor_height": -0.00311279296875,
+      "ceiling_height": 0.0374755859375,
+      "connections": [
+        "line_68",
+        "line_79",
+        "line_80",
+        "line_81",
+        "poly_8"
+      ]
+    },
+    "30": {
+      "floor_height": -0.00311279296875,
+      "ceiling_height": 0.0374755859375,
+      "connections": [
+        "line_142",
+        "line_143",
+        "line_144",
+        "line_145",
+        "line_146",
+        "line_147",
+        "poly_30"
+      ]
+    },
+    "93": {
+      "floor_height": -0.00311279296875,
+      "ceiling_height": 0.0374755859375,
+      "connections": [
+        "line_328",
+        "line_329",
+        "line_333",
+        "line_334",
+        "line_339",
+        "line_340",
+        "poly_93"
+      ]
+    },
+    "96": {
+      "floor_height": -0.00311279296875,
+      "ceiling_height": 0.0374755859375,
+      "connections": [
+        "line_327",
+        "line_330",
+        "line_331",
+        "line_332",
+        "line_341",
+        "line_342",
+        "poly_96"
+      ]
+    },
+    "171": {
+      "floor_height": -0.00311279296875,
+      "ceiling_height": 0.043731689453125,
+      "connections": [
+        "line_538",
+        "line_563",
+        "line_565",
+        "line_567",
+        "line_568",
+        "line_68",
+        "object_22",
+        "object_29",
+        "poly_171"
+      ]
+    },
+    "172": {
+      "floor_height": -0.00311279296875,
+      "ceiling_height": 0.043731689453125,
+      "connections": [
+        "line_547",
+        "line_566",
+        "line_567",
+        "line_63",
+        "line_66",
+        "line_67",
+        "object_21",
+        "object_32",
+        "poly_172"
+      ]
+    },
+    "173": {
+      "floor_height": -0.00311279296875,
+      "ceiling_height": 0.043731689453125,
+      "connections": [
+        "line_540",
+        "line_564",
+        "line_568",
+        "line_570",
+        "line_64",
+        "line_69",
+        "line_70",
+        "object_23",
+        "object_24",
+        "poly_173"
+      ]
+    },
+    "189": {
+      "floor_height": -0.00311279296875,
+      "ceiling_height": 0.043731689453125,
+      "connections": [
+        "line_561",
+        "line_562",
+        "line_580",
+        "line_582",
+        "line_607",
+        "line_608",
+        "object_25",
+        "object_26",
+        "object_30",
+        "object_33",
+        "poly_189"
+      ]
+    },
+    "190": {
+      "floor_height": -0.00311279296875,
+      "ceiling_height": 0.043731689453125,
+      "connections": [
+        "line_559",
+        "line_612",
+        "line_613",
+        "line_614",
+        "poly_190"
+      ]
+    },
+    "191": {
+      "floor_height": -0.00311279296875,
+      "ceiling_height": 0.043731689453125,
+      "connections": [
+        "line_580",
+        "line_609",
+        "line_610",
+        "line_611",
+        "poly_191"
+      ]
+    },
+    "192": {
+      "floor_height": -0.00311279296875,
+      "ceiling_height": 0.043731689453125,
+      "connections": [
+        "line_559",
+        "line_574",
+        "line_575",
+        "line_581",
+        "line_618",
+        "line_619",
+        "line_620",
+        "object_19",
+        "object_20",
+        "object_27",
+        "object_28",
+        "object_31",
+        "poly_192"
+      ]
+    },
+    "193": {
+      "floor_height": -0.00311279296875,
+      "ceiling_height": 0.043731689453125,
+      "connections": [
+        "line_610",
+        "line_613",
+        "line_615",
+        "line_617",
+        "line_637",
+        "panel_teleporter_line_group_poly_p243_p193",
+        "poly_193"
+      ]
+    },
+    "194": {
+      "floor_height": -0.00311279296875,
+      "ceiling_height": 0.043731689453125,
+      "connections": [
+        "line_616",
+        "line_621",
+        "line_622",
+        "line_623",
+        "line_637",
+        "line_81",
+        "poly_194"
+      ]
+    },
+    "195": {
+      "floor_height": -0.00311279296875,
+      "ceiling_height": 0.043731689453125,
+      "connections": [
+        "line_623",
+        "line_624",
+        "line_625",
+        "line_633",
+        "panel_platform_on_line_group_poly_p195_p197",
+        "poly_195"
+      ]
+    },
+    "196": {
+      "floor_height": -0.00311279296875,
+      "ceiling_height": 0.043731689453125,
+      "connections": [
+        "line_626",
+        "line_627",
+        "line_633",
+        "line_634",
+        "poly_196"
+      ]
+    },
+    "67": {
+      "floor_height": 0.0,
+      "ceiling_height": 0.03125,
+      "connections": [
+        "line_262",
+        "line_263",
+        "line_264",
+        "line_267",
+        "poly_67"
+      ]
+    },
+    "0": {
+      "floor_height": 0.0,
+      "ceiling_height": 0.03436279296875,
+      "connections": [
+        "line_0",
+        "line_1",
+        "line_2",
+        "line_3",
+        "poly_0"
+      ]
+    },
+    "1": {
+      "floor_height": 0.0,
+      "ceiling_height": 0.03436279296875,
+      "connections": [
+        "line_0",
+        "line_19",
+        "line_20",
+        "line_25",
+        "line_5",
+        "poly_1"
+      ]
+    },
+    "2": {
+      "floor_height": 0.0,
+      "ceiling_height": 0.03436279296875,
+      "connections": [
+        "line_21",
+        "line_25",
+        "line_26",
+        "line_4",
+        "poly_2"
+      ]
+    },
+    "3": {
+      "floor_height": 0.0,
+      "ceiling_height": 0.03436279296875,
+      "connections": [
+        "line_26",
+        "line_27",
+        "line_6",
+        "line_8",
+        "poly_3"
+      ]
+    },
+    "5": {
+      "floor_height": 0.0,
+      "ceiling_height": 0.03436279296875,
+      "connections": [
+        "line_15",
+        "line_17",
+        "line_18",
+        "line_23",
+        "line_28",
+        "line_29",
+        "poly_5"
+      ]
+    },
+    "9": {
+      "floor_height": 0.0,
+      "ceiling_height": 0.03436279296875,
+      "connections": [
+        "line_57",
+        "line_58",
+        "line_59",
+        "line_60",
+        "poly_9"
+      ]
+    },
+    "10": {
+      "floor_height": 0.0,
+      "ceiling_height": 0.03436279296875,
+      "connections": [
+        "line_12",
+        "line_30",
+        "line_36",
+        "line_51",
+        "poly_10"
+      ]
+    },
+    "11": {
+      "floor_height": 0.0,
+      "ceiling_height": 0.03436279296875,
+      "connections": [
+        "line_49",
+        "line_50",
+        "line_51",
+        "line_54",
+        "poly_11"
+      ]
+    },
+    "12": {
+      "floor_height": 0.0,
+      "ceiling_height": 0.03436279296875,
+      "connections": [
+        "line_12",
+        "line_13",
+        "line_14",
+        "line_19",
+        "line_24",
+        "line_29",
+        "line_7",
+        "line_9",
+        "object_49",
+        "object_50",
+        "object_51",
+        "poly_12"
+      ]
+    },
+    "13": {
+      "floor_height": 0.0,
+      "ceiling_height": 0.03436279296875,
+      "connections": [
+        "line_33",
+        "line_39",
+        "line_60",
+        "line_84",
+        "poly_13"
+      ]
+    },
+    "14": {
+      "floor_height": 0.0,
+      "ceiling_height": 0.03436279296875,
+      "connections": [
+        "line_32",
+        "line_38",
+        "line_83",
+        "line_84",
+        "poly_14"
+      ]
+    },
+    "15": {
+      "floor_height": 0.0,
+      "ceiling_height": 0.03436279296875,
+      "connections": [
+        "line_31",
+        "line_37",
+        "line_82",
+        "line_83",
+        "poly_15"
+      ]
+    },
+    "16": {
+      "floor_height": 0.0,
+      "ceiling_height": 0.03436279296875,
+      "connections": [
+        "line_52",
+        "line_53",
+        "line_54",
+        "line_82",
+        "poly_16"
+      ]
+    },
+    "18": {
+      "floor_height": 0.0,
+      "ceiling_height": 0.03436279296875,
+      "connections": [
+        "line_55",
+        "line_56",
+        "line_57",
+        "line_86",
+        "poly_18"
+      ]
+    },
+    "20": {
+      "floor_height": 0.0,
+      "ceiling_height": 0.03436279296875,
+      "connections": [
+        "line_10",
+        "line_11",
+        "line_16",
+        "line_22",
+        "line_27",
+        "line_28",
+        "poly_20"
+      ]
+    },
+    "21": {
+      "floor_height": 0.0,
+      "ceiling_height": 0.03436279296875,
+      "connections": [
+        "line_10",
+        "line_138",
+        "line_87",
+        "line_88",
+        "poly_21"
+      ]
+    },
+    "22": {
+      "floor_height": 0.0,
+      "ceiling_height": 0.03436279296875,
+      "connections": [
+        "line_136",
+        "line_137",
+        "line_138",
+        "line_141",
+        "poly_22"
+      ]
+    },
+    "23": {
+      "floor_height": 0.0,
+      "ceiling_height": 0.03436279296875,
+      "connections": [
+        "line_139",
+        "line_140",
+        "line_141",
+        "line_155",
+        "poly_23"
+      ]
+    },
+    "24": {
+      "floor_height": 0.0,
+      "ceiling_height": 0.03436279296875,
+      "connections": [
+        "line_154",
+        "line_155",
+        "line_89",
+        "line_90",
+        "object_57",
+        "poly_24"
+      ]
+    },
+    "25": {
+      "floor_height": 0.0,
+      "ceiling_height": 0.03436279296875,
+      "connections": [
+        "line_143",
+        "line_148",
+        "line_149",
+        "line_154",
+        "poly_25"
+      ]
+    },
+    "26": {
+      "floor_height": 0.0,
+      "ceiling_height": 0.03436279296875,
+      "connections": [
+        "line_142",
+        "line_148",
+        "line_153",
+        "line_91",
+        "poly_26"
+      ]
+    },
+    "27": {
+      "floor_height": 0.0,
+      "ceiling_height": 0.03436279296875,
+      "connections": [
+        "line_147",
+        "line_152",
+        "line_153",
+        "line_92",
+        "object_56",
+        "poly_27"
+      ]
+    },
+    "28": {
+      "floor_height": 0.0,
+      "ceiling_height": 0.03436279296875,
+      "connections": [
+        "line_123",
+        "line_146",
+        "line_151",
+        "line_152",
+        "line_156",
+        "poly_28"
+      ]
+    },
+    "29": {
+      "floor_height": 0.0,
+      "ceiling_height": 0.03436279296875,
+      "connections": [
+        "line_124",
+        "line_145",
+        "line_150",
+        "line_151",
+        "object_55",
+        "poly_29"
+      ]
+    },
+    "31": {
+      "floor_height": 0.0,
+      "ceiling_height": 0.03436279296875,
+      "connections": [
+        "line_125",
+        "line_126",
+        "line_127",
+        "line_144",
+        "line_149",
+        "line_150",
+        "poly_31"
+      ]
+    },
+    "32": {
+      "floor_height": 0.0,
+      "ceiling_height": 0.03436279296875,
+      "connections": [
+        "line_122",
+        "line_156",
+        "line_157",
+        "line_93",
+        "line_94",
+        "line_95",
+        "object_52",
+        "object_53",
+        "object_54",
+        "poly_32"
+      ]
+    },
+    "33": {
+      "floor_height": 0.0,
+      "ceiling_height": 0.03436279296875,
+      "connections": [
+        "line_121",
+        "line_157",
+        "line_158",
+        "line_96",
+        "poly_33"
+      ]
+    },
+    "34": {
+      "floor_height": 0.0,
+      "ceiling_height": 0.03436279296875,
+      "connections": [
+        "line_120",
+        "line_158",
+        "line_159",
+        "line_97",
+        "poly_34"
+      ]
+    },
+    "35": {
+      "floor_height": 0.0,
+      "ceiling_height": 0.03436279296875,
+      "connections": [
+        "line_119",
+        "line_159",
+        "line_160",
+        "line_98",
+        "poly_35"
+      ]
+    },
+    "36": {
+      "floor_height": 0.0,
+      "ceiling_height": 0.03436279296875,
+      "connections": [
+        "line_118",
+        "line_160",
+        "line_161",
+        "line_99",
+        "poly_36"
+      ]
+    },
+    "37": {
+      "floor_height": 0.0,
+      "ceiling_height": 0.03436279296875,
+      "connections": [
+        "line_100",
+        "line_117",
+        "line_162",
+        "line_163",
+        "poly_37"
+      ]
+    },
+    "38": {
+      "floor_height": 0.0,
+      "ceiling_height": 0.03436279296875,
+      "connections": [
+        "line_101",
+        "line_116",
+        "line_163",
+        "line_164",
+        "poly_38"
+      ]
+    },
+    "39": {
+      "floor_height": 0.0,
+      "ceiling_height": 0.03436279296875,
+      "connections": [
+        "line_102",
+        "line_115",
+        "line_164",
+        "line_165",
+        "poly_39"
+      ]
+    },
+    "40": {
+      "floor_height": 0.0,
+      "ceiling_height": 0.03436279296875,
+      "connections": [
+        "line_103",
+        "line_114",
+        "line_165",
+        "line_166",
+        "poly_40"
+      ]
+    },
+    "41": {
+      "floor_height": 0.0,
+      "ceiling_height": 0.03436279296875,
+      "connections": [
+        "line_104",
+        "line_113",
+        "line_166",
+        "line_167",
+        "poly_41"
+      ]
+    },
+    "42": {
+      "floor_height": 0.0,
+      "ceiling_height": 0.03436279296875,
+      "connections": [
+        "line_112",
+        "line_132",
+        "line_134",
+        "line_135",
+        "poly_42"
+      ]
+    },
+    "43": {
+      "floor_height": 0.0,
+      "ceiling_height": 0.03436279296875,
+      "connections": [
+        "line_129",
+        "line_130",
+        "line_132",
+        "line_168",
+        "line_169",
+        "poly_43"
+      ]
+    },
+    "44": {
+      "floor_height": 0.0,
+      "ceiling_height": 0.03436279296875,
+      "connections": [
+        "line_111",
+        "line_128",
+        "line_169",
+        "line_170",
+        "poly_44"
+      ]
+    },
+    "47": {
+      "floor_height": 0.0,
+      "ceiling_height": 0.03436279296875,
+      "connections": [
+        "line_106",
+        "line_107",
+        "line_131",
+        "line_168",
+        "poly_47"
+      ]
+    },
+    "48": {
+      "floor_height": 0.0,
+      "ceiling_height": 0.03436279296875,
+      "connections": [
+        "line_161",
+        "line_162",
+        "line_172",
+        "line_173",
+        "poly_48"
+      ]
+    },
+    "49": {
+      "floor_height": 0.0,
+      "ceiling_height": 0.03436279296875,
+      "connections": [
+        "line_133",
+        "line_135",
+        "line_175",
+        "line_176",
+        "poly_49"
+      ]
+    },
+    "50": {
+      "floor_height": 0.0,
+      "ceiling_height": 0.03436279296875,
+      "connections": [
+        "line_105",
+        "line_167",
+        "line_174",
+        "line_176",
+        "poly_50"
+      ]
+    },
+    "51": {
+      "floor_height": 0.0,
+      "ceiling_height": 0.03436279296875,
+      "connections": [
+        "line_177",
+        "line_178",
+        "line_241",
+        "line_94",
+        "poly_51"
+      ]
+    },
+    "52": {
+      "floor_height": 0.0,
+      "ceiling_height": 0.03436279296875,
+      "connections": [
+        "line_222",
+        "line_239",
+        "line_240",
+        "line_241",
+        "poly_52"
+      ]
+    },
+    "53": {
+      "floor_height": 0.0,
+      "ceiling_height": 0.03436279296875,
+      "connections": [
+        "line_179",
+        "line_185",
+        "line_222",
+        "line_223",
+        "object_58",
+        "poly_53"
+      ]
+    },
+    "54": {
+      "floor_height": 0.0,
+      "ceiling_height": 0.03436279296875,
+      "connections": [
+        "line_180",
+        "line_181",
+        "line_186",
+        "line_223",
+        "line_224",
+        "poly_54"
+      ]
+    },
+    "55": {
+      "floor_height": 0.0,
+      "ceiling_height": 0.03436279296875,
+      "connections": [
+        "line_182",
+        "line_187",
+        "line_206",
+        "line_207",
+        "line_224",
+        "line_225",
+        "object_100",
+        "object_101",
+        "object_102",
+        "object_103",
+        "object_104",
+        "object_15",
+        "poly_55"
+      ]
+    },
+    "56": {
+      "floor_height": 0.0,
+      "ceiling_height": 0.03436279296875,
+      "connections": [
+        "line_183",
+        "line_184",
+        "line_188",
+        "line_225",
+        "line_227",
+        "poly_56"
+      ]
+    },
+    "57": {
+      "floor_height": 0.0,
+      "ceiling_height": 0.03436279296875,
+      "connections": [
+        "line_189",
+        "line_210",
+        "line_226",
+        "line_227",
+        "poly_57"
+      ]
+    },
+    "58": {
+      "floor_height": 0.0,
+      "ceiling_height": 0.03436279296875,
+      "connections": [
+        "line_205",
+        "line_226",
+        "line_228",
+        "line_233",
+        "line_234",
+        "poly_58"
+      ]
+    },
+    "59": {
+      "floor_height": 0.0,
+      "ceiling_height": 0.03436279296875,
+      "connections": [
+        "line_190",
+        "line_212",
+        "line_232",
+        "line_233",
+        "object_61",
+        "poly_59"
+      ]
+    },
+    "60": {
+      "floor_height": 0.0,
+      "ceiling_height": 0.03436279296875,
+      "connections": [
+        "line_191",
+        "line_215",
+        "line_231",
+        "line_232",
+        "poly_60"
+      ]
+    },
+    "61": {
+      "floor_height": 0.0,
+      "ceiling_height": 0.03436279296875,
+      "connections": [
+        "line_192",
+        "line_193",
+        "line_214",
+        "line_229",
+        "line_231",
+        "object_62",
+        "poly_61"
+      ]
+    },
+    "62": {
+      "floor_height": 0.0,
+      "ceiling_height": 0.03436279296875,
+      "connections": [
+        "line_204",
+        "line_213",
+        "line_228",
+        "line_230",
+        "poly_62"
+      ]
+    },
+    "63": {
+      "floor_height": 0.0,
+      "ceiling_height": 0.03436279296875,
+      "connections": [
+        "line_194",
+        "line_203",
+        "line_229",
+        "line_230",
+        "line_237",
+        "poly_63"
+      ]
+    },
+    "64": {
+      "floor_height": 0.0,
+      "ceiling_height": 0.03436279296875,
+      "connections": [
+        "line_195",
+        "line_202",
+        "line_236",
+        "line_237",
+        "poly_64"
+      ]
+    },
+    "65": {
+      "floor_height": 0.0,
+      "ceiling_height": 0.03436279296875,
+      "connections": [
+        "line_196",
+        "line_197",
+        "line_201",
+        "line_235",
+        "line_236",
+        "poly_65"
+      ]
+    },
+    "66": {
+      "floor_height": 0.0,
+      "ceiling_height": 0.03436279296875,
+      "connections": [
+        "line_198",
+        "line_199",
+        "line_200",
+        "line_235",
+        "object_80",
+        "poly_66"
+      ]
+    },
+    "71": {
+      "floor_height": 0.0,
+      "ceiling_height": 0.03436279296875,
+      "connections": [
+        "line_206",
+        "line_208",
+        "line_279",
+        "line_280",
+        "poly_71"
+      ]
+    },
+    "72": {
+      "floor_height": 0.0,
+      "ceiling_height": 0.03436279296875,
+      "connections": [
+        "line_219",
+        "line_270",
+        "line_281",
+        "line_283",
+        "poly_72"
+      ]
+    },
+    "91": {
+      "floor_height": 0.0,
+      "ceiling_height": 0.03436279296875,
+      "connections": [
+        "line_335",
+        "line_336",
+        "line_337",
+        "line_338",
+        "poly_91"
+      ]
+    },
+    "92": {
+      "floor_height": 0.0,
+      "ceiling_height": 0.03436279296875,
+      "connections": [
+        "line_327",
+        "line_335",
+        "line_339",
+        "line_343",
+        "poly_92"
+      ]
+    },
+    "94": {
+      "floor_height": 0.0,
+      "ceiling_height": 0.03436279296875,
+      "connections": [
+        "line_340",
+        "line_342",
+        "line_343",
+        "line_344",
+        "poly_94"
+      ]
+    },
+    "95": {
+      "floor_height": 0.0,
+      "ceiling_height": 0.03436279296875,
+      "connections": [
+        "line_3",
+        "line_328",
+        "line_341",
+        "line_344",
+        "poly_95"
+      ]
+    },
+    "97": {
+      "floor_height": 0.0,
+      "ceiling_height": 0.03436279296875,
+      "connections": [
+        "line_337",
+        "line_345",
+        "line_346",
+        "line_355",
+        "object_110",
+        "object_17",
+        "poly_97"
+      ]
+    },
+    "98": {
+      "floor_height": 0.0,
+      "ceiling_height": 0.03436279296875,
+      "connections": [
+        "line_347",
+        "line_348",
+        "line_351",
+        "line_355",
+        "line_356",
+        "object_106",
+        "object_107",
+        "object_108",
+        "object_109",
+        "object_18",
+        "poly_98"
+      ]
+    },
+    "99": {
+      "floor_height": 0.0,
+      "ceiling_height": 0.03436279296875,
+      "connections": [
+        "line_282",
+        "line_283",
+        "line_363",
+        "line_364",
+        "poly_99"
+      ]
+    },
+    "100": {
+      "floor_height": 0.0,
+      "ceiling_height": 0.03436279296875,
+      "connections": [
+        "line_354",
+        "line_374",
+        "line_375",
+        "line_376",
+        "line_387",
+        "poly_100"
+      ]
+    },
+    "101": {
+      "floor_height": 0.0,
+      "ceiling_height": 0.03436279296875,
+      "connections": [
+        "line_373",
+        "line_377",
+        "line_387",
+        "line_388",
+        "poly_101"
+      ]
+    },
+    "102": {
+      "floor_height": 0.0,
+      "ceiling_height": 0.03436279296875,
+      "connections": [
+        "line_372",
+        "line_378",
+        "line_388",
+        "line_389",
+        "poly_102"
+      ]
+    },
+    "103": {
+      "floor_height": 0.0,
+      "ceiling_height": 0.03436279296875,
+      "connections": [
+        "line_371",
+        "line_379",
+        "line_389",
+        "line_390",
+        "poly_103"
+      ]
+    },
+    "104": {
+      "floor_height": 0.0,
+      "ceiling_height": 0.03436279296875,
+      "connections": [
+        "line_370",
+        "line_380",
+        "line_390",
+        "line_391",
+        "poly_104"
+      ]
+    },
+    "105": {
+      "floor_height": 0.0,
+      "ceiling_height": 0.03436279296875,
+      "connections": [
+        "line_369",
+        "line_381",
+        "line_382",
+        "line_391",
+        "line_392",
+        "poly_105"
+      ]
+    },
+    "106": {
+      "floor_height": 0.0,
+      "ceiling_height": 0.03436279296875,
+      "connections": [
+        "line_368",
+        "line_383",
+        "line_384",
+        "line_392",
+        "line_393",
+        "poly_106"
+      ]
+    },
+    "107": {
+      "floor_height": 0.0,
+      "ceiling_height": 0.03436279296875,
+      "connections": [
+        "line_367",
+        "line_385",
+        "line_393",
+        "line_394",
+        "poly_107"
+      ]
+    },
+    "108": {
+      "floor_height": 0.0,
+      "ceiling_height": 0.03436279296875,
+      "connections": [
+        "line_366",
+        "line_386",
+        "line_394",
+        "line_395",
+        "object_81",
+        "poly_108"
+      ]
+    },
+    "109": {
+      "floor_height": 0.0,
+      "ceiling_height": 0.03436279296875,
+      "connections": [
+        "line_199",
+        "line_261",
+        "line_262",
+        "line_265",
+        "line_395",
+        "object_16",
+        "object_76",
+        "object_77",
+        "object_78",
+        "object_79",
+        "poly_109"
+      ]
+    },
+    "110": {
+      "floor_height": 0.0,
+      "ceiling_height": 0.03436279296875,
+      "connections": [
+        "line_349",
+        "line_397",
+        "line_401",
+        "line_403",
+        "poly_110"
+      ]
+    },
+    "111": {
+      "floor_height": 0.0,
+      "ceiling_height": 0.03436279296875,
+      "connections": [
+        "line_353",
+        "line_399",
+        "line_400",
+        "line_402",
+        "poly_111"
+      ]
+    },
+    "112": {
+      "floor_height": 0.0,
+      "ceiling_height": 0.03436279296875,
+      "connections": [
+        "line_350",
+        "line_354",
+        "line_398",
+        "line_401",
+        "line_402",
+        "poly_112"
+      ]
+    },
+    "113": {
+      "floor_height": 0.0,
+      "ceiling_height": 0.03436279296875,
+      "connections": [
+        "line_352",
+        "line_356",
+        "line_396",
+        "line_400",
+        "line_403",
+        "poly_113"
+      ]
+    },
+    "127": {
+      "floor_height": 0.0,
+      "ceiling_height": 0.03436279296875,
+      "connections": [
+        "line_449",
+        "line_454",
+        "line_458",
+        "line_460",
+        "poly_127"
+      ]
+    },
+    "128": {
+      "floor_height": 0.0,
+      "ceiling_height": 0.03436279296875,
+      "connections": [
+        "line_450",
+        "line_455",
+        "line_460",
+        "line_461",
+        "poly_128"
+      ]
+    },
+    "129": {
+      "floor_height": 0.0,
+      "ceiling_height": 0.03436279296875,
+      "connections": [
+        "line_451",
+        "line_456",
+        "line_461",
+        "line_462",
+        "poly_129"
+      ]
+    },
+    "130": {
+      "floor_height": 0.0,
+      "ceiling_height": 0.03436279296875,
+      "connections": [
+        "line_452",
+        "line_457",
+        "line_462",
+        "line_463",
+        "poly_130"
+      ]
+    },
+    "131": {
+      "floor_height": 0.0,
+      "ceiling_height": 0.03436279296875,
+      "connections": [
+        "line_269",
+        "line_365",
+        "line_464",
+        "line_465",
+        "poly_131"
+      ]
+    },
+    "141": {
+      "floor_height": 0.0,
+      "ceiling_height": 0.03436279296875,
+      "connections": [
+        "line_463",
+        "line_489",
+        "line_493",
+        "line_502",
+        "poly_141"
+      ]
+    },
+    "142": {
+      "floor_height": 0.0,
+      "ceiling_height": 0.03436279296875,
+      "connections": [
+        "line_490",
+        "line_494",
+        "line_501",
+        "line_502",
+        "poly_142"
+      ]
+    },
+    "143": {
+      "floor_height": 0.0,
+      "ceiling_height": 0.03436279296875,
+      "connections": [
+        "line_491",
+        "line_495",
+        "line_500",
+        "line_501",
+        "poly_143"
+      ]
+    },
+    "144": {
+      "floor_height": 0.0,
+      "ceiling_height": 0.03436279296875,
+      "connections": [
+        "line_492",
+        "line_496",
+        "line_499",
+        "line_500",
+        "poly_144"
+      ]
+    },
+    "145": {
+      "floor_height": 0.0,
+      "ceiling_height": 0.03436279296875,
+      "connections": [
+        "line_347",
+        "line_498",
+        "line_504",
+        "line_505",
+        "poly_145"
+      ]
+    },
+    "146": {
+      "floor_height": 0.0,
+      "ceiling_height": 0.03436279296875,
+      "connections": [
+        "line_497",
+        "line_499",
+        "line_503",
+        "line_504",
+        "line_506",
+        "line_507",
+        "poly_146"
+      ]
+    },
+    "151": {
+      "floor_height": 0.0,
+      "ceiling_height": 0.03436279296875,
+      "connections": [
+        "line_362",
+        "line_364",
+        "line_365",
+        "line_448",
+        "line_453",
+        "line_459",
+        "object_96",
+        "object_97",
+        "object_98",
+        "object_99",
+        "poly_151"
+      ]
+    },
+    "152": {
+      "floor_height": 0.0,
+      "ceiling_height": 0.03436279296875,
+      "connections": [
+        "line_458",
+        "line_521",
+        "line_522",
+        "line_523",
+        "line_524",
+        "line_526",
+        "poly_152"
+      ]
+    },
+    "153": {
+      "floor_height": 0.0,
+      "ceiling_height": 0.03436279296875,
+      "connections": [
+        "line_459",
+        "line_520",
+        "line_525",
+        "line_526",
+        "poly_153"
+      ]
+    },
+    "17": {
+      "floor_height": 0.0,
+      "ceiling_height": 0.0374755859375,
+      "connections": [
+        "line_40",
+        "line_43",
+        "line_78",
+        "line_85",
+        "poly_17"
+      ]
+    },
+    "19": {
+      "floor_height": 0.0,
+      "ceiling_height": 0.0374755859375,
+      "connections": [
+        "line_77",
+        "line_85",
+        "line_86",
+        "poly_19"
+      ]
+    },
+    "163": {
+      "floor_height": 0.0,
+      "ceiling_height": 0.0374755859375,
+      "connections": [
+        "line_41",
+        "line_42",
+        "line_541",
+        "line_78",
+        "object_60",
+        "poly_163"
+      ]
+    },
+    "166": {
+      "floor_height": 0.0,
+      "ceiling_height": 0.0374755859375,
+      "connections": [
+        "line_44",
+        "line_539",
+        "line_542",
+        "line_543",
+        "line_61",
+        "line_76",
+        "poly_166"
+      ]
+    },
+    "167": {
+      "floor_height": 0.0,
+      "ceiling_height": 0.0374755859375,
+      "connections": [
+        "line_45",
+        "line_46",
+        "line_47",
+        "line_549",
+        "object_3",
+        "poly_167"
+      ]
+    },
+    "168": {
+      "floor_height": 0.0,
+      "ceiling_height": 0.0374755859375,
+      "connections": [
+        "line_48",
+        "line_548",
+        "line_549",
+        "line_76",
+        "object_59",
+        "object_65",
+        "poly_168"
+      ]
+    },
+    "170": {
+      "floor_height": 0.0,
+      "ceiling_height": 0.0374755859375,
+      "connections": [
+        "line_46",
+        "line_544",
+        "line_545",
+        "line_546",
+        "poly_170"
+      ]
+    },
+    "175": {
+      "floor_height": 0.0,
+      "ceiling_height": 0.0374755859375,
+      "connections": [
+        "line_34",
+        "line_35",
+        "line_543",
+        "line_569",
+        "line_77",
+        "object_66",
+        "poly_175"
+      ]
+    },
+    "176": {
+      "floor_height": 0.0,
+      "ceiling_height": 0.0374755859375,
+      "connections": [
+        "line_545",
+        "line_550",
+        "line_551",
+        "line_585",
+        "poly_176"
+      ]
+    },
+    "177": {
+      "floor_height": 0.0,
+      "ceiling_height": 0.0374755859375,
+      "connections": [
+        "line_552",
+        "line_558",
+        "line_585",
+        "line_586",
+        "poly_177"
+      ]
+    },
+    "178": {
+      "floor_height": 0.0,
+      "ceiling_height": 0.0374755859375,
+      "connections": [
+        "line_553",
+        "line_572",
+        "line_586",
+        "line_587",
+        "poly_178"
+      ]
+    },
+    "179": {
+      "floor_height": 0.0,
+      "ceiling_height": 0.0374755859375,
+      "connections": [
+        "line_554",
+        "line_573",
+        "line_587",
+        "line_588",
+        "object_75",
+        "poly_179"
+      ]
+    },
+    "182": {
+      "floor_height": 0.0,
+      "ceiling_height": 0.0374755859375,
+      "connections": [
+        "line_560",
+        "line_588",
+        "line_589",
+        "line_605",
+        "poly_182"
+      ]
+    },
+    "183": {
+      "floor_height": 0.0,
+      "ceiling_height": 0.0374755859375,
+      "connections": [
+        "line_555",
+        "line_577",
+        "line_589",
+        "line_590",
+        "poly_183"
+      ]
+    },
+    "184": {
+      "floor_height": 0.0,
+      "ceiling_height": 0.0374755859375,
+      "connections": [
+        "line_556",
+        "line_557",
+        "line_578",
+        "line_590",
+        "line_591",
+        "object_12",
+        "object_13",
+        "object_14",
+        "poly_184"
+      ]
+    },
+    "186": {
+      "floor_height": 0.0,
+      "ceiling_height": 0.0374755859375,
+      "connections": [
+        "line_591",
+        "line_592",
+        "line_594",
+        "line_600",
+        "poly_186"
+      ]
+    },
+    "244": {
+      "floor_height": 0.0,
+      "ceiling_height": 0.0374755859375,
+      "connections": [
+        "line_593",
+        "line_601",
+        "line_787",
+        "poly_244"
+      ]
+    },
+    "245": {
+      "floor_height": 0.0,
+      "ceiling_height": 0.0374755859375,
+      "connections": [
+        "line_600",
+        "line_602",
+        "line_603",
+        "line_787",
+        "poly_245"
+      ]
+    },
+    "45": {
+      "floor_height": 0.00311279296875,
+      "ceiling_height": 0.0374755859375,
+      "connections": [
+        "line_110",
+        "line_128",
+        "line_129",
+        "line_171",
+        "poly_45"
+      ]
+    },
+    "46": {
+      "floor_height": 0.00311279296875,
+      "ceiling_height": 0.0374755859375,
+      "connections": [
+        "line_108",
+        "line_109",
+        "line_130",
+        "line_131",
+        "line_171",
+        "object_0",
+        "poly_46"
+      ]
+    },
+    "243": {
+      "floor_height": 0.00311279296875,
+      "ceiling_height": 0.043731689453125,
+      "connections": [
+        "line_597",
+        "line_598",
+        "line_599",
+        "line_601",
+        "line_602",
+        "line_604",
+        "panel_teleporter_line_group_poly_p243_p193",
+        "poly_243"
+      ]
+    },
+    "6": {
+      "floor_height": 0.0062255859375,
+      "ceiling_height": 0.024993896484375,
+      "connections": [
+        "line_44",
+        "line_63",
+        "line_71",
+        "line_72",
+        "poly_6"
+      ]
+    },
+    "7": {
+      "floor_height": 0.0062255859375,
+      "ceiling_height": 0.024993896484375,
+      "connections": [
+        "line_43",
+        "line_64",
+        "line_74",
+        "line_75",
+        "poly_7"
+      ]
+    },
+    "164": {
+      "floor_height": 0.0062255859375,
+      "ceiling_height": 0.024993896484375,
+      "connections": [
+        "line_540",
+        "line_541",
+        "line_65",
+        "line_75",
+        "poly_164"
+      ]
+    },
+    "165": {
+      "floor_height": 0.0062255859375,
+      "ceiling_height": 0.024993896484375,
+      "connections": [
+        "line_538",
+        "line_539",
+        "line_72",
+        "line_73",
+        "poly_165"
+      ]
+    },
+    "169": {
+      "floor_height": 0.0062255859375,
+      "ceiling_height": 0.024993896484375,
+      "connections": [
+        "line_547",
+        "line_548",
+        "line_62",
+        "line_71",
+        "poly_169"
+      ]
+    },
+    "174": {
+      "floor_height": 0.0062255859375,
+      "ceiling_height": 0.024993896484375,
+      "connections": [
+        "line_569",
+        "line_570",
+        "line_73",
+        "line_74",
+        "poly_174"
+      ]
+    },
+    "180": {
+      "floor_height": 0.0062255859375,
+      "ceiling_height": 0.024993896484375,
+      "connections": [
+        "line_573",
+        "line_575",
+        "line_576",
+        "line_584",
+        "poly_180"
+      ]
+    },
+    "181": {
+      "floor_height": 0.0062255859375,
+      "ceiling_height": 0.024993896484375,
+      "connections": [
+        "line_571",
+        "line_572",
+        "line_574",
+        "line_584",
+        "poly_181"
+      ]
+    },
+    "185": {
+      "floor_height": 0.0062255859375,
+      "ceiling_height": 0.024993896484375,
+      "connections": [
+        "line_578",
+        "line_579",
+        "line_582",
+        "line_583",
+        "poly_185"
+      ]
+    },
+    "188": {
+      "floor_height": 0.0062255859375,
+      "ceiling_height": 0.024993896484375,
+      "connections": [
+        "line_577",
+        "line_583",
+        "line_606",
+        "line_607",
+        "poly_188"
+      ]
+    },
+    "187": {
+      "floor_height": 0.0062255859375,
+      "ceiling_height": 0.03125,
+      "connections": [
+        "line_595",
+        "line_596",
+        "line_603",
+        "line_604",
+        "poly_187"
+      ]
+    },
+    "251": {
+      "floor_height": 0.009368896484375,
+      "ceiling_height": 0.024993896484375,
+      "connections": [
+        "line_605",
+        "line_803",
+        "line_804",
+        "line_805",
+        "poly_251",
+        "side_660"
+      ]
+    },
+    "69": {
+      "floor_height": 0.015625,
+      "ceiling_height": 0.09375,
+      "connections": [
+        "line_211",
+        "line_217",
+        "line_218",
+        "line_219",
+        "poly_69"
+      ]
+    },
+    "68": {
+      "floor_height": 0.0625,
+      "ceiling_height": 0.09375,
+      "connections": [
+        "line_217",
+        "line_220",
+        "line_221",
+        "line_238",
+        "poly_68"
+      ]
+    },
+    "73": {
+      "floor_height": 0.0625,
+      "ceiling_height": 0.09375,
+      "connections": [
+        "line_286",
+        "line_287",
+        "line_288",
+        "line_289",
+        "object_95",
+        "poly_73"
+      ]
+    },
+    "74": {
+      "floor_height": 0.0625,
+      "ceiling_height": 0.09375,
+      "connections": [
+        "line_274",
+        "line_284",
+        "line_285",
+        "line_289",
+        "poly_74"
+      ]
+    },
+    "75": {
+      "floor_height": 0.0625,
+      "ceiling_height": 0.09375,
+      "connections": [
+        "line_288",
+        "line_290",
+        "line_291",
+        "line_292",
+        "line_293",
+        "line_294",
+        "line_295",
+        "line_296",
+        "object_1",
+        "poly_75"
+      ]
+    },
+    "78": {
+      "floor_height": 0.0625,
+      "ceiling_height": 0.09375,
+      "connections": [
+        "line_290",
+        "line_303",
+        "line_304",
+        "line_305",
+        "poly_78",
+        "side_187"
+      ]
+    },
+    "76": {
+      "floor_height": 0.07342529296875,
+      "ceiling_height": 0.08905029296875,
+      "connections": [
+        "line_291",
+        "line_297",
+        "line_298",
+        "line_302",
+        "poly_76"
+      ]
+    },
+    "77": {
+      "floor_height": 0.07342529296875,
+      "ceiling_height": 0.08905029296875,
+      "connections": [
+        "line_292",
+        "line_299",
+        "line_300",
+        "line_301",
+        "poly_77",
+        "side_180"
+      ]
+    },
+    "161": {
+      "floor_height": 0.07342529296875,
+      "ceiling_height": 0.125,
+      "connections": [
+        "line_406",
+        "line_535",
+        "line_536",
+        "line_537",
+        "object_38",
+        "poly_161"
+      ]
+    },
+    "162": {
+      "floor_height": 0.07342529296875,
+      "ceiling_height": 0.125,
+      "connections": [
+        "line_408",
+        "line_532",
+        "line_533",
+        "line_534",
+        "object_37",
+        "poly_162"
+      ]
+    }
+  }
+}
