@@ -146,7 +146,9 @@ pipeline:
       path: ../_tmp/site/
       branch: site
       commit: true
+      empty_commit: true
       author_name: woodpecker-ci
+      author_email: woodpecker-ci@fracas.net
       commit_message: ${CI_COMMIT_BRANCH}:${CI_COMMIT_SHA}
       ssh_key:
         from_secret: git_key
