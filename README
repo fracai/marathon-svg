@@ -3,6 +3,7 @@ Inspired by the multiple vertical layers of maps like _By Committee_ and _The Ha
 The original game data is copyright 1994-present Bungie Studios, generously allowed for use by the open-source community. The code here is provided as GPLv3.0.
 
 TODO:
+- some platforms are rendered as essentially height-less (because they start out closed?) and need additional handling to calculate their "most open" state
 - zoom and pan (? https://github.com/bumbu/svg-pan-zoom)
 - on-map (or adjacent) legend and scale
 - play sounds on hover (including monsters, platforms, water, etc.)
@@ -13,4 +14,6 @@ TODO:
 - dynamic water level
     - fluctuating between the min/max at the appropriate rate
     - changing by toggling map switches and triggers
+    - same for platforms
 - implement top-down map navigation, item inventory, attacks, and damage
+- implement 3D and orthographic views
