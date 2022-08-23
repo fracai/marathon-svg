@@ -1,0 +1,1 @@
+{"class": "monster", "display": "Monsters", "types": [{"class": null, "display": "Friend", "types": [{"class": "monster-1", "display": "tick (minor)", "tooltip": "minor, cannot_attack"}]}, {"class": null, "display": "Enemy", "types": [{"class": "monster-25", "display": "enforcer grey (minor)", "tooltip": "minor, uses_sniper_ledges"}]}]}

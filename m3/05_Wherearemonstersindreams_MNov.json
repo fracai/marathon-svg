@@ -1,0 +1,1 @@
+{"class": "monster", "display": "Monsters", "types": [{"class": null, "display": "Neutral", "types": [{"class": "monster-36", "display": "s'pht'kr blue", "tooltip": ""}]}, {"class": null, "display": "Enemy", "types": [{"class": "monster-37", "display": "s'pht'kr red (invisible, mini)", "tooltip": "is_invisible, is_tiny"}]}]}

@@ -78,57 +78,27 @@
                     "types": [
                         {
                             "class": "item-2",
-                            "display": "Pistol Rounds",
-                            "shape": {
-                                "collection": 7,
-                                "clut": 0,
-                                "sequence": 3
-                            }
+                            "display": "Pistol Rounds"
                         },
                         {
                             "class": "item-4",
-                            "display": "Fusion Battery",
-                            "shape": {
-                                "collection": 7,
-                                "clut": 0,
-                                "sequence": 4
-                            }
+                            "display": "Fusion Battery"
                         },
                         {
                             "class": "item-6",
-                            "display": "Assault Rifle Rounds",
-                            "shape": {
-                                "collection": 7,
-                                "clut": 0,
-                                "sequence": 5
-                            }
+                            "display": "Assault Rifle Rounds"
                         },
                         {
                             "class": "item-7",
-                            "display": "Grenade Rounds",
-                            "shape": {
-                                "collection": 7,
-                                "clut": 0,
-                                "sequence": 6
-                            }
+                            "display": "Grenade Rounds"
                         },
                         {
                             "class": "item-9",
-                            "display": "Rockets",
-                            "shape": {
-                                "collection": 7,
-                                "clut": 0,
-                                "sequence": 7
-                            }
+                            "display": "Rockets"
                         },
                         {
                             "class": "item-16",
-                            "display": "Flamethrower Canister",
-                            "shape": {
-                                "collection": 7,
-                                "clut": 0,
-                                "sequence": 11
-                            }
+                            "display": "Flamethrower Canister"
                         }
                     ]
                 },
@@ -138,57 +108,27 @@
                     "types": [
                         {
                             "class": "item-1",
-                            "display": "Pistol",
-                            "shape": {
-                                "collection": 7,
-                                "clut": 0,
-                                "sequence": 0
-                            }
+                            "display": "Pistol"
                         },
                         {
                             "class": "item-3",
-                            "display": "Fusion Pistol",
-                            "shape": {
-                                "collection": 7,
-                                "clut": 0,
-                                "sequence": 1
-                            }
+                            "display": "Fusion Pistol"
                         },
                         {
                             "class": "item-5",
-                            "display": "Assault Rifle",
-                            "shape": {
-                                "collection": 7,
-                                "clut": 0,
-                                "sequence": 2
-                            }
+                            "display": "Assault Rifle"
                         },
                         {
                             "class": "item-8",
-                            "display": "Missle Launcher",
-                            "shape": {
-                                "collection": 7,
-                                "clut": 0,
-                                "sequence": 12
-                            }
+                            "display": "Missle Launcher"
                         },
                         {
                             "class": "item-13",
-                            "display": "Alien Weapon",
-                            "shape": {
-                                "collection": 7,
-                                "clut": 0,
-                                "sequence": 13
-                            }
+                            "display": "Alien Weapon"
                         },
                         {
                             "class": "item-15",
-                            "display": "Flamethrower",
-                            "shape": {
-                                "collection": 7,
-                                "clut": 0,
-                                "sequence": 10
-                            }
+                            "display": "Flamethrower"
                         }
                     ]
                 },
@@ -198,39 +138,19 @@
                     "types": [
                         {
                             "class": "item-10",
-                            "display": "Invisibility",
-                            "shape": {
-                                "collection": 7,
-                                "clut": 0,
-                                "sequence": 8
-                            }
+                            "display": "Invisibility"
                         },
                         {
                             "class": "item-11",
-                            "display": "Invincibility",
-                            "shape": {
-                                "collection": 7,
-                                "clut": 0,
-                                "sequence": 9
-                            }
+                            "display": "Invincibility"
                         },
                         {
                             "class": "item-12",
-                            "display": "Invfravision",
-                            "shape": {
-                                "collection": 7,
-                                "clut": 0,
-                                "sequence": 14
-                            }
+                            "display": "Invfravision"
                         },
                         {
                             "class": "item-17",
-                            "display": "Extravision",
-                            "shape": {
-                                "collection": 7,
-                                "clut": 0,
-                                "sequence": 15
-                            }
+                            "display": "Extravision"
                         }
                     ]
                 },
@@ -242,21 +162,11 @@
                 },
                 {
                     "class": "item-18",
-                    "display": "Circuit Card",
-                    "shape": {
-                        "collection": 7,
-                        "clut": 0,
-                        "sequence": 16
-                    }
+                    "display": "Circuit Card"
                 },
                 {
                     "class": "item-19",
-                    "display": "electrosynth.",
-                    "shape": {
-                        "collection": 7,
-                        "clut": 0,
-                        "sequence": 20
-                    }
+                    "display": "electrosynth."
                 }
             ]
         },
@@ -270,48 +180,23 @@
                     "types": [
                         {
                             "class": "monster-6",
-                            "display": "Bob Crew [green]",
-                            "shape": {
-                                "collection": 12,
-                                "clut": 0,
-                                "sequence": 5
-                            }
+                            "display": "Bob Crew [green]"
                         },
                         {
                             "class": "monster-7",
-                            "display": "Bob Science (yellow)",
-                            "shape": {
-                                "collection": 12,
-                                "clut": 1,
-                                "sequence": 5
-                            }
+                            "display": "Bob Science (yellow)"
                         },
                         {
                             "class": "monster-8",
-                            "display": "Bob Security [blue]",
-                            "shape": {
-                                "collection": 12,
-                                "clut": 2,
-                                "sequence": 5
-                            }
+                            "display": "Bob Security [blue]"
                         },
                         {
                             "class": "monster-9",
-                            "display": "Bob Engineering [red]",
-                            "shape": {
-                                "collection": 12,
-                                "clut": 3,
-                                "sequence": 5
-                            }
+                            "display": "Bob Engineering [red]"
                         },
                         {
                             "class": "monster-27",
-                            "display": "MADD",
-                            "shape": {
-                                "collection": 22,
-                                "clut": 0,
-                                "sequence": 0
-                            }
+                            "display": "MADD"
                         }
                     ]
                 },
@@ -321,219 +206,99 @@
                     "types": [
                         {
                             "class": "monster-2",
-                            "display": "Pfhor Fighter (minor) [green]",
-                            "shape": {
-                                "collection": 9,
-                                "clut": 0,
-                                "sequence": 7
-                            }
+                            "display": "Pfhor Fighter (minor) [green]"
                         },
                         {
                             "class": "monster-3",
-                            "display": "Pfhor Fighter (major) [purple]",
-                            "shape": {
-                                "collection": 9,
-                                "clut": 1,
-                                "sequence": 7
-                            }
+                            "display": "Pfhor Fighter (major) [purple]"
                         },
                         {
                             "class": "monster-4",
-                            "display": "Pfhor Fighter (projectile minor) [red]",
-                            "shape": {
-                                "collection": 9,
-                                "clut": 2,
-                                "sequence": 7
-                            }
+                            "display": "Pfhor Fighter (projectile minor) [red]"
                         },
                         {
                             "class": "monster-5",
-                            "display": "Pfhor Fighter (projectile major) [blue]",
-                            "shape": {
-                                "collection": 9,
-                                "clut": 3,
-                                "sequence": 7
-                            }
+                            "display": "Pfhor Fighter (projectile major) [blue]"
                         },
                         {
                             "class": "monster-12",
-                            "display": "Enforcer (minor) [blue]",
-                            "shape": {
-                                "collection": 14,
-                                "clut": 0,
-                                "sequence": 0
-                            }
+                            "display": "Enforcer (minor) [blue]"
                         },
                         {
                             "class": "monster-13",
-                            "display": "Enforcer (major) [green]",
-                            "shape": {
-                                "collection": 14,
-                                "clut": 1,
-                                "sequence": 0
-                            }
+                            "display": "Enforcer (major) [green]"
                         },
                         {
                             "class": "monster-14",
-                            "display": "S'pht (minor) [red]",
-                            "shape": {
-                                "collection": 16,
-                                "clut": 0,
-                                "sequence": 0
-                            }
+                            "display": "S'pht (minor) [red]"
                         },
                         {
                             "class": "monster-15",
-                            "display": "S'pht (major) [purple]",
-                            "shape": {
-                                "collection": 16,
-                                "clut": 1,
-                                "sequence": 0
-                            }
+                            "display": "S'pht (major) [purple]"
                         },
                         {
                             "class": "monster-16",
-                            "display": "S'pht (minor invisible)",
-                            "shape": {
-                                "collection": 16,
-                                "clut": 0,
-                                "sequence": 0
-                            }
+                            "display": "S'pht (minor invisible)"
                         },
                         {
                             "class": "monster-17",
-                            "display": "S'pht (major invisible)",
-                            "shape": {
-                                "collection": 16,
-                                "clut": 1,
-                                "sequence": 0
-                            }
+                            "display": "S'pht (major invisible)"
                         },
                         {
                             "class": "monster-18",
-                            "display": "Hulk (minor) [purple]",
-                            "shape": {
-                                "collection": 15,
-                                "clut": 0,
-                                "sequence": 2
-                            }
+                            "display": "Hulk (minor) [purple]"
                         },
                         {
                             "class": "monster-19",
-                            "display": "Hulk (major) [purple]",
-                            "shape": {
-                                "collection": 15,
-                                "clut": 0,
-                                "sequence": 2
-                            }
+                            "display": "Hulk (major) [purple]"
                         },
                         {
                             "class": "monster-20",
-                            "display": "Hunter (minor) [brown]",
-                            "shape": {
-                                "collection": 5,
-                                "clut": 0,
-                                "sequence": 3
-                            }
+                            "display": "Hunter (minor) [brown]"
                         },
                         {
                             "class": "monster-21",
-                            "display": "Hunter (major) [green]",
-                            "shape": {
-                                "collection": 5,
-                                "clut": 1,
-                                "sequence": 3
-                            }
+                            "display": "Hunter (major) [green]"
                         },
                         {
                             "class": "monster-22",
-                            "display": "Juggernuat (minor) [grey]",
-                            "shape": {
-                                "collection": 21,
-                                "clut": 0,
-                                "sequence": 0
-                            }
+                            "display": "Juggernuat (minor) [grey]"
                         },
                         {
                             "class": "monster-23",
-                            "display": "Juggernaut (major) [unused]",
-                            "shape": {
-                                "collection": 21,
-                                "clut": 1,
-                                "sequence": 0
-                            }
+                            "display": "Juggernaut (major) [unused]"
                         },
                         {
                             "class": "monster-24",
-                            "display": "Looker (minor) [red]",
-                            "shape": {
-                                "collection": 3,
-                                "clut": 0,
-                                "sequence": 0
-                            }
+                            "display": "Looker (minor) [red]"
                         },
                         {
                             "class": "monster-25",
-                            "display": "Looker (major) [purple]",
-                            "shape": {
-                                "collection": 3,
-                                "clut": 1,
-                                "sequence": 0
-                            }
+                            "display": "Looker (major) [purple]"
                         },
                         {
                             "class": "monster-26",
-                            "display": "Looker (invisible)",
-                            "shape": {
-                                "collection": 3,
-                                "clut": 1,
-                                "sequence": 0
-                            }
+                            "display": "Looker (invisible)"
                         },
                         {
                             "class": "monster-30",
-                            "display": "Pfhor Trooper (minor) [green]",
-                            "shape": {
-                                "collection": 26,
-                                "clut": 0,
-                                "sequence": 1
-                            }
+                            "display": "Pfhor Trooper (minor) [green]"
                         },
                         {
                             "class": "monster-31",
-                            "display": "Pfhor Trooper (major) [purple]",
-                            "shape": {
-                                "collection": 26,
-                                "clut": 1,
-                                "sequence": 1
-                            }
+                            "display": "Pfhor Trooper (major) [purple]"
                         },
                         {
                             "class": "monster-32",
-                            "display": "Wasp (minor) [brown]",
-                            "shape": {
-                                "collection": 27,
-                                "clut": 0,
-                                "sequence": 0
-                            }
+                            "display": "Wasp (minor) [brown]"
                         },
                         {
                             "class": "monster-33",
-                            "display": "Wasp (major) [grey]",
-                            "shape": {
-                                "collection": 27,
-                                "clut": 1,
-                                "sequence": 0
-                            }
+                            "display": "Wasp (major) [grey]"
                         },
                         {
                             "class": "monster-38",
-                            "display": "Alien Leader",
-                            "shape": {
-                                "collection": 29,
-                                "clut": 0,
-                                "sequence": 0
-                            }
+                            "display": "Alien Leader"
                         }
                     ]
                 },
@@ -543,21 +308,11 @@
                     "types": [
                         {
                             "class": "monster-1",
-                            "display": "Simulacrum",
-                            "shape": {
-                                "collection": 12,
-                                "clut": 4,
-                                "sequence": 5
-                            }
+                            "display": "Simulacrum"
                         },
                         {
                             "class": "monster-39",
-                            "display": "Bad MADD",
-                            "shape": {
-                                "collection": 22,
-                                "clut": 1,
-                                "sequence": 0
-                            }
+                            "display": "Bad MADD"
                         }
                     ]
                 },
@@ -567,75 +322,35 @@
                     "types": [
                         {
                             "class": "monster-10",
-                            "display": "",
-                            "shape": {
-                                "collection": 0,
-                                "clut": 0,
-                                "sequence": 0
-                            }
+                            "display": ""
                         },
                         {
                             "class": "monster-11",
-                            "display": "",
-                            "shape": {
-                                "collection": 0,
-                                "clut": 0,
-                                "sequence": 0
-                            }
+                            "display": ""
                         },
                         {
                             "class": "monster-28",
-                            "display": "",
-                            "shape": {
-                                "collection": 0,
-                                "clut": 0,
-                                "sequence": 0
-                            }
+                            "display": ""
                         },
                         {
                             "class": "monster-29",
-                            "display": "",
-                            "shape": {
-                                "collection": 0,
-                                "clut": 0,
-                                "sequence": 0
-                            }
+                            "display": ""
                         },
                         {
                             "class": "monster-34",
-                            "display": "",
-                            "shape": {
-                                "collection": 0,
-                                "clut": 0,
-                                "sequence": 0
-                            }
+                            "display": ""
                         },
                         {
                             "class": "monster-35",
-                            "display": "",
-                            "shape": {
-                                "collection": 0,
-                                "clut": 0,
-                                "sequence": 0
-                            }
+                            "display": ""
                         },
                         {
                             "class": "monster-36",
-                            "display": "",
-                            "shape": {
-                                "collection": 0,
-                                "clut": 0,
-                                "sequence": 0
-                            }
+                            "display": ""
                         },
                         {
                             "class": "monster-37",
-                            "display": "",
-                            "shape": {
-                                "collection": 0,
-                                "clut": 0,
-                                "sequence": 0
-                            }
+                            "display": ""
                         }
                     ]
                 }
@@ -647,156 +362,71 @@
             "types": [
                 {
                     "class": "object-0",
-                    "display": "upright waste",
-                    "shape": {
-                        "collection": 23,
-                        "clut": 0,
-                        "sequence": 0
-                    }
+                    "display": "upright waste"
                 },
                 {
                     "class": "object-1",
-                    "display": "sideways waste",
-                    "shape": {
-                        "collection": 23,
-                        "clut": 0,
-                        "sequence": 1
-                    }
+                    "display": "sideways waste"
                 },
                 {
                     "class": "object-2",
-                    "display": "upright cylinder",
-                    "shape": {
-                        "collection": 23,
-                        "clut": 0,
-                        "sequence": 2
-                    }
+                    "display": "upright cylinder"
                 },
                 {
                     "class": "object-3",
-                    "display": "sideways cylinder",
-                    "shape": {
-                        "collection": 23,
-                        "clut": 0,
-                        "sequence": 3
-                    }
+                    "display": "sideways cylinder"
                 },
                 {
                     "class": "object-4",
-                    "display": "paper",
-                    "shape": {
-                        "collection": 23,
-                        "clut": 0,
-                        "sequence": 4
-                    }
+                    "display": "paper"
                 },
                 {
                     "class": "object-5",
-                    "display": "comm.satelite",
-                    "shape": {
-                        "collection": 23,
-                        "clut": 0,
-                        "sequence": 5
-                    }
+                    "display": "comm.satelite"
                 },
                 {
                     "class": "object-6",
-                    "display": "escape pod",
-                    "shape": {
-                        "collection": 23,
-                        "clut": 0,
-                        "sequence": 6
-                    }
+                    "display": "escape pod"
                 },
                 {
                     "class": "object-7",
-                    "display": "bioh. crate",
-                    "shape": {
-                        "collection": 23,
-                        "clut": 0,
-                        "sequence": 7
-                    }
+                    "display": "bioh. crate"
                 },
                 {
                     "class": "object-8",
-                    "display": "alien ship",
-                    "shape": {
-                        "collection": 23,
-                        "clut": 0,
-                        "sequence": 8
-                    }
+                    "display": "alien ship"
                 },
                 {
                     "class": "object-9",
-                    "display": "dead soft",
-                    "shape": {
-                        "collection": 12,
-                        "clut": 0,
-                        "sequence": 2
-                    }
+                    "display": "dead soft"
                 },
                 {
                     "class": "object-10",
-                    "display": "disected.BOB",
-                    "shape": {
-                        "collection": 25,
-                        "clut": 0,
-                        "sequence": 0
-                    }
+                    "display": "disected.BOB"
                 },
                 {
                     "class": "object-11",
-                    "display": "Pfhor dorment",
-                    "shape": {
-                        "collection": 25,
-                        "clut": 0,
-                        "sequence": 1
-                    }
+                    "display": "Pfhor dorment"
                 },
                 {
                     "class": "object-12",
-                    "display": "empty armor",
-                    "shape": {
-                        "collection": 25,
-                        "clut": 0,
-                        "sequence": 2
-                    }
+                    "display": "empty armor"
                 },
                 {
                     "class": "object-13",
-                    "display": "examination BOB",
-                    "shape": {
-                        "collection": 25,
-                        "clut": 0,
-                        "sequence": 3
-                    }
+                    "display": "examination BOB"
                 },
                 {
                     "class": "object-14",
-                    "display": "electrosynth",
-                    "shape": {
-                        "collection": 25,
-                        "clut": 0,
-                        "sequence": 4
-                    }
+                    "display": "electrosynth"
                 },
                 {
                     "class": "object-15",
-                    "display": "orb",
-                    "shape": {
-                        "collection": 25,
-                        "clut": 0,
-                        "sequence": 5
-                    }
+                    "display": "orb"
                 },
                 {
                     "class": "object-16",
-                    "display": "UESC Marathon",
-                    "shape": {
-                        "collection": 25,
-                        "clut": 0,
-                        "sequence": 6
-                    }
+                    "display": "UESC Marathon"
                 }
             ]
         },
