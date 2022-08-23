@@ -3,6 +3,7 @@
 import argparse
 import xml.etree.ElementTree as ET
 from collections import defaultdict
+from enum import IntFlag, auto
 import json
 import os
 import errno
@@ -50,6 +51,37 @@ CHUNK_TYPES_IGNORED = [
     'PXpx',
     'WPpx',
 ]
+
+# from https://github.com/Aleph-One-Marathon/alephone/blob/e9c3c4903bb662a4d7c84e6b8cf587efc84293e3/Source_Files/GameWorld/platforms.h#L72
+class PlatformFlags(IntFlag):
+    is_initially_active = auto() #  otherwise inactive
+    is_initially_extended = auto() #  high for floor platforms, low for ceiling platforms, closed for two-way platforms
+    deactivates_at_each_level = auto() #  this platform will deactivate each time it reaches a discrete level
+    deactivates_at_initial_level = auto() #  this platform will deactivate upon returning to its original position
+    activates_adjacent_platforms_when_deactivating = auto() #  when deactivating, this platform activates adjacent platforms
+    extends_floor_to_ceiling = auto() #  i.e., there is no empty space when the platform is fully extended
+    comes_from_floor = auto() #  platform rises from floor
+    comes_from_ceiling = auto() #  platform lowers from ceiling
+    causes_damage = auto() #  when obstructed by monsters, this platform causes damage
+    does_not_activate_parent = auto() #  does not reactive it’s parent (i.e., that platform which activated it)
+    activates_only_once = auto() #  cannot be activated a second time
+    activates_light = auto() #  activates floor and ceiling lightsources while activating
+    deactivates_light = auto() #  deactivates floor and ceiling lightsources while deactivating
+    is_player_controllable = auto() #  i.e., door: players can use action key to change the state and/or direction of this platform
+    is_monster_controllable = auto() #  i.e., door: monsters can expect to be able to move this platform even if inactive
+    reverses_direction_when_obstructed = auto()
+    cannot_be_externally_deactivated = auto() #  when active, can only be deactivated by itself
+    uses_native_polygon_heights = auto() #  complicated interpretation; uses native polygon heights during automatic min,max calculation
+    delays_before_activation = auto() #  whether or not the platform begins with the maximum delay before moving
+    activates_adjacent_platforms_when_activating = auto()
+    deactivates_adjacent_platforms_when_activating = auto()
+    deactivates_adjacent_platforms_when_deactivating = auto()
+    contracts_slower = auto()
+    activates_adjacent_platforms_at_each_level = auto()
+    is_locked = auto()
+    is_secret = auto()
+    is_door = auto()
+    floods_m1 = auto()
 
 def mkdir_p(path):
     try:
@@ -324,15 +356,78 @@ def update_elevations(level_info, floor, ceiling):
     level_info['elevation']['floor'] = min(current['floor'], floor)
     level_info['elevation']['ceiling'] = max(current['ceiling'], ceiling)
 
-def update_poly_info(level_info, poly_index=None, poly=None, ids=None):
+# based on https://github.com/Aleph-One-Marathon/alephone/blob/e9c3c4903bb662a4d7c84e6b8cf587efc84293e3/Source_Files/GameWorld/platforms.cpp#L933
+def calculate_platform_extrema(level_dict, platform):
+    lowest_adjacent_floor = MAX_INT
+    lowest_adjacent_ceiling = MAX_INT
+    highest_adjacent_floor = -MAX_INT
+    highest_adjacent_ceiling = -MAX_INT
+    NONE = -1
+    poly = level_dict['POLY']['polygon'][platform['polygon_index']]
+    lowest_level = platform['minimum_height']
+    highest_level = platform['maximum_height']
+    for adjacent_index in range(8):
+        adjacent_poly_index = poly['adjacent_polygon_index_{}'.format(adjacent_index)]
+        if adjacent_poly_index < 1:
+            continue
+        adjacent_polygon = level_dict['POLY']['polygon'][adjacent_poly_index]
+        if adjacent_polygon['floor_height']<lowest_adjacent_floor:
+            lowest_adjacent_floor = adjacent_polygon['floor_height']
+        if adjacent_polygon['floor_height']>highest_adjacent_floor:
+            highest_adjacent_floor = adjacent_polygon['floor_height']
+        if adjacent_polygon['ceiling_height']<lowest_adjacent_ceiling:
+            lowest_adjacent_ceiling = adjacent_polygon['ceiling_height']
+        if adjacent_polygon['ceiling_height']>highest_adjacent_ceiling:
+            highest_adjacent_ceiling = adjacent_polygon['ceiling_height']
+    # take into account the EXTENDS_FLOOR_TO_CEILING flag
+    if PlatformFlags.extends_floor_to_ceiling & platform['static_flags']:
+        if poly['ceiling_height']>highest_adjacent_floor:
+            highest_adjacent_floor = poly['ceiling_height']
+        if poly['floor_height']<lowest_adjacent_ceiling:
+            lowest_adjacent_ceiling = poly['floor_height']
+    #  calculate floor and ceiling min, max values as appropriate for the platform direction
+    if PlatformFlags.comes_from_floor & platform['static_flags'] and PlatformFlags.comes_from_ceiling & platform['static_flags']:
+        #  split platforms always meet in the center
+        platform['minimum_floor_height']= lowest_adjacent_floor if lowest_level==NONE else lowest_level
+        platform['maximum_ceiling_height']= highest_adjacent_ceiling if highest_level==NONE else highest_level
+        platform['maximum_floor_height']= platform['minimum_ceiling_height']=(platform['minimum_floor_height']+platform['maximum_ceiling_height'])/2
+    else:
+        if PlatformFlags.comes_from_floor & platform['static_flags']:
+            if PlatformFlags.uses_native_polygon_heights & platform['static_flags']:
+                if poly['floor_height']<lowest_adjacent_floor or PlatformFlags.extends_floor_to_ceiling & platform['static_flags']:
+                    lowest_adjacent_floor= poly['floor_height']
+                else:
+                    highest_adjacent_floor= poly['floor_height']
+            platform['minimum_floor_height']= lowest_adjacent_floor if lowest_level==NONE else lowest_level
+            platform['maximum_floor_height']= highest_adjacent_floor if highest_level==NONE else highest_level
+            platform['minimum_ceiling_height']= platform['maximum_ceiling_height']= poly['ceiling_height']
+        elif PlatformFlags.comes_from_ceiling & platform['static_flags']:
+            if PlatformFlags.uses_native_polygon_heights & platform['static_flags']:
+                if poly['ceiling_height']>highest_adjacent_ceiling or PlatformFlags.extends_floor_to_ceiling & platform['static_flags']:
+                    highest_adjacent_ceiling= poly['ceiling_height']
+                else:
+                    lowest_adjacent_ceiling= poly['ceiling_height']
+            platform['minimum_ceiling_height']= lowest_adjacent_ceiling if lowest_level==NONE else lowest_level
+            platform['maximum_ceiling_height']= highest_adjacent_ceiling if highest_level==NONE else highest_level
+            platform['minimum_floor_height']= platform['maximum_floor_height']= poly['floor_height']
+
+def update_poly_info(level_info, poly_index=None, poly=None, ids=None, platform=None):
     if poly_index is None and poly is not None:
         poly_index = poly['index']
+    if poly_index is None and platform is not None:
+        poly_index = platform['polygon_index']
     if poly_index is None:
         raise Exception('cannot update poly info without poly index or polygon')
     poly_info = level_info['polygons'][poly_index]
     if poly is not None:
         floor = poly['floor_height']/MAX_INT
         ceiling = poly['ceiling_height']/MAX_INT
+        poly_info['floor_height'] = floor
+        poly_info['ceiling_height'] = ceiling
+        update_elevations(level_info, floor, ceiling)
+    if platform is not None:
+        floor = platform['minimum_floor_height']/MAX_INT
+        ceiling = platform['maximum_ceiling_height']/MAX_INT
         poly_info['floor_height'] = floor
         poly_info['ceiling_height'] = ceiling
         update_elevations(level_info, floor, ceiling)
@@ -380,6 +475,10 @@ def generate_polygons(level_dict, platform_map, ignore_polys, map_type, level_in
         )
         update_overlays(level_info, selectors='polygon.{}'.format(css_class))
         update_poly_info(level_info, poly=poly, ids=[css_id])
+        if poly['type'] == 5:
+            platform = platform_map[poly['index']]
+            calculate_platform_extrema(level_dict, platform)
+            update_poly_info(level_info, platform=platform)
     poly_svg += '<!-- end group: "polygons" -->\n</g>\n'
     return poly_svg
 
@@ -1001,7 +1100,7 @@ def calculate_poly_class(poly, platform_map, ignore_polys, liquids, map_type):
     if is_landscape_poly(poly):
         return 'landscape_'
     if poly['index'] in platform_map:
-        if platform_map[poly['index']]['static_flags'] & 0x2000000:
+        if platform_map[poly['index']]['static_flags'] & PlatformFlags.is_secret:
             return 'secret_platform'
         else:
             return 'platform'
@@ -1055,7 +1154,7 @@ def is_unseen_poly(poly):
     return poly['type'] != 5 and poly['floor_height'] == poly['ceiling_height']
 
 def is_ignored_poly(poly, ignore_polys):
-    return poly['index'] in ignore_polys;
+    return poly['index'] in ignore_polys
 
 def is_hidden_poly(poly, ignore_polys):
     return is_landscape_poly(poly) or is_unseen_poly(poly) or is_ignored_poly(poly, ignore_polys)
