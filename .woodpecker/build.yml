@@ -120,21 +120,22 @@ pipeline:
     pull: true
     group: svg
     commands:
-      - ./map2svg.py -d ../_tmp/site/m1 -m ../_tmp/data/m1-map.xml -i ../_tmp/repos/marathon-utils/map-extras/M1_ignored_polys.txt -c map_info/chapters-m1.txt -b m1/
+      - ./map2svg.py -d ../_tmp/site/m1 -m ../_tmp/data/m1-map.xml -i ../_tmp/repos/marathon-utils/map-extras/M1_ignored_polys.txt -c map_info/m1-chapters.txt -b m1/
 
   xml2svg-m2:
     image: ${REGISTRY_HOST}/arno/marathon-python:latest
     pull: true
     group: svg
     commands:
-      - ./map2svg.py -d ../_tmp/site/m2 -m ../_tmp/data/m2-map.xml -i ../_tmp/repos/marathon-utils/map-extras/M2_ignored_polys.txt -c map_info/chapters-m2.txt -b m2/
+      - ./map2svg.py -d ../_tmp/site/m2 -m ../_tmp/data/m2-map.xml -i ../_tmp/repos/marathon-utils/map-extras/M2_ignored_polys.txt -c map_info/m2-chapters.txt -b m2/
 
   xml2svg-m3:
     image: ${REGISTRY_HOST}/arno/marathon-python:latest
     pull: true
     group: svg
     commands:
-      - ./map2svg.py -d ../_tmp/site/m3 -m ../_tmp/data/m3-map.xml -i ../_tmp/repos/marathon-utils/map-extras/M3_ignored_polys.txt -c map_info/chapters-m3.txt -b m3/
+      - ./map2svg.py -d ../_tmp/site/m3 -m ../_tmp/data/m3-map.xml -i ../_tmp/repos/marathon-utils/map-extras/M3_ignored_polys.txt -c map_info/m3-chapters.txt -b m3/
+      - ./map2monsters.py -m ../_tmp/data/m3-map.xml -c map_info/m3-collections.json -b ../_tmp/site/m3/
 
 # deploy
 

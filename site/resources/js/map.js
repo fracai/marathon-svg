@@ -3,6 +3,7 @@
 var maps_json = null;
 var levels_json = null;
 var level_json = null;
+var level_MNov = null;
 var overlay_json = null;
 var overlay_style_map = {};
 
@@ -22,7 +23,7 @@ function load_common(path, callback, data_extractor) {
         .then(callback)
         // handle exceptions
         .catch(err => {
-            console.log(err.message);
+            console.log(err);
             if (err.message.startsWith('HTTP error')) {
                 return;
             }
@@ -121,7 +122,15 @@ function populate_overlays() {
     if (null == overlay_json || null == level_json) {
         return;
     }
-    const overlay_string = process_overlay_types(overlay_json.types);
+    let merged_overlays = overlay_json.types;
+    if (null != level_MNov) {
+        for (let i=0; i<merged_overlays.length; i+=1) {
+            if ('monster' == merged_overlays[i].class) {
+                merged_overlays[i].types = level_MNov.types;
+            }
+        }
+    }
+    const overlay_string = process_overlay_types(merged_overlays);
     const overlays_div = document.getElementById('overlays');
     overlays_div.innerHTML = '';
     if ('' == overlay_string) {
@@ -201,10 +210,19 @@ function apply_collapsible() {
 function load_level(base_path) {
     const svg_path = base_path+'.svg';
     const json_path = base_path+'.json';
-    load_json(json_path, value => {
-        level_json = value;
+    const MNov_path = base_path+'_MNov.json';
+    Promise.all([
+        load_json(json_path, j => j),
+        load_json(MNov_path, j => j)
+    ]).then(json => {
+        level_json = json[0];
+        level_MNov = json[1];
         display_svg(svg_path);
         set_initial_elevation();
+        build_overlay_style_map(overlay_json.types);
+        if (undefined != level_MNov) {
+            build_overlay_style_map([level_MNov]);
+        }
         populate_overlays();
     });
 }
