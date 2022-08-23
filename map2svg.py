@@ -364,11 +364,17 @@ def calculate_platform_extrema(level_dict, platform):
     highest_adjacent_ceiling = -MAX_INT
     NONE = -1
     poly = level_dict['POLY']['polygon'][platform['polygon_index']]
-    lowest_level = platform['minimum_height']
-    highest_level = platform['maximum_height']
+    if 'minimum_height' in platform:
+        lowest_level = platform['minimum_height']
+        highest_level = platform['maximum_height']
+    elif 'minimum_floor_height' in platform:
+        lowest_level = platform['minimum_floor_height']
+        highest_level = platform['maximum_ceiling_height']
+    else:
+        return
     for adjacent_index in range(8):
         adjacent_poly_index = poly['adjacent_polygon_index_{}'.format(adjacent_index)]
-        if adjacent_poly_index < 1:
+        if adjacent_poly_index < 1 or adjacent_poly_index > len(level_dict['POLY']['polygon']):
             continue
         adjacent_polygon = level_dict['POLY']['polygon'][adjacent_poly_index]
         if adjacent_polygon['floor_height']<lowest_adjacent_floor:
