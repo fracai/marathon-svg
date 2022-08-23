@@ -7,7 +7,6 @@ TODO:
 - zoom and pan (? https://github.com/bumbu/svg-pan-zoom)
 - on-map (or adjacent) legend and scale
 - play sounds on hover (including monsters, platforms, water, etc.)
-- per-level overlays.json to support changing monster alliances
 - link terminals to Story pages
 - some method to better highlight the locations of overlay items (single items can get lost on busy maps)
 - display category counts
