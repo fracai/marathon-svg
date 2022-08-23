@@ -512,7 +512,7 @@
     },
     "32": {
       "floor_height": 0.0,
-      "ceiling_height": 0.0,
+      "ceiling_height": 0.03125,
       "connections": [
         "line_26",
         "line_27",
@@ -526,7 +526,7 @@
     },
     "33": {
       "floor_height": 0.0,
-      "ceiling_height": 0.0,
+      "ceiling_height": 0.03125,
       "connections": [
         "line_260",
         "line_262",

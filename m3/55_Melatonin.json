@@ -966,7 +966,7 @@
       ]
     },
     "54": {
-      "floor_height": 0.125,
+      "floor_height": 0.09375,
       "ceiling_height": 0.125,
       "connections": [
         "line_144",

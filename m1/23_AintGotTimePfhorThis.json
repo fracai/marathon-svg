@@ -463,7 +463,7 @@
       ]
     },
     "44": {
-      "floor_height": 0.046875,
+      "floor_height": 0.0531005859375,
       "ceiling_height": 0.140625,
       "connections": [
         "line_115",
@@ -661,7 +661,7 @@
     },
     "30": {
       "floor_height": 0.0625,
-      "ceiling_height": 0.09375,
+      "ceiling_height": 0.125,
       "connections": [
         "line_113",
         "line_114",
@@ -1633,7 +1633,7 @@
     },
     "128": {
       "floor_height": 0.09375,
-      "ceiling_height": 0.125,
+      "ceiling_height": 0.15625,
       "connections": [
         "line_180",
         "line_193",

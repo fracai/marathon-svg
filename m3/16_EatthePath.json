@@ -2373,7 +2373,7 @@
     },
     "347": {
       "floor_height": 0.0,
-      "ceiling_height": 0.0,
+      "ceiling_height": 0.03125,
       "connections": [
         "line_820",
         "line_991",
@@ -4153,7 +4153,7 @@
     },
     "390": {
       "floor_height": 0.106201171875,
-      "ceiling_height": 0.106231689453125,
+      "ceiling_height": 0.11248779296875,
       "connections": [
         "line_1102",
         "line_1103",
@@ -4452,7 +4452,7 @@
     },
     "144": {
       "floor_height": 0.137451171875,
-      "ceiling_height": 0.137451171875,
+      "ceiling_height": 0.1875,
       "connections": [
         "line_390",
         "line_392",
@@ -4500,7 +4500,7 @@
     },
     "158": {
       "floor_height": 0.137451171875,
-      "ceiling_height": 0.153076171875,
+      "ceiling_height": 0.168701171875,
       "connections": [
         "line_450",
         "line_451",
@@ -4746,7 +4746,7 @@
       ]
     },
     "157": {
-      "floor_height": 0.149993896484375,
+      "floor_height": 0.137451171875,
       "ceiling_height": 0.168701171875,
       "connections": [
         "line_447",
@@ -5058,7 +5058,7 @@
       ]
     },
     "11": {
-      "floor_height": 0.1875,
+      "floor_height": 0.0,
       "ceiling_height": 0.1875,
       "connections": [
         "line_33",
@@ -5069,7 +5069,7 @@
       ]
     },
     "15": {
-      "floor_height": 0.1875,
+      "floor_height": 0.0,
       "ceiling_height": 0.1875,
       "connections": [
         "line_47",

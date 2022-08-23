@@ -1211,8 +1211,8 @@
       ]
     },
     "25": {
-      "floor_height": 0.031219482421875,
-      "ceiling_height": 0.031219482421875,
+      "floor_height": 0.004669189453125,
+      "ceiling_height": 0.05780029296875,
       "connections": [
         "line_73",
         "line_75",
@@ -1224,8 +1224,8 @@
       ]
     },
     "31": {
-      "floor_height": 0.031219482421875,
-      "ceiling_height": 0.031219482421875,
+      "floor_height": 0.004669189453125,
+      "ceiling_height": 0.05780029296875,
       "connections": [
         "line_58",
         "line_60",
@@ -1240,8 +1240,8 @@
       ]
     },
     "37": {
-      "floor_height": 0.031219482421875,
-      "ceiling_height": 0.031219482421875,
+      "floor_height": 0.004669189453125,
+      "ceiling_height": 0.05780029296875,
       "connections": [
         "line_65",
         "line_67",
@@ -1253,8 +1253,8 @@
       ]
     },
     "43": {
-      "floor_height": 0.031219482421875,
-      "ceiling_height": 0.031219482421875,
+      "floor_height": 0.004669189453125,
+      "ceiling_height": 0.05780029296875,
       "connections": [
         "line_1",
         "line_14",
@@ -1266,8 +1266,8 @@
       ]
     },
     "45": {
-      "floor_height": 0.031219482421875,
-      "ceiling_height": 0.031219482421875,
+      "floor_height": 0.004669189453125,
+      "ceiling_height": 0.05780029296875,
       "connections": [
         "line_11",
         "line_12",
@@ -1279,8 +1279,8 @@
       ]
     },
     "48": {
-      "floor_height": 0.031219482421875,
-      "ceiling_height": 0.031219482421875,
+      "floor_height": 0.004669189453125,
+      "ceiling_height": 0.05780029296875,
       "connections": [
         "line_19",
         "line_23",
@@ -1542,7 +1542,7 @@
       ]
     },
     "87": {
-      "floor_height": 0.0625,
+      "floor_height": 0.015625,
       "ceiling_height": 0.09375,
       "connections": [
         "line_303",
@@ -1868,7 +1868,7 @@
       ]
     },
     "24": {
-      "floor_height": 0.09375,
+      "floor_height": -0.125,
       "ceiling_height": 0.125,
       "connections": [
         "line_33",

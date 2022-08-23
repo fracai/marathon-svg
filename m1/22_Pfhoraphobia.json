@@ -2289,7 +2289,7 @@
       ]
     },
     "43": {
-      "floor_height": 0.0625,
+      "floor_height": -0.25,
       "ceiling_height": 0.09375,
       "connections": [
         "line_154",

@@ -2536,7 +2536,7 @@
       ]
     },
     "70": {
-      "floor_height": 0.012481689453125,
+      "floor_height": 0.0,
       "ceiling_height": 0.0625,
       "connections": [
         "line_251",
@@ -3174,7 +3174,7 @@
       ]
     },
     "29": {
-      "floor_height": 0.0625,
+      "floor_height": 0.0,
       "ceiling_height": 0.0625,
       "connections": [
         "line_88",
@@ -3188,7 +3188,7 @@
       ]
     },
     "64": {
-      "floor_height": 0.0625,
+      "floor_height": 0.0,
       "ceiling_height": 0.0625,
       "connections": [
         "line_233",
@@ -3519,7 +3519,7 @@
       ]
     },
     "233": {
-      "floor_height": 0.125,
+      "floor_height": 0.0625,
       "ceiling_height": 0.125,
       "connections": [
         "line_756",

@@ -284,7 +284,7 @@
       ]
     },
     "1": {
-      "floor_height": 0.03125,
+      "floor_height": 0.0,
       "ceiling_height": 0.03125,
       "connections": [
         "line_0",

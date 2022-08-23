@@ -1940,7 +1940,7 @@
     },
     "58": {
       "floor_height": 0.0,
-      "ceiling_height": 0.0,
+      "ceiling_height": 0.043731689453125,
       "connections": [
         "line_212",
         "line_213",
@@ -3657,7 +3657,7 @@
       ]
     },
     "116": {
-      "floor_height": 0.015625,
+      "floor_height": 0.0062255859375,
       "ceiling_height": 0.037445068359375,
       "connections": [
         "line_367",
@@ -3670,7 +3670,7 @@
       ]
     },
     "118": {
-      "floor_height": 0.015625,
+      "floor_height": 0.0062255859375,
       "ceiling_height": 0.037445068359375,
       "connections": [
         "line_364",
@@ -5783,8 +5783,8 @@
       ]
     },
     "313": {
-      "floor_height": 0.046844482421875,
-      "ceiling_height": 0.046844482421875,
+      "floor_height": 0.03125,
+      "ceiling_height": 0.06243896484375,
       "connections": [
         "line_1044",
         "line_1045",
@@ -5797,8 +5797,8 @@
       ]
     },
     "324": {
-      "floor_height": 0.046844482421875,
-      "ceiling_height": 0.046844482421875,
+      "floor_height": 0.03125,
+      "ceiling_height": 0.06243896484375,
       "connections": [
         "line_1082",
         "line_1083",
@@ -5810,8 +5810,8 @@
       ]
     },
     "438": {
-      "floor_height": 0.046844482421875,
-      "ceiling_height": 0.046844482421875,
+      "floor_height": 0.03125,
+      "ceiling_height": 0.06243896484375,
       "connections": [
         "line_1490",
         "line_1491",
@@ -5824,8 +5824,8 @@
       ]
     },
     "476": {
-      "floor_height": 0.046844482421875,
-      "ceiling_height": 0.046844482421875,
+      "floor_height": 0.03125,
+      "ceiling_height": 0.06243896484375,
       "connections": [
         "line_1462",
         "line_1471",
@@ -5838,8 +5838,8 @@
       ]
     },
     "480": {
-      "floor_height": 0.046844482421875,
-      "ceiling_height": 0.046844482421875,
+      "floor_height": 0.03125,
+      "ceiling_height": 0.06243896484375,
       "connections": [
         "line_1459",
         "line_1468",
@@ -5851,8 +5851,8 @@
       ]
     },
     "496": {
-      "floor_height": 0.046844482421875,
-      "ceiling_height": 0.046844482421875,
+      "floor_height": 0.03125,
+      "ceiling_height": 0.06243896484375,
       "connections": [
         "line_1508",
         "line_1585",
@@ -5865,8 +5865,8 @@
       ]
     },
     "502": {
-      "floor_height": 0.046844482421875,
-      "ceiling_height": 0.046844482421875,
+      "floor_height": 0.03125,
+      "ceiling_height": 0.06243896484375,
       "connections": [
         "line_1523",
         "line_1524",
@@ -5878,8 +5878,8 @@
       ]
     },
     "505": {
-      "floor_height": 0.046844482421875,
-      "ceiling_height": 0.046844482421875,
+      "floor_height": 0.03125,
+      "ceiling_height": 0.06243896484375,
       "connections": [
         "line_1502",
         "line_1503",
@@ -6182,7 +6182,7 @@
       ]
     },
     "138": {
-      "floor_height": 0.06243896484375,
+      "floor_height": 0.03125,
       "ceiling_height": 0.06243896484375,
       "connections": [
         "line_435",
@@ -6196,7 +6196,7 @@
     },
     "657": {
       "floor_height": 0.06243896484375,
-      "ceiling_height": 0.06243896484375,
+      "ceiling_height": 0.09375,
       "connections": [
         "line_1847",
         "line_2094",
@@ -6813,7 +6813,7 @@
     },
     "668": {
       "floor_height": 0.078125,
-      "ceiling_height": 0.078125,
+      "ceiling_height": 0.109375,
       "connections": [
         "line_1883",
         "line_1885",
@@ -7115,7 +7115,7 @@
     },
     "659": {
       "floor_height": 0.09375,
-      "ceiling_height": 0.09375,
+      "ceiling_height": 0.12493896484375,
       "connections": [
         "line_1837",
         "line_2091",
@@ -7708,7 +7708,7 @@
       ]
     },
     "662": {
-      "floor_height": 0.0999755859375,
+      "floor_height": -0.09375,
       "ceiling_height": 0.12493896484375,
       "connections": [
         "line_2014",
@@ -7720,7 +7720,7 @@
       ]
     },
     "229": {
-      "floor_height": 0.1015625,
+      "floor_height": 0.0625,
       "ceiling_height": 0.10162353515625,
       "connections": [
         "line_755",
@@ -7732,7 +7732,7 @@
       ]
     },
     "227": {
-      "floor_height": 0.10162353515625,
+      "floor_height": 0.06243896484375,
       "ceiling_height": 0.10162353515625,
       "connections": [
         "line_753",
@@ -7782,8 +7782,8 @@
       ]
     },
     "465": {
-      "floor_height": 0.1077880859375,
-      "ceiling_height": 0.1077880859375,
+      "floor_height": 0.09375,
+      "ceiling_height": 0.121826171875,
       "connections": [
         "line_1430",
         "line_1431",
@@ -7795,8 +7795,8 @@
       ]
     },
     "471": {
-      "floor_height": 0.1077880859375,
-      "ceiling_height": 0.1077880859375,
+      "floor_height": 0.09375,
+      "ceiling_height": 0.121826171875,
       "connections": [
         "line_1426",
         "line_787",
@@ -7808,8 +7808,8 @@
       ]
     },
     "472": {
-      "floor_height": 0.1077880859375,
-      "ceiling_height": 0.1077880859375,
+      "floor_height": 0.09375,
+      "ceiling_height": 0.121826171875,
       "connections": [
         "line_1424",
         "line_1425",
@@ -7820,8 +7820,8 @@
       ]
     },
     "473": {
-      "floor_height": 0.1077880859375,
-      "ceiling_height": 0.1077880859375,
+      "floor_height": 0.09375,
+      "ceiling_height": 0.121826171875,
       "connections": [
         "line_1433",
         "line_1434",
@@ -8156,7 +8156,7 @@
       ]
     },
     "230": {
-      "floor_height": 0.12493896484375,
+      "floor_height": 0.085784912109375,
       "ceiling_height": 0.12493896484375,
       "connections": [
         "line_754",
@@ -8167,7 +8167,7 @@
       ]
     },
     "228": {
-      "floor_height": 0.125,
+      "floor_height": 0.0859375,
       "ceiling_height": 0.12493896484375,
       "connections": [
         "line_756",
@@ -8178,7 +8178,7 @@
       ]
     },
     "581": {
-      "floor_height": 0.140625,
+      "floor_height": 0.109375,
       "ceiling_height": 0.140625,
       "connections": [
         "line_1941",

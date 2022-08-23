@@ -123,7 +123,7 @@
   "polygons": {
     "170": {
       "floor_height": -0.125,
-      "ceiling_height": -0.09375,
+      "ceiling_height": 0.140625,
       "connections": [
         "line_555",
         "line_556",
@@ -1612,7 +1612,7 @@
       ]
     },
     "254": {
-      "floor_height": -0.087493896484375,
+      "floor_height": -0.118743896484375,
       "ceiling_height": -0.087493896484375,
       "connections": [
         "line_52",
@@ -1832,7 +1832,7 @@
       ]
     },
     "253": {
-      "floor_height": -0.012481689453125,
+      "floor_height": -0.118743896484375,
       "ceiling_height": 0.125,
       "connections": [
         "line_909",
@@ -3671,7 +3671,7 @@
       ]
     },
     "66": {
-      "floor_height": 0.03125,
+      "floor_height": 0.0,
       "ceiling_height": 0.03125,
       "connections": [
         "line_103",
@@ -3772,7 +3772,7 @@
       ]
     },
     "215": {
-      "floor_height": 0.0625,
+      "floor_height": 0.0,
       "ceiling_height": 0.0625,
       "connections": [
         "line_388",
@@ -4663,7 +4663,7 @@
       ]
     },
     "169": {
-      "floor_height": 0.15625,
+      "floor_height": -0.125,
       "ceiling_height": 0.15625,
       "connections": [
         "line_531",
@@ -4677,7 +4677,7 @@
       ]
     },
     "171": {
-      "floor_height": 0.15625,
+      "floor_height": -0.125,
       "ceiling_height": 0.15625,
       "connections": [
         "line_530",
