@@ -197,6 +197,41 @@
                         {
                             "class": "monster-27",
                             "display": "MADD"
+                        },
+                        {
+                            "class": "monster-14",
+                            "display": "S'pht (minor) [red]",
+                            "rebellion": true
+                        },
+                        {
+                            "class": "monster-15",
+                            "display": "S'pht (major) [purple]",
+                            "rebellion": true
+                        },
+                        {
+                            "class": "monster-16",
+                            "display": "S'pht (minor invisible)",
+                            "rebellion": true
+                        },
+                        {
+                            "class": "monster-17",
+                            "display": "S'pht (major invisible)",
+                            "rebellion": true
+                        },
+                        {
+                            "class": "monster-18",
+                            "display": "Hulk (minor) [purple]",
+                            "rebellion": true
+                        },
+                        {
+                            "class": "monster-19",
+                            "display": "Hulk (major) [purple]",
+                            "rebellion": true
+                        },
+                        {
+                            "class": "monster-1",
+                            "display": "Simulacrum",
+                            "rebellion": true
                         }
                     ]
                 },
@@ -230,27 +265,33 @@
                         },
                         {
                             "class": "monster-14",
-                            "display": "S'pht (minor) [red]"
+                            "display": "S'pht (minor) [red]",
+                            "rebellion": false
                         },
                         {
                             "class": "monster-15",
-                            "display": "S'pht (major) [purple]"
+                            "display": "S'pht (major) [purple]",
+                            "rebellion": false
                         },
                         {
                             "class": "monster-16",
-                            "display": "S'pht (minor invisible)"
+                            "display": "S'pht (minor invisible)",
+                            "rebellion": false
                         },
                         {
                             "class": "monster-17",
-                            "display": "S'pht (major invisible)"
+                            "display": "S'pht (major invisible)",
+                            "rebellion": false
                         },
                         {
                             "class": "monster-18",
-                            "display": "Hulk (minor) [purple]"
+                            "display": "Hulk (minor) [purple]",
+                            "rebellion": false
                         },
                         {
                             "class": "monster-19",
-                            "display": "Hulk (major) [purple]"
+                            "display": "Hulk (major) [purple]",
+                            "rebellion": false
                         },
                         {
                             "class": "monster-20",
@@ -308,7 +349,8 @@
                     "types": [
                         {
                             "class": "monster-1",
-                            "display": "Simulacrum"
+                            "display": "Simulacrum",
+                            "rebellion": false
                         },
                         {
                             "class": "monster-39",
