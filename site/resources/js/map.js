@@ -155,6 +155,16 @@ function process_overlay_types(types) {
         if (undefined == display || '' == display) {
             display = type.selector;
         }
+        let level_rebellion = 'rebellion' in level_json && level_json.rebellion;
+        let type_rebellion = false;
+        if ('rebellion' in type) {
+            type_rebellion = type.rebellion;
+        } else {
+            type_rebellion = level_rebellion;
+        }
+        if (level_rebellion != type_rebellion) {
+            continue;
+        }
         let checkbox_string = null;
         let hover = ` onmouseover="hover_checkbox(this, null, 1)" onmouseout="hover_checkbox(this, null, 0)"`;
         const group_string = `<li><label${hover}><input type="checkbox" onchange="toggle_checkbox(this)" class="overlay" /> ${display}</label></li>\n`;

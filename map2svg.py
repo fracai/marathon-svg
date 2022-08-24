@@ -37,12 +37,12 @@ CHUNK_TYPES = [
     'PLAT', # platforms
     'medi', # media
     'term', # terminals
+    'Minf', # map info
 ]
 CHUNK_TYPES_IGNORED = [
     'ambi', # ambient sounds
     'bonk', # random sounds
     'iidx', # map indices
-    'Minf', # map info
 
     # physics related
     'MNpx',
@@ -51,6 +51,26 @@ CHUNK_TYPES_IGNORED = [
     'PXpx',
     'WPpx',
 ]
+
+# from https://github.com/Aleph-One-Marathon/alephone/blob/1aaa23bfaeac690ce94db1a163877d8028a8d972/Source_Files/GameWorld/map.h#L823
+class EnvironmentFlags(IntFlag):
+#     normal = 0,
+    vacuum = auto() # prevents certain weapons from working, player uses oxygen
+    magnetic = auto() # motion sensor works poorly
+    rebellion = auto() # makes clients fight pfhor
+    low_gravity = auto() # low gravity
+    glue_m1 = auto() # handle glue polygons like Marathon 1
+    ouch_m1 = auto() # the floor is lava
+    rebellion_m1 = auto() # use Marathon 1 rebellion (don't strip items/health)
+    song_index_m1 = auto() # play music
+    terminals_stop_time = auto() # solo only
+    activation_ranges = auto() # Marathon 1 monster activation limits
+    m1_weapons = auto() # multiple weapon pickups on TC; low gravity grenades
+    UNUSED = auto()
+    # the following two pseudo-environments are used to prevent items from arriving in the items.c code.
+    network = auto()
+    single_player = auto()
+
 
 # from https://github.com/Aleph-One-Marathon/alephone/blob/e9c3c4903bb662a4d7c84e6b8cf587efc84293e3/Source_Files/GameWorld/platforms.h#L72
 class PlatformFlags(IntFlag):
@@ -984,6 +1004,10 @@ def generate_objects(objects, polygons, ignore_polys, level_info):
     object_svg += '<!-- end group: "objects" -->\n</g>\n'
     return object_svg
 
+def update_level_info(map_info, level_info):
+    if EnvironmentFlags.rebellion & map_info[0]['environment_flags']:
+        level_info['rebellion'] = True
+
 def generate_svg(map_type, base_name, level_dict, ignore_polys):
     out_path = os.path.join(args.output_directory, base_name+'.svg')
     json_path = os.path.join(args.output_directory, base_name+'.json')
@@ -1046,6 +1070,9 @@ def generate_svg(map_type, base_name, level_dict, ignore_polys):
     level_svg += generate_objects(level_dict['OBJS']['object'], level_dict['POLY']['polygon'], ignore_polys, level_info)
     level_svg += generate_panels(level_dict, ignore_polys, map_type, level_info)
     level_svg += generate_annotations(level_dict['NOTE']['annotation'], level_info)
+
+    if 'Minf' in level_dict:
+        update_level_info(level_dict['Minf']['mapinfo'], level_info)
 
     # update the level_info dimensions to merge the
     finalize_dimensions(level_info)
