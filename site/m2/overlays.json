@@ -906,6 +906,10 @@
                     "display": "Terminal Tag Lines"
                 }
             ]
+        },
+        {
+            "class": "unknown",
+            "display": "unknown"
         }
     ]
 }
