@@ -3,96 +3,168 @@
 import argparse
 import xml.etree.ElementTree as ET
 from collections import defaultdict
+from enum import IntFlag, IntEnum, auto
+import traceback
 import json
 import os
 import errno
 import sys
 import re
 
-FLAGS={
-    0x1: 'is_omniscent', # ignores line-of-sight during find_closest_appropriate_target() */
-    0x2: 'flys',
-    0x4: 'is_alien', # moves slower on slower levels, etc. */
-    0x8: 'major', # type -1 is minor */
-    0x10: 'minor', # type +1 is major */
-    0x20: 'cannot_be_dropped', # low levels cannot skip this monster */
-    0x40: 'floats', # exclusive from flys; forces the monster to take +∂h gradually */
-    0x80: 'cannot_attack', # monster has no weapons and cannot attack (runs constantly to safety) */
-    0x100: 'uses_sniper_ledges', # sit on ledges and hurl shit at the player (ranged attack monsters only) */
-    0x200: 'is_invisible', # this monster uses _xfer_invisibility */
-    0x400: 'is_subtly_invisible', # this monster uses _xfer_subtle_invisibility */
-    0x800: 'is_kamakazi', # monster does shrapnel damage and will suicide if close enough to target */
-    0x1000: 'is_berserker', # below 1/4 vitality this monster goes berserk */
-    0x2000: 'is_enlarged', # monster is 1.25 times normal height */
-    0x4000: 'has_delayed_hard_death', # always dies soft, then switches to hard */
-    0x8000: 'fires_symmetrically', # fires at ±dy, simultaneously */
-    0x10000: 'has_nuclear_hard_death', # player’s screen whites out and slowly recovers */
-    0x20000: 'cant_fire_backwards', # monster can’t turn more than 135° to fire */
-    0x40000: 'can_die_in_flames', # uses humanoid flaming body shape */
-    0x80000: 'waits_with_clear_shot', # will sit and fire (slowly) if we have a clear shot */
-    0x100000: 'is_tiny', # 0.25-size normal height */
-    0x200000: 'attacks_immediately', # monster will try an attack immediately */
-    0x400000: 'is_not_afraid_of_water',
-    0x800000: 'is_not_afraid_of_sewage',
-    0x1000000: 'is_not_afraid_of_lava',
-    0x2000000: 'is_not_afraid_of_goo',
-    0x4000000: 'can_teleport_under_media',
-    0x8000000: 'chooses_weapons_randomly',
+class MonsterFlags(IntFlag):
+    is_omniscent = auto() # ignores line-of-sight during find_closest_appropriate_target() */
+    flys = auto()
+    is_alien = auto() # moves slower on slower levels, etc. */
+    major = auto() # type -1 is minor */
+    minor = auto() # type +1 is major */
+    cannot_be_dropped = auto() # low levels cannot skip this monster */
+    floats = auto() # exclusive from flys; forces the monster to take +∂h gradually */
+    cannot_attack = auto() # monster has no weapons and cannot attack (runs constantly to safety) */
+    uses_sniper_ledges = auto() # sit on ledges and hurl shit at the player (ranged attack monsters only) */
+    is_invisible = auto() # this monster uses _xfer_invisibility */
+    is_subtly_invisible = auto() # this monster uses _xfer_subtle_invisibility */
+    is_kamakazi = auto() # monster does shrapnel damage and will suicide if close enough to target */
+    is_berserker = auto() # below 1/4 vitality this monster goes berserk */
+    is_enlarged = auto() # monster is 1.25 times normal height */
+    has_delayed_hard_death = auto() # always dies soft, then switches to hard */
+    fires_symmetrically = auto() # fires at ±dy, simultaneously */
+    has_nuclear_hard_death = auto() # player’s screen whites out and slowly recovers */
+    cant_fire_backwards = auto() # monster can’t turn more than 135° to fire */
+    can_die_in_flames = auto() # uses humanoid flaming body shape */
+    waits_with_clear_shot = auto() # will sit and fire (slowly) if we have a clear shot */
+    is_tiny = auto() # 0.25-size normal height */
+    attacks_immediately = auto() # monster will try an attack immediately */
+    is_not_afraid_of_water = auto()
+    is_not_afraid_of_sewage = auto()
+    is_not_afraid_of_lava = auto()
+    is_not_afraid_of_goo = auto()
+    can_teleport_under_media = auto()
+    chooses_weapons_randomly = auto()
     # monsters unable to open doors have door retry masks of NONE */
     # monsters unable to switch levels have min,max ledge deltas of 0 */
     # monsters unstopped by bullets have hit frames of NONE */
 
     # pseudo flags set when reading Marathon 1 physics
-    0x10000000: 'weaknesses_cause_soft_death',
-    0x20000000: 'screams_when_crushed',
-    0x40000000: 'makes_sound_when_activated', # instead of when locking on a target
-    0x80000000: 'can_grenade_climb', # only applies to player
-}
+    weaknesses_cause_soft_death = auto()
+    screams_when_crushed = auto()
+    makes_sound_when_activated = auto() # instead of when locking on a target
+    can_grenade_climb = auto() # only applies to player
+
+class MonsterClass(IntFlag):
+    player = auto()
+    human_civilian = auto()
+    madd = auto()
+    possessed_hummer = auto()
+
+    defender = auto()
+
+    fighter = auto()
+    trooper = auto()
+    hunter = auto()
+    enforcer = auto()
+    juggernaut = auto()
+    hummer = auto()
+
+    compiler = auto()
+    cyborg = auto()
+    assimilated_civilian = auto()
+
+    tick = auto()
+    yeti = auto()
+
+    human = player|human_civilian|madd|possessed_hummer
+    pfhor = fighter|trooper|hunter|enforcer|juggernaut
+    client = compiler|assimilated_civilian|cyborg|hummer
+    native = tick|yeti
+    hostile_alien = pfhor|client
+    neutral_alien = native
+
+class AttackType(IntEnum):
+    rocket = ('rocket', 0)
+    grenade = ('grenade')
+    pistol_bullet = ('pistol round')
+    rifle_bullet = ('rifle round')
+    shotgun_bullet = ('shotgun blast')
+    staff = ('staff')
+    staff_bolt = ('staff projectile')
+    flamethrower_burst = ('flamethrower')
+    compiler_bolt_minor = ('bolt')
+    compiler_bolt_major = ('bolt')
+    alien_weapon = ('alien weapon')
+    fusion_bolt_minor = ('minor fusion bolt')
+    fusion_bolt_major = ('major fusion bolt')
+    hunter = ('hunter blast')
+    fist = ('fist')
+    armageddon_sphere = ('armageddon sphere')
+    armageddon_electricity = ('armageddon electricity')
+    juggernaut_rocket = ('rocket')
+    trooper_bullet = ('alien round')
+    trooper_grenade = ('grenade')
+    minor_defender = ('bolt')
+    major_defender = ('bolt')
+    juggernaut_missile = ('missile')
+    minor_energy_drain = ('energy drain')
+    major_energy_drain = ('major energy drain')
+    oxygen_drain = ('oxygen drain')
+    minor_hummer = ('hummer shot')
+    major_hummer = ('hummer shot')
+    durandal_hummer = ('hummer shot')
+    minor_cyborg_ball = ('grenade')
+    major_cyborg_ball = ('grenade')
+    ball = ('ball')
+    minor_fusion_dispersal = ('minor fusion bolt')
+    major_fusion_dispersal = ('major fusion bolt')
+    overloaded_fusion_dispersal = ('overloaded fusion')
+    yeti = ('claw')
+    sewage_yeti = ('sewage')
+    lava_yeti = ('lava')
+    # LP additions:
+    smg_bullet = ('fletchet round')
+    NUMBER_OF_PROJECTILE_TYPES = ('')
+
+    def __new__(cls, description, value=None):
+        if value is None:
+            value = list(cls.__members__.values())[-1].value + 1
+        member = int.__new__(cls, value)
+        member._value_ = value
+        member.description = description
+        return member
 
 NOTEWORTHY_FLAGS = {
-    'minor': 'minor',
-    'major': 'major',
-    'is_invisible': 'invisible',
-    'is_subtly_invisible': 'cloaked',
-    'is_enlarged': 'mother of all',
-    'is_tiny': 'mini',
-    'has_nuclear_hard_death': 'nuke',
+    MonsterFlags.minor: 'minor',
+    MonsterFlags.major: 'major',
+    MonsterFlags.is_invisible: 'invisible',
+    MonsterFlags.is_subtly_invisible: 'cloaked',
+    MonsterFlags.is_enlarged: 'mother of all',
+    MonsterFlags.is_tiny: 'mini',
+    MonsterFlags.has_nuclear_hard_death: 'nuke',
 }
 
 IGNORE_FLAGS = set([
-    'attacks_immediately',
-    'cannot_be_dropped',
-    'cant_fire_backwards',
-    'can_die_in_flames',
-    'can_grenade_climb',
-    'can_teleport_under_media',
-    'chooses_weapons_randomly',
-    'fires_symmetrically',
-    'floats',
-    'flys',
-    'has_delayed_hard_death',
-    'is_alien',
-    'is_berserker',
-    'is_kamakazi',
-    'is_not_afraid_of_goo',
-    'is_not_afraid_of_lava',
-    'is_not_afraid_of_sewage',
-    'is_not_afraid_of_water',
-    'is_omniscent',
-    'makes_sound_when_activated',
-    'screams_when_crushed',
-    'waits_with_clear_shot',
-    'weaknesses_cause_soft_death',
+    MonsterFlags.attacks_immediately,
+    MonsterFlags.cannot_be_dropped,
+    MonsterFlags.cant_fire_backwards,
+    MonsterFlags.can_die_in_flames,
+    MonsterFlags.can_grenade_climb,
+    MonsterFlags.can_teleport_under_media,
+    MonsterFlags.chooses_weapons_randomly,
+    MonsterFlags.fires_symmetrically,
+    MonsterFlags.floats,
+    MonsterFlags.flys,
+    MonsterFlags.has_delayed_hard_death,
+    MonsterFlags.is_alien,
+    MonsterFlags.is_berserker,
+    MonsterFlags.is_kamakazi,
+    MonsterFlags.is_not_afraid_of_goo,
+    MonsterFlags.is_not_afraid_of_lava,
+    MonsterFlags.is_not_afraid_of_sewage,
+    MonsterFlags.is_not_afraid_of_water,
+    MonsterFlags.is_omniscent,
+    MonsterFlags.makes_sound_when_activated,
+    MonsterFlags.screams_when_crushed,
+    MonsterFlags.waits_with_clear_shot,
+    MonsterFlags.weaknesses_cause_soft_death,
 ])
-
-def get_flags(bits):
-    flags = list()
-    for mask,flag in FLAGS.items():
-        if flag in IGNORE_FLAGS:
-            continue
-        if mask & bits:
-            flags.append(flag)
-    return flags
 
 DESCRIPTOR_SHAPE_BITS = 8
 DESCRIPTOR_COLLECTION_BITS = 5
@@ -239,42 +311,53 @@ def process_level(map_type, level_root, collections, base_prefix):
     for monster_index in sorted(map(int, monsters)):
         try:
             monster_def = level_dict['MNpx']['monster_definition'][monster_index]
-
-            packed_collection = monster_def['collection']
-            clut = get_collection_clut(packed_collection)
-            coll = get_collection(packed_collection)
-            stationary = monster_def['stationary_shape_shape']
-
-            flags = get_flags(monster_def['flags'])
-
-            friend = monster_def['friends'] & 0x1
-            enemy = monster_def['enemies'] & 0x1
-            alliance = 'unknown'
-            if friend and enemy:
-                alliance = 'confused'
-            elif friend:
-                alliance = 'friend'
-            elif enemy:
-                alliance = 'enemy'
-            else:
-                alliance = 'neutral'
-            collection_id = '{}:{}:{}'.format(coll,clut,stationary)
-            collection_name = find_collection_name(collections, collection_id)
-            notes = list()
-            for flag,note in NOTEWORTHY_FLAGS.items():
-                if flag in flags:
-                    notes.append(note)
-            if notes:
-                collection_name += ' (' + ', '.join(notes) + ')'
-            alliances[alliance].append({
-                "class": 'monster-{}'.format(monster_index),
-                "display": collection_name,
-                "tooltip": ', '.join(flags),
-            })
-#             print ('{:0>2}: {} {} :: {}'.format(monster_index, alliance, collection_id, flags))
         except:
-#             print ('{:0>2}: ???'.format(monster_index))
-            pass
+            continue
+        packed_collection = monster_def['collection']
+        clut = get_collection_clut(packed_collection)
+        coll = get_collection(packed_collection)
+        stationary = monster_def['stationary_shape_shape']
+
+        flags = [f for f in MonsterFlags if f & monster_def['flags']]
+        monster_class = [f for f in MonsterClass if f & monster_def['class']]
+        print (monster_class)
+        try:
+            melee_attack = AttackType(monster_def['melee_attack_type'])
+        except:
+            melee_attack = None
+        try:
+            ranged_attack = AttackType(monster_def['ranged_attack_type'])
+        except:
+            ranged_attack = None
+        attacks = {a.description:None for a in [melee_attack, ranged_attack] if a is not None}.keys()
+
+        friend = monster_def['friends'] & 0x1
+        enemy = monster_def['enemies'] & 0x1
+        alliance = 'unknown'
+        if friend and enemy:
+            alliance = 'confused'
+        elif friend:
+            alliance = 'friend'
+        elif enemy:
+            alliance = 'enemy'
+        else:
+            alliance = 'neutral'
+        collection_id = '{}:{}:{}'.format(coll,clut,stationary)
+        collection_name = find_collection_name(collections, collection_id)
+        notes = list()
+        for flag,note in NOTEWORTHY_FLAGS.items():
+            if flag in flags:
+                notes.append(note)
+        notes.extend((attacks))
+        if notes:
+            collection_name += ' (' + ', '.join(notes) + ')'
+        alliances[alliance].append({
+            "class": 'monster-{}'.format(monster_index),
+            "display": collection_name,
+            "tooltip": ', '.join(map(lambda f: f.name,flags)),
+        })
+        print ('{:0>2}: {} {} :: {}'.format(monster_index, alliance, collection_id, list(map(lambda f: f.name, flags))))
+        print (json.dumps(alliances, indent=2))
     if not alliances:
         return
     level_dict['name'] = name
