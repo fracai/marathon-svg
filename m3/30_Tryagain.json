@@ -93,7 +93,6 @@
       "sound-8"
     ],
     "selectors": [
-      "polygon.hill",
       "polygon.lava",
       "polygon.plain",
       "polygon.platform",

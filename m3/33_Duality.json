@@ -90,10 +90,10 @@
       "sound-6"
     ],
     "selectors": [
-      "polygon.hill",
       "polygon.plain",
       "polygon.platform",
-      "polygon.teleporter"
+      "polygon.teleporter",
+      "polygon.water"
     ]
   },
   "polygons": {
