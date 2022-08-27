@@ -1125,7 +1125,7 @@ def calculate_poly_class(poly, platform_map, ignore_polys, liquids, map_type):
             return 'major_ouch'
         if 0 < len(liquids) and poly['media_index'] >= 0:
             media = liquids[poly['media_index']]
-            if poly['floor_height'] < media['low']:
+            if poly['floor_height'] <= media['low']:
                 if media['type'] in media_map:
                     return media_map[media['type']]
         if poly['type'] == 3:
