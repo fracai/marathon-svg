@@ -1119,8 +1119,6 @@ def calculate_poly_class(poly, platform_map, ignore_polys, liquids, map_type):
         if poly['type'] == 4:
             return 'major_ouch'
     else:
-        if poly['type'] == 3:
-            return 'hill'
         if poly['type'] == 19:
             return 'minor_ouch'
         if poly['type'] == 20:
@@ -1130,6 +1128,8 @@ def calculate_poly_class(poly, platform_map, ignore_polys, liquids, map_type):
             if poly['floor_height'] < media['low']:
                 if media['type'] in media_map:
                     return media_map[media['type']]
+        if poly['type'] == 3:
+            return 'hill'
     if is_landscape_poly(poly):
         return 'landscape_'
     if poly['index'] in platform_map:
